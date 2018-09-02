@@ -371,9 +371,32 @@
 <p>这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。</p>
 <p><strong>该爬虫使用的python版本是<a href="https://www.python.org/" target="_blank" rel="noopener">python3</a>。</strong></p>
 <p><strong>该爬虫的使用第三方库有<a href="https://pypi.org/project/selenium/" target="_blank" rel="noopener">selenium</a>、<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">requests</a>、<a href="https://docs.python.org/3.5/library/re.html" target="_blank" rel="noopener">re</a>、<a href="https://pypi.org/project/openpyxl/" target="_blank" rel="noopener">openpyxl</a>、<a href="https://docs.python.org/3.5/library/time.html" target="_blank" rel="noopener">time</a>。</strong></p>
-<h3 id="1-爬虫思路"><a href="#1-爬虫思路" class="headerlink" title="1.爬虫思路"></a>1.爬虫思路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">op1=&gt;operation: 登陆好友空间说说页面、获取cookie</span><br><span class="line">op2=&gt;operation: 构造请求、获取返回内容</span><br><span class="line">op3=&gt;operation: 处理返回内容、提取信息</span><br><span class="line">e=&gt;end</span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;e</span><br></pre></td></tr></table></figure>
+<h3 id="1-爬虫思路"><a href="#1-爬虫思路" class="headerlink" title="1.爬虫思路"></a>1.爬虫思路</h3><div id="flowchart-0" class="flow-chart"></div>
+
+
+
 <h3 id="2-使用selenium登陆空间"><a href="#2-使用selenium登陆空间" class="headerlink" title="2.使用selenium登陆空间"></a>2.使用selenium登陆空间</h3><p><a href="https://www.seleniumhq.org/" target="_blank" rel="noopener">selenium</a>是一个自动化测试工具，它可以寻找、定位、选择网页中的元素，向网页提交一些信息，如输入用户名、密码，也可以获取页面中的信息，如返回当前页面的url、网页源码。</p>
 <p>感觉测试攻城狮<a href="https://me.csdn.net/u011541946" target="_blank" rel="noopener">Anthony_tester </a>的<a href="https://blog.csdn.net/u011541946/article/category/6788788" target="_blank" rel="noopener">Python+Selenium自动化测试从零到框架设计系列 </a>教程写的很棒,适合入门。</p>
+<p>进入好友空间并登陆：</p>
+<p><code>python
+def login_in(url, qq, password):
+    driver = webdriver.Chrome()
+    driver.set_page_load_timeout(10)
+    driver.get(url)
+    time.sleep(6)
+    driver.switch_to.frame(&#39;login_frame&#39;)#通过观察网页源码，发现账号和密码的输入框在&lt;frame&gt;标签下，需要跳入框架中，否则定位不到
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;switcher_plogin&quot;]&#39;).click()#点击选择
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;u&quot;]&#39;).clear()
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;u&quot;]&#39;).send_keys(qq)#输入账号
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;p&quot;]&#39;).clear()
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;p&quot;]&#39;).send_keys(password)#输入密码
+    driver.find_element_by_xpath(&#39;//*[@id=&quot;login_button&quot;]&#39;).click()
+    time.sleep(6)</code><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
+op1=>operation: 登陆好友空间说说页面、获取cookie
+op2=>operation: 构造请求、获取返回内容
+op3=>operation: 处理返回内容、提取信息
+e=>end
+st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 
           
         
