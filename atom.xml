@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>iszff&#39;blog</title>
+  <title>iszff&#39; Blog</title>
   
   <subtitle>people move on.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-02T00:36:43.162Z</updated>
+  <updated>2018-09-02T12:10:04.917Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>qq好友空间说说爬虫</title>
+    <link href="http://yoursite.com/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/"/>
+    <id>http://yoursite.com/2018/09/02/qq好友空间说说爬虫/</id>
+    <published>2018-09-02T03:14:50.000Z</published>
+    <updated>2018-09-02T12:10:04.917Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇日志主要记录自己写的一个小爬虫，算是自己学习python的小练习吧。</p><p>这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。</p><p><strong>该爬虫使用的python版本是<a href="https://www.python.org/" target="_blank" rel="noopener">python3</a>。</strong></p><p><strong>该爬虫的使用第三方库有<a href="https://pypi.org/project/selenium/" target="_blank" rel="noopener">selenium</a>、<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">requests</a>、<a href="https://docs.python.org/3.5/library/re.html" target="_blank" rel="noopener">re</a>、<a href="https://pypi.org/project/openpyxl/" target="_blank" rel="noopener">openpyxl</a>、<a href="https://docs.python.org/3.5/library/time.html" target="_blank" rel="noopener">time</a>。</strong></p><h3 id="1-爬虫思路"><a href="#1-爬虫思路" class="headerlink" title="1.爬虫思路"></a>1.爬虫思路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">op1=&gt;operation: 登陆好友空间说说页面、获取cookie</span><br><span class="line">op2=&gt;operation: 构造请求、获取返回内容</span><br><span class="line">op3=&gt;operation: 处理返回内容、提取信息</span><br><span class="line">e=&gt;end</span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;e</span><br></pre></td></tr></table></figure><h3 id="2-使用selenium登陆空间"><a href="#2-使用selenium登陆空间" class="headerlink" title="2.使用selenium登陆空间"></a>2.使用selenium登陆空间</h3><p><a href="https://www.seleniumhq.org/" target="_blank" rel="noopener">selenium</a>是一个自动化测试工具，它可以寻找、定位、选择网页中的元素，向网页提交一些信息，如输入用户名、密码，也可以获取页面中的信息，如返回当前页面的url、网页源码。</p><p>感觉测试攻城狮<a href="https://me.csdn.net/u011541946" target="_blank" rel="noopener">Anthony_tester </a>的<a href="https://blog.csdn.net/u011541946/article/category/6788788" target="_blank" rel="noopener">Python+Selenium自动化测试从零到框架设计系列 </a>教程写的很棒,适合入门。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这篇日志主要记录自己写的一个小爬虫，算是自己学习python的小练习吧。&lt;/p&gt;
+&lt;p&gt;这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;该爬虫使用的python版本是&lt;a href=&quot;https:/
+      
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://yoursite.com/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="数据处理" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>新建博客</title>
     <link href="http://yoursite.com/2018/05/27/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2018/05/27/新建博客/</id>
     <published>2018-05-27T15:24:56.000Z</published>
-    <updated>2018-09-02T00:36:43.162Z</updated>
+    <updated>2018-09-02T12:20:23.523Z</updated>
     
     <content type="html"><![CDATA[<h1 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h1><blockquote><p>此博客主要用于记录个人成长和学习生活。</p></blockquote><blockquote><p>在学习生活中自己常常遇到一些问题，需要总结、记录一下。</p><p>Orz</p></blockquote>]]></content>
     
@@ -36,6 +67,8 @@
       
     
     </summary>
+    
+      <category term="Blog" scheme="http://yoursite.com/categories/Blog/"/>
     
     
       <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
