@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>iszff</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-09-02T00:36:43.162Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新建博客</title>
+    <link href="http://yoursite.com/2018/05/27/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/05/27/新建博客/</id>
+    <published>2018-05-27T15:24:56.000Z</published>
+    <updated>2018-09-02T00:36:43.162Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h1><blockquote><p>此博客主要用于记录个人成长和学习生活。</p></blockquote><blockquote><p>在学习生活中自己常常遇到一些问题，需要总结、记录一下。</p><p>Orz</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;新建博客&quot;&gt;&lt;a href=&quot;#新建博客&quot; class=&quot;headerlink&quot; title=&quot;新建博客&quot;&gt;&lt;/a&gt;新建博客&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;此博客主要用于记录个人成长和学习生活。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote
+      
+    
+    </summary>
+    
+    
+      <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
+    
+  </entry>
+  
+</feed>
