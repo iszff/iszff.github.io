@@ -367,171 +367,18 @@
       
         
           
-            <p>这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。</p>
-<p>这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。</p>
-<p><strong>该爬虫使用的python版本是<a href="https://www.python.org/" target="_blank" rel="noopener">python3</a>。</strong></p>
-<p><strong>该爬虫的使用第三方库有<a href="https://pypi.org/project/selenium/" target="_blank" rel="noopener">selenium</a>、<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">requests</a>、<a href="https://docs.python.org/3.5/library/re.html" target="_blank" rel="noopener">re</a>、<a href="https://pypi.org/project/openpyxl/" target="_blank" rel="noopener">openpyxl</a>、<a href="https://docs.python.org/3.5/library/time.html" target="_blank" rel="noopener">time</a>。</strong></p>
-<p>其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re库用于匹配、提取返回包含说说信息的内容，openpyxl库用于储存信息，time库用于计算程序运行时间。</p>
-<p>程序源码放在了GitHub上<a href="https://github.com/iszff" target="_blank" rel="noopener">iszff</a>/<a href="https://github.com/iszff/QQ-Crawler" target="_blank" rel="noopener"><strong>QQ-Crawler</strong></a>。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="爬虫思路"><a href="#爬虫思路" class="headerlink" title="爬虫思路"></a>爬虫思路</h3><div id="flowchart-0" class="flow-chart"></div>
-
-
-
-<h3 id="使用selenium登陆空间"><a href="#使用selenium登陆空间" class="headerlink" title="使用selenium登陆空间"></a>使用selenium登陆空间</h3><p><a href="https://www.seleniumhq.org/" target="_blank" rel="noopener">selenium</a>是一个自动化测试工具，它可以寻找、定位、选择网页中的元素，向网页提交一些信息，如输入用户名、密码，也可以获取页面中的信息，如返回当前页面的url、网页源码。</p>
-<p>感觉测试攻城狮<a href="https://me.csdn.net/u011541946" target="_blank" rel="noopener">Anthony_tester </a>的<a href="https://blog.csdn.net/u011541946/article/category/6788788" target="_blank" rel="noopener">Python+Selenium自动化测试从零到框架设计系列 </a>教程写的很棒,适合入门。</p>
-<h4 id="进入好友空间说说页面、登陆并获取信息："><a href="#进入好友空间说说页面、登陆并获取信息：" class="headerlink" title="进入好友空间说说页面、登陆并获取信息："></a>进入好友空间说说页面、登陆并获取信息：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_in</span><span class="params">(url, qq, password)</span>:</span></span><br><span class="line">    driver = webdriver.Chrome()</span><br><span class="line">    driver.set_page_load_timeout(<span class="number">10</span>)</span><br><span class="line">    driver.get(url)</span><br><span class="line">    time.sleep(<span class="number">6</span>)</span><br><span class="line">    driver.switch_to.frame(<span class="string">'login_frame'</span>)<span class="comment">#通过观察网页源码，发现账号和密码的输入框在&lt;frame&gt;标签下，需要跳入框架中，否则定位不到</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="switcher_plogin"]'</span>).click()<span class="comment">#点击选择</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="u"]'</span>).clear()</span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="u"]'</span>).send_keys(qq)<span class="comment">#输入账号</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="p"]'</span>).clear()</span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="p"]'</span>).send_keys(password)<span class="comment">#输入密码</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">'//*[@id="login_button"]'</span>).click()</span><br><span class="line">    time.sleep(<span class="number">6</span>)</span><br><span class="line">    </span><br><span class="line">    html = driver.page_source<span class="comment">#返回页面内容</span></span><br><span class="line">    fw = re.findall(<span class="string">r'主人设置了权限，您可通过以下方式访问'</span>,html)<span class="comment">#判断好友空间是否限制权限</span></span><br><span class="line">    <span class="keyword">if</span> len(fw)!=<span class="number">0</span>:</span><br><span class="line">        driver.delete_all_cookies()</span><br><span class="line">        driver.quit()</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        cookies = driver.get_cookies()<span class="comment">#获取cookie</span></span><br><span class="line">        cookie = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> elem <span class="keyword">in</span> cookies:</span><br><span class="line">       	    cookie[elem[<span class="string">'name'</span>]] = elem[<span class="string">'value'</span>]</span><br><span class="line">        driver.delete_all_cookies()    </span><br><span class="line"></span><br><span class="line">        hashes=<span class="number">5381</span></span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> cookie[<span class="string">'p_skey'</span>]:</span><br><span class="line">            hashes += (hashes &lt;&lt; <span class="number">5</span>) + ord(letter)</span><br><span class="line">        gtk=str(hashes &amp; <span class="number">0x7fffffff</span>)   </span><br><span class="line">	    </span><br><span class="line">        g_qzonetoken = re.findall(<span class="string">r'window\.g\_qzonetoken \= \(function\(\)\&#123; try\&#123;return \".*?\"'</span>,html)</span><br><span class="line">        qzonetoken=g_qzonetoken[<span class="number">0</span>].split(<span class="string">'"'</span>)[<span class="number">-2</span>]</span><br><span class="line">	    </span><br><span class="line">        driver.quit()</span><br><span class="line">	    </span><br><span class="line">        <span class="keyword">return</span> cookie, gtk, qzonetoken</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>通过观察浏览器控制台中的请求头，发现请求连接中有g_tk和qzonetoken这两项</p>
-<p>而且两项都是动态变化的，每次刷新都会变化，不过经过多次…尝试，似乎qzonetoken的变化影响不大</p>
-<p>qzonetoken包含在页面的源代码中，可以通过正则匹配直接获得</p>
-<p>在js内容找出可以找出一个g_tk的加密算法（向大佬们低头）</p>
-</blockquote>
-<h3 id="使用requests向网页发送请求"><a href="#使用requests向网页发送请求" class="headerlink" title="使用requests向网页发送请求"></a>使用requests向网页发送请求</h3><p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">requests</a>可以通过传递参数向网络发送<a href="https://baike.baidu.com/item/HTTP请求/10882159?fr=aladdin" target="_blank" rel="noopener">http请求</a>,可以获得不同类型的<a href="http://docs.python-requests.org/zh_CN/latest/api.html#requests.Response" target="_blank" rel="noopener">Response</a>内容。</p>
-<p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">官方文档</a>写的很不错。</p>
-<h4 id="构造链接"><a href="#构造链接" class="headerlink" title="构造链接"></a>构造链接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">urlOrd = &apos;https://user.qzone.qq.com/proxy/domain/taotao.qq.com/cgi—bin/emotion_cgi_msglist_v6?uin=&apos;</span><br><span class="line">sec=&apos;&amp;ftype=0&amp;sort=0&amp;pos=&apos;</span><br><span class="line">third=&apos;&amp;num=20&amp;replynum=100&amp;g_tk=&apos;</span><br><span class="line">forth=&apos;&amp;callback=_preloadCallback&amp;code_version=1&amp;format=jsonp&amp;need_private_comment=1&amp;qzonetoken=&apos;</span><br><span class="line">fifth=&apos;&amp;g_tk=&apos;</span><br><span class="line"></span><br><span class="line">for ye in range(400):</span><br><span class="line">    pos = str(ye*20)</span><br><span class="line">    emotionurl=urlOrd+ friend_qq + sec + pos + third + gtk + forth + qzonetoken+ fifth + gtk</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>观察确定请求url格式，构造请求url</p>
-</blockquote>
-<h4 id="对网页请求"><a href="#对网页请求" class="headerlink" title="对网页请求"></a>对网页请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_emotion(url,cookie):</span><br><span class="line">    header= &#123;&apos;accept-encoding&apos;: &apos;gzip, deflate, br&apos;, &apos;accept-language&apos;: &apos;zh-CN,zh;q=0.8&apos;, &apos;host&apos;: &apos;h5.qzone.qq.com&apos;, &apos;user-agent&apos;: &apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&apos;, &apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos;, &apos;connection&apos;: &apos;keep-alive&apos;&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie) </span><br><span class="line">    return r.text #返回文本信息</span><br></pre></td></tr></table></figure>
-<h4 id="获取好友信息"><a href="#获取好友信息" class="headerlink" title="获取好友信息"></a>获取好友信息</h4><p>获取好友信息的爬虫思路和获取说说页面响应的思路基本一致，只是url有所改变。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enter_qzone</span><span class="params">(my_qq, my_password, save_path)</span>:</span><span class="comment">#进入网页 获取cookies 构造链接</span></span><br><span class="line">    url = <span class="string">'https://user.qzone.qq.com/'</span>+my_qq+<span class="string">'/311'</span></span><br><span class="line">    (cookie, gtk, qzonetoken) = login_in(url, my_qq, my_password)</span><br><span class="line"></span><br><span class="line">    urlOrd = <span class="string">'https://user.qzone.qq.com/proxy/domain/r.qzone.qq.com/cgi-bin/tfriend/friend_hat_get.cgi?hat_seed=1&amp;uin='</span></span><br><span class="line">    second =<span class="string">'&amp;fupdate=1&amp;g_tk='</span></span><br><span class="line">    third = <span class="string">'&amp;qzonetoken='</span></span><br><span class="line">    fourth = <span class="string">'&amp;g_tk='</span></span><br><span class="line">    haturl= urlOrd + my_qq + second + gtk + third + qzonetoken + fourth + gtk</span><br><span class="line"></span><br><span class="line">    textpage = get_friendhat(haturl, cookie)</span><br><span class="line">    process_save(textpage,save_path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_friendhat</span><span class="params">(url,cookie)</span>:</span><span class="comment">#发送请求 获取响应</span></span><br><span class="line">    header= &#123;<span class="string">'accept-encoding'</span>: <span class="string">'gzip, deflate, br'</span>, <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.8'</span>, <span class="string">'host'</span>: <span class="string">'h5.qzone.qq.com'</span>, <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'</span>, <span class="string">'accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'</span>, <span class="string">'connection'</span>: <span class="string">'keep-alive'</span>&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie)</span><br><span class="line">    <span class="keyword">return</span> r.text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_save</span><span class="params">(text,save_path)</span>:</span><span class="comment">#提取信息并储存</span></span><br><span class="line">    friend=re.findall(<span class="string">'\".*?\"\:\&#123;\n\"realname\"\:\".*?\"\&#125;'</span>,text)</span><br><span class="line">    frNum = len(friend)</span><br><span class="line"></span><br><span class="line">    Name = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> friend:</span><br><span class="line">        n =elem.split(<span class="string">'"realname":"'</span>)[<span class="number">1</span>].split(<span class="string">'"&#125;'</span>)[<span class="number">0</span>]</span><br><span class="line">        Name.append(n)</span><br><span class="line">    QQ = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> friend:</span><br><span class="line">        q = elem.split(<span class="string">'"'</span>)[<span class="number">1</span>]</span><br><span class="line">        QQ.append(q)</span><br><span class="line"></span><br><span class="line">    wb = load_workbook(save_path)</span><br><span class="line">    ws = wb.get_sheet_by_name(<span class="string">"friend_info"</span>)</span><br><span class="line">    wc_name=ws[<span class="string">'A2'</span>:<span class="string">'A'</span>+str(frNum+<span class="number">2</span>)]</span><br><span class="line">    wc_qq=ws[<span class="string">'B2'</span>:<span class="string">'B'</span>+str(frNum+<span class="number">2</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(frNum):</span><br><span class="line">        wc_name[i][<span class="number">0</span>].value = Name[i]</span><br><span class="line">        wc_qq[i][<span class="number">0</span>].value = QQ[i]</span><br><span class="line"></span><br><span class="line">    wb.save(save_path)</span><br></pre></td></tr></table></figure>
-<h3 id="使用正则表达式re库提取信息"><a href="#使用正则表达式re库提取信息" class="headerlink" title="使用正则表达式re库提取信息"></a>使用正则表达式re库提取信息</h3><p>观察响应信息的内容，不难发现它的表达方式是json格式。</p>
-<p>可以直接使用Requests库中内置的JSON解码器<code>r.json()</code></p>
-<blockquote>
-<p>当时写代码的时候…没想起来（￣。。￣），直接暴力的用正则对文本内容进行了正则匹配，不过也达到了提取信息的目的</p>
-</blockquote>
-<p>这里使用的方法是对返回的一个很长很长的字符串的文本信息进行正则匹配，这一块就没什么好说的了，只要对正则的使用比较熟练就很方便。</p>
-<h4 id="正则表达式的常用操作符"><a href="#正则表达式的常用操作符" class="headerlink" title="正则表达式的常用操作符"></a>正则表达式的常用操作符</h4><table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>表示任何单个字符</td>
-</tr>
-<tr>
-<td>[ ]</td>
-<td>字符集，对单个字符给出取值范围</td>
-</tr>
-<tr>
-<td>[^ ]</td>
-<td>非字符集，对单个字符给出排除范围</td>
-</tr>
-<tr>
-<td>*</td>
-<td>前一个字符出现0次或无限次扩展</td>
-</tr>
-<tr>
-<td>+</td>
-<td>前一个字符出现1次或无限次扩展</td>
-</tr>
-<tr>
-<td>？</td>
-<td>前一个字符0次或1次扩展</td>
-</tr>
-<tr>
-<td>&#124;</td>
-<td>左右表达式任取其一</td>
-</tr>
-<tr>
-<td>{m}</td>
-<td>扩展前一个字符m次</td>
-</tr>
-<tr>
-<td>{m,n}</td>
-<td>扩展签一个字符m至n次（含n）</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串开头</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串结尾</td>
-</tr>
-<tr>
-<td>()</td>
-<td>分组标记，内部只能使用&#124;操作符</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>数字</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>单词字符</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>要注意正则表达式默认的是<strong>贪婪匹配</strong>,即<strong>趋于最大匹配长度</strong>,使用<code>*?</code>可以实现最小匹配</p>
-<p>另一点需要注意的地方就是转义字符的问题</p>
-</blockquote>
-<h4 id="re库的函数"><a href="#re库的函数" class="headerlink" title="re库的函数"></a>re库的函数</h4><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>re.search()</td>
-<td>在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象</td>
-</tr>
-<tr>
-<td>re.match()</td>
-<td>从一个字符串的开始位置起匹配正则表达式，返回match对象</td>
-</tr>
-<tr>
-<td>re.findall()</td>
-<td>搜索字符串，一列表类型返回全部能匹配的字符串</td>
-</tr>
-<tr>
-<td>re.split()</td>
-<td>将一个字符串按照正则表达式匹配结果进行分割，返回列表</td>
-</tr>
-<tr>
-<td>re.finditer()</td>
-<td>搜索字符串，返回匹配结果的迭代类型，每个迭代元素是match对象</td>
-</tr>
-<tr>
-<td>re.sub()</td>
-<td>在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>re库本生就有很多好用的函数，当时写代码的时候也没怎么想起来（￣。。￣）</p>
-</blockquote>
-<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = postTime.split(&apos;,&quot;created_time&quot;:&apos;)[1].split(&apos;,&quot;editMask&quot;&apos;)[0]</span><br><span class="line">    hour = ( int(h) - 1514649600 ) %86400 /3600#算出一天中发说说的时刻</span><br><span class="line">    ssInfo.append(hour)</span><br></pre></td></tr></table></figure>
-<h3 id="使用openpyxl将信息存入excel文件中、"><a href="#使用openpyxl将信息存入excel文件中、" class="headerlink" title="使用openpyxl将信息存入excel文件中、"></a>使用openpyxl将信息存入excel文件中、</h3><p><a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl</a>提供了很多方便操作.xlsx文件的函数，通过Sheet、cell的操作可以访问、读写单元格。</p>
-<p>本来是想用数据库的，但是并不会数据库，配置文件弄了半天也没弄好，就选择操作excel文件。</p>
-<blockquote>
-<p>存储信息量太大的话最好不要存在一个文件中，加载会变慢</p>
-</blockquote>
-<p>最终爬取了200多位好友2018年的说说，共5000多条。</p>
-<h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><p>可视化使用了<a href="https://matplotlib.org/" target="_blank" rel="noopener">matplotlib</a></p>
-<p>本文参照了<a href="https://www.zhihu.com/people/biao.me/activities" target="_blank" rel="noopener">标标</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/38634589" target="_blank" rel="noopener">爬取QQ空间</a>。</p>
-<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>其实代码写得挺烂的，异常处理做的也不好，跑起来遇到了异常才对应的写异常处理。</p>
-<p>另外就是网速要好o(≧口≦)o，不然requests就会报错，校网实在不能打，所以我选择去网吧(≧∇≦)。</p>
-<p>算是一个上学期的一个小总结，也算是这学期的开始吧。</p>
-<p>因为代码是上学期最后写的，这篇总结一直拖到了这学期开学才写，再不写就要上课了Orz。</p>
-<p>希望大三一切都顺利吧，至少能够顺心意。</p>
-<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
-op1=>operation: 登陆好友空间说说页面、获取cookie
-op2=>operation: 构造请求、获取返回内容
-op3=>operation: 处理返回内容、提取信息
-e=>end
-st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display: none">{"0":{"scale":"1,"},"1":{"line-width":"2,"},"2":{"line-length":"50,"},"3":{"text-margin":"10,"},"4":{"font-size":12},"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
-
-          
+          这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。
+这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。
+该爬虫使用的python版本是python3。
+该爬虫的使用第三方库有selenium、requests、re、openpyx
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/02/qq好友空间说说爬虫/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -671,15 +518,22 @@ st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display
       
         
           
-            <h1 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h1><blockquote>
-<p>此博客主要用于记录个人成长和学习生活。</p>
-</blockquote>
-<blockquote>
-<p>在学习生活中自己常常遇到一些问题，需要总结、记录一下。</p>
-<p>Orz</p>
-</blockquote>
+          新建博客
+此博客主要用于记录个人成长和学习生活。
+
+
+在学习生活中自己常常遇到一些问题，需要总结、记录一下。
+Orz
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/27/新建博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
