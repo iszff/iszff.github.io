@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-02T14:24:29.135Z">
+<meta property="og:updated_time" content="2018-09-03T01:47:45.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="qq好友空间说说爬虫">
 <meta name="twitter:description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
@@ -382,15 +382,148 @@
 <p>qzonetoken包含在页面的源代码中，可以通过正则匹配直接获得</p>
 <p>在js内容找出可以找出一个g_tk的加密算法（向大佬们低头）</p>
 </blockquote>
-<h3 id="3-使用requests向网页发送请求"><a href="#3-使用requests向网页发送请求" class="headerlink" title="3.使用requests向网页发送请求"></a>3.使用requests向网页发送请求</h3><h5 id="构造链接"><a href="#构造链接" class="headerlink" title="构造链接"></a>构造链接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">urlOrd = &apos;https://user.qzone.qq.com/proxy/domain/taotao.qq.com/cgi—bin/emotion_cgi_msglist_v6?uin=&apos;</span><br><span class="line">sec=&apos;&amp;ftype=0&amp;sort=0&amp;pos=&apos;</span><br><span class="line">third=&apos;&amp;num=20&amp;replynum=100&amp;g_tk=&apos;</span><br><span class="line">forth=&apos;&amp;callback=_preloadCallback&amp;code_version=1&amp;format=jsonp&amp;need_private_comment=1&amp;qzonetoken=&apos;</span><br><span class="line">fifth=&apos;&amp;g_tk=&apos;</span><br><span class="line"></span><br><span class="line">for ye in range(400):</span><br><span class="line">    pos = str(ye*20)</span><br><span class="line">    emotionurl=urlOrd+ friend_qq + sec + pos + third + gtk + forth + qzonetoken+ fifth + gtk</span><br></pre></td></tr></table></figure>
+<h3 id="3-使用requests向网页发送请求"><a href="#3-使用requests向网页发送请求" class="headerlink" title="3.使用requests向网页发送请求"></a>3.使用requests向网页发送请求</h3><p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">requests</a>可以通过传递参数向网络发送<a href="https://baike.baidu.com/item/HTTP请求/10882159?fr=aladdin" target="_blank" rel="noopener">http请求</a>,可以获得不同类型的<a href="http://docs.python-requests.org/zh_CN/latest/api.html#requests.Response" target="_blank" rel="noopener">Response</a>内容。</p>
+<p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">官方文档</a>写的很不错。</p>
+<h5 id="构造链接"><a href="#构造链接" class="headerlink" title="构造链接"></a>构造链接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">urlOrd = &apos;https://user.qzone.qq.com/proxy/domain/taotao.qq.com/cgi—bin/emotion_cgi_msglist_v6?uin=&apos;</span><br><span class="line">sec=&apos;&amp;ftype=0&amp;sort=0&amp;pos=&apos;</span><br><span class="line">third=&apos;&amp;num=20&amp;replynum=100&amp;g_tk=&apos;</span><br><span class="line">forth=&apos;&amp;callback=_preloadCallback&amp;code_version=1&amp;format=jsonp&amp;need_private_comment=1&amp;qzonetoken=&apos;</span><br><span class="line">fifth=&apos;&amp;g_tk=&apos;</span><br><span class="line"></span><br><span class="line">for ye in range(400):</span><br><span class="line">    pos = str(ye*20)</span><br><span class="line">    emotionurl=urlOrd+ friend_qq + sec + pos + third + gtk + forth + qzonetoken+ fifth + gtk</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>观察确定请求url格式，构造请求url</p>
 </blockquote>
-<h5 id="对网页请求"><a href="#对网页请求" class="headerlink" title="对网页请求"></a>对网页请求</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_emotion(url,cookie):</span><br><span class="line">    header= &#123;&apos;accept-encoding&apos;: &apos;gzip, deflate, br&apos;, &apos;accept-language&apos;: &apos;zh-CN,zh;q=0.8&apos;, &apos;host&apos;: &apos;h5.qzone.qq.com&apos;, &apos;user-agent&apos;: &apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&apos;, &apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos;, &apos;connection&apos;: &apos;keep-alive&apos;&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie) </span><br><span class="line">    return r.text</span><br></pre></td></tr></table></figure>
+<h5 id="对网页请求"><a href="#对网页请求" class="headerlink" title="对网页请求"></a>对网页请求</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_emotion(url,cookie):</span><br><span class="line">    header= &#123;&apos;accept-encoding&apos;: &apos;gzip, deflate, br&apos;, &apos;accept-language&apos;: &apos;zh-CN,zh;q=0.8&apos;, &apos;host&apos;: &apos;h5.qzone.qq.com&apos;, &apos;user-agent&apos;: &apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&apos;, &apos;accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos;, &apos;connection&apos;: &apos;keep-alive&apos;&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie) </span><br><span class="line">    return r.text #返回文本信息</span><br></pre></td></tr></table></figure>
+<h3 id="4-使用正则表达式re库提取信息"><a href="#4-使用正则表达式re库提取信息" class="headerlink" title="4.使用正则表达式re库提取信息"></a>4.使用正则表达式re库提取信息</h3><p>观察响应信息的内容，不难发现它的表达方式是json格式。</p>
+<p>可以直接使用Requests库中内置的JSON解码器<code>r.json()</code></p>
 <blockquote>
-<p>返回文本信息</p>
+<p>当时写代码的时候…没想起来（￣。。￣），直接暴力的用正则对文本内容进行了正则匹配，不过也达到了提取信息的目的</p>
 </blockquote>
-<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
+<p>这里使用的方法是对返回的一个很长很长的字符串的文本信息进行正则匹配，这一块就没什么好说的了，只要对正则的使用比较熟练就很方便。</p>
+<h5 id="正则表达式的常用操作符"><a href="#正则表达式的常用操作符" class="headerlink" title="正则表达式的常用操作符"></a>正则表达式的常用操作符</h5><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>表示任何单个字符</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>字符集，对单个字符给出取值范围</td>
+</tr>
+<tr>
+<td>[^ ]</td>
+<td>非字符集，对单个字符给出排除范围</td>
+</tr>
+<tr>
+<td>*</td>
+<td>前一个字符出现0次或无限次扩展</td>
+</tr>
+<tr>
+<td>+</td>
+<td>前一个字符出现1次或无限次扩展</td>
+</tr>
+<tr>
+<td>？</td>
+<td>前一个字符0次或1次扩展</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>左右表达式任取其一</td>
+</tr>
+<tr>
+<td>{m}</td>
+<td>扩展前一个字符m次</td>
+</tr>
+<tr>
+<td>{m,n}</td>
+<td>扩展签一个字符m至n次（含n）</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>^</th>
+<th>匹配字符串开头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$</td>
+<td>匹配字符串结尾</td>
+</tr>
+<tr>
+<td>()</td>
+<td>分组标记，内部只能使用\</td>
+<td>操作符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>单词字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>要注意正则表达式默认的是<strong>贪婪匹配</strong>,即<strong>趋于最大匹配长度</strong>,使用<code>*?</code>可以实现最小匹配</p>
+<p>另一点需要注意的地方就是转义字符的问题</p>
+</blockquote>
+<h5 id="re库的函数"><a href="#re库的函数" class="headerlink" title="re库的函数"></a>re库的函数</h5><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>re.search()</td>
+<td>在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象</td>
+</tr>
+<tr>
+<td>re.match()</td>
+<td>从一个字符串的开始位置起匹配正则表达式，返回match对象</td>
+</tr>
+<tr>
+<td>re.findall()</td>
+<td>搜索字符串，一列表类型返回全部能匹配的字符串</td>
+</tr>
+<tr>
+<td>re.split()</td>
+<td>将一个字符串按照正则表达式匹配结果进行分割，返回列表</td>
+</tr>
+<tr>
+<td>re.finditer()</td>
+<td>搜索字符串，返回匹配结果的迭代类型，每个迭代元素是match对象</td>
+</tr>
+<tr>
+<td>re.sub()</td>
+<td>在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>re库本生就有很多好用的函数，当时写代码的时候也没怎么想起来（￣。。￣）</p>
+</blockquote>
+<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = postTime.split(&apos;,&quot;created_time&quot;:&apos;)[1].split(&apos;,&quot;editMask&quot;&apos;)[0]</span><br><span class="line">    hour = ( int(h) - 1514649600 ) %86400 /3600#算出一天中发说说的时刻</span><br><span class="line">    ssInfo.append(hour)</span><br></pre></td></tr></table></figure>
+<h3 id="5-使用openpyxl将信息存入excel文件中、"><a href="#5-使用openpyxl将信息存入excel文件中、" class="headerlink" title="5.使用openpyxl将信息存入excel文件中、"></a>5.使用openpyxl将信息存入excel文件中、</h3><p><a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl</a>提供了很多方便操作.xlsx文件的函数，通过Sheet、cell的操作可以访问、读写单元格。</p>
+<p>本来是想用数据库的，但是并不会数据库，配置文件弄了半天也没弄好，就选择操作excel文件。</p>
+<blockquote>
+<p>存储信息量太大的话最好不要存在一个文件中，加载会变慢</p>
+</blockquote>
+<p>最终爬取了200多位好友2018年的说说，共5000多条。</p>
+<h3 id="6-数据可视化"><a href="#6-数据可视化" class="headerlink" title="6.数据可视化"></a>6.数据可视化</h3><p>可视化使用了<a href="https://matplotlib.org/" target="_blank" rel="noopener">matplotlib</a></p>
+<h3 id="7-题外话"><a href="#7-题外话" class="headerlink" title="7.题外话"></a>7.题外话</h3><p>其实代码写得挺烂的，异常处理做的也不好，跑起来遇到了异常才对应的写异常处理。</p>
+<p>另外就是网速要好o(≧口≦)o，不然requests就会报错，校网实在不能打，所以我选择去网吧(≧∇≦)。</p>
+<p>算是一个上学期的一个小总结，也算是这学期的开始吧。</p>
+<p>因为代码是上学期最后写的，这篇总结一直拖到了这学期开学才写，再不写就要上课了Orz。</p>
+<p>希望大三一切都顺利吧，至少能够顺心意。<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
 op1=>operation: 登陆好友空间说说页面、获取cookie
 op2=>operation: 构造请求、获取返回内容
 op3=>operation: 处理返回内容、提取信息
@@ -591,7 +724,7 @@ st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-爬虫思路"><span class="nav-number">1.</span> <span class="nav-text">1.爬虫思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用selenium登陆空间"><span class="nav-number">2.</span> <span class="nav-text">2.使用selenium登陆空间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#进入好友空间说说页面、登陆并获取信息："><span class="nav-number">2.0.1.</span> <span class="nav-text">进入好友空间说说页面、登陆并获取信息：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用requests向网页发送请求"><span class="nav-number">3.</span> <span class="nav-text">3.使用requests向网页发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造链接"><span class="nav-number">3.0.1.</span> <span class="nav-text">构造链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对网页请求"><span class="nav-number">3.0.2.</span> <span class="nav-text">对网页请求</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-爬虫思路"><span class="nav-number">1.</span> <span class="nav-text">1.爬虫思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用selenium登陆空间"><span class="nav-number">2.</span> <span class="nav-text">2.使用selenium登陆空间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#进入好友空间说说页面、登陆并获取信息："><span class="nav-number">2.0.1.</span> <span class="nav-text">进入好友空间说说页面、登陆并获取信息：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用requests向网页发送请求"><span class="nav-number">3.</span> <span class="nav-text">3.使用requests向网页发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造链接"><span class="nav-number">3.0.1.</span> <span class="nav-text">构造链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对网页请求"><span class="nav-number">3.0.2.</span> <span class="nav-text">对网页请求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用正则表达式re库提取信息"><span class="nav-number">4.</span> <span class="nav-text">4.使用正则表达式re库提取信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式的常用操作符"><span class="nav-number">4.0.1.</span> <span class="nav-text">正则表达式的常用操作符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re库的函数"><span class="nav-number">4.0.2.</span> <span class="nav-text">re库的函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用openpyxl将信息存入excel文件中、"><span class="nav-number">5.</span> <span class="nav-text">5.使用openpyxl将信息存入excel文件中、</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-数据可视化"><span class="nav-number">6.</span> <span class="nav-text">6.数据可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-题外话"><span class="nav-number">7.</span> <span class="nav-text">7.题外话</span></a></li></ol></div>
             
 
           </div>
