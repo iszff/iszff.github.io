@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-24T04:13:38.484Z">
+<meta property="og:updated_time" content="2019-04-07T14:13:35.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="qq好友空间说说爬虫">
 <meta name="twitter:description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
@@ -506,7 +506,7 @@
 <blockquote>
 <p>re库本生就有很多好用的函数，当时写代码的时候也没怎么想起来（￣。。￣）</p>
 </blockquote>
-<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。</p>
+<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。后来也算是偶然知道了<a href="https://baike.baidu.com/item/unix时间戳/2078227" target="_blank" rel="noopener">unix时间戳</a>是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，很多语言后来也是这样如java、python。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = postTime.split(&apos;,&quot;created_time&quot;:&apos;)[1].split(&apos;,&quot;editMask&quot;&apos;)[0]</span><br><span class="line">    hour = ( int(h) - 1514649600 ) %86400 /3600#算出一天中发说说的时刻</span><br><span class="line">    ssInfo.append(hour)</span><br></pre></td></tr></table></figure>
 <h3 id="使用openpyxl将信息存入excel文件中、"><a href="#使用openpyxl将信息存入excel文件中、" class="headerlink" title="使用openpyxl将信息存入excel文件中、"></a>使用openpyxl将信息存入excel文件中、</h3><p><a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl</a>提供了很多方便操作.xlsx文件的函数，通过Sheet、cell的操作可以访问、读写单元格。</p>
 <p>本来是想用数据库的，但是并不会数据库，配置文件弄了半天也没弄好，就选择操作excel文件。</p>
