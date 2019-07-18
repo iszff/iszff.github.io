@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T09:26:06.133Z">
+<meta property="og:updated_time" content="2019-07-18T13:10:25.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EDA课程设计、dsp课程设计">
 <meta name="twitter:description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
@@ -393,7 +393,7 @@
 <blockquote>
 <p>4.正向记录运行时间，在程序中设定了开始运行10s后蜂鸣提醒更换滤网，该时间可以在程序中设定，在左边四位数码管显示运行时间记录。</p>
 </blockquote>
-<p>代码的部分就不多说了，说说自己的小小感悟吧。Verilog HDL是一种硬件描述语言，硬件描述语言当然是来描述硬件的。这里就不得不提PGA可编程逻辑门阵列了，他内部的硬件逻辑电路会因为我们的程序而改变，而不是出厂后就规定死的。这一点直接决定了Verilog和C语言的不同，Verilog是并行的，变量在一处改变，在实际电路中就是逻辑门的改变，这会导致整个程序运行结果的改变。所以编程中对同一个变量的操作不能放在不同的进程中，简单理解不能放到不同的always()里。一开始，我没有意识到这一点程序就会报错。后边在处理手动挡控制和进入睡眠模式的逻辑时也是费了一些功夫的。</p>
+<p>代码的部分就不多说了，说说自己的小小感悟吧。Verilog HDL是一种硬件描述语言，硬件描述语言当然是来描述硬件的。这里就不得不提FPGA可编程逻辑门阵列了，他内部的硬件逻辑电路会因为我们的程序而改变，而不是出厂后就规定死的。这一点直接决定了Verilog和C语言的不同，Verilog是并行的，变量在一处改变，在实际电路中就是逻辑门的改变，这会导致整个程序运行结果的改变。所以编程中对同一个变量的操作不能放在不同的进程中，简单理解不能放到不同的always()里。一开始，我没有意识到这一点程序就会报错。后边在处理手动挡控制和进入睡眠模式的逻辑时也是费了一些功夫的。</p>
 <p>另外我遇到两个小错误就在顶层例化部分的问题。我在顶层例化在模块中漏例化了拨码开关输入量，而此时编译器不报错，但拨码开关输入量无效，导致程序下载运行后没有出现预期效果。经历了一段非常艰难的调试过程。</p>
 <p>还有一个就是顶层声明数码管的时候没有写八段数码管的位宽，导致数码管显示有问题，后来检查让RTL原理图时才找到原因。</p>
 <p>不过最后还是实现了所有的功能，还是很开心的。</p>
@@ -450,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/05/EDA课程设计、dsp课程设计和六月份的底层忧虑/" rel="prev" title="EDA课程设计、dsp课程设计">
-                EDA课程设计、dsp课程设计 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
