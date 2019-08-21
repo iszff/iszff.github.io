@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T13:10:25.402Z">
+<meta property="og:updated_time" content="2019-08-21T23:35:07.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EDA课程设计、dsp课程设计">
 <meta name="twitter:description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
@@ -400,7 +400,7 @@
 <h2 id="dsp课设"><a href="#dsp课设" class="headerlink" title="dsp课设"></a>dsp课设</h2><p>这个dsp课设可真是让人头秃啊，没用过dsp板子，一上来不知道从何处下手。</p>
 <p>板子上自带了AIC23，可以采集语音并播放。需要对语音采样，通常情况下是44.1K的采样率，但这种情况下设计陷波滤波器难度就很大。好几万个点只滤去几个点….那滤波器的阶数自让就会很高。于是我选择用AIC23模块里最低的采样频率8021Hz，但即使这样，用matlab中FDAtool生成的滤波器阶数依然高达1000多阶。最后通过放宽对过渡带的要求才勉强生成了800多阶的滤波器。不过FDAtool生成的滤波器滤波效果并不好，于是我们使用了fir1()函数来生产滤波器，然后把滤波器系数导出为一个CCS中可以使用的头文件。</p>
 <p>我们组的方案是想先采集语音，然后加入噪声，再滤波，用CCS中自带的graph工具通过看FFT后的频谱图来观察滤波结果。但是由于CCS中graph功能的FFT输入必须为整数。所以最终显示的结果很差。</p>
-<p>这个dsp课设做的就优点失败Orz</p>
+<p>这个dsp课设做的就有点失败Orz</p>
 <h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>又到了碎碎念的环节QAQ，科技博客迟早变成情感博客…</p>
 <p>dsp课设安排在六月的前两个周，Verilog课设安排在后两个周，6月21号有一门《无线电技术与应用》考试，6月26号又《随机过程》的考试。</p>
 <p>一上来的dsp课设就让人喘不过气来，哎，主要是自己太菜了。而且由于做课设，留给复习的时间就很少，整个人就很烦。EDA课设做的还算是顺利吧。</p>
