@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>EDA课程设计、dsp课程设计 | iszff&#39; Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EDA课程设计、dsp课程设计">
+<meta property="og:url" content="http://yoursite.com/2019/07/05/EDA%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E3%80%81dsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。 本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。 EDA课程设计要求我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。 课程设计的要求如下：  应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-07-05T12:59:30.000Z">
+<meta property="article:modified_time" content="2019-08-21T23:35:07.595Z">
+<meta property="article:author" content="iszff">
+<meta property="article:tag" content="Verilog">
+<meta property="article:tag" content="dsp">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iszff&#39; Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-EDA课程设计、dsp课程设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/05/EDA%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E3%80%81dsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time datetime="2019-07-05T12:59:30.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      EDA课程设计、dsp课程设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。</p>
+<p>本来是应该六月尾巴写这篇博文的，一不小心就拖到今天了Orz。</p>
+<h3 id="EDA课程设计要求"><a href="#EDA课程设计要求" class="headerlink" title="EDA课程设计要求"></a>EDA课程设计要求</h3><p>我们的EDA课程计使用的是学院实验室的Altera试验箱，核心板是Cyclone II  EP2C5Q208C8芯片。</p>
+<p>课程设计的要求如下：</p>
+<blockquote>
+<p>应用Verilog HDL硬件描述语言，设计一个基于FPGA的空气净化器程序，模拟空气净化器的运行，其功能为：</p>
+<p>1 实现5档出风的风力控制，使用控制电机模拟<br>2 实现当前空气质量的检测，通过设置拨码开关模拟<br>3 实现当前状态的指示与显示<br>4 实现睡眠设置功能，在指定的设置时间后风量输出调节至1档<br>5 实现连续运行时间的记录，并进行更换空气过滤网提示报警<br>6 具有自动模式和手动模式选择，自动模式根据检测到的空气质量自动调节风速，手动模式通过按键设置风速档位<br>7 实现时钟功能，并且根据设定的时间自动关机</p>
+</blockquote>
+<p>代码我放在了Github上<a target="_blank" rel="noopener" href="https://github.com/iszff">iszff</a>/<a target="_blank" rel="noopener" href="https://github.com/iszff/Air-cleaner">Air-cleaner</a>。</p>
+<h3 id="dsp课程设计要求"><a href="#dsp课程设计要求" class="headerlink" title="dsp课程设计要求"></a>dsp课程设计要求</h3><p>dsp课设使用的是TI2812的板子。</p>
+<p>课程设计要求如下：</p>
+<blockquote>
+<p>1.设计60hz限波器；<br>2.采集一段语音信号，加入60hz干扰；<br>3.对干扰信号进行滤波；<br>4.展示滤波效果。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="EDA课设"><a href="#EDA课设" class="headerlink" title="EDA课设"></a>EDA课设</h2><p>这个课设主要有两个模块构成：控制模块，计时模块。另外就是需要考虑到优先级的问题。</p>
+<p>最终我们做出的结果如下：</p>
+<blockquote>
+<p>1.四个拨码SW1，2，3，4表示空气质量 ，会自动匹配灭灯的盏数（因为低电平是亮灯，三态情况下所有灯都亮，所以用灭灯表示了）。1111，1110，1100，1000，0000表示空气质量从好到差；自动匹配D0，1，2，3，4，5即电机档数由最弱一档到最强五档的情况为，10000，11000，11100，11110，11111。</p>
+</blockquote>
+<blockquote>
+<p>2.四位按键（1，1）分十位（1，2）分个位（2，1）秒十位（2，2）秒个位，输入还有多长时间进入睡眠的时长量。（1，4）表示确认输入量，开始倒计时。还有多长时间进入睡眠由右边四位数码管显示。在倒计时即还没有进入睡眠之前仍然可以通过K7重新置数。进入睡眠之后，无论空气质量即拨码开关输入为何种情况，空气净化机自动为一档即只灭一盏灯。想要退出睡眠模式，需要使用K8全局复位。在全局复位后使用K7退出设置睡眠模式。</p>
+</blockquote>
+<blockquote>
+<p>3.使用按键（1，4），（2，4），（3，4），（4，4）（4，3）分别表示手动控制电机从一档到五档。手动控制优先级高于自动控制，而且具有记录用户习惯的功能，即复位后不会清除手动控制，手动控制需要由用户通过按键（4，2）退出自定义模式。</p>
+</blockquote>
+<blockquote>
+<p>4.正向记录运行时间，在程序中设定了开始运行10s后蜂鸣提醒更换滤网，该时间可以在程序中设定，在左边四位数码管显示运行时间记录。</p>
+</blockquote>
+<p>代码的部分就不多说了，说说自己的小小感悟吧。Verilog HDL是一种硬件描述语言，硬件描述语言当然是来描述硬件的。这里就不得不提FPGA可编程逻辑门阵列了，他内部的硬件逻辑电路会因为我们的程序而改变，而不是出厂后就规定死的。这一点直接决定了Verilog和C语言的不同，Verilog是并行的，变量在一处改变，在实际电路中就是逻辑门的改变，这会导致整个程序运行结果的改变。所以编程中对同一个变量的操作不能放在不同的进程中，简单理解不能放到不同的always()里。一开始，我没有意识到这一点程序就会报错。后边在处理手动挡控制和进入睡眠模式的逻辑时也是费了一些功夫的。</p>
+<p>另外我遇到两个小错误就在顶层例化部分的问题。我在顶层例化在模块中漏例化了拨码开关输入量，而此时编译器不报错，但拨码开关输入量无效，导致程序下载运行后没有出现预期效果。经历了一段非常艰难的调试过程。</p>
+<p>还有一个就是顶层声明数码管的时候没有写八段数码管的位宽，导致数码管显示有问题，后来检查让RTL原理图时才找到原因。</p>
+<p>不过最后还是实现了所有的功能，还是很开心的。</p>
+<h2 id="dsp课设"><a href="#dsp课设" class="headerlink" title="dsp课设"></a>dsp课设</h2><p>这个dsp课设可真是让人头秃啊，没用过dsp板子，一上来不知道从何处下手。</p>
+<p>板子上自带了AIC23，可以采集语音并播放。需要对语音采样，通常情况下是44.1K的采样率，但这种情况下设计陷波滤波器难度就很大。好几万个点只滤去几个点….那滤波器的阶数自让就会很高。于是我选择用AIC23模块里最低的采样频率8021Hz，但即使这样，用matlab中FDAtool生成的滤波器阶数依然高达1000多阶。最后通过放宽对过渡带的要求才勉强生成了800多阶的滤波器。不过FDAtool生成的滤波器滤波效果并不好，于是我们使用了fir1()函数来生产滤波器，然后把滤波器系数导出为一个CCS中可以使用的头文件。</p>
+<p>我们组的方案是想先采集语音，然后加入噪声，再滤波，用CCS中自带的graph工具通过看FFT后的频谱图来观察滤波结果。但是由于CCS中graph功能的FFT输入必须为整数。所以最终显示的结果很差。</p>
+<p>这个dsp课设做的就有点失败Orz</p>
+<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>又到了碎碎念的环节QAQ，科技博客迟早变成情感博客…</p>
+<p>dsp课设安排在六月的前两个周，Verilog课设安排在后两个周，6月21号有一门《无线电技术与应用》考试，6月26号又《随机过程》的考试。</p>
+<p>一上来的dsp课设就让人喘不过气来，哎，主要是自己太菜了。而且由于做课设，留给复习的时间就很少，整个人就很烦。EDA课设做的还算是顺利吧。</p>
+<p>我们这两个课设都是小组合作的，小组合作的时候就会有人滑水，而且是全程滑水，我就有点生气，当然最底层的症结就是我自己的水平不行。之前和朋友开玩笑说，当我能做出课设的时候 ，我就是“科技博主”。但是当我做不出来的时候，我就想一些其他的，一些所谓的“哲学问题”吧，我在世界中的位置？我是谁？为什么和他人沟通这么难？我就成了一个“情感博主”。似乎有时候人是需靠摔锅给队友或者“这件事不是因为我做不好，而是因为我不做”这种虚幻的错觉才活得下去，哎，我必须不停的提醒自己<strong>“I am a powerful、independent person.‘’</strong>而且我老想着蜘蛛侠里边的台词<strong>‘’ If you are nothing without the suit, then you shouldn’t have it.‘’</strong>要是没有好队友就做不出课设，那这课设我本身也就做不出来Orz。</p>
+<p>而且事情都堆在一起的时候，人就会很烦。人的心智带宽是有限的，一旦心智带宽被占得死死的时候，整个人就会很累，是没办法用多余的心智带宽来约束自己的。六月份几乎都睡得挺晚的，有时候，我想睡早点，但一躺到床上，脑子里就想一些有的没的，很难睡着。于是我都故意睡得晚一些，睡觉前哪怕是不做正事，只是看手机，我也要晚点睡觉。因为不想听见自己心中真正的声音就老想着用一些噪音来把它覆盖掉。而且我还故意欺骗自己：<strong>”偏执的保持健康的生活习惯这一点本身就很不健康。“</strong>Orz</p>
+<blockquote>
+<p>这学期也算是过完了，似乎每个月都有事情在忙，三月、四月上在准备英语竞赛，四月下、五月开始学数学，考了三门试，六月有两门考试和俩课设。希望接下来自己能无所畏惧吧！</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/05/EDA%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E3%80%81dsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" data-id="ckt2ut7jc00011oupftks8c6i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/18/%E5%8D%8E%E4%B8%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          华为面试经历
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E7%AB%9E%E8%B5%9B%E5%92%8C%E5%A4%A7%E4%B8%89%E4%B8%8A%E7%9A%84%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数学建模竞赛和大三上的总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/18/%E5%8D%8E%E4%B8%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">华为面试经历</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/05/EDA%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E3%80%81dsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">EDA课程设计、dsp课程设计</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E7%AB%9E%E8%B5%9B%E5%92%8C%E5%A4%A7%E4%B8%89%E4%B8%8A%E7%9A%84%E6%80%BB%E7%BB%93/">数学建模竞赛和大三上的总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/">qq好友空间说说爬虫</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/27/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2/">新建博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 iszff<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
