@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实验," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="配准环境遇到的问题关于tensorboardX的安装PackagesNotFoundError用conda安装tensorboardX，由于配置的源找不到包，于是用pip安装，使用pip安装遇到了问题，如链接中所示 ImportError: cannot import name ‘SummaryWriter’ · Issue #19 · lanpa&#x2F;tensorboardX (github.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="试验记录Aggregation via Separation: Boosting Facial Landmark Detector with">
+<meta property="og:url" content="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="配准环境遇到的问题关于tensorboardX的安装PackagesNotFoundError用conda安装tensorboardX，由于配置的源找不到包，于是用pip安装，使用pip安装遇到了问题，如链接中所示 ImportError: cannot import name ‘SummaryWriter’ · Issue #19 · lanpa&#x2F;tensorboardX (github.com">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/Blog/source/pics/WFLW_landmarks.png">
+<meta property="article:published_time" content="2021-09-08T11:41:57.000Z">
+<meta property="article:modified_time" content="2021-09-15T09:28:05.578Z">
+<meta property="article:author" content="iszff">
+<meta property="article:tag" content="实验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/Blog/source/pics/WFLW_landmarks.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/09/08/试验记录Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/"/>
+
+
+
+
+
+  <title>试验记录Aggregation via Separation: Boosting Facial Landmark Detector with | iszff' Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">试验记录Aggregation via Separation: Boosting Facial Landmark Detector with</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-08T19:41:57+08:00">
+                2021-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="配准环境遇到的问题"><a href="#配准环境遇到的问题" class="headerlink" title="配准环境遇到的问题"></a>配准环境遇到的问题</h1><h2 id="关于tensorboardX的安装PackagesNotFoundError"><a href="#关于tensorboardX的安装PackagesNotFoundError" class="headerlink" title="关于tensorboardX的安装PackagesNotFoundError"></a>关于tensorboardX的安装PackagesNotFoundError</h2><p>用conda安装tensorboardX，由于配置的源找不到包，于是用pip安装，使用pip安装遇到了问题，如链接中所示</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lanpa/tensorboardX/issues/19">ImportError: cannot import name ‘SummaryWriter’ · Issue #19 · lanpa/tensorboardX (github.com)</a></p>
+<blockquote>
+<p>File “”, line 1, in<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/<strong>init</strong>.py”, line 5, in<br>from .torchvis import TorchVis<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/torchvis.py”, line 11, in<br>from .writer import SummaryWriter<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/writer.py”, line 223<br>logdir: Optional[str] = None,<br>^<br>SyntaxError: invalid syntax</p>
+</blockquote>
+<p>解决的方案是用conda来装，不用pip装，于是先要处理这个问题</p>
+<blockquote>
+<p>PackagesNotFoundError: The following packages are not available from current channels</p>
+</blockquote>
+<p>解决方案可以参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/marleylee/article/details/103722080">(8条消息) PackagesNotFoundError: The following packages are not available from current channels 解决办法_marleylee的博客-CSDN博客</a>。具体参考方法二<strong>去base环境下执行搜索</strong>，在去<strong>实验配置的环境安装</strong>，否则会出现</p>
+<blockquote>
+<p>anaconda: command not found</p>
+</blockquote>
+<p>[(8条消息) anaconda使用说明：anaconda-navigator: command not found_豌豆生的笔记本-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=%E7%A1%AE%E5%AE%9A%E5%B7%B2%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85">https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=确定已成功安装</a> anaconda 启动 anaconda -navigator  如果提示没有此命令 or,root  再输入  an… 如何 使用anaconda 安装或更新自己想要的库.)</p>
+<h2 id="ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案"><a href="#ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案" class="headerlink" title="ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案"></a>ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案</h2><p>在torch新版本中删除了load_lua，解决方法是<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36556893/article/details/102683398">(8条消息) ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案_悲恋花丶无心之人的博客-CSDN博客</a></p>
+<h2 id="使用Tmux避免断网之后服务器端进程断掉"><a href="#使用Tmux避免断网之后服务器端进程断掉" class="headerlink" title="使用Tmux避免断网之后服务器端进程断掉"></a>使用Tmux避免断网之后服务器端进程断掉</h2><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/10/tmux.html">Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
+<blockquote>
+<p>tmux detach 将当前会话与窗口分离。命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p>
+</blockquote>
+<p>vscode可以在termnal窗口右上角的“+”点击“∨”下拉选择tmux新建会话，使用“tmux ls”命令可以看见tmux打开的窗口会显示(attached)， <strong>会话默认是分离的</strong>，在termnal窗口右端删除tmux窗口后，此会话还在。</p>
+<h1 id="数据集介绍WFLW"><a href="#数据集介绍WFLW" class="headerlink" title="数据集介绍WFLW"></a>数据集介绍WFLW</h1><p>原数据集可以从<a target="_blank" rel="noopener" href="https://wywu.github.io/projects/LAB/WFLW.html">Look at Boundary: A Boundary-Aware Face Alignment Algorithm (wywu.github.io)</a>下载，不过在一些实验中会</p>
+<p>7500训练 ，2500测试。人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。</p>
+<p><img src="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/Blog\source\pics\WFLW_landmarks.png"></p>
+<h2 id="标注格式介绍"><a href="#标注格式介绍" class="headerlink" title="标注格式介绍"></a>标注格式介绍</h2><blockquote>
+<p>下载原始数据集后，位于WFLW_annotations文件夹下，包含list_98pt_rect_attr_train_test和list_98pt_test两个子文件夹</p>
+</blockquote>
+<h3 id="list-98pt-rect-attr-train-test"><a href="#list-98pt-rect-attr-train-test" class="headerlink" title="list_98pt_rect_attr_train_test"></a>list_98pt_rect_attr_train_test</h3><p>文档中每一行有207个数据，98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207。</p>
+<h3 id="list-98pt-test"><a href="#list-98pt-test" class="headerlink" title="list_98pt_test"></a>list_98pt_test</h3><p>文档中每一行有197个数据，196 + 图片名称 =197。</p>
+<h2 id="关于人脸关键点的数据集WFLW数据预处理"><a href="#关于人脸关键点的数据集WFLW数据预处理" class="headerlink" title="关于人脸关键点的数据集WFLW数据预处理"></a>关于人脸关键点的数据集WFLW数据预处理</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_40840693/article/details/105542910">https://blog.csdn.net/baidu_40840693/article/details/105542910</a></p>
+<h2 id="瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization"><a href="#瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization" class="headerlink" title="瞳间距Inter-Pupil Normalization Inter-Ocular Normalization"></a>瞳间距Inter-Pupil Normalization Inter-Ocular Normalization</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/code_mart/article/details/100121890">https://blog.csdn.net/code_mart/article/details/100121890</a></p>
+<h2 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h2><p>用瞳间距或者两个外眼角之间的距离归一化计算标注点平均错误率。如果归一化平均错误率大于0.1，就算失败。</p>
+<h1 id="本实验中的数据处理"><a href="#本实验中的数据处理" class="headerlink" title="本实验中的数据处理"></a>本实验中的数据处理</h1><p>本实验开源代码中提供了<a target="_blank" rel="noopener" href="https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code">https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code</a>  cropped图片，图片中包含了人脸的部分，标注格式是文档中每一行有197个数据，196 + 图片名称 =197。</p>
+<p>在代码中stylealign-master/pytorch_code/new_dataloader.py中提供的编码信息中可以看出使用了88个对称的关键点，位于中线上的51、52、53、54、57、79、90、94、85、16每有使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr_list =[<span class="number">0</span>,<span class="number">32</span>,<span class="number">1</span>,<span class="number">31</span>,<span class="number">2</span>,<span class="number">30</span>,<span class="number">3</span>,<span class="number">29</span>,<span class="number">4</span>,<span class="number">28</span>,<span class="number">5</span>,<span class="number">27</span>,<span class="number">6</span>,<span class="number">26</span>,<span class="number">7</span>,<span class="number">25</span>,<span class="number">8</span>,<span class="number">24</span>,<span class="number">9</span>,<span class="number">23</span>,<span class="number">10</span>,<span class="number">22</span>,<span class="number">11</span>,<span class="number">21</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">18</span>,<span class="number">15</span>,<span class="number">17</span>,<span class="number">33</span>,<span class="number">46</span>,<span class="number">34</span>,<span class="number">45</span>,<span class="number">35</span>,<span class="number">44</span>,<span class="number">36</span>,<span class="number">43</span>,<span class="number">37</span>,<span class="number">42</span>,<span class="number">38</span>,<span class="number">50</span>,<span class="number">39</span>,<span class="number">49</span>,<span class="number">40</span>,<span class="number">48</span>,<span class="number">41</span>,<span class="number">47</span>,<span class="number">55</span>,<span class="number">59</span>,<span class="number">56</span>,<span class="number">58</span>,<span class="number">60</span>,<span class="number">72</span>,<span class="number">61</span>,<span class="number">71</span>,<span class="number">62</span>,<span class="number">70</span>,<span class="number">63</span>,<span class="number">69</span>,<span class="number">64</span>,<span class="number">68</span>,<span class="number">65</span>,<span class="number">75</span>,<span class="number">66</span>,<span class="number">74</span>,<span class="number">67</span>,<span class="number">73</span>,<span class="number">76</span>,<span class="number">82</span>,<span class="number">77</span>,<span class="number">81</span>,<span class="number">78</span>,<span class="number">80</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">89</span>,<span class="number">91</span>,<span class="number">95</span>,<span class="number">93</span>,<span class="number">87</span>,<span class="number">83</span>,<span class="number">86</span>,<span class="number">84</span>,<span class="number">96</span>,<span class="number">97</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="小张的问题"><a href="#小张的问题" class="headerlink" title="小张的问题"></a>小张的问题</h1><p>用了对称数据？这是为什么？怎么用？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag"># 实验</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/03/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%5B2018ECCV%5DA%20Deeply-initialized%20Coarse-to-fine%20Ensemble%20of%20Regression%20Trees%20for%20Face%20Alignment/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/22/MultiModal-Machine-Learning-MMML-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="prev" title="MultiModal Machine Learning (MMML)论文阅读">
+                MultiModal Machine Learning (MMML)论文阅读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E5%87%86%E7%8E%AF%E5%A2%83%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">配准环境遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EtensorboardX%E7%9A%84%E5%AE%89%E8%A3%85PackagesNotFoundError"><span class="nav-number">1.1.</span> <span class="nav-text">关于tensorboardX的安装PackagesNotFoundError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ModuleNotFoundError-No-module-named-%E2%80%98torch-utils-serialization%E2%80%99-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.2.</span> <span class="nav-text">ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Tmux%E9%81%BF%E5%85%8D%E6%96%AD%E7%BD%91%E4%B9%8B%E5%90%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%BF%9B%E7%A8%8B%E6%96%AD%E6%8E%89"><span class="nav-number">1.3.</span> <span class="nav-text">使用Tmux避免断网之后服务器端进程断掉</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8DWFLW"><span class="nav-number">2.</span> <span class="nav-text">数据集介绍WFLW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E6%B3%A8%E6%A0%BC%E5%BC%8F%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">标注格式介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list-98pt-rect-attr-train-test"><span class="nav-number">2.1.1.</span> <span class="nav-text">list_98pt_rect_attr_train_test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-98pt-test"><span class="nav-number">2.1.2.</span> <span class="nav-text">list_98pt_test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86WFLW%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">关于人脸关键点的数据集WFLW数据预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9E%B3%E9%97%B4%E8%B7%9DInter-Pupil-Normalization-Inter-Ocular-Normalization"><span class="nav-number">2.3.</span> <span class="nav-text">瞳间距Inter-Pupil Normalization Inter-Ocular Normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87"><span class="nav-number">2.4.</span> <span class="nav-text">衡量指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%AE%9E%E9%AA%8C%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">本实验中的数据处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%BC%A0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">小张的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
+
+  
+ </div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
