@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="文献阅读," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。   近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eye gaze调研">
+<meta property="og:url" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。   近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;">
+<meta property="og:locale">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-5d28d5b34067a60edb6b0b56b7ea45bf_1440w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-502dd1b1678d3bb84d2d51c7955038b5_1440w.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tobii.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/objgaze.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitgazefollow.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/whataretheylooking">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tomhanksvedio1">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tomhanksvedio2">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/gazefollow_vedio.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/vedioprject.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211005204913343.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/vedio_heatmap.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitEyeTrackingforEveryone.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/ONdecvice2019CVPRW.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tabletgaze.png">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-1748477bc2558a9442ff18d8280bb79a_r.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/2017TAPMI_MPIIGaze_pipeline.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007154253501.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007160924206.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007161335847.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007162046332.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007164953107.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-3026afc055f18e5e3e0a0a65f94c4a16_1440w.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007170804421.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007202852686.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007142949977.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211006164028365.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211006164223297.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211008155155643.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211008155246008.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211008163556619.png">
+<meta property="article:published_time" content="2021-10-04T08:13:29.000Z">
+<meta property="article:modified_time" content="2021-10-13T03:27:00.990Z">
+<meta property="article:author" content="iszff">
+<meta property="article:tag" content="文献阅读">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-5d28d5b34067a60edb6b0b56b7ea45bf_1440w.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/10/04/eye-gaze调研/"/>
+
+
+
+
+
+  <title>eye gaze调研 | iszff' Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">eye gaze调研</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-04T16:13:29+08:00">
+                2021-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Gaze-Estimation"><a href="#Gaze-Estimation" class="headerlink" title="Gaze  Estimation"></a>Gaze  Estimation</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>广义的Gaze Estimation 泛指与<strong>眼球</strong>、<strong>眼动、视线</strong>等相关的研究。</p>
+<blockquote>
+<p>不少做saliency和egocentric的论文也以gaze为关键词。</p>
+</blockquote>
+<blockquote>
+<p>近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。</p>
+</blockquote>
+<p><img src="https://pic4.zhimg.com/80/v2-5d28d5b34067a60edb6b0b56b7ea45bf_1440w.jpg" alt="img"></p>
+<h2 id="根据不同的场景与应用大致可分为三类"><a href="#根据不同的场景与应用大致可分为三类" class="headerlink" title="根据不同的场景与应用大致可分为三类"></a>根据不同的场景与应用大致可分为三类</h2><p>注视目标估计、注视点估计以及三维视线估计。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-502dd1b1678d3bb84d2d51c7955038b5_1440w.jpg" alt="img"></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13178442?from=articleDetail&spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.2">Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪 - 哔哩哔哩 (bilibili.com)</a></p>
+<h3 id="用Tobii眼动仪玩游戏的Demo"><a href="#用Tobii眼动仪玩游戏的Demo" class="headerlink" title="用Tobii眼动仪玩游戏的Demo"></a>用Tobii眼动仪玩游戏的Demo</h3><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tobii.png"></p>
+<h3 id="VR"><a href="#VR" class="headerlink" title="VR"></a>VR</h3><p>VR头盔。现阶段VR的问题是全场景精细渲染对硬件要求较高导致硬件成本居高不下。如果能够通过头盔内置摄像头准确估计人的视线方向，则可以对场景做局部精细渲染，即仅对人注视范围内的场景精细渲染，从而大大降低硬件成本。</p>
+<h3 id="医疗"><a href="#医疗" class="headerlink" title="医疗"></a>医疗</h3><p>gaze在医疗方面的应用主要是两类。一类是用于检测和诊断精神类或心理类的疾病。一个典型例子是自闭症儿童往往表现出与正常儿童不同的gaze行为与模式。另一类是通过基于gaze的交互系统来为一些病人提供便利。如渐冻症患者可以使用眼动仪来完成一些日常活动。</p>
+<h3 id="辅助驾驶（智能座舱）"><a href="#辅助驾驶（智能座舱）" class="headerlink" title="辅助驾驶（智能座舱）"></a>辅助驾驶（智能座舱）</h3><p>gaze在辅助驾驶上有两方面应用。一是检测驾驶员是否疲劳驾驶以及注意力是否集中。二是提供一些交互从而解放双手。</p>
+<h3 id="线下零售"><a href="#线下零售" class="headerlink" title="线下零售"></a>线下零售</h3><p>人的注意力某种程度上反映了其兴趣，可以提供大量的信息。但是目前并没有看到相关的应用，包括Amazon Go。或许现阶段精度难以达到要求。可以通过gaze行为做市场调研。</p>
+<h3 id="其他交互类应用"><a href="#其他交互类应用" class="headerlink" title="其他交互类应用"></a>其他交互类应用</h3><p>如手机解锁、短视频特效等。</p>
+<h2 id="相关团队与公司"><a href="#相关团队与公司" class="headerlink" title="相关团队与公司"></a>相关团队与公司</h2><p>ETH的Otmar Hilliges教授和东京大学的Yusuke Sugano教授。</p>
+<p>- EPFL与Idiap的感知组：<a href="https://link.zhihu.com/?target=https://www.idiap.ch/~odobez/">https://www.idiap.ch/~odobez/</a></p>
+<ul>
+<li>Improving Few-Shot User-Specific Gaze Adaptation via Gaze Redirection Synthesis, CVPR 2019</li>
+<li>Unsupervised Representation Learning for Gaze Estimation, CVPR 2020</li>
+<li>A Differential Approach for Gaze Estimation, PAMI accepted 2019</li>
+</ul>
+<p>- ETH交互组：<a href="https://link.zhihu.com/?target=https://ait.ethz.ch/people/hilliges/">https://ait.ethz.ch/people/hill</a></p>
+<p>- 德国马普所交互组：<a href="https://link.zhihu.com/?target=https://perceptualui.org/people/bulling/">https://perceptualui.org/people</a></p>
+<p>- MIT Antonio Torralba组：<a href="https://link.zhihu.com/?target=http://web.mit.edu/torralba/www/">http://web.mit.edu/torralba/www/</a></p>
+<p>- 伦斯勒理工Qiang Ji组：<a href="https://link.zhihu.com/?target=https://www.ecse.rpi.edu/~qji/">https://www.ecse.rpi.edu/~qji/</a></p>
+<p>- 东京大学Sugano组：<a href="https://link.zhihu.com/?target=https://www.yusuke-sugano.info/">https://www.yusuke-sugano.info/</a></p>
+<p>- 北航Feng Lu组：<a href="https://link.zhihu.com/?target=http://phi-ai.org/default.htm">http://phi-ai.org/default.htm</a></p>
+<p>工业界方面，目前主力依旧在欧美。大公司，如Facebook Reality Lab（去年组织举办了第一届gaze相关的challenge）， 微软Hololens，谷歌广告，NVIDIA自动驾驶等团队都在致力于gaze方面的研究。而专注于gaze的中小型公司，龙头老大当属瑞典公司Tobii，其眼动仪已臻物美价廉之境。另外也可以关注下瑞士创业公司eyeware。</p>
+<h1 id="注视目标估计"><a href="#注视目标估计" class="headerlink" title="注视目标估计"></a>注视目标估计</h1><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/objgaze.png"></p>
+<p>注视目标估计英文关键词为gaze following，即检测给定人物所注视的目标。MIT Antonio Torralba组最先提出了这一问题并公开了相关数据集[1]。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitgazefollow.png"></p>
+<blockquote>
+<p>我们引入了一个新的数据集，用于在自然图像中跟踪视线。在左边，我们展示了几个示例注释和图像。在右边的图中，我们总结了一些关于数据集测试分区的统计信息。前三张热图显示了头部位置、固定位置和固定位置相对于头部位置归一化的概率密度。下图显示了不同头部位置的平均凝视方向。</p>
+</blockquote>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/whataretheylooking" alt="image-20211005193952263"></p>
+<center><p>Where are they looking?</p></center>
+
+
+<p>网络主要由两个支路组成，一个支路（Saliency Pathway）以原始图片为输入，用于显著性检测，输出为反映显著性的heat map。另一个支路（Gaze Pathway）以某一个人的头部图片和头部位置为输入，用于检测这个人可能的注视区域，输出同样是一个heat map。这两个heat map的乘积反映了目标显著性与可能的注视区域的交集，即可能的注视目标。整个网络以端对端的方式训练。以AUC为指标，文章最后得到了0.878的精度。</p>
+<p>这种结构设计也适用于多人注视目标的检测。只需要将Gaze Pathway中的头部图片与位置更换为另一个人的即可。然而这种方案的一大局限是，人与其注视的目标必须同时出现在同一张图片中。这大大限制了其应用范围。</p>
+<p>作者们在ICCV 2017提出了针对视频的跨帧注视目标检测[2]，即人与注视目标可出现在不同视频帧中，如下图所示。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tomhanksvedio1" alt="image-20211005203207646"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tomhanksvedio2" alt="image-20211005203432979"></p>
+<center><p>Following Gaze in Video</p></center>
+
+
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/gazefollow_vedio.png" alt="image-20211005204012006"></p>
+<p>整个框架由三条支路构成。与之前框架相比，现在的方案增加了一个Transformation Pathway，用于估计source frame（人所在帧）与target frame（目标所在帧）的几何变换。而现在的Gaze Pathway则用于估计一个视锥的参数。这两路网络的输出表示source frame中的人可能注视的target frame区域。下面的图更为直观。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/vedioprject.png" alt="image-20211005204541675"><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211005204913343.png" alt="image-20211005204913343"><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/vedio_heatmap.png" alt="image-20211005205031681"></p>
+<blockquote>
+<p>注视点估计的相关工作（这个方向的论文同样不多），然后再介绍gaze领域的重点研究对象，三维视线估计。</p>
+</blockquote>
+<h1 id="注视点估计"><a href="#注视点估计" class="headerlink" title="注视点估计"></a>注视点估计</h1><p>注视点估计即估算人双目视线聚焦的落点。</p>
+<p>其一般场景是估计人在一个二维平面上的注视点。</p>
+<p>这个二维平面可以是手机屏幕，pad屏幕和电视屏幕等，而模型输入的图像则是这些设备的前置摄像头。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitEyeTrackingforEveryone.png" alt="这里放图片显示不出的时候出现的文字" style="zoom:这里写缩放的百分比，比如:30%"></p>
+<center><p>Eye Tracking for Everyone MIT 2016CVPR</p></center>
+
+
+<p>这个工作同样来自MIT Antonio Torralba组。</p>
+<p>他有四个输入，左眼图像、右眼图像、人脸图像（由iPhone拍照软件检测）以及人脸位置。</p>
+<p>四种输入由四条支路（眼睛图像的支路参数共享）分别处理，融合后输出得到一个二维坐标位置。</p>
+<p>实验表明，模型在iPhone上的误差是1.71cm，而在平板上的误差是2.53cm（误差为标注点与估计点之间的欧式距离）。该工作收集并公布了一个<strong>涵盖1400多人、240多万样本</strong>的数据集， <strong>GazeCapture</strong>。</p>
+<p>人脸主要提供头部姿态信息（head pose），而人脸位置主要提供眼睛位置信息。这里存在一定的信息冗余。基于这一观察，Google对上述模型做了进一步压缩，即将人脸和人脸位置这两个输入替换为四个眼角的位置坐标，如下图所示。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/ONdecvice2019CVPRW.png" alt="image-20211006143655188"></p>
+<center><p>On-device few-shot personalization 
+for real-time gaze estimation Google 2019CVPRW</p></center>
+
+
+<p>眼角位置坐标不仅直接提供了眼睛位置信息，同时又暗含head pose信息（眼角间距越小，head pose越大，反之头部越正）。实验结果表明，这个精简后的模型在iPhone上的误差为1.78cm，与原始模型的精度相差无几。同时，该模型在Google Pixel 2 Phone的处理速度达到10ms/帧。</p>
+<p>三星在2019年也公开了相关研究A Generalized and Robust Method<br>Towards Practical Gaze Estimation on Smart Phone.。他们采取的网络架构与[1]类似，不同点是在网络训练过程中加入了distillation与pruning等技巧，来防止过拟合并获得更鲁棒的结果。</p>
+<blockquote>
+<p>蒸馏了什么？</p>
+</blockquote>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tabletgaze.png" alt="image-20211006160228094"></p>
+<center><p>TabletGaze2015</p></center>
+
+<p>2015年莱斯大学已公开了一篇针对平板的注视点估计论文TabletGaze[4]。但当时的深度学习还不像今天这样盛行，作者使用了传统特征（LBP、HOG等）+ 统计模型的方式来解决这一问题.</p>
+<h1 id="三维视线估计（通用方法）"><a href="#三维视线估计（通用方法）" class="headerlink" title="三维视线估计（通用方法）"></a>三维视线估计（通用方法）</h1><p>三维视线估计的目标是从眼睛图片或人脸图片中推导出人的视线方向。通常，这个视线方向是由两个角度，<strong>pitch（垂直方向）和 yaw（水平方向）</strong>来表示的，见下图a。需要注意的是，在相机坐标系下，视线的方向<strong>不仅取决于眼睛的状态（眼珠位置，眼睛开合程度等）</strong>，还取决于<strong>头部姿态</strong>（见图b：虽然眼睛相对头部是斜视，但在相机坐标系下，他看的是正前方)。</p>
+<p><img src="https://pic3.zhimg.com/v2-1748477bc2558a9442ff18d8280bb79a_r.jpg" alt="preview"></p>
+<h2 id="传统方法："><a href="#传统方法：" class="headerlink" title="传统方法："></a>传统方法：</h2><p>视线估计方法分为：</p>
+<p>基于几何的方法（Geometry Based Methods）</p>
+<p>基于外观的方法（Appearance Based Methods）两大类。</p>
+<p>基于几何的方法的基本思想是检测眼睛的一些特征（例如眼角、瞳孔位置等关键点），然后根据这些特征来计算gaze。而基于外观的方法则是<strong>直接学习一个将外观映射到gaze的模型</strong>。</p>
+<p>几何方法相对更准确，且对不同的domain表现稳定，然而这类方法<strong>对图片的质量和分辨率</strong>有很高的要求。</p>
+<p>基于外观的方法对低分辨和高噪声的图像表现更好，但<strong>模型的训练需要大量数据，并且容易对domain overfitting</strong>。</p>
+<p>随着深度学习的崛起以及大量数据集的公开，基于外观的方法越来越受到关注。</p>
+<p><strong>通用（person independent）的视线估计方法</strong>，即模型的训练数据与测试数据采集自不同的人（与之相对的是<strong>个性化视线估计</strong>，即训练数据与测试数据采集自相同的人）。按照方法所依赖的信息，将他们分类为<strong>单眼/双眼视线估计</strong>，<strong>基于语义信息的视线估计</strong>和<strong>全脸视线估计</strong> 三类。</p>
+<h1 id="单眼-双眼视线估计："><a href="#单眼-双眼视线估计：" class="headerlink" title="单眼/双眼视线估计："></a>单眼/双眼视线估计：</h1><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png" alt="image-20211007135414078"></p>
+<center><p>MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation  2017 TPAMI
+    单目相机进行凝视估计
+    </p></center>
+
+<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><ul>
+<li><p>面部landmark检测，(眼睛和嘴角）（Baltruˇsaitis et al.</p>
+</li>
+<li><p>通过使用EPnP算法[21]估计初始解来拟合模型，并通过非线性优化进一步精炼姿态。三维头部旋转定义为从头部坐标系到摄像机坐标系的旋转，眼睛位置定义为每只眼睛的眼角中点。</p>
+</li>
+<li><p>虽然之前的作品假设了准确的头部姿态，但我们使用一个通用的平均面部形状模型进行三维姿态估计，以评估实际环境中的整个凝视估计管道。在收集数据之前，使用外部立体摄像机记录所有参与者的6个地标的3D位置，并建立通用形状作为所有参与者的平均形状。</p>
+</li>
+</ul>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/2017TAPMI_MPIIGaze_pipeline.png" alt="image-20211007135523674"></p>
+<blockquote>
+<p>多个模态，有哪些模态？  </p>
+</blockquote>
+<p>他们当时使用的是一个类似于LeNet的浅层架构，还称不上“深度”学习。而其中一个有启发性的贡献是，他们将头部姿态（head pose）信息与提取出的眼睛特征拼接，用以学习相机坐标系下的gaze。该工作的另一个重要贡献是提出并公开了gaze领域目前最常用的数据集之一：MPIIGaze。在MPIIGaze数据集上，该工作的误差为6.3度。</p>
+<p>Xucong Zhang在他2017年的工作中[2]，用VGG16 代替了这个浅层网络，大幅提升了模型精度，将误差缩小到了5.4度。</p>
+<p>上面两个工作都以单眼图像为输入，没有充分利用双眼的互补信息。北航博士Yihua Cheng在ECCV 2018上提出了一个基于双眼的非对称回归方法[3]。其方法框图如下：</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007154253501.png" alt="image-20211007154253501"></p>
+<center><p>Appearance-based gaze estimation via evaluation- guided asymmetric regression ECCV2018</p></center>
+
+<p>AR-Net（非对称回归网络），以双眼为输入，经四个支路处理后得到两只眼睛的不同视线方向；E-Net（评价网络），同样以双眼为输入，输出是两个权重，用于加权AR-Net训练过程中两只眼睛视线的loss。其基本思想是，双眼中某一只眼睛可能因为一些原因（如光照原因等），更容易得到精准的视线估计，因此在AR-Net训练中应该赋予这只眼睛对应的loss更大的权重。该工作在MPIIGaze数据集上取得了5.0度的误差。</p>
+<h1 id="基于语义信息的视线估计"><a href="#基于语义信息的视线估计" class="headerlink" title="基于语义信息的视线估计"></a>基于语义信息的视线估计</h1><p>基于几何的方法是通过检测眼睛特征，如关键点位置，来估计视线的。</p>
+<blockquote>
+<p>几何检测眼睛的几何信息。</p>
+</blockquote>
+<p>这启发了一部分工作使用<strong>额外的语义信息</strong>来帮助提升视线估计的精度。ETH博士Park等在ECCV 2018上提出了一种基于眼睛图形表示的视线估计方法。</p>
+<p>不是直接回归两个角度的俯仰和偏航的眼球，而是回归到一个中间的图像表示，这反过来简化了三维注视方向估计的任务。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007160924206.png" alt="image-20211007160924206">  </p>
+<center><p>Deep Pictorial Gaze Estimation 2018ECCV </p></center> 
+
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007161335847.png" alt="image-20211007161335847"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007162046332.png" alt="image-20211007162046332"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007164953107.png" alt="image-20211007164953107">(a)从UnityEyes地标集(顶部)选择地标(底部)。(b)地标水平或垂直位置与凝视偏航或俯仰角度之间的相关系数。(c)<strong>虹膜中心水平</strong>或垂直位置和偏航或俯仰凝视角度的联合分布图。</p>
+<p>2018年提出了一种基于约束模型的视线估计方法[6]，其基本出发点是<strong>多任务学习</strong>的思想，即在<strong>估计gaze的同时检测眼睛关键点位置</strong>，两个任务同时学习，信息互补，可以在一定程度上得到共同提升。</p>
+<ul>
+<li><p><strong>首先对眼睛关键点与视线的关系进行了统计建模</strong>。具体地，对于合成数据集UnityEyes中的一个样本，我们抽取其17个眼睛关键点与两个gaze角度，将他们展开并拼接为一个36维（17<em>2 + 2）的向量。然后将n个样本对应的n个向量堆叠生成一个n</em>36大小的矩阵，对该矩阵做PCA分解后可以得到一个mean shape和一系列deformation basis。</p>
+<p>这两个部分共同构成了一个约束模型。其中mean shape代表眼睛的平均形状以及对应的gaze平均值，而deformation basis则包含了眼睛形状与gaze的协同变化信息。约束模型的建立过程如下图所示。</p>
+</li>
+<li><p><img src="https://pic3.zhimg.com/80/v2-3026afc055f18e5e3e0a0a65f94c4a16_1440w.jpg" alt="img"></p>
+</li>
+</ul>
+<p>对于一个输入样本，如果能学习出这个约束模型中的deformation basis系数，并与mean shape组合，就可以重建出这个样本的眼睛形状和gaze。</p>
+<p>因此我们使用的网络架构如下，网络的主要<strong>输出即约束模型的系数，用以重建眼睛的形状和gaze</strong>。另外，由于约束模型表示的眼睛形状是经过归一化操作的，网络同时学习一个缩放系数，和一个平移向量，通过几何变换（decoder）得到正确的眼睛关键点位置。网络通过优化关键点位置loss与视线loss实现end to end training。实验结果表明，取得了比直接回归更精准的结果。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007170804421.png" alt="image-20211007170804421"></p>
+<center><p>Deep multitask gaze estimation with a constrained landmark-gaze model 2018ECCVW</p></center>
+
+<h1 id="全脸视线估计"><a href="#全脸视线估计" class="headerlink" title="全脸视线估计"></a>全脸视线估计</h1><p>以上视线估计方法都要求单眼/双眼图像为输入，有两个缺陷：1）需要额外的模块检测眼睛；2）需要额外的模块估计头部姿态。基于此，Xucong Zhang等于2017年提出了基于注意力机制的全脸视线估计方法[7]。<img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007202852686.png" alt="image-20211007202852686"></p>
+<p>这里注意力机制的主要思想是通过一个支路学习人脸区域各位置的权重，其目标是增大眼睛区域的权重，抑制其他与gaze无关的区域的权重。网络的输入为人脸图像并采用end to end的学习策略，直接学习出最终相机坐标系下的gaze。这一工作同时公开了全脸视线数据集MPIIFaceGaze。</p>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><h4 id="GazeCapture涵盖1400多人、240多万样本的数据集。"><a href="#GazeCapture涵盖1400多人、240多万样本的数据集。" class="headerlink" title="GazeCapture涵盖1400多人、240多万样本的数据集。"></a>GazeCapture涵盖1400多人、240多万样本的数据集。</h4><p>Krafka, K., Khosla, A., Kellnhofer, P ., Kannan, H., Bhandarkar,<br>S., Matusik, W., Torralba, A.: Eye tracking for everyone. In: Pro-<br>ceedings of the IEEE Conference on Computer Vision and Pattern<br>Recognition, pp. 2176–2184 (2016)，</p>
+<h3 id="RGBD注视跟踪数据集Eyediap，该数据集由16个参与者的视频组成。"><a href="#RGBD注视跟踪数据集Eyediap，该数据集由16个参与者的视频组成。" class="headerlink" title="RGBD注视跟踪数据集Eyediap，该数据集由16个参与者的视频组成。"></a><strong>RGBD注视跟踪数据集</strong>Eyediap，该数据集由16个参与者的视频组成。</h3><p> UnityEyes 如图1a的第一排所示。考虑到依赖大量的路标无助于提高鲁棒性和准确性，只会增加方法的复杂性，我们只选择可用路标的一个子集作为替代。它包含来自眼睑的16个标志，虹膜中心是由虹膜轮廓标志估计出来的。如图1a第二行所示。</p>
+<h2 id="MPIIGaze数据集"><a href="#MPIIGaze数据集" class="headerlink" title="MPIIGaze数据集"></a>MPIIGaze数据集</h2><p>MPIIGaze数据集，2015年，这是一个野外RGB凝视数据集，收集了15名参与者在几个月的日常使用笔记本电脑期间的数据。包含了在超过三个月的日常使用笔记本电脑期间收集的15名参与者的213659张图像。数据集在外观和照明方面比现有的数据集有更大的变化。Appearance-Based Gaze Estimation in the Wild提的。</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007142949977.png" alt="image-20211007142949977"></p>
+<p>虽然MPIIGaze与MPIIFaceGaze使用的是同一批数据，但并不是同一个数据集（许多论文把这两个数据集混淆）。首先MPIIGaze数据集并不包含全脸图片，其次MPIIFaceGaze的ground truth定义方式与MPIIGaze不同。该工作最终在MPIIFaceGaze数据集上取得了4.8度的精度。</p>
+<h2 id="UT-Multiview。"><a href="#UT-Multiview。" class="headerlink" title="UT Multiview。"></a>UT Multiview。</h2><p>建立了迄今为止最大的RGB-D凝视跟踪数据集，收集了218名参与者，包含超过165000张图像。该数据集将向所有研究人员公开，以促进对数据驱动的凝视跟踪方法的研究</p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211006164028365.png" alt="image-20211006164028365"><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211006164223297.png" alt="image-20211006164223297"></p>
+<blockquote>
+<p>用iTracker的方法怎么处理深度分支？</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6287639/8948470/9153754/akiny.t4-3013540-large.gif">https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6287639/8948470/9153754/akiny.t4-3013540-large.gif</a></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211008155155643.png" alt="image-20211008155155643"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211008155246008.png" alt="image-20211008155246008"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211008163556619.png" alt="image-20211008163556619"></p>
+<h1 id="LNSMM-Eye-Gaze-Estimation-With-Local-Network-Share-Multiview-Multitask"><a href="#LNSMM-Eye-Gaze-Estimation-With-Local-Network-Share-Multiview-Multitask" class="headerlink" title="LNSMM: Eye Gaze Estimation With Local Network Share Multiview Multitask"></a>LNSMM: Eye Gaze Estimation With Local Network Share Multiview Multitask</h1><blockquote>
+<p>2021arxiv </p>
+<p>Yong Huang, Ben Chen, Daiming Qu<br>Department of Electronics and Information Engineering,<br>HuaZhong University of Science and Technolog</p>
+</blockquote>
+<p>评价：基于<strong>局部网络共享多视图多任务</strong>的眼睛注视估计</p>
+<hr>
+<p>评价：</p>
+<p>针对问题：</p>
+<p>本文的目的：</p>
+<p>实现的方法：<br>方法简介<br>方法优化<br>方法总结<br>文章存在的问题<br>个人的思考</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag"># 文献阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" rel="next" title="leetcode题目记录">
+                <i class="fa fa-chevron-left"></i> leetcode题目记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/04/%E2%80%9Clab%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BA%A2%E5%A4%96%E2%80%9D/" rel="prev" title="“lab多模态红外”">
+                “lab多模态红外” <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gaze-Estimation"><span class="nav-number">1.</span> <span class="nav-text">Gaze  Estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%8E%E5%BA%94%E7%94%A8%E5%A4%A7%E8%87%B4%E5%8F%AF%E5%88%86%E4%B8%BA%E4%B8%89%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">根据不同的场景与应用大致可分为三类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8Tobii%E7%9C%BC%E5%8A%A8%E4%BB%AA%E7%8E%A9%E6%B8%B8%E6%88%8F%E7%9A%84Demo"><span class="nav-number">1.3.1.</span> <span class="nav-text">用Tobii眼动仪玩游戏的Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VR"><span class="nav-number">1.3.2.</span> <span class="nav-text">VR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BB%E7%96%97"><span class="nav-number">1.3.3.</span> <span class="nav-text">医疗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E9%A9%BE%E9%A9%B6%EF%BC%88%E6%99%BA%E8%83%BD%E5%BA%A7%E8%88%B1%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">辅助驾驶（智能座舱）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E4%B8%8B%E9%9B%B6%E5%94%AE"><span class="nav-number">1.3.5.</span> <span class="nav-text">线下零售</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BA%A4%E4%BA%92%E7%B1%BB%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.6.</span> <span class="nav-text">其他交互类应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%9B%A2%E9%98%9F%E4%B8%8E%E5%85%AC%E5%8F%B8"><span class="nav-number">1.4.</span> <span class="nav-text">相关团队与公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%86%E7%9B%AE%E6%A0%87%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">注视目标估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%86%E7%82%B9%E4%BC%B0%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">注视点估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%EF%BC%88%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">三维视线估计（通用方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">传统方法：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E7%9C%BC-%E5%8F%8C%E7%9C%BC%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">单眼&#x2F;双眼视线估计：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline"><span class="nav-number">5.0.1.</span> <span class="nav-text">pipeline</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1"><span class="nav-number">6.</span> <span class="nav-text">基于语义信息的视线估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E8%84%B8%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1"><span class="nav-number">7.</span> <span class="nav-text">全脸视线估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">8.</span> <span class="nav-text">数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GazeCapture%E6%B6%B5%E7%9B%961400%E5%A4%9A%E4%BA%BA%E3%80%81240%E5%A4%9A%E4%B8%87%E6%A0%B7%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%82"><span class="nav-number">8.0.0.1.</span> <span class="nav-text">GazeCapture涵盖1400多人、240多万样本的数据集。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RGBD%E6%B3%A8%E8%A7%86%E8%B7%9F%E8%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86Eyediap%EF%BC%8C%E8%AF%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%B116%E4%B8%AA%E5%8F%82%E4%B8%8E%E8%80%85%E7%9A%84%E8%A7%86%E9%A2%91%E7%BB%84%E6%88%90%E3%80%82"><span class="nav-number">8.0.1.</span> <span class="nav-text">RGBD注视跟踪数据集Eyediap，该数据集由16个参与者的视频组成。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPIIGaze%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">8.1.</span> <span class="nav-text">MPIIGaze数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UT-Multiview%E3%80%82"><span class="nav-number">8.2.</span> <span class="nav-text">UT Multiview。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LNSMM-Eye-Gaze-Estimation-With-Local-Network-Share-Multiview-Multitask"><span class="nav-number">9.</span> <span class="nav-text">LNSMM: Eye Gaze Estimation With Local Network Share Multiview Multitask</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
+
+  
+ </div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
