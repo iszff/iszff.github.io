@@ -89,7 +89,7 @@
 <meta property="og:description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-10-04T03:02:10.000Z">
-<meta property="article:modified_time" content="2021-10-10T10:24:10.256Z">
+<meta property="article:modified_time" content="2021-10-24T14:25:13.628Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 
@@ -357,8 +357,27 @@
 <p>用size作为循环的终止条件，size是会随着每一次的pop、push操作更新的。</p>
 <p>在构造函数中定义的变量是由于在构造函数中定义，作用域为局部变量。</p>
 </blockquote>
-<h1 id="20211010剑指-Offer-30-包含min函数的栈"><a href="#20211010剑指-Offer-30-包含min函数的栈" class="headerlink" title="20211010剑指 Offer 30. 包含min函数的栈"></a>20211010<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/">剑指 Offer 30. 包含min函数的栈</a></h1><p>push、pop、top方法是一定的，当顶部数据弹出后，还是能够很快找到最小值，min的复杂度为-1。</p>
+<h1 id="20211010剑指-Offer-30-包含min函数的栈"><a href="#20211010剑指-Offer-30-包含min函数的栈" class="headerlink" title="20211010剑指 Offer 30. 包含min函数的栈"></a>20211010<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/">剑指 Offer 30. 包含min函数的栈</a></h1><p>push、pop、top方法是一定的，当顶部数据弹出后，还是能够很快找到最小值，min的复杂度为O(1)。</p>
 <p>设置一个数组用于排序或者从头到尾的hash表格也可以，但有负数。</p>
+<blockquote>
+<p>20211024</p>
+</blockquote>
+<p>1.想到啦！本题目的难点在于怎么可以找到一种数据结构，它有记忆性，当插入、删除一个数的时候，可以对数据进行排序，并且可以很方便的取出最小值。用最小优先队列就可以了，其实就是维护一个最小堆，一次操作中复杂度为O(lgn)但堆怎么删除一个数据呢？需要对于每个节点记录parent。</p>
+<p>2.其实每次使用数组来存放stack里的所有数据的非降序排序结果也可以，但是每次push后需要扫描排序，排序复杂度为O(n)，当pop后也需要排序，主要是将后面的值向前挪动，复杂度为O(n)。</p>
+<p>3.或者偷懒，使用优先队列priority_queue来实现自动排序 。orz</p>
+<h2 id="忽略点-1"><a href="#忽略点-1" class="headerlink" title="忽略点"></a>忽略点</h2><p>对于priority_queue，pop掉的 是栈顶元素，即排序后的栈顶元素，而不是stack的顶部，怎么可以删除掉任意一个位置的元素呢？</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/justidle/article/details/106793522">(10条消息) O(1) 复杂度支持任意位置删除的 priority_queue 实现_努力中的老周的专栏-CSDN博客</a></p>
+<p>MAXHEAP 内部有两个优先队列，其中 Q 队列保存当前元素，D 队列保存需要删除的元素。一个是数据，一个是待删除数据，当两个 priority_queue 的 top() 元素相同的时候，我们再删除两个优先队列的 top。</p>
+<p>while(!D.empty()&amp;&amp;Q.top()==D.top()) {Q.pop();D.pop();}当删除的值是当前队列的头部，就删除，否则将其暂存在待删除队列当中，等到之后比待删除队列中大的元素删除后，再删除待删除队列的元素。</p>
+<p>pq插入5，Q.top()=5,Q={5};</p>
+<p>pq插入8，Q.top()=8,Q={8,5};</p>
+<p>pq插入6，Q.top()=8,Q={8,5,6};</p>
+<p>pq.erase(8),D.push(8),Q.pop(),Q={6,5,4};D.pop(),D={};Q.top()=6;</p>
+<p>pq.erase(5),D.push(5),D={5}；</p>
+<p>pq.erase(6),D.push(6),D={6,5}</p>
+<blockquote>
+<p>开辟了两个优先队列，其实占用了空间，也可以用两个数组每次把排序的结果存下来，来回倒。</p>
+</blockquote>
 
       
     </div>
@@ -474,7 +493,7 @@
 		    
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-1"><span class="nav-number">2.1.</span> <span class="nav-text">忽略点</span></a></li></ol></li></ol></div>
             
 
           </div>
