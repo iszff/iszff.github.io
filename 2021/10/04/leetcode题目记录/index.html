@@ -88,10 +88,12 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
 <meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
 <meta property="article:published_time" content="2021-10-04T03:02:10.000Z">
-<meta property="article:modified_time" content="2021-10-24T14:25:13.628Z">
+<meta property="article:modified_time" content="2021-11-05T14:26:32.263Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
 
 
 
@@ -352,6 +354,9 @@
 <p>S1=[3，2，1]，S2=[4]；S1=[2，1]，S2=[3，4]…S1=[]，S2=[1，2，3，4]</p>
 <h2 id="appendTail"><a href="#appendTail" class="headerlink" title="appendTail"></a>appendTail</h2><p>初始S1=[]，S2=[1，2，3，4]；S2出栈至S1，元素顺序全部倒置，变为S1=[4，3，2，1]，S2=[]，此时把tail=5入栈到S1，变为S1=[5，4，3，2，1]，S2=[]；再次让S1中的元素一个个弹出至S2中，变为S1=[]，S2=[1，2，3，4，5]，实现了appendTail功能。</p>
 <p>输出null。</p>
+<blockquote>
+<p>每次append后重新倒了回去，多花了一倍时间20211028.</p>
+</blockquote>
 <h2 id="deleteHead"><a href="#deleteHead" class="headerlink" title="deleteHead"></a>deleteHead</h2><p>直接pop掉S2的顶部元素即可。输出栈顶元素。</p>
 <h2 id="忽略点"><a href="#忽略点" class="headerlink" title="忽略点"></a>忽略点</h2><blockquote>
 <p>用size作为循环的终止条件，size是会随着每一次的pop、push操作更新的。</p>
@@ -378,6 +383,70 @@
 <blockquote>
 <p>开辟了两个优先队列，其实占用了空间，也可以用两个数组每次把排序的结果存下来，来回倒。</p>
 </blockquote>
+<h2 id="好思路"><a href="#好思路" class="headerlink" title="好思路"></a>好思路</h2><p>两个stack分别作用，一个当作主stack，另一个用于存放比当前元素小的值。</p>
+<h1 id="20211026剑指-Offer-06-从尾到头打印链表-力扣（LeetCode）-leetcode-cn-com"><a href="#20211026剑指-Offer-06-从尾到头打印链表-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211026剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211026<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>链表反转，怎么表示一个链表?</p>
+<p>指针，或者是用类来写链表的每一个node，包含key、pre、next，但怎么访问下一个值呢？</p>
+<p>或者用结构体，结构体指针指向向下一个node，每次把链表的相连处断开，用temp存储临时断开的指针，在重新连到合适的位置上。</p>
+<p>但要怎么拿到最后一个node呢？从前向后访问到尾部，复杂度。</p>
+<h2 id="20211028"><a href="#20211028" class="headerlink" title="20211028"></a>20211028</h2><p>从头开始以链表中的每一个元素为单元，改变它的next就可以了。</p>
+<p>对于head指针，若head指向了空，则是一个空链表。</p>
+<p>对于第一个有数据的节点，将除开他的剩余部分先存下来，将其next赋值为NULL。</p>
+<p>对于剩下的部分，若为NULL说明已经到达了，链表的尾部，可以结束扫描。</p>
+<p>否则将剩余部分中第一个node的指针指向上一个已经处理过的node。</p>
+<h2 id="忽略点-2"><a href="#忽略点-2" class="headerlink" title="忽略点"></a>忽略点</h2><p>比我想得简单，每一个node都带有数据。</p>
+<blockquote>
+<p>纠结的是链表的格式，传入的参数是头节点的指针，此指针可以指向数据域和域。用阶梯状那样的链表来在脑中可视化</p>
+</blockquote>
+<h1 id="20211029剑指-Offer-35-复杂链表的复制-力扣（LeetCode）-leetcode-cn-com"><a href="#20211029剑指-Offer-35-复杂链表的复制-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211029剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211029<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/">剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>看到题目的感觉是直接记录下一个节点的指针和random的值，但是random的类型是node型指针。怎么把*和出现的顺序的index结合起来呢？</p>
+<h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><p>对一个特殊的链表进行深拷贝。如果是普通链表，可以直接按照遍历的顺序创建链表节点。</p>
+<p>本题中因为随机指针的存在，当我们拷贝节点时，「当前节点的随机指针指向的节点」可能还没创建，因此我们需要变换思路。</p>
+<p>一个可行方案是，我们利用回溯的方式，让每个节点的拷贝操作相互独立。</p>
+<p>对于<strong>当前节点</strong>，我们首先要进行<strong>拷贝</strong>，然后我们进行「当前节点的后继节点」和「当前节点的随机指针指向的节点」拷贝，拷贝完成后将创建的<strong>新节点的指针返回</strong>，即可完成当前节点的两指针的赋值。</p>
+<blockquote>
+<p>读完这个话也想不到应该怎么做呢？</p>
+</blockquote>
+<p>具体地，我们<strong>用哈希表记录</strong>每一个节点<strong>对应新节点</strong>的创建情况，</p>
+<p>遍历该链表的过程中，我们检查「当前节点的后继节点」和「当前节点的随机指针指向的节点」的创建情况。</p>
+<p>如果这两个节点中的任何一个节点的新节点没有被创建，我们都立刻<strong>递归地进行创建</strong>。</p>
+<p>当我们拷贝完成，回溯到当前层时，我们即可完成当前节点的指针赋值。注意一个节点可能被多个其他节点指向，因此我们可能递归地多次尝试拷贝某个节点，为了防止重复拷贝，我们需要首先检查当前节点是否被拷贝过，如果已经拷贝过，我们可以直接从哈希表中取出拷贝后的节点的指针并返回即可。</p>
+<h2 id="20211030"><a href="#20211030" class="headerlink" title="20211030"></a>20211030</h2><p>假如不是一个复杂链表，对于一个简单链表的复制,</p>
+<blockquote>
+<p>算法笔记上是建立一个链表，他传入的参数是val的数组，而不是复制一个链表。</p>
+</blockquote>
+<p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>官方给了两种思路</p>
+<h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
+<p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
+<p>两轮遍历复杂度O(N),使用map，空间复杂度O(N).</p>
+<h2 id="官方思路二"><a href="#官方思路二" class="headerlink" title="官方思路二"></a>官方思路二</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/comments/249391">https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/comments/249391</a></p>
+<p>1.第一轮遍历，在每一个节点后边复制一个一样值的新节点。</p>
+<p>2.第二轮遍历，对于复制节点，赋值随即指针（假如没有random，就不赋值）。</p>
+<p>3.第三轮遍历，链表拆分，stride的设计。对于原链表的尾节点需要单独处理。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="20211102剑指-Offer-03-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com"><a href="#20211102剑指-Offer-03-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211102剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211102<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>​    error: variable-sized object may not be initialized?这个提示是：变量大小的对象不能被初始化, const int max =100000;</p>
+<h2 id="剑指-Offer-03-数组中重复的数字（哈希表-原地交换，清晰图解）-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com"><a href="#剑指-Offer-03-数组中重复的数字（哈希表-原地交换，清晰图解）-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="剑指 Offer 03. 数组中重复的数字（哈希表 / 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/">剑指 Offer 03. 数组中重复的数字（哈希表 / 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h2><p>好思路，从前向后排字典，后边在遇到重复的就可以发现了。</p>
+<p>遍历数组 numsnums ，设索引初始值为 i = 0i=0 :</p>
+<p>若 nums[i] = inums[i]=i ： 说明此数字已在对应索引位置，无需交换，因此跳过；<br>若 nums[nums[i]] = nums[i]nums[nums[i]]=nums[i] ： 代表索引 nums[i]nums[i] 处和索引 ii 处的元素值都为 nums[i]nums[i] ，即找到一组重复值，返回此值 nums[i]nums[i] ；<br>否则： 交换索引为 ii 和 nums[i]nums[i] 的元素值，将此数字交换至对应索引位置。</p>
+<p>作者：jyd<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h1 id="20211102剑指-Offer-53-I-在排序数组中查找数字-I-力扣（LeetCode）-leetcode-cn-com"><a href="#20211102剑指-Offer-53-I-在排序数组中查找数字-I-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211102剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)"></a>20211102<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/">剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>此题在于怎么快速找到一个数字在排序中的位置。二分法。</p>
+<h1 id="20211103剑指-Offer-53-II-0～n-1中缺失的数字-题解-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-53-II-0～n-1中缺失的数字-题解-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/solution/">剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>从头到尾扫描，遇到不一样的，break。假如是最后一个错误，for循环里边有个i++，可以自动的处理这种情况。</p>
+<h1 id="20211103剑指-Offer-04-二维数组中的查找-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-04-二维数组中的查找-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>感觉应该用DFS，或者BFS，斜着扫描。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/">面试题04. 二维数组中的查找（标志数，清晰图解） - 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</a>旋转45°</p>
+<h1 id="20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>找到一个数字比左边小，比右边大。</p>
+<p>20211105<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>硬找</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
+<p>LeetCode 热题 HOT 100</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
+<p>剑指 Offer（第 2 版）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/study-plan/lcof/?progress=pmhin4r">「剑指 Offer」 - 学习计划 - 力扣（LeetCode）全球极客挚爱的技术成长平台 (leetcode-cn.com)</a></p>
+<p>剑指 Offer（第 2 版）分类</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2ckc81c/">力扣 (leetcode-cn.com)</a></p>
+<p>LeetCode 精选 TOP 面试题</p>
+<p><img src="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211028152640610.png" alt="image-20211028152640610"></p>
+<p>可以做单题</p>
 
       
     </div>
@@ -493,7 +562,7 @@
 		    
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-1"><span class="nav-number">2.1.</span> <span class="nav-text">忽略点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-1"><span class="nav-number">2.1.</span> <span class="nav-text">忽略点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">好思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211026%E5%89%91%E6%8C%87-Offer-06-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">3.</span> <span class="nav-text">20211026剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#20211028"><span class="nav-number">3.1.</span> <span class="nav-text">20211028</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-2"><span class="nav-number">3.2.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211029%E5%89%91%E6%8C%87-Offer-35-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">4.</span> <span class="nav-text">20211029剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E9%A2%98%E8%A7%A3"><span class="nav-number">4.0.1.</span> <span class="nav-text">官方题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20211030"><span class="nav-number">4.1.</span> <span class="nav-text">20211030</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">官方思路一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="nav-number">4.3.</span> <span class="nav-text">官方思路二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.</span> <span class="nav-text">20211102剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8-%E5%8E%9F%E5%9C%B0%E4%BA%A4%E6%8D%A2%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.1.</span> <span class="nav-text">剑指 Offer 03. 数组中重复的数字（哈希表 &#x2F; 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-53-I-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97-I-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">6.</span> <span class="nav-text">20211102剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-53-II-0%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97-%E9%A2%98%E8%A7%A3-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">7.</span> <span class="nav-text">20211103剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">8.</span> <span class="nav-text">20211103剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-11-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">9.</span> <span class="nav-text">20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">10.</span> <span class="nav-text">题目</span></a></li></ol></div>
             
 
           </div>
