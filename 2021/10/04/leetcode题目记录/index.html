@@ -1,87 +1,13 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
+  
 
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="iszff" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
+  <title>leetcode题目记录 | iszff&#39; Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题目记录">
 <meta property="og:url" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/index.html">
@@ -90,258 +16,79 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
 <meta property="article:published_time" content="2021-10-04T03:02:10.000Z">
-<meta property="article:modified_time" content="2021-11-05T14:26:32.263Z">
+<meta property="article:modified_time" content="2021-11-10T08:47:42.216Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2021/10/04/leetcode题目记录/"/>
-
-
-
-
-
-  <title>leetcode题目记录 | iszff' Blog</title>
   
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
+    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">iszff' Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iszff&#39; Blog</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle">people move on.</p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcode题目记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-10-04T03:02:10.000Z" itemprop="datePublished">2021-10-04</time>
+</a>
+    
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="iszff' Blog">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">leetcode题目记录</h1>
-        
+  
+    <h1 class="article-title" itemprop="name">
+      leetcode题目记录
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-04T11:02:10+08:00">
-                2021-10-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-entry" itemprop="articleBody">
       
         <h1 id="20211004用两个栈实现队列"><a href="#20211004用两个栈实现队列" class="headerlink" title="20211004用两个栈实现队列"></a>20211004用两个栈实现队列</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>栈和队列是相反的，先后入两个不同的栈相当于入一个队列，</p>
@@ -377,6 +124,7 @@
 <p>pq插入5，Q.top()=5,Q={5};</p>
 <p>pq插入8，Q.top()=8,Q={8,5};</p>
 <p>pq插入6，Q.top()=8,Q={8,5,6};</p>
+<p>pq插入4，Q.top()=8,Q={8,5,6,4};</p>
 <p>pq.erase(8),D.push(8),Q.pop(),Q={6,5,4};D.pop(),D={};Q.top()=6;</p>
 <p>pq.erase(5),D.push(5),D={5}；</p>
 <p>pq.erase(6),D.push(6),D={6,5}</p>
@@ -415,7 +163,6 @@
 </blockquote>
 <p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>官方给了两种思路</p>
 <h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
 <p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
@@ -436,7 +183,26 @@
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/">面试题04. 二维数组中的查找（标志数，清晰图解） - 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</a>旋转45°</p>
 <h1 id="20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>找到一个数字比左边小，比右边大。</p>
 <p>20211105<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>硬找</p>
+<p>硬找，用二分。</p>
+<h1 id="20211106-剑指-Offer-50-第一个只出现一次的字符-力扣（LeetCode）-leetcode-cn-com"><a href="#20211106-剑指-Offer-50-第一个只出现一次的字符-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211106 剑指 Offer 50. 第一个只出现一次的字符 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211106 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/submissions/">剑指 Offer 50. 第一个只出现一次的字符 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>unordered_map,排序方式不是按照进入的顺序排的。</p>
+<h2 id="哈希表，auto遍历"><a href="#哈希表，auto遍历" class="headerlink" title="哈希表，auto遍历"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/averyfork/p/14420238.html">哈希表，auto遍历</a></h2><p><strong>首先是c++中的哈希表和Python中的字典</strong></p>
+<h1 id="20211108剑指-Offer-32-II-从上到下打印二叉树-II-力扣（LeetCode）-leetcode-cn-com"><a href="#20211108剑指-Offer-32-II-从上到下打印二叉树-II-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211108剑指 Offer 32 - II. 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)"></a>20211108<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">剑指 Offer 32 - II. 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>怎么记录每一层的高度呢？</p>
+<p>分层打印的思路，一层开始时候，队列里边的元素是当前层的。<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/solution/mian-shi-ti-32-ii-cong-shang-dao-xia-da-yin-er-c-5/">面试题32 - II. 从上到下打印二叉树 II（层序遍历 BFS，清晰图解） - 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>dfs维护层数递归<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/solution/c-ceng-xu-bian-li-dfsbfs-tao-mo-ban-jiu-wan-shi-li/">C++, 层序遍历, DFS+BFS, 套模板就完事了 - 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="20211108剑指-Offer-32-III-从上到下打印二叉树-III-力扣（LeetCode）-leetcode-cn-com"><a href="#20211108剑指-Offer-32-III-从上到下打印二叉树-III-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211108剑指 Offer 32 - III. 从上到下打印二叉树 III - 力扣（LeetCode） (leetcode-cn.com)"></a>20211108<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/">剑指 Offer 32 - III. 从上到下打印二叉树 III - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>想到的是仅在tmp完全存储后，用stack来颠倒数据。</p>
+<h1 id="20211109递归方式解决-树的子结构-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109递归方式解决-树的子结构-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109递归方式解决 - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/di-gui-fang-shi-jie-jue-by-sdwwld/">递归方式解决 - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h2 id="二叉树题解总结"><a href="#二叉树题解总结" class="headerlink" title="二叉树题解总结"></a>二叉树题解总结</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/yi-pian-wen-zhang-dai-ni-chi-tou-dui-che-uhgs/">一篇文章带你吃透对称性递归(思路分析+解题模板+案例解读) - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="20211109剑指-Offer-27-二叉树的镜像（递归-辅助栈，清晰图解）-二叉树的镜像-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109剑指-Offer-27-二叉树的镜像（递归-辅助栈，清晰图解）-二叉树的镜像-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109剑指 Offer 27. 二叉树的镜像（递归 / 辅助栈，清晰图解） - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/solution/mian-shi-ti-27-er-cha-shu-de-jing-xiang-di-gui-fu-/">剑指 Offer 27. 二叉树的镜像（递归 / 辅助栈，清晰图解） - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>递归。用栈。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/solution/4chong-jie-jue-fang-shi-bfsdfszhong-xu-bian-li-di-/">4种解决方式（BFS，DFS，中序遍历，递归方式），最好的击败了100%的用户 - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>还有一些其他的方法。</p>
+<h1 id="20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/">剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>对称二叉树，镜像二叉树后，看是不是一样的结构。</p>
+<h2 id="递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="递归思路与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>递归思路<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/yu-shang-ti-lei-si-di-gui-bu-neng-xiang-5ts8h/">与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h2><h1 id="20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h2 id="动态规划套路详解"><a href="#动态规划套路详解" class="headerlink" title="动态规划套路详解"></a>动态规划套路详解</h2><p>首先，动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。</p>
+<p>作者：labuladong<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>重叠子问题。</p>
+<p>最优子结构。</p>
+<p>正确的状态转移方程。</p>
+<p><strong>明确 base case -&gt; 明确「状态」-&gt; 明确「选择」 -&gt; 定义 dp 数组/函数的含义</strong>。</p>
+<p>但凡遇到需要递归的问题，最好都画出递归树，这对你分析算法的复杂度，寻找算法低效的原因都有巨大帮助。</p>
+<h2 id="vector初始化"><a href="#vector初始化" class="headerlink" title="vector初始化"></a>vector初始化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40147449/article/details/87892312">(12条消息) C++ vector的初始化_锤某的博客-CSDN博客_c++ vector 初始化</a></p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
 <p>LeetCode 热题 HOT 100</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
@@ -450,400 +216,165 @@
 
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/09/29/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB/" rel="next" title="知识蒸馏文章阅读">
-                <i class="fa fa-chevron-left"></i> 知识蒸馏文章阅读
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/" rel="prev" title="eye gaze调研">
-                eye gaze调研 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="ckup2agtj0003f0upgck8gvr3" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
     
-    <div class="sidebar-inner">
+<nav id="article-nav">
+  
+    <a href="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          eye gaze调研
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/29/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">知识蒸馏文章阅读</div>
+    </a>
+  
+</nav>
 
-      
+  
+</article>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+        
+          <li>
+            <a href="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/">Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="" />
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-		  
-		    
-              <div class="site-state-item site-state-posts">
-                <a href="/archives">
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-		    
-
-
-       
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-1"><span class="nav-number">2.1.</span> <span class="nav-text">忽略点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">好思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211026%E5%89%91%E6%8C%87-Offer-06-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">3.</span> <span class="nav-text">20211026剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#20211028"><span class="nav-number">3.1.</span> <span class="nav-text">20211028</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-2"><span class="nav-number">3.2.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211029%E5%89%91%E6%8C%87-Offer-35-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">4.</span> <span class="nav-text">20211029剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E9%A2%98%E8%A7%A3"><span class="nav-number">4.0.1.</span> <span class="nav-text">官方题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20211030"><span class="nav-number">4.1.</span> <span class="nav-text">20211030</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">官方思路一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="nav-number">4.3.</span> <span class="nav-text">官方思路二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.</span> <span class="nav-text">20211102剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8-%E5%8E%9F%E5%9C%B0%E4%BA%A4%E6%8D%A2%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.1.</span> <span class="nav-text">剑指 Offer 03. 数组中重复的数字（哈希表 &#x2F; 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-53-I-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97-I-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">6.</span> <span class="nav-text">20211102剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-53-II-0%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97-%E9%A2%98%E8%A7%A3-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">7.</span> <span class="nav-text">20211103剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">8.</span> <span class="nav-text">20211103剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-11-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">9.</span> <span class="nav-text">20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">10.</span> <span class="nav-text">题目</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+        
+          <li>
+            <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/">gaze综述文章</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/29/gaze%E6%9C%80%E6%96%B0%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/">gaze最新文献调研</a>
+          </li>
+        
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">iszff</span>
-
-  
- </div>
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 iszff<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

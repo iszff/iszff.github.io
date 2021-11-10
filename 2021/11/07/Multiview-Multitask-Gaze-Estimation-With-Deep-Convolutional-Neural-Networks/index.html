@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks | iszff&#39; Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2018 TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS Dongze Lian, Lina Hu, Weixin Luo, Y anyu Xu, Lixin Duan, Jingyi Y u,Member , IEEE, and Shenghua Gao.  (1) 评价：基于深度卷积神经网络的多视图多任务注视估计 (2)  针对问题：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks">
+<meta property="og:url" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="2018 TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS Dongze Lian, Lina Hu, Weixin Luo, Y anyu Xu, Lixin Duan, Jingyi Y u,Member , IEEE, and Shenghua Gao.  (1) 评价：基于深度卷积神经网络的多视图多任务注视估计 (2)  针对问题：">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211107213710618.png">
+<meta property="article:published_time" content="2021-11-07T01:52:13.000Z">
+<meta property="article:modified_time" content="2021-11-10T03:00:34.048Z">
+<meta property="article:author" content="iszff">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211107213710618.png">
+  
+    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iszff&#39; Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/" class="article-date">
+  <time datetime="2021-11-07T01:52:13.000Z" itemprop="datePublished">2021-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>2018 TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS</p>
+<p>Dongze Lian, Lina Hu, Weixin Luo, Y anyu Xu, Lixin Duan, Jingyi Y u,Member , IEEE, and Shenghua Gao.</p>
+</blockquote>
+<p>(1) 评价：基于深度卷积神经网络的<strong>多视图多任务</strong>注视估计</p>
+<p>(2)  针对问题：现有的许多方法都是基于单个摄像机的，大多数方法只关注注视点估计或注视方向估计。</p>
+<p>(3) 本文的方法：</p>
+<p>a.分析了注视点估计和注视方向估计之间的密切关系，并采用<strong>部分共享卷积神经网络结构</strong>来同时估计注视方向和注视点。</p>
+<p>b.引入了一种新的<strong>多视角注视跟踪数据集</strong>，该数据集由<strong>不同被试的多视角注视图像组成</strong>。</p>
+<p>c.对于注视方向的预测，提出在左右眼注视方向上引入共面约束。</p>
+<p>对于注视点的估计，提出引入一个跨视图池模块。</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211107213710618.png" alt="image-20211107213710618"></p>
+<blockquote>
+<p>四流输入、四流输出？怎么共享参数?</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz">https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz</a></p>
+<h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
+<p>环境：然后，在正常照明条件下，将系统固定在房间的书桌上。为了避免其他移动的物体/人或噪音造成的干扰，房间内保持安静和空无一人，只有一名待命助手除外。</p>
+<p>使用大型iMac的第一个原因是，希望在水平和垂直方向上预测更大范围的注视点。相比之下，GazeCapture只预测了手机或平板电脑屏幕内的点。因此，数据集比GazeCapture更具挑战性。</p>
+<p>使用iMac的第二个原因是，它的视网膜屏幕有更高的分辨率，以保证像素精度的地面真实;同时，减少了数据采集过程中的眼睛疲劳。</p>
+<p>采集过程：要求参与者自由地坐在屏幕前。然后，在灰色背景的屏幕上随机显示一个半径为8像素的白点(作为ground truth)，让参与者用鼠标点击。这样的点击动作可以帮助参与者将注意力吸引到这个点上。然后，记录光标的坐标和动作的时间戳，之后显示光标位置上的蓝点。同时，我们计算白点和蓝点之间的距离。如果距离超过一定的阈值(在我们的设置中是8像素)，则有可能参与者没有盯着白点，因此该数据样本将被丢弃。在采集过程中，GoPro相机被设置为视频模式。根据点击动作的时间戳，我们可以从视频中提取参与者的图像帧。对于每个参与者，在记录数据之前，要求他/她先点击9个点，熟悉数据采集系统。接下来，50个点将在每个环节依次显示给参与者，以进行数据采集。当参与者成功点击上一个点后，屏幕会闪烁，下一个点会显示出来。每个参与者被要求点击12期(总共点击600个点)。在两个周期之间，我们设置了1分钟的休息时间，以避免眼睛疲劳。</p>
+<p>我们总共招募了137名学生参与者进行数据收集(年龄在20 - 24岁之间，男性98名，女性39名)。所有参与者视力正常或矫正至正常。在去除白点与蓝点之间距离大于阈值的数据样本后，为每个参与者保留约450-600个点及其对应的眼睛和面孔图像。最后ShanghaiTechGaze数据集由233 796张图像组成。我们进一步使用100个参与者对应的图像作为训练集，其余37个参与者对应的图像作为测试集。</p>
+<h2 id="数据组织格式"><a href="#数据组织格式" class="headerlink" title="数据组织格式"></a>数据组织格式</h2><p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
+<p>\1)    评价：贡献创新点。</p>
+<p>\2)    针对问题：啥情况啥场景。</p>
+<p>\3)    本文的目的：可以做到啥。</p>
+<p>\4)    实现的方法：</p>
+<p>\5)    方法简介</p>
+<p>\6)    方法优化</p>
+<p>\7)    方法总结‘</p>
+<p>\8)    文章存在的问题</p>
+<p>\9)    个人的思考</p>
+<p>简要的评价，任务，方法的简要描述。关注文章的动机。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/" data-id="ckvtao51l00007cupd8enfwjb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Appearance-Based Gaze Estimation Using Dilated-Convolutions
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">gaze综述文章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/">Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/">gaze综述文章</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/29/gaze%E6%9C%80%E6%96%B0%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/">gaze最新文献调研</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 iszff<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
