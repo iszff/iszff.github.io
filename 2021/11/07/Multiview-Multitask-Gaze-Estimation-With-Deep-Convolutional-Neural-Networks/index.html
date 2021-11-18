@@ -15,8 +15,18 @@
 <meta property="og:description" content="2018 TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS Dongze Lian, Lina Hu, Weixin Luo, Y anyu Xu, Lixin Duan, Jingyi Y u,Member , IEEE, and Shenghua Gao.  (1) 评价：基于深度卷积神经网络的多视图多任务注视估计 (2)  针对问题：">
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211107213710618.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211112160847091.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/mmcodeStruct.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211116170548765.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211116170844442.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211116171147547.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211116172803224.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/%E5%AE%9E%E9%AA%8C%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211116212707500.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211117164429587.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks%5CSTpy_101th_row.png">
 <meta property="article:published_time" content="2021-11-07T01:52:13.000Z">
-<meta property="article:modified_time" content="2021-11-10T03:00:34.048Z">
+<meta property="article:modified_time" content="2021-11-17T08:44:30.505Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211107213710618.png">
@@ -106,13 +116,89 @@
 <p>四流输入、四流输出？怎么共享参数?</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz">https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz</a></p>
-<h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
+<h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211112160847091.png" alt="image-20211112160847091"></p>
+<p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
 <p>环境：然后，在正常照明条件下，将系统固定在房间的书桌上。为了避免其他移动的物体/人或噪音造成的干扰，房间内保持安静和空无一人，只有一名待命助手除外。</p>
 <p>使用大型iMac的第一个原因是，希望在水平和垂直方向上预测更大范围的注视点。相比之下，GazeCapture只预测了手机或平板电脑屏幕内的点。因此，数据集比GazeCapture更具挑战性。</p>
 <p>使用iMac的第二个原因是，它的视网膜屏幕有更高的分辨率，以保证像素精度的地面真实;同时，减少了数据采集过程中的眼睛疲劳。</p>
 <p>采集过程：要求参与者自由地坐在屏幕前。然后，在灰色背景的屏幕上随机显示一个半径为8像素的白点(作为ground truth)，让参与者用鼠标点击。这样的点击动作可以帮助参与者将注意力吸引到这个点上。然后，记录光标的坐标和动作的时间戳，之后显示光标位置上的蓝点。同时，我们计算白点和蓝点之间的距离。如果距离超过一定的阈值(在我们的设置中是8像素)，则有可能参与者没有盯着白点，因此该数据样本将被丢弃。在采集过程中，GoPro相机被设置为视频模式。根据点击动作的时间戳，我们可以从视频中提取参与者的图像帧。对于每个参与者，在记录数据之前，要求他/她先点击9个点，熟悉数据采集系统。接下来，50个点将在每个环节依次显示给参与者，以进行数据采集。当参与者成功点击上一个点后，屏幕会闪烁，下一个点会显示出来。每个参与者被要求点击12期(总共点击600个点)。在两个周期之间，我们设置了1分钟的休息时间，以避免眼睛疲劳。</p>
-<p>我们总共招募了137名学生参与者进行数据收集(年龄在20 - 24岁之间，男性98名，女性39名)。所有参与者视力正常或矫正至正常。在去除白点与蓝点之间距离大于阈值的数据样本后，为每个参与者保留约450-600个点及其对应的眼睛和面孔图像。最后ShanghaiTechGaze数据集由233 796张图像组成。我们进一步使用100个参与者对应的图像作为训练集，其余37个参与者对应的图像作为测试集。</p>
-<h2 id="数据组织格式"><a href="#数据组织格式" class="headerlink" title="数据组织格式"></a>数据组织格式</h2><p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
+<p>我们总共招募了137名学生参与者进行数据收集(年龄在20 — 24岁之间，男性98名，女性39名)。所有参与者视力正常或矫正至正常。在去除白点与蓝点之间距离大于阈值的数据样本后，为每个参与者保留约450-600个点及其对应的眼睛和面孔图像。最后ShanghaiTechGaze数据集由233 796张图像组成。我们进一步使用100个参与者对应的图像作为训练集，其余37个参与者对应的图像作为测试集。</p>
+<h2 id="数据组织格式"><a href="#数据组织格式" class="headerlink" title="数据组织格式"></a>数据组织格式</h2><p>—|dataset</p>
+<p>——|annotations</p>
+<p>———|txtfile</p>
+<p>————|test_txt</p>
+<p>—————|leftcamera</p>
+<p>——————|eyelocation.txt    (images/face_landmarks/leftcamera/00109/00000.mat-images/face_landmarks/leftcamera/00147/00599.mat)21301rows</p>
+<p>——————|lefteye.txt    (images/Single_eyes/leftcamera/00109/00000_left.jpg-images/Single_eyes/leftcamera/00147/00599_left.jpg)</p>
+<p>——————|righteye.txt    (images/Single_eyes/leftcamera/00109/00000_right.jpg)</p>
+<p>—————|middlecamera</p>
+<p>——————|eyelocation.txt</p>
+<p>——————|lefteye.txt</p>
+<p>——————|righteye.txt</p>
+<p>—————|rightcamera</p>
+<p>——————|eyelocation.txt</p>
+<p>——————|lefteye.txt</p>
+<p>——————|righteye.txt</p>
+<p>—————|gt.txt    (images/coordinate/00109/00000.mat-images/coordinate/00147/00599.mat)</p>
+<p>————|train_txt</p>
+<p>(images/coordinate/00004/00000.mat-images/coordinate/00108/00599.mat)56631rows</p>
+<p>——|images</p>
+<p>———|coordinate </p>
+<p>————|candidate_index</p>
+<p>—————|00000.mat-00599.mat 存放2维数据</p>
+<p>———|face_landmarks（eyelocation，candidate_index，00000.mat-00599.mat）</p>
+<p>————|leftcamera存放24维数据</p>
+<p>————|middlecamera</p>
+<p>————|rightcamera</p>
+<p>———|Single_eyes（eye_patch，candidate_index，00000_left.jpg-00599_left.jpg，00000_right.jpg-00599_right.jpg）</p>
+<p>————|leftcamera</p>
+<p>————|middlecamera</p>
+<p>————|rightcamera</p>
+<blockquote>
+<p>眼睛的landmart位置信息和gt使用.mat格式存储。</p>
+</blockquote>
+<h1 id="实验code"><a href="#实验code" class="headerlink" title="实验code"></a>实验code</h1><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/mmcodeStruct.png" alt="image-20211111170143842"></p>
+<blockquote>
+<p>查看mat格式。能不能清晰的读出来，是否需要下载matlab?</p>
+<p>dataloader的__getitem__函数在enumerate部分</p>
+</blockquote>
+<blockquote>
+<p>123行 eyelocation = sio.loadmat(eyelocation_name)[‘eyelocation’]是个24个数字</p>
+<p>eyelocation_name = ’/data/ShanghaiTechGaze/images/face_landmarks/leftcamera/00061/00157.mat’</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116170548765.png" alt="image-20211116170548765"></p>
+</blockquote>
+<blockquote>
+<p>124行gt = sio.loadmat(gt_name)[‘xy_gt’]是两个数字</p>
+<p>gt_name = ‘/data/ShanghaiTechGaze/images/coordinate/00061/00157.mat’</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116170844442.png" alt="image-20211116170844442"></p>
+<p>数据Normalization 是因为是左眼吗所以这么处理。   </p>
+<p>gt[0] -= W_screen / 2 宽</p>
+<p>​    gt[1] -= H_screen / 2 高</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116171147547.png" alt="image-20211116171147547"></p>
+<p>第151行 data, target = (input[‘le’], input[‘re’], input[‘eyelocation’]), input[‘gt’]</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116172803224.png" alt="image-20211116172803224"></p>
+</blockquote>
+<h2 id="multi-view-gaze-master-code-Train-Single-View-ST-py"><a href="#multi-view-gaze-master-code-Train-Single-View-ST-py" class="headerlink" title="multi-view-gaze-master/code/Train_Single_View_ST.py"></a>multi-view-gaze-master/code/Train_Single_View_ST.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GazeImageDataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, txt_file, txt_dir, transform=<span class="literal">None</span></span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">train_loader, model, criterion, optimizer, epoch</span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">test_loader, model, criterion, epoch, minimal_error</span>):</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AverageMeter</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reset</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">self, val, n=<span class="number">1</span></span>):</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_error</span>(<span class="params">output, target</span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_checkpoint</span>(<span class="params">state, filename=<span class="string">&#x27;checkpoint.pth.tar&#x27;</span></span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adjust_learning_rate</span>(<span class="params">optimizer, epoch</span>):</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/%E5%AE%9E%E9%AA%8C%E5%8F%82%E6%95%B0.png" alt="image-20211115131555168"></p>
+<h2 id="multi-view-gaze-master-code-network-gazenet-py"><a href="#multi-view-gaze-master-code-network-gazenet-py" class="headerlink" title="multi-view-gaze-master/code/network/gazenet.py"></a>multi-view-gaze-master/code/network/gazenet.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选对应的resnet</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">single_view</span>(<span class="params">self, <span class="built_in">input</span></span>):</span></span><br><span class="line"><span class="comment">#在resnet.py中设置好resnet</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#训练过程，向前传递参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, *<span class="built_in">input</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.view == <span class="string">&#x27;single&#x27;</span>:</span><br><span class="line">        out = self.single_view(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>128,512.  128,512. 128,128. 128,1152.</p>
+</blockquote>
+<h2 id="single-eye-训练思路"><a href="#single-eye-训练思路" class="headerlink" title="single eye 训练思路"></a>single eye 训练思路</h2><p>在每一个epoch里分别训练和测试，每完成一个epoch训练后，保存权重。</p>
+<p>每一次训练，每一个batch（即每一个iteration）中，左右眼分别过Resnet34，得到长度为512输出，24维landmark过线性层得到长度为128的输出，之后这3个输出concatenate成1152的输出。再过fc（两次linear），输出。</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116212707500.png" alt="image-20211116212707500"></p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211117164429587.png" alt="image-20211117164429587"></p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="路径出错"><a href="#路径出错" class="headerlink" title="路径出错"></a>路径出错</h2><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks%5CSTpy_101th_row.png" alt="image-20211112150649867"></p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
 <p>\1)    评价：贡献创新点。</p>
 <p>\2)    针对问题：啥情况啥场景。</p>
 <p>\3)    本文的目的：可以做到啥。</p>
@@ -206,6 +292,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
           </li>
         
@@ -219,10 +309,6 @@
         
           <li>
             <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/29/gaze%E6%9C%80%E6%96%B0%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/">gaze最新文献调研</a>
           </li>
         
       </ul>

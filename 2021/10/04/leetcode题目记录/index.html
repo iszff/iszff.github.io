@@ -16,7 +16,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
 <meta property="article:published_time" content="2021-10-04T03:02:10.000Z">
-<meta property="article:modified_time" content="2021-11-10T08:47:42.216Z">
+<meta property="article:modified_time" content="2021-11-17T13:01:21.523Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
@@ -163,6 +163,7 @@
 </blockquote>
 <p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>官方给了两种思路</p>
 <h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
 <p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
@@ -196,16 +197,55 @@
 <p>还有一些其他的方法。</p>
 <h1 id="20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/">剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>对称二叉树，镜像二叉树后，看是不是一样的结构。</p>
 <h2 id="递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="递归思路与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>递归思路<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/yu-shang-ti-lei-si-di-gui-bu-neng-xiang-5ts8h/">与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h2><h1 id="20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h2 id="动态规划套路详解"><a href="#动态规划套路详解" class="headerlink" title="动态规划套路详解"></a>动态规划套路详解</h2><p>首先，动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。</p>
-<p>作者：labuladong<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <p>重叠子问题。</p>
 <p>最优子结构。</p>
 <p>正确的状态转移方程。</p>
 <p><strong>明确 base case -&gt; 明确「状态」-&gt; 明确「选择」 -&gt; 定义 dp 数组/函数的含义</strong>。</p>
 <p>但凡遇到需要递归的问题，最好都画出递归树，这对你分析算法的复杂度，寻找算法低效的原因都有巨大帮助。</p>
+<p>要符合「最优子结构」，子问题间必须互相独立。</p>
+<p>确定 base case<strong>。确定「状态」，也就是原问题和子问题中会变化的变量。</strong>确定「选择」，也就是导致「状态」产生变化的行为<strong>。</strong>明确 <code>dp</code> 函数/数组的定义。一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量，与选择有关系的。</p>
 <h2 id="vector初始化"><a href="#vector初始化" class="headerlink" title="vector初始化"></a>vector初始化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40147449/article/details/87892312">(12条消息) C++ vector的初始化_锤某的博客-CSDN博客_c++ vector 初始化</a></p>
+<h1 id="20211112"><a href="#20211112" class="headerlink" title="20211112"></a>20211112</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1537457">C++ std::vector::resize() 方法解析（菜鸟看了秒懂） - 云+社区 - 腾讯云 (tencent.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coin-change/solution/322-by-ikaruga/">【零钱兑换】贪心 + dfs = 8ms （更新） - 零钱兑换 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="20211113青蛙跳台阶剑指-Offer-10-II-青蛙跳台阶问题-力扣（LeetCode）-leetcode-cn-com"><a href="#20211113青蛙跳台阶剑指-Offer-10-II-青蛙跳台阶问题-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211113青蛙跳台阶剑指 Offer 10- II. 青蛙跳台阶问题 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211113青蛙跳台阶<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/">剑指 Offer 10- II. 青蛙跳台阶问题 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>1、<strong>确定base case</strong>，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。</p>
+<p>2、确定「状态」，也就是<strong>原问题和子问题</strong>中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 <strong>base case 靠近</strong>，所以唯一的「状态」就是<strong>目标金额 amount</strong>。</p>
+<p>3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。</p>
+<p>4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函<strong>数的参数就是状态转移中会变化的量，也就是上面说到的「状态」</strong>；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：</p>
+<p>dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。</p>
+<p>是一个fib题目。</p>
+<h1 id="20211113剑指-Offer-63-股票的最大利润-力扣（LeetCode）-leetcode-cn-com"><a href="#20211113剑指-Offer-63-股票的最大利润-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211113剑指 Offer 63. 股票的最大利润 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211113<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/">剑指 Offer 63. 股票的最大利润 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>硬算，记录两个数字的差值，从前到后扫描是n(n-1)/2。</p>
+<p>base</p>
+<p>状态 i天数</p>
+<p>选择</p>
+<h2 id="找到最小值，在最小值之后看是否会涨价。"><a href="#找到最小值，在最小值之后看是否会涨价。" class="headerlink" title="找到最小值，在最小值之后看是否会涨价。"></a>找到最小值，在最小值之后看是否会涨价。</h2><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><ul>
+<li><p>状态定义： 设动态规划列表 dp ，dp[i] 代表以 prices[i]为结尾的子数组的最大利润（以下简称为 前 i 日的最大利润 ）。</p>
+</li>
+<li><p>转移方程： 由于题目限定 “买卖该股票一次” ，因此前 i 日最大利润 dp[i]等于前 i - 1 日最大利润 dp[i-1]和第 i 日卖出的最大利润中的最大值。</p>
+</li>
+<li><p><strong>初始状态：</strong> dp[0] = 0，即首日利润为 0 ；</p>
+</li>
+<li><p><strong>返回值：</strong> dp[n - 1] ，其中 <em>n</em> 为 <em>dp</em> 列表长度。</p>
+</li>
+</ul>
+<h1 id="20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114 贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/tan-xin-fen-zhi-dong-tai-gui-hua-fa-by-luo-jing-yu/">贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>分治没怎么明白</p>
+<h1 id="20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114<a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/0akb5U/">十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://www.iamshuaidi.com/">帅地玩编程-校招|面试|学习路线，你都可以在这里找到 (iamshuaidi.com)</a>面试经验</p>
+<h1 id="20211115对链表进行插入排序-对链表进行插入排序-力扣（LeetCode）-leetcode-cn-com"><a href="#20211115对链表进行插入排序-对链表进行插入排序-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211115对链表进行插入排序 - 对链表进行插入排序 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211115<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/insertion-sort-list/solution/dui-lian-biao-jin-xing-cha-ru-pai-xu-by-leetcode-s/">对链表进行插入排序 - 对链表进行插入排序 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>0.若无空，直接返回。</p>
+<p>1.哑节点，可以在head前插入节点。</p>
+<p>2.lastSorted，已经排序部分的最后一个节点，开始为头节点。</p>
+<p>3.维护待插入元素curr，开始时候为头节点下一个节点。</p>
+<p>4.比较lastSorted和curr的节点值，开始时候为head.next。</p>
+<p>a.lastSorted-&gt;val比curr-&gt;还小&lt;=，直接把lastSorted后移一位。</p>
+<p>b.否则从链表头向后遍历,找到插入curr的位置，prev为插入curr位置的前一个结点。</p>
+<p>5.令 <code>curr = lastSorted.next</code>，此时 <code>curr</code> 为下一个待插入的元素。</p>
+<p>6.重复4、5，直到curr变成空。</p>
+<p>7.返回哑节点的下一位置。</p>
+<h1 id="20211116"><a href="#20211116" class="headerlink" title="20211116"></a>20211116</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/discuss/fKBJcm/">内推｜字节跳动｜多项岗位｜北京+上海 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>不是每个题目都有参考的，要泛化呀。</p>
+<h1 id="20211117剑指-Offer-46-把数字翻译成字符串-力扣（LeetCode）-leetcode-cn-com"><a href="#20211117剑指-Offer-46-把数字翻译成字符串-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211117剑指 Offer 46. 把数字翻译成字符串 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211117<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/">剑指 Offer 46. 把数字翻译成字符串 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>类似于青蛙跳台阶，一次可以跳一格还是跳两格，是每次用一个字符还是两个字符。</p>
+<p>两个字符可能会无效，必须小于25。</p>
+<h2 id="to-string-函数"><a href="#to-string-函数" class="headerlink" title="to_string 函数"></a>to_string 函数</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liitdar/article/details/81145791">(17条消息) C++编程语言中整型转换为字符串类型的方法_liitdar的博客-CSDN博客_c++整型转字符串</a></p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
-<p>LeetCode 热题 HOT 100</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
+<p>LeetCode 热题 HOT 100a<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
 <p>剑指 Offer（第 2 版）</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/study-plan/lcof/?progress=pmhin4r">「剑指 Offer」 - 学习计划 - 力扣（LeetCode）全球极客挚爱的技术成长平台 (leetcode-cn.com)</a></p>
 <p>剑指 Offer（第 2 版）分类</p>
@@ -296,6 +336,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
           </li>
         
@@ -309,10 +353,6 @@
         
           <li>
             <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/29/gaze%E6%9C%80%E6%96%B0%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/">gaze最新文献调研</a>
           </li>
         
       </ul>

@@ -66,6 +66,42 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Few-Shot-Adaptive-Gaze-Estimation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/" class="article-date">
+  <time datetime="2021-11-18T03:30:41.000Z" itemprop="datePublished">2021-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/" data-id="ckw4ebw5t0000ogup5l87ay1e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/" class="article-date">
@@ -156,13 +192,89 @@
 <p>四流输入、四流输出？怎么共享参数?</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz">https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz</a></p>
-<h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
+<h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211112160847091.png" alt="image-20211112160847091"></p>
+<p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
 <p>环境：然后，在正常照明条件下，将系统固定在房间的书桌上。为了避免其他移动的物体/人或噪音造成的干扰，房间内保持安静和空无一人，只有一名待命助手除外。</p>
 <p>使用大型iMac的第一个原因是，希望在水平和垂直方向上预测更大范围的注视点。相比之下，GazeCapture只预测了手机或平板电脑屏幕内的点。因此，数据集比GazeCapture更具挑战性。</p>
 <p>使用iMac的第二个原因是，它的视网膜屏幕有更高的分辨率，以保证像素精度的地面真实;同时，减少了数据采集过程中的眼睛疲劳。</p>
 <p>采集过程：要求参与者自由地坐在屏幕前。然后，在灰色背景的屏幕上随机显示一个半径为8像素的白点(作为ground truth)，让参与者用鼠标点击。这样的点击动作可以帮助参与者将注意力吸引到这个点上。然后，记录光标的坐标和动作的时间戳，之后显示光标位置上的蓝点。同时，我们计算白点和蓝点之间的距离。如果距离超过一定的阈值(在我们的设置中是8像素)，则有可能参与者没有盯着白点，因此该数据样本将被丢弃。在采集过程中，GoPro相机被设置为视频模式。根据点击动作的时间戳，我们可以从视频中提取参与者的图像帧。对于每个参与者，在记录数据之前，要求他/她先点击9个点，熟悉数据采集系统。接下来，50个点将在每个环节依次显示给参与者，以进行数据采集。当参与者成功点击上一个点后，屏幕会闪烁，下一个点会显示出来。每个参与者被要求点击12期(总共点击600个点)。在两个周期之间，我们设置了1分钟的休息时间，以避免眼睛疲劳。</p>
-<p>我们总共招募了137名学生参与者进行数据收集(年龄在20 - 24岁之间，男性98名，女性39名)。所有参与者视力正常或矫正至正常。在去除白点与蓝点之间距离大于阈值的数据样本后，为每个参与者保留约450-600个点及其对应的眼睛和面孔图像。最后ShanghaiTechGaze数据集由233 796张图像组成。我们进一步使用100个参与者对应的图像作为训练集，其余37个参与者对应的图像作为测试集。</p>
-<h2 id="数据组织格式"><a href="#数据组织格式" class="headerlink" title="数据组织格式"></a>数据组织格式</h2><p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
+<p>我们总共招募了137名学生参与者进行数据收集(年龄在20 — 24岁之间，男性98名，女性39名)。所有参与者视力正常或矫正至正常。在去除白点与蓝点之间距离大于阈值的数据样本后，为每个参与者保留约450-600个点及其对应的眼睛和面孔图像。最后ShanghaiTechGaze数据集由233 796张图像组成。我们进一步使用100个参与者对应的图像作为训练集，其余37个参与者对应的图像作为测试集。</p>
+<h2 id="数据组织格式"><a href="#数据组织格式" class="headerlink" title="数据组织格式"></a>数据组织格式</h2><p>—|dataset</p>
+<p>——|annotations</p>
+<p>———|txtfile</p>
+<p>————|test_txt</p>
+<p>—————|leftcamera</p>
+<p>——————|eyelocation.txt    (images/face_landmarks/leftcamera/00109/00000.mat-images/face_landmarks/leftcamera/00147/00599.mat)21301rows</p>
+<p>——————|lefteye.txt    (images/Single_eyes/leftcamera/00109/00000_left.jpg-images/Single_eyes/leftcamera/00147/00599_left.jpg)</p>
+<p>——————|righteye.txt    (images/Single_eyes/leftcamera/00109/00000_right.jpg)</p>
+<p>—————|middlecamera</p>
+<p>——————|eyelocation.txt</p>
+<p>——————|lefteye.txt</p>
+<p>——————|righteye.txt</p>
+<p>—————|rightcamera</p>
+<p>——————|eyelocation.txt</p>
+<p>——————|lefteye.txt</p>
+<p>——————|righteye.txt</p>
+<p>—————|gt.txt    (images/coordinate/00109/00000.mat-images/coordinate/00147/00599.mat)</p>
+<p>————|train_txt</p>
+<p>(images/coordinate/00004/00000.mat-images/coordinate/00108/00599.mat)56631rows</p>
+<p>——|images</p>
+<p>———|coordinate </p>
+<p>————|candidate_index</p>
+<p>—————|00000.mat-00599.mat 存放2维数据</p>
+<p>———|face_landmarks（eyelocation，candidate_index，00000.mat-00599.mat）</p>
+<p>————|leftcamera存放24维数据</p>
+<p>————|middlecamera</p>
+<p>————|rightcamera</p>
+<p>———|Single_eyes（eye_patch，candidate_index，00000_left.jpg-00599_left.jpg，00000_right.jpg-00599_right.jpg）</p>
+<p>————|leftcamera</p>
+<p>————|middlecamera</p>
+<p>————|rightcamera</p>
+<blockquote>
+<p>眼睛的landmart位置信息和gt使用.mat格式存储。</p>
+</blockquote>
+<h1 id="实验code"><a href="#实验code" class="headerlink" title="实验code"></a>实验code</h1><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/mmcodeStruct.png" alt="image-20211111170143842"></p>
+<blockquote>
+<p>查看mat格式。能不能清晰的读出来，是否需要下载matlab?</p>
+<p>dataloader的__getitem__函数在enumerate部分</p>
+</blockquote>
+<blockquote>
+<p>123行 eyelocation = sio.loadmat(eyelocation_name)[‘eyelocation’]是个24个数字</p>
+<p>eyelocation_name = ’/data/ShanghaiTechGaze/images/face_landmarks/leftcamera/00061/00157.mat’</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116170548765.png" alt="image-20211116170548765"></p>
+</blockquote>
+<blockquote>
+<p>124行gt = sio.loadmat(gt_name)[‘xy_gt’]是两个数字</p>
+<p>gt_name = ‘/data/ShanghaiTechGaze/images/coordinate/00061/00157.mat’</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116170844442.png" alt="image-20211116170844442"></p>
+<p>数据Normalization 是因为是左眼吗所以这么处理。   </p>
+<p>gt[0] -= W_screen / 2 宽</p>
+<p>​    gt[1] -= H_screen / 2 高</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116171147547.png" alt="image-20211116171147547"></p>
+<p>第151行 data, target = (input[‘le’], input[‘re’], input[‘eyelocation’]), input[‘gt’]</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116172803224.png" alt="image-20211116172803224"></p>
+</blockquote>
+<h2 id="multi-view-gaze-master-code-Train-Single-View-ST-py"><a href="#multi-view-gaze-master-code-Train-Single-View-ST-py" class="headerlink" title="multi-view-gaze-master/code/Train_Single_View_ST.py"></a>multi-view-gaze-master/code/Train_Single_View_ST.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GazeImageDataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, txt_file, txt_dir, transform=<span class="literal">None</span></span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">train_loader, model, criterion, optimizer, epoch</span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>(<span class="params">test_loader, model, criterion, epoch, minimal_error</span>):</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AverageMeter</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reset</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">self, val, n=<span class="number">1</span></span>):</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_error</span>(<span class="params">output, target</span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_checkpoint</span>(<span class="params">state, filename=<span class="string">&#x27;checkpoint.pth.tar&#x27;</span></span>):</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adjust_learning_rate</span>(<span class="params">optimizer, epoch</span>):</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/%E5%AE%9E%E9%AA%8C%E5%8F%82%E6%95%B0.png" alt="image-20211115131555168"></p>
+<h2 id="multi-view-gaze-master-code-network-gazenet-py"><a href="#multi-view-gaze-master-code-network-gazenet-py" class="headerlink" title="multi-view-gaze-master/code/network/gazenet.py"></a>multi-view-gaze-master/code/network/gazenet.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选对应的resnet</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">single_view</span>(<span class="params">self, <span class="built_in">input</span></span>):</span></span><br><span class="line"><span class="comment">#在resnet.py中设置好resnet</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#训练过程，向前传递参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, *<span class="built_in">input</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.view == <span class="string">&#x27;single&#x27;</span>:</span><br><span class="line">        out = self.single_view(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>128,512.  128,512. 128,128. 128,1152.</p>
+</blockquote>
+<h2 id="single-eye-训练思路"><a href="#single-eye-训练思路" class="headerlink" title="single eye 训练思路"></a>single eye 训练思路</h2><p>在每一个epoch里分别训练和测试，每完成一个epoch训练后，保存权重。</p>
+<p>每一次训练，每一个batch（即每一个iteration）中，左右眼分别过Resnet34，得到长度为512输出，24维landmark过线性层得到长度为128的输出，之后这3个输出concatenate成1152的输出。再过fc（两次linear），输出。</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211116212707500.png" alt="image-20211116212707500"></p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211117164429587.png" alt="image-20211117164429587"></p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="路径出错"><a href="#路径出错" class="headerlink" title="路径出错"></a>路径出错</h2><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks%5CSTpy_101th_row.png" alt="image-20211112150649867"></p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
 <p>\1)    评价：贡献创新点。</p>
 <p>\2)    针对问题：啥情况啥场景。</p>
 <p>\3)    本文的目的：可以做到啥。</p>
@@ -927,170 +1039,11 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 
 
   
-    <article id="post-leetcode题目记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-10-04T03:02:10.000Z" itemprop="datePublished">2021-10-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/">leetcode题目记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="20211004用两个栈实现队列"><a href="#20211004用两个栈实现队列" class="headerlink" title="20211004用两个栈实现队列"></a>20211004用两个栈实现队列</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>栈和队列是相反的，先后入两个不同的栈相当于入一个队列，</p>
-<p>比如Q{1，2，3，4}，head =1，tail=4，</p>
-<p>S1=[4，3，2，1]，top=4，bottom=1，让S1中的元素一个个弹出至S2中，可以得到S2=[1，2，3，4]，top=1，bottom=4。</p>
-<p>对于刚建立的空CQueue，返回值为null，</p>
-<p>需要实现appendTail和deleteHead，</p>
-<p>appendTail返回值是null，需要把新tail元素压入S1中位于S1top，把S2全部更新才可以实现把tail放至S2的bottom，但是这样的话每次appendTail都要产生一个全新的S2，会开一块新的内存空间，并且出栈入栈，那复杂度。。。。不不不，不用啦哈哈，因为有两个栈一个出清空，另一个入填满，来回倒来倒去就可以啦!</p>
-<p>所以过程是S1=[4，3，2，1]，S2=[]</p>
-<p>S1=[3，2，1]，S2=[4]；S1=[2，1]，S2=[3，4]…S1=[]，S2=[1，2，3，4]</p>
-<h2 id="appendTail"><a href="#appendTail" class="headerlink" title="appendTail"></a>appendTail</h2><p>初始S1=[]，S2=[1，2，3，4]；S2出栈至S1，元素顺序全部倒置，变为S1=[4，3，2，1]，S2=[]，此时把tail=5入栈到S1，变为S1=[5，4，3，2，1]，S2=[]；再次让S1中的元素一个个弹出至S2中，变为S1=[]，S2=[1，2，3，4，5]，实现了appendTail功能。</p>
-<p>输出null。</p>
-<blockquote>
-<p>每次append后重新倒了回去，多花了一倍时间20211028.</p>
-</blockquote>
-<h2 id="deleteHead"><a href="#deleteHead" class="headerlink" title="deleteHead"></a>deleteHead</h2><p>直接pop掉S2的顶部元素即可。输出栈顶元素。</p>
-<h2 id="忽略点"><a href="#忽略点" class="headerlink" title="忽略点"></a>忽略点</h2><blockquote>
-<p>用size作为循环的终止条件，size是会随着每一次的pop、push操作更新的。</p>
-<p>在构造函数中定义的变量是由于在构造函数中定义，作用域为局部变量。</p>
-</blockquote>
-<h1 id="20211010剑指-Offer-30-包含min函数的栈"><a href="#20211010剑指-Offer-30-包含min函数的栈" class="headerlink" title="20211010剑指 Offer 30. 包含min函数的栈"></a>20211010<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/">剑指 Offer 30. 包含min函数的栈</a></h1><p>push、pop、top方法是一定的，当顶部数据弹出后，还是能够很快找到最小值，min的复杂度为O(1)。</p>
-<p>设置一个数组用于排序或者从头到尾的hash表格也可以，但有负数。</p>
-<blockquote>
-<p>20211024</p>
-</blockquote>
-<p>1.想到啦！本题目的难点在于怎么可以找到一种数据结构，它有记忆性，当插入、删除一个数的时候，可以对数据进行排序，并且可以很方便的取出最小值。用最小优先队列就可以了，其实就是维护一个最小堆，一次操作中复杂度为O(lgn)但堆怎么删除一个数据呢？需要对于每个节点记录parent。</p>
-<p>2.其实每次使用数组来存放stack里的所有数据的非降序排序结果也可以，但是每次push后需要扫描排序，排序复杂度为O(n)，当pop后也需要排序，主要是将后面的值向前挪动，复杂度为O(n)。</p>
-<p>3.或者偷懒，使用优先队列priority_queue来实现自动排序 。orz</p>
-<h2 id="忽略点-1"><a href="#忽略点-1" class="headerlink" title="忽略点"></a>忽略点</h2><p>对于priority_queue，pop掉的 是栈顶元素，即排序后的栈顶元素，而不是stack的顶部，怎么可以删除掉任意一个位置的元素呢？</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/justidle/article/details/106793522">(10条消息) O(1) 复杂度支持任意位置删除的 priority_queue 实现_努力中的老周的专栏-CSDN博客</a></p>
-<p>MAXHEAP 内部有两个优先队列，其中 Q 队列保存当前元素，D 队列保存需要删除的元素。一个是数据，一个是待删除数据，当两个 priority_queue 的 top() 元素相同的时候，我们再删除两个优先队列的 top。</p>
-<p>while(!D.empty()&amp;&amp;Q.top()==D.top()) {Q.pop();D.pop();}当删除的值是当前队列的头部，就删除，否则将其暂存在待删除队列当中，等到之后比待删除队列中大的元素删除后，再删除待删除队列的元素。</p>
-<p>pq插入5，Q.top()=5,Q={5};</p>
-<p>pq插入8，Q.top()=8,Q={8,5};</p>
-<p>pq插入6，Q.top()=8,Q={8,5,6};</p>
-<p>pq插入4，Q.top()=8,Q={8,5,6,4};</p>
-<p>pq.erase(8),D.push(8),Q.pop(),Q={6,5,4};D.pop(),D={};Q.top()=6;</p>
-<p>pq.erase(5),D.push(5),D={5}；</p>
-<p>pq.erase(6),D.push(6),D={6,5}</p>
-<blockquote>
-<p>开辟了两个优先队列，其实占用了空间，也可以用两个数组每次把排序的结果存下来，来回倒。</p>
-</blockquote>
-<h2 id="好思路"><a href="#好思路" class="headerlink" title="好思路"></a>好思路</h2><p>两个stack分别作用，一个当作主stack，另一个用于存放比当前元素小的值。</p>
-<h1 id="20211026剑指-Offer-06-从尾到头打印链表-力扣（LeetCode）-leetcode-cn-com"><a href="#20211026剑指-Offer-06-从尾到头打印链表-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211026剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211026<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>链表反转，怎么表示一个链表?</p>
-<p>指针，或者是用类来写链表的每一个node，包含key、pre、next，但怎么访问下一个值呢？</p>
-<p>或者用结构体，结构体指针指向向下一个node，每次把链表的相连处断开，用temp存储临时断开的指针，在重新连到合适的位置上。</p>
-<p>但要怎么拿到最后一个node呢？从前向后访问到尾部，复杂度。</p>
-<h2 id="20211028"><a href="#20211028" class="headerlink" title="20211028"></a>20211028</h2><p>从头开始以链表中的每一个元素为单元，改变它的next就可以了。</p>
-<p>对于head指针，若head指向了空，则是一个空链表。</p>
-<p>对于第一个有数据的节点，将除开他的剩余部分先存下来，将其next赋值为NULL。</p>
-<p>对于剩下的部分，若为NULL说明已经到达了，链表的尾部，可以结束扫描。</p>
-<p>否则将剩余部分中第一个node的指针指向上一个已经处理过的node。</p>
-<h2 id="忽略点-2"><a href="#忽略点-2" class="headerlink" title="忽略点"></a>忽略点</h2><p>比我想得简单，每一个node都带有数据。</p>
-<blockquote>
-<p>纠结的是链表的格式，传入的参数是头节点的指针，此指针可以指向数据域和域。用阶梯状那样的链表来在脑中可视化</p>
-</blockquote>
-<h1 id="20211029剑指-Offer-35-复杂链表的复制-力扣（LeetCode）-leetcode-cn-com"><a href="#20211029剑指-Offer-35-复杂链表的复制-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211029剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211029<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/">剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>看到题目的感觉是直接记录下一个节点的指针和random的值，但是random的类型是node型指针。怎么把*和出现的顺序的index结合起来呢？</p>
-<h3 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h3><p>对一个特殊的链表进行深拷贝。如果是普通链表，可以直接按照遍历的顺序创建链表节点。</p>
-<p>本题中因为随机指针的存在，当我们拷贝节点时，「当前节点的随机指针指向的节点」可能还没创建，因此我们需要变换思路。</p>
-<p>一个可行方案是，我们利用回溯的方式，让每个节点的拷贝操作相互独立。</p>
-<p>对于<strong>当前节点</strong>，我们首先要进行<strong>拷贝</strong>，然后我们进行「当前节点的后继节点」和「当前节点的随机指针指向的节点」拷贝，拷贝完成后将创建的<strong>新节点的指针返回</strong>，即可完成当前节点的两指针的赋值。</p>
-<blockquote>
-<p>读完这个话也想不到应该怎么做呢？</p>
-</blockquote>
-<p>具体地，我们<strong>用哈希表记录</strong>每一个节点<strong>对应新节点</strong>的创建情况，</p>
-<p>遍历该链表的过程中，我们检查「当前节点的后继节点」和「当前节点的随机指针指向的节点」的创建情况。</p>
-<p>如果这两个节点中的任何一个节点的新节点没有被创建，我们都立刻<strong>递归地进行创建</strong>。</p>
-<p>当我们拷贝完成，回溯到当前层时，我们即可完成当前节点的指针赋值。注意一个节点可能被多个其他节点指向，因此我们可能递归地多次尝试拷贝某个节点，为了防止重复拷贝，我们需要首先检查当前节点是否被拷贝过，如果已经拷贝过，我们可以直接从哈希表中取出拷贝后的节点的指针并返回即可。</p>
-<h2 id="20211030"><a href="#20211030" class="headerlink" title="20211030"></a>20211030</h2><p>假如不是一个复杂链表，对于一个简单链表的复制,</p>
-<blockquote>
-<p>算法笔记上是建立一个链表，他传入的参数是val的数组，而不是复制一个链表。</p>
-</blockquote>
-<p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>官方给了两种思路</p>
-<h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
-<p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
-<p>两轮遍历复杂度O(N),使用map，空间复杂度O(N).</p>
-<h2 id="官方思路二"><a href="#官方思路二" class="headerlink" title="官方思路二"></a>官方思路二</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/comments/249391">https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/comments/249391</a></p>
-<p>1.第一轮遍历，在每一个节点后边复制一个一样值的新节点。</p>
-<p>2.第二轮遍历，对于复制节点，赋值随即指针（假如没有random，就不赋值）。</p>
-<p>3.第三轮遍历，链表拆分，stride的设计。对于原链表的尾节点需要单独处理。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h1 id="20211102剑指-Offer-03-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com"><a href="#20211102剑指-Offer-03-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211102剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211102<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>​    error: variable-sized object may not be initialized?这个提示是：变量大小的对象不能被初始化, const int max =100000;</p>
-<h2 id="剑指-Offer-03-数组中重复的数字（哈希表-原地交换，清晰图解）-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com"><a href="#剑指-Offer-03-数组中重复的数字（哈希表-原地交换，清晰图解）-数组中重复的数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="剑指 Offer 03. 数组中重复的数字（哈希表 / 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/">剑指 Offer 03. 数组中重复的数字（哈希表 / 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h2><p>好思路，从前向后排字典，后边在遇到重复的就可以发现了。</p>
-<p>遍历数组 numsnums ，设索引初始值为 i = 0i=0 :</p>
-<p>若 nums[i] = inums[i]=i ： 说明此数字已在对应索引位置，无需交换，因此跳过；<br>若 nums[nums[i]] = nums[i]nums[nums[i]]=nums[i] ： 代表索引 nums[i]nums[i] 处和索引 ii 处的元素值都为 nums[i]nums[i] ，即找到一组重复值，返回此值 nums[i]nums[i] ；<br>否则： 交换索引为 ii 和 nums[i]nums[i] 的元素值，将此数字交换至对应索引位置。</p>
-<p>作者：jyd<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<h1 id="20211102剑指-Offer-53-I-在排序数组中查找数字-I-力扣（LeetCode）-leetcode-cn-com"><a href="#20211102剑指-Offer-53-I-在排序数组中查找数字-I-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211102剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)"></a>20211102<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/">剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>此题在于怎么快速找到一个数字在排序中的位置。二分法。</p>
-<h1 id="20211103剑指-Offer-53-II-0～n-1中缺失的数字-题解-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-53-II-0～n-1中缺失的数字-题解-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/solution/">剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>从头到尾扫描，遇到不一样的，break。假如是最后一个错误，for循环里边有个i++，可以自动的处理这种情况。</p>
-<h1 id="20211103剑指-Offer-04-二维数组中的查找-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-04-二维数组中的查找-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>感觉应该用DFS，或者BFS，斜着扫描。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/">面试题04. 二维数组中的查找（标志数，清晰图解） - 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</a>旋转45°</p>
-<h1 id="20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com"><a href="#20211103剑指-Offer-11-旋转数组的最小数字-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211103<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>找到一个数字比左边小，比右边大。</p>
-<p>20211105<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>硬找，用二分。</p>
-<h1 id="20211106-剑指-Offer-50-第一个只出现一次的字符-力扣（LeetCode）-leetcode-cn-com"><a href="#20211106-剑指-Offer-50-第一个只出现一次的字符-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211106 剑指 Offer 50. 第一个只出现一次的字符 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211106 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/submissions/">剑指 Offer 50. 第一个只出现一次的字符 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>unordered_map,排序方式不是按照进入的顺序排的。</p>
-<h2 id="哈希表，auto遍历"><a href="#哈希表，auto遍历" class="headerlink" title="哈希表，auto遍历"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/averyfork/p/14420238.html">哈希表，auto遍历</a></h2><p><strong>首先是c++中的哈希表和Python中的字典</strong></p>
-<h1 id="20211108剑指-Offer-32-II-从上到下打印二叉树-II-力扣（LeetCode）-leetcode-cn-com"><a href="#20211108剑指-Offer-32-II-从上到下打印二叉树-II-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211108剑指 Offer 32 - II. 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)"></a>20211108<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">剑指 Offer 32 - II. 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>怎么记录每一层的高度呢？</p>
-<p>分层打印的思路，一层开始时候，队列里边的元素是当前层的。<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/solution/mian-shi-ti-32-ii-cong-shang-dao-xia-da-yin-er-c-5/">面试题32 - II. 从上到下打印二叉树 II（层序遍历 BFS，清晰图解） - 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>dfs维护层数递归<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/solution/c-ceng-xu-bian-li-dfsbfs-tao-mo-ban-jiu-wan-shi-li/">C++, 层序遍历, DFS+BFS, 套模板就完事了 - 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h1 id="20211108剑指-Offer-32-III-从上到下打印二叉树-III-力扣（LeetCode）-leetcode-cn-com"><a href="#20211108剑指-Offer-32-III-从上到下打印二叉树-III-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211108剑指 Offer 32 - III. 从上到下打印二叉树 III - 力扣（LeetCode） (leetcode-cn.com)"></a>20211108<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/">剑指 Offer 32 - III. 从上到下打印二叉树 III - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>想到的是仅在tmp完全存储后，用stack来颠倒数据。</p>
-<h1 id="20211109递归方式解决-树的子结构-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109递归方式解决-树的子结构-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109递归方式解决 - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/di-gui-fang-shi-jie-jue-by-sdwwld/">递归方式解决 - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h2 id="二叉树题解总结"><a href="#二叉树题解总结" class="headerlink" title="二叉树题解总结"></a>二叉树题解总结</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/yi-pian-wen-zhang-dai-ni-chi-tou-dui-che-uhgs/">一篇文章带你吃透对称性递归(思路分析+解题模板+案例解读) - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h1 id="20211109剑指-Offer-27-二叉树的镜像（递归-辅助栈，清晰图解）-二叉树的镜像-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109剑指-Offer-27-二叉树的镜像（递归-辅助栈，清晰图解）-二叉树的镜像-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109剑指 Offer 27. 二叉树的镜像（递归 / 辅助栈，清晰图解） - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/solution/mian-shi-ti-27-er-cha-shu-de-jing-xiang-di-gui-fu-/">剑指 Offer 27. 二叉树的镜像（递归 / 辅助栈，清晰图解） - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>递归。用栈。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/solution/4chong-jie-jue-fang-shi-bfsdfszhong-xu-bian-li-di-/">4种解决方式（BFS，DFS，中序遍历，递归方式），最好的击败了100%的用户 - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p>还有一些其他的方法。</p>
-<h1 id="20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109剑指-Offer-28-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/">剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>对称二叉树，镜像二叉树后，看是不是一样的结构。</p>
-<h2 id="递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#递归思路与上题类似，递归不能想太多啊-对称的二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="递归思路与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>递归思路<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/solution/yu-shang-ti-lei-si-di-gui-bu-neng-xiang-5ts8h/">与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h2><h1 id="20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com"><a href="#20211109动态规划套路详解-斐波那契数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211109动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211109<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h2 id="动态规划套路详解"><a href="#动态规划套路详解" class="headerlink" title="动态规划套路详解"></a>动态规划套路详解</h2><p>首先，动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。</p>
-<p>作者：labuladong<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/">https://leetcode-cn.com/problems/fibonacci-number/solution/dong-tai-gui-hua-tao-lu-xiang-jie-by-labuladong/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p>重叠子问题。</p>
-<p>最优子结构。</p>
-<p>正确的状态转移方程。</p>
-<p><strong>明确 base case -&gt; 明确「状态」-&gt; 明确「选择」 -&gt; 定义 dp 数组/函数的含义</strong>。</p>
-<p>但凡遇到需要递归的问题，最好都画出递归树，这对你分析算法的复杂度，寻找算法低效的原因都有巨大帮助。</p>
-<h2 id="vector初始化"><a href="#vector初始化" class="headerlink" title="vector初始化"></a>vector初始化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40147449/article/details/87892312">(12条消息) C++ vector的初始化_锤某的博客-CSDN博客_c++ vector 初始化</a></p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
-<p>LeetCode 热题 HOT 100</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
-<p>剑指 Offer（第 2 版）</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/study-plan/lcof/?progress=pmhin4r">「剑指 Offer」 - 学习计划 - 力扣（LeetCode）全球极客挚爱的技术成长平台 (leetcode-cn.com)</a></p>
-<p>剑指 Offer（第 2 版）分类</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2ckc81c/">力扣 (leetcode-cn.com)</a></p>
-<p>LeetCode 精选 TOP 面试题</p>
-<p><img src="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211028152640610.png" alt="image-20211028152640610"></p>
-<p>可以做单题</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="ckup2agtj0003f0upgck8gvr3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1143,6 +1096,10 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
       <ul>
         
           <li>
+            <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
           </li>
         
@@ -1156,10 +1113,6 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
         
           <li>
             <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/29/gaze%E6%9C%80%E6%96%B0%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/">gaze最新文献调研</a>
           </li>
         
       </ul>
