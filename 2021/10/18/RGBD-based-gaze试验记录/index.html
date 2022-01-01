@@ -19,8 +19,15 @@
 <meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211025165956657.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/shanghaitech_rgb_dataset.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/colordir.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211118165313972.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211122151234305.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211122151515079.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211122145542394.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data/RGBDbasedGaze_shanghaitech/color/color/00000/color00007_face.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data/RGBDbasedGaze_shanghaitech/color/color/00000/color00008_face.jpg">
+<meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data/RGBDbasedGaze_shanghaitech/color/color/00000/color00009_face.jpg">
 <meta property="article:published_time" content="2021-10-18T10:37:10.000Z">
-<meta property="article:modified_time" content="2021-10-31T06:43:01.533Z">
+<meta property="article:modified_time" content="2021-12-10T07:06:09.816Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211019145428957.png">
@@ -110,6 +117,18 @@
 <blockquote>
 <p>看一下cord的.npy文件，读出来。或者发邮件吧。</p>
 </blockquote>
+<h2 id="3-RuntimeError-expand-torch-cuda-FloatTensor-2-1-size-the-number-of-sizes-provided-0-must-be-greater-or-equal-to-the-number-of-dimensions-in-the-tensor-2"><a href="#3-RuntimeError-expand-torch-cuda-FloatTensor-2-1-size-the-number-of-sizes-provided-0-must-be-greater-or-equal-to-the-number-of-dimensions-in-the-tensor-2" class="headerlink" title="3.RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)"></a>3.RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</h2><p>Traceback (most recent call last):<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 666, in <module><br>    trainer.train_base(epochs= total_epochs, lr=learning_rate,use_refined_depth=True)<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 118, in train_base<br>    self._train_base_epoch()<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 411, in _train_base_epoch<br>    left_eye_info[j, 2] = th.median(cur_depth).item() * face_factor<br>RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</module></p>
+<blockquote>
+<p>非常奇怪的是，当我把batchsize设置为1时，此问题消失了orz</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self.temps.use_refined_depth:</span><br><span class="line">    <span class="keyword">with</span> th.no_grad():</span><br><span class="line">        left_eye_bbox[:, :<span class="number">2</span>] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        left_eye_bbox[:, <span class="number">2</span>:] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        right_eye_bbox[:, :<span class="number">2</span>] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        right_eye_bbox[:, <span class="number">2</span>:] -= face_bbox[:, :<span class="number">2</span>]<span class="comment">#减去坐上坐标，相当于是得到在face中眼睛的位置</span></span><br><span class="line">        left_eye_bbox = th.clamp(face_factor * left_eye_bbox, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">223</span>)<span class="comment">#用斜坡函数</span></span><br><span class="line">        right_eye_bbox = th.clamp(face_factor * right_eye_bbox, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">223</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j, lb <span class="keyword">in</span> <span class="built_in">enumerate</span>(left_eye_bbox):</span><br><span class="line">        <span class="comment">#left_eye_bbox torchsize[2,4]</span></span><br><span class="line">        <span class="comment">#refined_depth torchsize[2,1,224,224]</span></span><br><span class="line">        cur_depth = refined_depth[j, :, <span class="built_in">int</span>(lb[<span class="number">1</span>]):<span class="built_in">int</span>(lb[<span class="number">3</span>]), <span class="built_in">int</span>(lb[<span class="number">0</span>]):<span class="built_in">int</span>(lb[<span class="number">2</span>])]</span><br><span class="line">        <span class="comment">#cur_depth[1,86,86]</span></span><br><span class="line">        left_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">        <span class="comment">#left_eye_info  torchsize[2,3]</span></span><br><span class="line">    <span class="keyword">for</span> j, rb <span class="keyword">in</span> <span class="built_in">enumerate</span>(right_eye_bbox):</span><br><span class="line">        cur_depth = refined_depth[j, :, <span class="built_in">int</span>(rb[<span class="number">1</span>]):<span class="built_in">int</span>(rb[<span class="number">3</span>]), <span class="built_in">int</span>(rb[<span class="number">0</span>]):<span class="built_in">int</span>(rb[<span class="number">2</span>])]</span><br><span class="line">        right_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">#打印出维度，查看结果</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;the shape of depth:&quot;</span>,cur_depth.shape)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;the shape of left_eye_info :&quot;</span>,left_eye_info.shape)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;left_eye_info[j, 2]&quot;</span>,left_eye_info[j, <span class="number">2</span>])</span><br><span class="line">        a= th.median(cur_depth).item() * face_factor</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;median depth:&quot;</span>,a)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;median shape&quot;</span>,a.shape)</span><br><span class="line">&gt;&gt;the shape of depth: torch.Size([<span class="number">1</span>, <span class="number">89</span>, <span class="number">90</span>])</span><br><span class="line">&gt;&gt;the shape of left_eye_info : torch.Size([<span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">&gt;&gt;left_eye_info[j, <span class="number">2</span>] tensor(<span class="number">0.4084</span>, device=<span class="string">&#x27;cuda:0&#x27;</span>)</span><br><span class="line">&gt;&gt;median depth: tensor([[<span class="number">0.2566</span>],</span><br><span class="line">        [<span class="number">0.3694</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)</span><br><span class="line">&gt;&gt;median shape torch.Size([<span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>the shape of depth: torch.Size([1, 88, 88])<br>the shape of left_eye_info : torch.Size([16, 3])<br>left_eye_info[j, 2] tensor(0.9088, device=’cuda:0’)<br>median depth: tensor([[0.6016],<br>        [0.6016],<br>        [0.5006],<br>        [0.5006],<br>        [0.6016],<br>        [0.6016],<br>        [0.5006],<br>        [0.5025],<br>        [0.5006],<br>        [0.4179],<br>        [0.4179],<br>        [0.5025],<br>        [0.3485],<br>        [0.5006],<br>        [0.4179],<br>        [0.5025]], device=’cuda:0’)<br>median shape torch.Size([16, 1])<br>Traceback (most recent call last):<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 676, in <module><br>    trainer.train_base(epochs= total_epochs, lr=learning_rate,use_refined_depth=True)<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 119, in train_base<br>    self._train_base_epoch()<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 419, in _train_base_epoch<br>    left_eye_info[j, 2] = th.mean(a).item() * face_factor<br>RuntimeError: expand(torch.cuda.FloatTensor{[16, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</module></p>
+</blockquote>
+<p>找到原因啦！其实是face_factor是这个batch的face_factor</p>
 <h1 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211019145428957.png" alt="image-20211019145428957"></p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211019154913500.png" alt="image-20211019154913500"></p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211025165956657.png" alt="image-20211025165956657"></p>
@@ -139,7 +158,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GazePointAllDataset</span>(<span class="params">data.Dataset</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, root_dir, w_screen=<span class="number">59.77</span>, h_screen=<span class="number">33.62</span>, transform=<span class="literal">None</span>, phase=<span class="string">&quot;train&quot;</span>, **kwargs</span>):</span></span><br></pre></td></tr></table></figure>
 
 <p>程序错误：数据集train_csv没有left_eye_coord、lift_eye_coord,感觉是这个类调用有问题，或者是类的构造有问题。导致加载数据出错。</p>
-<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>数据集由165231个RGB/depth图像对组成。使用159个参与者对应的图像(119,318个RGB/depth图像对)作为训练数据，使用其余59个参与者对应的数据(45,913个RGB/depth图像对)作为测试数据。</p>
+<h1 id="数据集结构"><a href="#数据集结构" class="headerlink" title="数据集结构"></a>数据集结构</h1><p>数据集由165231个RGB/depth图像对组成。使用159个参与者对应的图像(119,318个RGB/depth图像对)作为训练数据，使用其余59个参与者对应的数据(45,913个RGB/depth图像对)作为测试数据。</p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/shanghaitech_rgb_dataset.png" alt="image-20211025183820769"></p>
 <p>tran_meta.csv包含了119,318个RGB/depth图像对，表头有12项，分别为</p>
 <p>A.图片index。</p>
@@ -155,13 +174,37 @@
 <p>K.gaze_point,位于coordinate文件夹下，文件名以.npy结尾，文件中储存的是坐标。</p>
 <p>L.has_landmark,值为TRUE或者FALSE，大部分值都为TRUE。</p>
 <p>color、projected_depth_calibration、coordinate文件夹均有219个文件夹对应219个志愿者，每个志愿者的文件夹下有多组实验的数据。</p>
-<p>color文件夹下存放了219个志愿者的rgb相关信息，一组实验包含7个信息，全脸、左右眼的图片已经bbox，还有人脸的68点landmark。</p>
+<p>color文件夹下存放了219个志愿者的rgb相关信息，一组实验包含7个信息，全脸、左右眼的图片以及bbox，还有人脸的68点landmark。</p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/colordir.png" alt="image-20211025195154291"></p>
 <p>projected_depth_calibration文件夹下存放了219个志愿者的depth相关信息，一组实验包含3个信息，分别为左右眼和全脸depth。</p>
 <p>coordinate文件夹下存放了219个志愿者眼睛坐标系。</p>
 <blockquote>
 <p>少了 le 坐标系，r坐标系。不知道如果这俩怎么在网络中使用？如果拿掉会怎么样。.mat格式里边是不是保存有？python转换一个,mat文件至excel看一下格式吧</p>
 </blockquote>
+<h1 id="读取数据集遇到的问题"><a href="#读取数据集遇到的问题" class="headerlink" title="读取数据集遇到的问题"></a>读取数据集遇到的问题</h1><h2 id="企图通过各个特征维度来获得-le-cord-和ri-cord是啥？-ㄒoㄒ"><a href="#企图通过各个特征维度来获得-le-cord-和ri-cord是啥？-ㄒoㄒ" class="headerlink" title="企图通过各个特征维度来获得 le cord 和ri cord是啥？/(ㄒoㄒ)/~~"></a>企图通过各个特征维度来获得 le cord 和ri cord是啥？/(ㄒoㄒ)/~~</h2><p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211118165313972.png" alt="image-20211118165313972"></p>
+<p>resnet 34返回特征 512维度。（经过pooling，每个维度只有一个点）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, face, depth</span>):</span></span><br><span class="line">    face_f1 = self.face_block1(face)<span class="comment">#3-&gt;64卷积、bn、relu</span></span><br><span class="line">    face_f2 = self.face_block2(face_f1)<span class="comment">#64-&gt;128</span></span><br><span class="line">    face_f3 = self.face_block3(face_f2)<span class="comment">#128-&gt;256</span></span><br><span class="line">    face_f4 = self.face_block4(face_f3)<span class="comment">#256-&gt;512  28X28</span></span><br><span class="line">    depth_f1 = self.depth_block1(depth)<span class="comment">#1-&gt;64</span></span><br><span class="line">    depth_f2 = self.depth_block2(depth_f1)<span class="comment">#64-&gt;128</span></span><br><span class="line">    depth_f3 = self.depth_block3(depth_f2)<span class="comment">#128-&gt;256</span></span><br><span class="line">    depth_f4 = self.depth_block4(depth_f3)<span class="comment">#256-&gt;512 28X28</span></span><br><span class="line">    mixed_f4 = self.down1(th.cat([face_f4, depth_f4], dim=<span class="number">1</span>))<span class="comment">#1024-&gt;512</span></span><br><span class="line">    mixed_f3 = self.down2(th.cat([face_f3, depth_f3], dim=<span class="number">1</span>))<span class="comment">#512-&gt;256</span></span><br><span class="line">    mixed_f2 = self.down3(th.cat([face_f2, depth_f2], dim=<span class="number">1</span>))<span class="comment">#256-&gt;128</span></span><br><span class="line">    mixed_f1 = self.down4(th.cat([face_f1, depth_f1], dim=<span class="number">1</span>))<span class="comment">#128-&gt;64 28X28</span></span><br><span class="line">    </span><br><span class="line">    gen_f3 = self.gen_block1(mixed_f4) + mixed_f3<span class="comment">#512-&gt;256反卷积 56X56</span></span><br><span class="line">    gen_f2 = self.gen_block2(gen_f3) + mixed_f2<span class="comment">#256-&gt;128 反卷积112X112</span></span><br><span class="line">    gen_f1 = self.gen_block3(gen_f2) + mixed_f1<span class="comment">#128-&gt;64  反卷积224X224</span></span><br><span class="line">    gen_depth = self.gen_block4(gen_f1)<span class="comment">#64-&gt;1 </span></span><br><span class="line">    <span class="comment">#和论文中的框图不一样，不过维度和 synthesize depth 对上了</span></span><br><span class="line">    </span><br><span class="line">    head_pose = self.head_pose(mixed_f4)<span class="comment">#512,28X28-&gt;512,14X14-&gt;1024,7X7-&gt;1024,1X1-&gt;128,1X1</span></span><br><span class="line">    <span class="keyword">return</span> head_pose.view(head_pose.size(<span class="number">0</span>), -<span class="number">1</span>), gen_depth<span class="comment">#6276. 1,224X224</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="似乎找到问题的答案啦！"><a href="#似乎找到问题的答案啦！" class="headerlink" title="似乎找到问题的答案啦！"></a>似乎找到问题的答案啦！</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#train_aaai.py</span></span><br><span class="line">                <span class="keyword">for</span> j, lb <span class="keyword">in</span> <span class="built_in">enumerate</span>(left_eye_bbox):</span><br><span class="line">                    cur_depth = refined_depth[j, :, <span class="built_in">int</span>(lb[<span class="number">1</span>]):<span class="built_in">int</span>(lb[<span class="number">3</span>]), <span class="built_in">int</span>(lb[<span class="number">0</span>]):<span class="built_in">int</span>(lb[<span class="number">2</span>])]</span><br><span class="line">                    left_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">                <span class="keyword">for</span> j, rb <span class="keyword">in</span> <span class="built_in">enumerate</span>(right_eye_bbox):</span><br><span class="line">                    cur_depth = refined_depth[j, :, <span class="built_in">int</span>(rb[<span class="number">1</span>]):<span class="built_in">int</span>(rb[<span class="number">3</span>]), <span class="built_in">int</span>(rb[<span class="number">0</span>]):<span class="built_in">int</span>(rb[<span class="number">2</span>])]</span><br><span class="line">                    right_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">                    </span><br><span class="line"> <span class="comment">#gaze_aaai.py</span></span><br><span class="line">l_coord = self.lcoord(th.cat([l_coord_feat, head_pose, linfo], <span class="number">1</span>))</span><br><span class="line">        r_coord = self.rcoord(th.cat([r_coord_feat, head_pose, rinfo], <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    rinfo最终concatenate的有三个信息。depth均值和眼睛中间点级联了xe，ye</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>使用眼边缘六个点做平均获得眼睛中心位置。</p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122151234305.png" alt="image-20211122151234305"></p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122151515079.png" alt="image-20211122151515079"></p>
+<blockquote>
+<p>屏幕分辨率1080（540），1960（980）。对于一个图片矩阵，（0,0）在左上，所以这里显示的landmark图片是upside down的。</p>
+</blockquote>
+<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><p>读出保存数据的csv，计算landmark眼周六点的平均值，获得双眼中心，保存至csv。对于landmark不存在的数据，从保存数据的csv中删除。</p>
+<p>测试集没有删除数据，训练集合数据从119317删除至98629。</p>
+<h2 id="程序中对于gt处理，为什么有一个screen-2平移"><a href="#程序中对于gt处理，为什么有一个screen-2平移" class="headerlink" title="程序中对于gt处理，为什么有一个screen/2平移"></a>程序中对于gt处理，为什么有一个screen/2平移</h2><p>w_screen=59.77, h_screen=33.62</p>
+<p>​    gt[0] -= self.w_screen / 2</p>
+<p>​    gt[1] -= self.h_screen / 2</p>
+<blockquote>
+<p>为什么程序有一个减法？相当于平移。</p>
+</blockquote>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122145542394.png" alt="image-20211122145542394"></p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00007_face.jpg"></p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00008_face.jpg" alt="color00008_face"></p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00009_face.jpg" alt="color00009_face"></p>
 
       
     </div>
@@ -213,7 +256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
     </div>
   </div>
 
@@ -223,7 +266,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
     </div>
   </div>
 
@@ -232,7 +275,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
     </div>
   </div>
 
@@ -245,23 +288,23 @@
       <ul>
         
           <li>
+            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/19/web3-0/">web3.0</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/">Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/">gaze综述文章</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
           </li>
         
       </ul>
@@ -276,7 +319,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2021 iszff<br>
+      &copy; 2022 iszff<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

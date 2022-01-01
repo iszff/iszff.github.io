@@ -7,12 +7,12 @@
   
   <title>eye gaze调研 | iszff&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。   近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;">
+  <meta name="description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。 近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;VR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="eye gaze调研">
 <meta property="og:url" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/index.html">
 <meta property="og:site_name" content="iszff&#39; Blog">
-<meta property="og:description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。   近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;">
+<meta property="og:description" content="Gaze  Estimation简介广义的Gaze Estimation 泛指与眼球、眼动、视线等相关的研究。  不少做saliency和egocentric的论文也以gaze为关键词。 近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。   根据不同的场景与应用大致可分为三类注视目标估计、注视点估计以及三维视线估计。  应用Tobii CEO：AR&#x2F;VR">
 <meta property="og:locale">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-5d28d5b34067a60edb6b0b56b7ea45bf_1440w.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-502dd1b1678d3bb84d2d51c7955038b5_1440w.jpg">
@@ -30,7 +30,6 @@
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/ONdecvice2019CVPRW.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tabletgaze.png">
 <meta property="og:image" content="https://pic3.zhimg.com/v2-1748477bc2558a9442ff18d8280bb79a_r.jpg">
-<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/2017TAPMI_MPIIGaze_pipeline.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007154253501.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007160924206.png">
@@ -40,6 +39,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007164953107.png">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-3026afc055f18e5e3e0a0a65f94c4a16_1440w.jpg">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007170804421.png">
+<meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211007202852686.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211014172151988.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211014190045184.png">
@@ -61,7 +61,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211008155246008.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211008163556619.png">
 <meta property="article:published_time" content="2021-10-04T08:13:29.000Z">
-<meta property="article:modified_time" content="2021-11-05T10:08:05.812Z">
+<meta property="article:modified_time" content="2021-12-16T08:26:40.234Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
@@ -139,37 +139,35 @@
         <h1 id="Gaze-Estimation"><a href="#Gaze-Estimation" class="headerlink" title="Gaze  Estimation"></a>Gaze  Estimation</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>广义的Gaze Estimation 泛指与<strong>眼球</strong>、<strong>眼动、视线</strong>等相关的研究。</p>
 <blockquote>
 <p>不少做saliency和egocentric的论文也以gaze为关键词。</p>
-</blockquote>
-<blockquote>
 <p>近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。</p>
 </blockquote>
 <p><img src="https://pic4.zhimg.com/80/v2-5d28d5b34067a60edb6b0b56b7ea45bf_1440w.jpg" alt="img"></p>
 <h2 id="根据不同的场景与应用大致可分为三类"><a href="#根据不同的场景与应用大致可分为三类" class="headerlink" title="根据不同的场景与应用大致可分为三类"></a>根据不同的场景与应用大致可分为三类</h2><p>注视目标估计、注视点估计以及三维视线估计。</p>
 <p><img src="https://pic2.zhimg.com/80/v2-502dd1b1678d3bb84d2d51c7955038b5_1440w.jpg" alt="img"></p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13178442?from=articleDetail&spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.2">Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪 - 哔哩哔哩 (bilibili.com)</a></p>
-<h3 id="用Tobii眼动仪玩游戏的Demo"><a href="#用Tobii眼动仪玩游戏的Demo" class="headerlink" title="用Tobii眼动仪玩游戏的Demo"></a>用Tobii眼动仪玩游戏的Demo</h3><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tobii.png"></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv13178442?from=articleDetail&amp;spm_id_from=333.976.b_726561645265636f6d6d656e64496e666f.2">Tobii CEO：AR/VR的未来形态将广泛结合眼球追踪 - 哔哩哔哩 (bilibili.com)</a></p>
+<h3 id="用Tobii眼动仪玩游戏的Demo"><a href="#用Tobii眼动仪玩游戏的Demo" class="headerlink" title="用Tobii眼动仪玩游戏的Demo"></a>用Tobii眼动仪玩游戏的Demo</h3><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/tobii.png" alt></p>
 <h3 id="VR"><a href="#VR" class="headerlink" title="VR"></a>VR</h3><p>VR头盔。现阶段VR的问题是全场景精细渲染对硬件要求较高导致硬件成本居高不下。如果能够通过头盔内置摄像头准确估计人的视线方向，则可以对场景做局部精细渲染，即仅对人注视范围内的场景精细渲染，从而大大降低硬件成本。</p>
 <h3 id="医疗"><a href="#医疗" class="headerlink" title="医疗"></a>医疗</h3><p>gaze在医疗方面的应用主要是两类。一类是用于检测和诊断精神类或心理类的疾病。一个典型例子是自闭症儿童往往表现出与正常儿童不同的gaze行为与模式。另一类是通过基于gaze的交互系统来为一些病人提供便利。如渐冻症患者可以使用眼动仪来完成一些日常活动。</p>
 <h3 id="辅助驾驶（智能座舱）"><a href="#辅助驾驶（智能座舱）" class="headerlink" title="辅助驾驶（智能座舱）"></a>辅助驾驶（智能座舱）</h3><p>gaze在辅助驾驶上有两方面应用。一是检测驾驶员是否疲劳驾驶以及注意力是否集中。二是提供一些交互从而解放双手。</p>
 <h3 id="线下零售"><a href="#线下零售" class="headerlink" title="线下零售"></a>线下零售</h3><p>人的注意力某种程度上反映了其兴趣，可以提供大量的信息。但是目前并没有看到相关的应用，包括Amazon Go。或许现阶段精度难以达到要求。可以通过gaze行为做市场调研。</p>
 <h3 id="其他交互类应用"><a href="#其他交互类应用" class="headerlink" title="其他交互类应用"></a>其他交互类应用</h3><p>如手机解锁、短视频特效等。</p>
 <h2 id="相关团队与公司"><a href="#相关团队与公司" class="headerlink" title="相关团队与公司"></a>相关团队与公司</h2><p>ETH的Otmar Hilliges教授和东京大学的Yusuke Sugano教授。</p>
-<p>- EPFL与Idiap的感知组：<a href="https://link.zhihu.com/?target=https://www.idiap.ch/~odobez/">https://www.idiap.ch/~odobez/</a></p>
+<p>- EPFL与Idiap的感知组：<a href="https://link.zhihu.com/?target=https%3A//www.idiap.ch/~odobez/">https://www.idiap.ch/~odobez/</a></p>
 <ul>
 <li>Improving Few-Shot User-Specific Gaze Adaptation via Gaze Redirection Synthesis, CVPR 2019</li>
 <li>Unsupervised Representation Learning for Gaze Estimation, CVPR 2020</li>
 <li>A Differential Approach for Gaze Estimation, PAMI accepted 2019</li>
 </ul>
-<p>- ETH交互组：<a href="https://link.zhihu.com/?target=https://ait.ethz.ch/people/hilliges/">https://ait.ethz.ch/people/hill</a></p>
-<p>- 德国马普所交互组：<a href="https://link.zhihu.com/?target=https://perceptualui.org/people/bulling/">https://perceptualui.org/people</a></p>
-<p>- MIT Antonio Torralba组：<a href="https://link.zhihu.com/?target=http://web.mit.edu/torralba/www/">http://web.mit.edu/torralba/www/</a></p>
-<p>- 伦斯勒理工Qiang Ji组：<a href="https://link.zhihu.com/?target=https://www.ecse.rpi.edu/~qji/">https://www.ecse.rpi.edu/~qji/</a></p>
-<p>- 东京大学Sugano组：<a href="https://link.zhihu.com/?target=https://www.yusuke-sugano.info/">https://www.yusuke-sugano.info/</a></p>
-<p>- 北航Feng Lu组：<a href="https://link.zhihu.com/?target=http://phi-ai.org/default.htm">http://phi-ai.org/default.htm</a></p>
+<p>- ETH交互组：<a href="https://link.zhihu.com/?target=https%3A//ait.ethz.ch/people/hilliges/">https://ait.ethz.ch/people/hill</a></p>
+<p>- 德国马普所交互组：<a href="https://link.zhihu.com/?target=https%3A//perceptualui.org/people/bulling/">https://perceptualui.org/people</a></p>
+<p>- MIT Antonio Torralba组：<a href="https://link.zhihu.com/?target=http%3A//web.mit.edu/torralba/www/">http://web.mit.edu/torralba/www/</a></p>
+<p>- 伦斯勒理工Qiang Ji组：<a href="https://link.zhihu.com/?target=https%3A//www.ecse.rpi.edu/~qji/">https://www.ecse.rpi.edu/~qji/</a></p>
+<p>- 东京大学Sugano组：<a href="https://link.zhihu.com/?target=https%3A//www.yusuke-sugano.info/">https://www.yusuke-sugano.info/</a></p>
+<p>- 北航Feng Lu组：<a href="https://link.zhihu.com/?target=http%3A//phi-ai.org/default.htm">http://phi-ai.org/default.htm</a></p>
 <p>工业界方面，目前主力依旧在欧美。大公司，如Facebook Reality Lab（去年组织举办了第一届gaze相关的challenge）， 微软Hololens，谷歌广告，NVIDIA自动驾驶等团队都在致力于gaze方面的研究。而专注于gaze的中小型公司，龙头老大当属瑞典公司Tobii，其眼动仪已臻物美价廉之境。另外也可以关注下瑞士创业公司eyeware。</p>
-<h1 id="注视目标估计"><a href="#注视目标估计" class="headerlink" title="注视目标估计"></a>注视目标估计</h1><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/objgaze.png"></p>
+<h1 id="注视目标估计"><a href="#注视目标估计" class="headerlink" title="注视目标估计"></a>注视目标估计</h1><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/objgaze.png" alt></p>
 <p>注视目标估计英文关键词为gaze following，即检测给定人物所注视的目标。MIT Antonio Torralba组最先提出了这一问题并公开了相关数据集[1]。</p>
-<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitgazefollow.png"></p>
+<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/mitgazefollow.png" alt></p>
 <blockquote>
 <p>我们引入了一个新的数据集，用于在自然图像中跟踪视线。在左边，我们展示了几个示例注释和图像。在右边的图中，我们总结了一些关于数据集测试分区的统计信息。前三张热图显示了头部位置、固定位置和固定位置相对于头部位置归一化的概率密度。下图显示了不同头部位置的平均凝视方向。</p>
 </blockquote>
@@ -234,22 +232,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 </blockquote>
 <p>随着深度学习的崛起以及大量数据集的公开，基于外观的方法越来越受到关注。</p>
 <p><strong>通用（person independent）的视线估计方法</strong>，即模型的训练数据与测试数据采集自不同的人（与之相对的是<strong>个性化视线估计</strong>，即训练数据与测试数据采集自相同的人）。按照方法所依赖的信息，将他们分类为<strong>单眼/双眼视线估计</strong>，<strong>基于语义信息的视线估计</strong>和<strong>全脸视线估计</strong> 三类。</p>
-<h1 id="单眼-双眼视线估计："><a href="#单眼-双眼视线估计：" class="headerlink" title="单眼/双眼视线估计："></a>单眼/双眼视线估计：</h1><h2 id="Real-World-Dataset-and-Deep-Appearance-Based-Gaze-Estimation"><a href="#Real-World-Dataset-and-Deep-Appearance-Based-Gaze-Estimation" class="headerlink" title="Real-World Dataset and Deep Appearance-Based Gaze Estimation."></a>Real-World Dataset and Deep Appearance-Based Gaze Estimation.</h2><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png" alt="image-20211007135414078"></p>
-<center><p>MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation  2017 TPAMI
-    单目相机进行凝视估计
-    </p></center>
-
-<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><ul>
-<li><p>面部landmark检测，(眼睛和嘴角）（Baltruˇsaitis et al.</p>
-</li>
-<li><p>通过使用EPnP算法[21]估计初始解来拟合模型，并通过非线性优化进一步<strong>精炼姿态</strong>。<strong>三维头部旋转</strong>定义为从<strong>头部坐标系到摄像机坐标系的旋转camera calibration</strong>，眼睛位置定义为每只眼睛的眼角中点。</p>
-</li>
-<li><p>虽然之前的作品假设了准确的头部姿态，但我们使用一个通用。平均面部形状模型进行三维姿态估计<strong>generic face model</strong>，以评估实际环境中的整个凝视估计管道。</p>
-</li>
-<li><p>在收集数据之前，使用外部立体摄像机记录所有参与者的6个地标的3D位置，并建立通用形状作为所有参与者的平均形状。</p>
-</li>
-</ul>
-<p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/2017TAPMI_MPIIGaze_pipeline.png" alt="image-20211007135523674"></p>
+<h1 id="单眼-双眼视线估计："><a href="#单眼-双眼视线估计：" class="headerlink" title="单眼/双眼视线估计："></a>单眼/双眼视线估计：</h1><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/2017TAPMI_MPIIGaze_pipeline.png" alt="image-20211007135523674"></p>
 <blockquote>
 <p>多个模态，有哪些模态？  </p>
 </blockquote>
@@ -263,8 +246,8 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <h1 id="基于语义信息的视线估计"><a href="#基于语义信息的视线估计" class="headerlink" title="基于语义信息的视线估计"></a>基于语义信息的视线估计</h1><p>基于几何的方法是通过检测眼睛特征，如关键点位置，来估计视线的。</p>
 <blockquote>
 <p>几何检测眼睛的几何信息。</p>
-</blockquote>
 <h2 id="Deep-Pictorial-Gaze-Estimation-2018ECCV"><a href="#Deep-Pictorial-Gaze-Estimation-2018ECCV" class="headerlink" title="Deep Pictorial Gaze Estimation 2018ECCV"></a>Deep Pictorial Gaze Estimation 2018ECCV</h2><p>这启发了一部分工作使用<strong>额外的语义信息</strong>来帮助提升视线估计的精度。ETH博士Park等在ECCV 2018上提出了一种基于眼睛图形表示的视线估计方法。</p>
+</blockquote>
 <p>通过深度网络将眼睛抽象为一个眼球图形表示来提升视线估计（这一表示相对gaze来说更具象也更易学习）。其中，眼球图形表示这一监督信号是由视线的ground truth经几何方法反推生成的。</p>
 <p>不是直接回归两个角度的俯仰和偏航的眼球，而是回归到一个中间的图像表示，这反过来简化了三维注视方向估计的任务。</p>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007160924206.png" alt="image-20211007160924206">  </p>
@@ -294,7 +277,23 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <blockquote>
 <p>线性重建的方法类似于人脸重建？</p>
 </blockquote>
-<h1 id="全脸视线估计"><a href="#全脸视线估计" class="headerlink" title="全脸视线估计"></a>全脸视线估计</h1><h2 id="It’s-Written-All-Over-Y-our-Face-Full-Face-Appearance-Based-Gaze-Estimation-CVPR2017"><a href="#It’s-Written-All-Over-Y-our-Face-Full-Face-Appearance-Based-Gaze-Estimation-CVPR2017" class="headerlink" title="It’s Written All Over Y our Face:Full-Face Appearance-Based Gaze Estimation CVPR2017"></a>It’s Written All Over Y our Face:Full-Face Appearance-Based Gaze Estimation CVPR2017</h2><p>以上视线估计方法都要求单眼/双眼图像为输入，有两个缺陷：</p>
+<h1 id="全脸视线估计"><a href="#全脸视线估计" class="headerlink" title="全脸视线估计"></a>全脸视线估计</h1><h2 id="Real-World-Dataset-and-Deep-Appearance-Based-Gaze-Estimation"><a href="#Real-World-Dataset-and-Deep-Appearance-Based-Gaze-Estimation" class="headerlink" title="Real-World Dataset and Deep Appearance-Based Gaze Estimation."></a>Real-World Dataset and Deep Appearance-Based Gaze Estimation.</h2><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/MPIIGaze.png" alt="image-20211007135414078"></p>
+<center><p>MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation  2017 TPAMI
+    单目相机进行凝视估计
+    </p></center>
+
+
+<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><ul>
+<li><p>面部landmark检测，(眼睛和嘴角）（Baltruˇsaitis et al.</p>
+</li>
+<li><p>通过使用EPnP算法[21]估计初始解来拟合模型，并通过非线性优化进一步<strong>精炼姿态</strong>。<strong>三维头部旋转</strong>定义为从<strong>头部坐标系到摄像机坐标系的旋转camera calibration</strong>，眼睛位置定义为每只眼睛的眼角中点。</p>
+</li>
+<li><p>虽然之前的作品假设了准确的头部姿态，但我们使用一个通用。平均面部形状模型进行三维姿态估计<strong>generic face model</strong>，以评估实际环境中的整个凝视估计管道。</p>
+</li>
+<li><p>在收集数据之前，使用外部立体摄像机记录所有参与者的6个地标的3D位置，并建立通用形状作为所有参与者的平均形状。</p>
+</li>
+</ul>
+<h2 id="It’s-Written-All-Over-Y-our-Face-Full-Face-Appearance-Based-Gaze-Estimation-CVPR2017"><a href="#It’s-Written-All-Over-Y-our-Face-Full-Face-Appearance-Based-Gaze-Estimation-CVPR2017" class="headerlink" title="It’s Written All Over Y our Face:Full-Face Appearance-Based Gaze Estimation CVPR2017"></a>It’s Written All Over Y our Face:Full-Face Appearance-Based Gaze Estimation CVPR2017</h2><p>以上视线估计方法都要求单眼/双眼图像为输入，有两个缺陷：</p>
 <p>1）需要额外的模块检测眼睛；</p>
 <p>2）需要额外的模块估计头部姿态。</p>
 <p>基于此，Xucong Zhang等于2017年提出了基于注意力机制的全脸视线估计方法[7]。<img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007202852686.png" alt="image-20211007202852686"></p>
@@ -311,8 +310,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014190045184.png" alt="image-20211014190045184"></p>
 <p>另一种数据收集方式以MPIIGaze[2]为代表，仅仅需要普通的RGB摄像头即可。其基本做法是利用<strong>相机的公开参数</strong>，将<strong>gaze目标以及眼睛位置坐标</strong>（通过一个三维的6关键点模型得到）通过算法变换到相机坐标下，然后再计算gaze作为ground truth。但是这种标注方法不仅操作复杂，而且并不准确。</p>
 <p>由以上两个例子可以看到，gaze数据的收集和标注比较耗时耗力。因此在实际应用中，如何在数据短缺的情况下训练一个可靠的gaze模型，就成了一个亟待解决的问题。本篇剩余部分主要介绍三类针对数据短缺的解决方案：<strong>基于合成数据的方法</strong>、<strong>基于Domain Adaptation的方法</strong>以及<strong>基于无监督学习的方法</strong>。</p>
-<h2 id="基于合成数据的方法："><a href="#基于合成数据的方法：" class="headerlink" title="基于合成数据的方法："></a>基于合成数据的方法：</h2><h3 id="Rendering-of-Eyes-for-Eye-Shape-Registration-and-Gaze-Estimation"><a href="#Rendering-of-Eyes-for-Eye-Shape-Registration-and-Gaze-Estimation" class="headerlink" title="Rendering of Eyes for Eye-Shape Registration and Gaze Estimation"></a>Rendering of Eyes for Eye-Shape Registration and Gaze Estimation</h3><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014201017047.png" alt="image-20211014201017047" style="zoom:50%;">
-
+<h2 id="基于合成数据的方法："><a href="#基于合成数据的方法：" class="headerlink" title="基于合成数据的方法："></a>基于合成数据的方法：</h2><h3 id="Rendering-of-Eyes-for-Eye-Shape-Registration-and-Gaze-Estimation"><a href="#Rendering-of-Eyes-for-Eye-Shape-Registration-and-Gaze-Estimation" class="headerlink" title="Rendering of Eyes for Eye-Shape Registration and Gaze Estimation"></a>Rendering of Eyes for Eye-Shape Registration and Gaze Estimation</h3><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014201017047.png" alt="image-20211014201017047" style="zoom:50%;"></p>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014195732273.png" alt="image-20211014195732273"></p>
 <p>模型准备过程概述:密集3D头部扫描(140万个多边形)(a)首先重新拓扑成动画的最佳形式(9005个多边形)(b)。高分辨率皮肤表面细节通过位移图恢复(c)，人工标注虹膜和眼睑的3D地标(d)。如图(e)所示。</p>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014201322789.png" alt="image-20211014201322789"></p>
@@ -367,11 +365,10 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <h2 id="基于几何变换的方法"><a href="#基于几何变换的方法" class="headerlink" title="基于几何变换的方法"></a>基于几何变换的方法</h2><p>这类方法的代表作是商汤在ICCV 2017上发表的一个全脸视线估计工作[4]。该工作主要认为特征拼接的方式并不能准确地反映gaze与head pose的的几何关系。因此，该工作提出了一个gaze的几何变换层，用于将head pose（人脸支路学习得到）与人脸坐标系下的gaze（眼睛支路学习得到）进行几何解析，得到最终相机坐标系下的gaze。</p>
 <p>该方法将head pose的估计和gaze的估计放在一个框架内（所需要的前处理步骤主要是眼睛的定位），因此容错性更大。</p>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211014172151988.png" alt="image-20211014172151988"></p>
-<h2 id="基于头部姿态隐式估计的方法"><a href="#基于头部姿态隐式估计的方法" class="headerlink" title="基于头部姿态隐式估计的方法"></a>基于头部姿态隐式估计的方法</h2><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007202852686.png" alt="image-20211007202852686" style="zoom:150%;">
-
+<h2 id="基于头部姿态隐式估计的方法"><a href="#基于头部姿态隐式估计的方法" class="headerlink" title="基于头部姿态隐式估计的方法"></a>基于头部姿态隐式估计的方法</h2><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211007202852686.png" alt="image-20211007202852686" style="zoom:150%;"></p>
 <p>ucong Zhang等于2017年提出的基于注意力机制的全脸视线估计方法[5]。网络的输入是人脸图像，并采用end to end的学习策略，直接学习出最终相机坐标系下的gaze。因此我们可以认为这类方法隐式估计了head pose。这类方法的优点是简单直接，但内部机制不明，可解释性较差。</p>
 <p>本篇主要介绍了五类处理头部姿态问题的方法。从我比较熟悉的单眼/双眼视线估计来说，我更推荐第三种方式：基于特征拼接的方法。商汤的论文[4]认为特征拼接并不是一个好的方式。他们通过在MPIIGaze上做实验发现处理head pose的weight几乎等于0，进而得出特征拼接效果欠佳这一结论。我认同这一现象，但不认同其结论。事实上，在我看来，造成这一现象的真正原因是<strong>MPIIGaze提供的head pose非常非常不准确</strong>，能提供的有效信息十分有限，用不用<strong>head pose差别不大（结果差0.1度左右）</strong>。相反，如果换做其他数据集，如<strong>ColumbiaGaze和UTMultiview</strong>，特征拼接则会显著提高精度（至少提高2度）。</p>
-<p>在我们CVPR 2020的论文中[6]，我们也比较了特征拼接和几何变换（网络的输入是单眼，输出是头部坐标系下的gaze，然后通过事先获得的head pose对gaze进行几何变换，得到相机坐标系下的gaze）两种方式，结果是特征拼接的效果明显好于几何变换（1-2度）。这个结果可能与我们的直觉相悖。我理解的原因是，一般来说，<strong>如果注视目标位于前方，则相机坐标系下的gaze范围更小，而头部坐标系下的gaze范围更大</strong>。有兴趣的话可以尝试一下，<strong>变换头部姿态，但眼睛始终盯着正前方一个物体。如果这时正前方有一个摄像机，那么相机坐标系下你的gaze范围很小，接近于0度</strong>。<strong>但头部坐标系下的gaze，根据你头部运动幅度的大小，范围可以很大。拿ColumbiaGaze举例，相机坐标系下的gaze yaw的范围是-15<del>15，而头部坐标系下的gaze yaw是-45</del>45</strong>。因此，网络如果通过特征拼接的方式直接预测相机坐标系下的gaze的话，反而更容易学习。</p>
+<p>在我们CVPR 2020的论文中[6]，我们也比较了特征拼接和几何变换（网络的输入是单眼，输出是头部坐标系下的gaze，然后通过事先获得的head pose对gaze进行几何变换，得到相机坐标系下的gaze）两种方式，结果是特征拼接的效果明显好于几何变换（1-2度）。这个结果可能与我们的直觉相悖。我理解的原因是，一般来说，<strong>如果注视目标位于前方，则相机坐标系下的gaze范围更小，而头部坐标系下的gaze范围更大</strong>。有兴趣的话可以尝试一下，<strong>变换头部姿态，但眼睛始终盯着正前方一个物体。如果这时正前方有一个摄像机，那么相机坐标系下你的gaze范围很小，接近于0度</strong>。<strong>但头部坐标系下的gaze，根据你头部运动幅度的大小，范围可以很大。拿ColumbiaGaze举例，相机坐标系下的gaze yaw的范围是-15~15，而头部坐标系下的gaze yaw是-45~45</strong>。因此，网络如果通过特征拼接的方式直接预测相机坐标系下的gaze的话，反而更容易学习。</p>
 <h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><h2 id="ETH-XGaze-A-Large-Scale-Dataset-for-Gaze-Estimation-under-Extreme-Head-Pose-and-Gaze-Variation2020"><a href="#ETH-XGaze-A-Large-Scale-Dataset-for-Gaze-Estimation-under-Extreme-Head-Pose-and-Gaze-Variation2020" class="headerlink" title="ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation2020"></a>ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation2020</h2><p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211015152031823.png" alt="image-20211015152031823"></p>
 <h2 id="商汤ICCV-2017Monocular-free-head-3d-gaze-tracking-with-deep-learning-and-geometry-constraints数据集"><a href="#商汤ICCV-2017Monocular-free-head-3d-gaze-tracking-with-deep-learning-and-geometry-constraints数据集" class="headerlink" title="商汤ICCV 2017Monocular free-head 3d gaze tracking with deep learning and geometry constraints数据集"></a>商汤ICCV 2017Monocular free-head 3d gaze tracking with deep learning and geometry constraints数据集</h2><p>看一下有没有开源</p>
 <h2 id="MPIIFaceGaze"><a href="#MPIIFaceGaze" class="headerlink" title="MPIIFaceGaze"></a>MPIIFaceGaze</h2><h2 id="UnityEyes"><a href="#UnityEyes" class="headerlink" title="UnityEyes"></a>UnityEyes</h2><p><a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/research/rainbow/projects/unityeyes/">UnityEyes (cam.ac.uk)</a></p>
@@ -453,7 +450,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
     </div>
   </div>
 
@@ -463,7 +460,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
     </div>
   </div>
 
@@ -472,7 +469,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
     </div>
   </div>
 
@@ -485,23 +482,23 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
       <ul>
         
           <li>
+            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/19/web3-0/">web3.0</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/08/Appearance-Based-Gaze-Estimation-Using-Dilated-Convolutions/">Appearance-Based Gaze Estimation Using Dilated-Convolutions</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/">Multiview Multitask Gaze Estimation With Deep Convolutional Neural Networks</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/">gaze综述文章</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/">gaze大佬主页</a>
           </li>
         
       </ul>
@@ -516,7 +513,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2021 iszff<br>
+      &copy; 2022 iszff<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

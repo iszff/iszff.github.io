@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>风格造成的人脸关键点检测误差 | iszff&#39; Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于图片拍摄时候外界环境,比如光线变化等会造成图片”风格”的不同,不同风格的同一张人脸经过landmark detector 可能会获得不同的地标,这并不是由于人脸结构本身造成。对于此问题的研究目前有两篇具有代表性的文章,主要思路都是通过数据增强,对图片进行某种风格变换,再去训练landmark detector,使得检测器对于风格变化具有鲁棒性。从而提高总体landmark检测准确度。 [201">
+<meta property="og:type" content="article">
+<meta property="og:title" content="风格造成的人脸关键点检测误差">
+<meta property="og:url" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="由于图片拍摄时候外界环境,比如光线变化等会造成图片”风格”的不同,不同风格的同一张人脸经过landmark detector 可能会获得不同的地标,这并不是由于人脸结构本身造成。对于此问题的研究目前有两篇具有代表性的文章,主要思路都是通过数据增强,对图片进行某种风格变换,再去训练landmark detector,使得检测器对于风格变化具有鲁棒性。从而提高总体landmark检测准确度。 [201">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211229210439162.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211229212141043.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211231173635145.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/coding/stylealign结果/test_00075000.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/coding/stylealign结果/test_01000000.png">
+<meta property="article:published_time" content="2021-12-31T12:03:53.000Z">
+<meta property="article:modified_time" content="2022-01-01T02:08:56.024Z">
+<meta property="article:author" content="iszff">
+<meta property="article:tag" content="文献阅读">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211229210439162.png">
+  
+    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">iszff&#39; Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-”风格造成的关键点检测误差“" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/" class="article-date">
+  <time datetime="2021-12-31T12:03:53.000Z" itemprop="datePublished">2021-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      风格造成的人脸关键点检测误差
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于图片拍摄时候外界环境,比如光线变化等会造成图片”风格”的不同,不同风格的同一张人脸经过landmark detector 可能会获得不同的地标,这并不是由于人脸结构本身造成。对于此问题的研究目前有两篇具有代表性的文章,主要思路都是通过数据增强,对图片进行某种风格变换,再去训练landmark detector,使得检测器对于风格变化具有鲁棒性。从而提高总体landmark检测准确度。</p>
+<h2 id="2018CVPR-Style-Aggregated-Network-for-Facial-Landmark-Detection"><a href="#2018CVPR-Style-Aggregated-Network-for-Facial-Landmark-Detection" class="headerlink" title="[2018CVPR]Style Aggregated Network for Facial Landmark Detection"></a>[2018CVPR]Style Aggregated Network for Facial Landmark Detection</h2><blockquote>
+<p>Xuanyi Dong1, Yan Yan1, Wanli Ouyang2, Yi Yang1∗<br>1University of Technology Sydney,2The University of Sydney<br>{xuanyi.dong,yan.yan-3}@student.uts.edu.au;<br>wanli.ouyang@sydney.edu.au; yi.yang@uts.edu.au</p>
+</blockquote>
+<ol>
+<li><p>评价：提出了一种对图像风格差异不敏感的风格聚合网络(style - aggregation Network, SAN)人脸地标检测方法。在face landmark detection领域第一个明确了图像风格变化问题造成可能会带来检测失误。</p>
+</li>
+<li><p>针对问题：不同图像风格差异较大的问题。除了人脸本身的方差外，图像风格的内在方差，如灰度与彩色图像、亮与暗、强烈与暗淡等。landmark检测器对于不同风格的同一张人脸图片有不同的输出。例：三张图片内容完全相同。唯一不同的是形象风格。使用训练好的面部标志检测器来定位面部标志。zoom部分显示不同风格图像上相同面部标志的预测位置之间的偏差。</p>
+<p><img src="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211229210439162.png" alt="image-20211229210439162"></p>
+</li>
+<li><p>本文的目的：提高对图像风格的大方差的鲁棒性。</p>
+</li>
+<li><p>实现的方法：</p>
+<p><img src="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211229212141043.png" alt="image-20211229212141043"></p>
+</li>
+</ol>
+<p>SAN架构概述。网络由两部分组成。第一个是样式聚合的脸生成模块，该模块将输入图像转换成不同的样式，然后将它们组合成样式聚合的脸。</p>
+<p>二是人脸地标预测模块。该模块将原始图像和样式聚合图像作为输入，得到两个互补的特征，然后将两个特征进行融合，级联生成热图预测。“fc”意味着fully-convolution。</p>
+<p>5.方法简介</p>
+<p>数据增强（风格变化）：通过将300-W和AFLW转换成不同的风格，发布了两个新的人脸标志物检测数据集:300W-Styles(≈12000 images)和AFLW- styles(≈80000 images)。</p>
+<p>通过生成式对抗模块将原始人脸图像转换为风格聚合图像，使用风格聚合图像使得人脸图像对环境变化更具鲁棒性。</p>
+<p>风格互补训练：将原始人脸图像与风格聚合的人脸图像作为双流输入landmark 检测器，二流输入可以互补。</p>
+<blockquote>
+<p>假如测试阶段移除gan呢，相当于多模态训练，单模态测试？</p>
+</blockquote>
+<p>在基准数据集AFLW方法表现良好。代码可在GitHub上公开获取:<a target="_blank" rel="noopener" href="https://github.com/D-X-Y/SAN">https://github.com/D-X-Y/SAN</a></p>
+<p>6.个人的思考</p>
+<p>相当于做了数据增强，增加了数据量。</p>
+<h2 id="2019ICCV-Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with-Semi-Supervised-Style-Translation"><a href="#2019ICCV-Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with-Semi-Supervised-Style-Translation" class="headerlink" title="[2019ICCV]Aggregation via Separation: Boosting Facial Landmark Detector with Semi-Supervised Style Translation"></a>[2019ICCV]Aggregation via Separation: Boosting Facial Landmark Detector with Semi-Supervised Style Translation</h2><blockquote>
+<p>Shengju Qian1, Keqiang Sun2, Wayne Wu2,3, Chen Qian3, Jiaya Jia1,4<br>1The Chinese University of Hong Kong2Tsinghua University<br>3SenseTime Research4Y ouTu Lab, Tencent<br>{sjqian, leojia}@cse.cuhk.edu.hk, skq17@mails.tsinghua.edu.cn,{wuwenyan, qianchen}@sensetime.com</p>
+</blockquote>
+<ol>
+<li><p>评价：</p>
+</li>
+<li><p>针对问题：鉴于任何人脸图像都可以被分解成光线、纹理和图像环境的风格空间，以及一个风格不变的结构空间，本文的关键想法是利用每个个体的风格和形状空间。[2018CVPR]Style Aggregated Network for Facial Landmark Detection中显式地研究了图像风格带来的畸变现象。</p>
+</li>
+<li><p>思路：</p>
+<p>在实践中，图像内容是指对象、语义和边缘特征，而风格可以是颜色和纹理。</p>
+<p>基于人脸地标检测的目的，即通过过滤不受约束的“风格”，回归“人脸内容”，即人脸几何的主成分。定义“style”是指的是图像背景、光线、质量、是否存在眼镜等阻碍探测器识别人脸几何形状的因素。</p>
+</li>
+<li><p>实现的方法：</p>
+<p>利用风格迁移和解纠缠表征学习disentangled representation learning来处理人脸对齐问题，因为风格迁移的目的是在保留内容的同时改变风格。在不使用额外知识的情况下，增加人脸地标检测的训练。</p>
+</li>
+<li><p>方法简介：</p>
+<p>a. 不是直接生成图像来做数据增强，而是首先将人脸图像映射到结构和风格的空间中。</p>
+<p>b. 为了保证这两个空间的解纠缠，设计了一个条件变分自编码器模型，该模型将Kullback-Leiber (KL)散度损失和skip连接分别用于风格和结构的紧凑表示。通过分解这些特征，在现有的面部几何图形之间执行视觉风格转换。根据现有的人脸结构，将戴眼镜、质量较差、在模糊或强光下的人脸进行相应的风格，用于进一步训练人脸地标探测器，形成一个较为通用和健壮的人脸几何识别系统。</p>
+</li>
+</ol>
+<p><img src="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211231173635145.png" alt="image-20211231173635145"></p>
+<p>框架由两部分组成。一个是学习面部外观和结构的解离化表示，而另一个可以是任何面部标志检测器。</p>
+<p>在第一阶段，提出了条件变化自动编码器，用于学习风格和结构之间的分离表示。</p>
+<p>在第二阶段，在从其他人脸转换到风格后，带有结构的“风格化”图像可用于提高训练性能和风格不变检测器。</p>
+<ol>
+<li><p>个人的思考</p>
+<p>与第一篇文章中类似，相当于做了数据增强，增加了数据量。不同的是不是显示地改变光线或是rgb图转换成灰度，而是隐式地对于风格特征和结构特征进行了分离，在把一张图片风格迁移到其他风格。</p>
+</li>
+<li><p>实验效果</p>
+<p><img src="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/coding\stylealign结果\test_00075000.png" alt></p>
+</li>
+</ol>
+<p>   <img src="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/coding\stylealign结果\test_01000000.png" alt></p>
+<p>   上面两张图 给出了在batch_size=8的情况下，第75个epoch和1000000个 epoch数据增强 的效果。</p>
+<p>   最上面第一行是第一列各个图像地关键点，也就是人脸地结构特征。在第二行到第九行中，第一列为原始图像，之后地第二列到第九列为各个原始图像保持原始landmark结构的情况下，生成的具有风格迁移地人脸。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/" data-id="ckxv6sclq00006oup4vsf2wiw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">人脸关键点检测论文梳理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/19/web3-0/">web3.0</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/18/Few-Shot-Adaptive-Gaze-Estimation/">Few-Shot Adaptive Gaze Estimation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 iszff<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
