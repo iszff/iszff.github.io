@@ -66,6 +66,134 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-gaze综述文章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" class="article-date">
+  <time datetime="2021-11-03T03:08:18.000Z" itemprop="datePublished">2021-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/">gaze综述文章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>人的眼睛由视网膜、瞳孔、角膜、巩膜、虹膜等组成，眼睛检测是对眼睛进行定位并测量眼睛注视的过程。有几种用于注视跟踪的方法，如基于形状的、基于特征的、基于外观的和混合的方法。</p>
+<p>基于特征的凝视估计技术是通过检测眼睛的一组不同的特征，对光线和视点的差异不敏感，虹膜和瞳孔需要清晰才能正确检测，包括瞳孔的轮廓，没有角膜反射。</p>
+<p>此外，必须应用三维和基于几何的方法。相比之下，基于外观的凝视估计技术是通过提取图像内容并将其映射到屏幕上的位置来实现的。因此，寻找关注点、相关特征和个人变化是这项技术的关键步骤。这种技术的例子是流形的，包括灰度单元、交叉比、高斯插值和变形模型。</p>
+<h1 id="眼动跟踪技术"><a href="#眼动跟踪技术" class="headerlink" title="眼动跟踪技术"></a>眼动跟踪技术</h1><p>四种眼动跟踪技术已经成为该领域和开发新的眼动跟踪应用的研究重点。他们是巩膜搜索线圈技术、红外眼图(IOG)、眼电图(EOG)、眼视频图(VOG)scleral search coil technique, infrared oculography (IOG), electrooculography (EOG), and video oculography (VOG).。</p>
+<h2 id="红外眼图-IOG"><a href="#红外眼图-IOG" class="headerlink" title="红外眼图(IOG)"></a>红外眼图(IOG)</h2><p>红外眼膜照相术(IOG)技术测量从巩膜反射的红外光的强度，这提供了关于眼睛位置的各种信息。一副眼镜就能发出光。该方法主要依赖于光和瞳孔检测算法。为了解决头部运动灵敏度的问题，在应用该技术时，使用红外光源包括一个参考点，<strong>即角膜反射或闪烁</strong>。</p>
+<p>红外技术产生的干扰比EOG少。红外眼图(IOG)、眼电图(EOG)。</p>
+<p>IOG技术的一个优势是它能够平滑地处理眨眼。然而，它无法量化扭转运动。</p>
+<h2 id="Electrooculography"><a href="#Electrooculography" class="headerlink" title="Electrooculography"></a>Electrooculography</h2><p>眼动电波图测量技术，眼电描记法。</p>
+<p>眼电描记术(Electrooculography, EOG)是一种实用廉价的人机交互技术。在这种方法中，传感器被连接到眼睛周围的区域，通过<strong>测量眼睛旋转时的波动来检测电场</strong>。</p>
+<p><strong>水平和垂直的眼球运动是用电极分离记录的</strong>。然而，这种信号可以在没有眼球运动的情况下被改变。图5显示了带有传感器的可穿戴EOG设备。</p>
+<p>EOG不是一种日常使用的方法;它的应用将有利于医学领域和实验室。该方法与眼球运动呈线性相关，可以使用头部运动进行跟踪(Chennamma &amp; Yuan, 2013;Sorate et al.， 2017)。EOG眼凝视界面结构简单，易于使用。然而，由于眼球漂移和眼部疾病，EOG的使用受到限制(Tsui, Jia, Gan， &amp; Hu, 2007;Constable等人，2017)。针对这个问题已经开发了一个解决方案。用户可以使用指针和切换器轻松地打开/关闭呼叫设备，或将1位信号转发到具有高度牢固和精细度的PC (Tsui, Jia, Gan, Hu， &amp; Yuan, 2007)。</p>
+<h2 id="Video-Oculography"><a href="#Video-Oculography" class="headerlink" title="Video Oculography"></a>Video Oculography</h2><p>一个典型的装置包括一个记录眼睛运动的摄像机和一个保存和分析目光数据的电脑。VOG方法可以使用可见光或红外光。VOG是一种非侵入式系统，可以远程执行眼球追踪。</p>
+<p>基于使用的摄像机数量，有两种实现视频眼动跟踪的方法:第一种方法使用单个摄像机，而另一种方法使用多个摄像机(Majaranta &amp; Bulling, 2014)。</p>
+<p>两种类型的眼动跟踪器，远程或头部安装，如果在HCI系统中使用，由于头部位置的变化有一个主要缺点。</p>
+<p>对于远程跟踪器，这可以通过使用<strong>两个立体摄像头或一个广角摄像头来解决</strong>，以搜索前面的人，另一个指向人的脸，并放大。图6显示了一个使用两个摄像机的VOG示例。</p>
+<blockquote>
+<p>克服头部位置变化？怎么克服？</p>
+</blockquote>
+<p>单相机系统:单相机系统捕捉固定在单点上的有限视场和高分辨率图像。这种方法<strong>使用红外光源产生角膜反射</strong>，将作为注视估计的参考点。</p>
+<p>当头部移动时，闪烁明显改变其位置，瞳孔-闪烁矢量对于眼睛和头部运动保持恒定。一些商业系统使用一个摄像头和一个红外光。</p>
+<p>这种方法的主要困难是要充分捕捉高分辨率图像所需的视野有限。通过在设置中添加多个光源可以获得更好的结果(Chennamma &amp; Yuan, 2013;Sorate et al.， 2017)。</p>
+<p><strong>多相机眼动仪</strong>:需要大视场的自由头部运动。通过广角镜头相机或可移动的窄角镜头相机来实现这一目标。一个摄像头用于眼睛，另一个摄像头用于捕捉头部位置。所有从这些相机收集到的数据都被结合起来，用来估计凝视点。眼动仪系统使用两个摄像机组成一个<strong>立体视觉系统来校准瞳孔中心的计算</strong>，这是使用<strong>三维坐标</strong>实现的。</p>
+<p>从这些摄像机生成的视频，如VOG，被引入来寻找解决基于图像的眼球追踪技术面临的许多问题的方法。其中一些问题包括由于头部运动而难以发现眼睛，由于眨眼而眼睛模糊，或睫毛弯曲。VOG有助于提高眼动跟踪系统的准确性和观察眼动障碍。视频系统可以操作简单，允许头部运动和完全远程记录。然而，视频录制系统价格昂贵，需要更多的存储和具有高计算能力的设备。此外，在记录闭眼时，无法测量眼睛扭转。</p>
+<h1 id="使用机器学习的眼球追踪"><a href="#使用机器学习的眼球追踪" class="headerlink" title="使用机器学习的眼球追踪"></a>使用机器学习的眼球追踪</h1><h1 id="眼动追踪技术的方法-知乎-zhihu-com"><a href="#眼动追踪技术的方法-知乎-zhihu-com" class="headerlink" title="眼动追踪技术的方法 - 知乎 (zhihu.com)"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/159057692">眼动追踪技术的方法 - 知乎 (zhihu.com)</a></h1><p>在早期眼动追踪中，通常是直接观察的，这种方式非常的粗略。在最初的自动化系统追踪中，使用的是一种与眼睛直接接触的搜索方法，通过<strong>将一个橡胶吸盘吸在眼球表面</strong>，发明了第一个可以记录数据的眼动仪，这种眼动仪非常的不方便，且不舒适。</p>
+<p>1963最早的眼动追踪电子系统之一是<strong>电磁巩膜搜索线圈</strong>。它们被嵌入到专用的隐形眼镜中，并且将导线连接到记录设备。根据眼睛运动产生的感应电压来记录眼动轨迹，该系统具有很高的精度和速度，但是在进行实验时是侵入式的，且需要先麻醉人的眼睛，将实验用的设备吸附早眼球上，通常的实验环境是在法拉第笼中，该方法对参与者的眼睛影响较大，有一定的生理伤害。</p>
+<p>双眼浦肯（Purkinje）成像系统（DPI）等眼动追踪设备虽然没有物理接触到眼睛</p>
+<h2 id="非侵入式眼动技术主要采用的追踪方法主要有1-巩膜一虹膜边缘法、2-瞳孔追踪方法、3-瞳孔一角膜反射法。"><a href="#非侵入式眼动技术主要采用的追踪方法主要有1-巩膜一虹膜边缘法、2-瞳孔追踪方法、3-瞳孔一角膜反射法。" class="headerlink" title="非侵入式眼动技术主要采用的追踪方法主要有1.巩膜一虹膜边缘法、2.瞳孔追踪方法、3.瞳孔一角膜反射法。"></a>非侵入式眼动技术主要采用的追踪方法主要有1.巩膜一虹膜边缘法、2.瞳孔追踪方法、3.瞳孔一角膜反射法。</h2><h3 id="1-巩膜一虹膜边缘法"><a href="#1-巩膜一虹膜边缘法" class="headerlink" title="1.巩膜一虹膜边缘法"></a>1.巩膜一虹膜边缘法</h3><p>利用红外光照射人眼，在眼睛附近安装的两只红外光敏管用来接收巩膜和虹膜边缘处两部分反射的红外光。当眼球向一侧运动时，虹膜就转向这边，这一侧的光敏管所接受的红外线就会减少;而另一侧的巩膜反射部分增加，导致这边的光敏管所接受的红外线增加。利用这个差分信号就能无接触的测出眼动。这种方法的水平精度较高，垂直精度较低、干扰大、头部误差大。</p>
+<p>利用红外线差分信号。</p>
+<blockquote>
+<p>在现在大多数基于视频的眼动跟踪系统都包括一个红外摄像机，红外光（IR）照明器以及用于瞳孔中心检测和伪影排除的眼动追踪算法，图像处理和数据收集由专用硬件处理或者由计算机（Host PC）或软件处理。基于红外的照明具有多个优点：参与者在很大程度上看不到照明，并且可以通过波长过滤来自人造光源的伪影。</p>
+</blockquote>
+<h3 id="2-瞳孔追踪方法"><a href="#2-瞳孔追踪方法" class="headerlink" title="2.瞳孔追踪方法"></a>2.瞳孔追踪方法</h3><p>现在眼动仪中常用的两种近红外眼动追踪技术：明瞳和暗瞳。它们的差异基于照明源相对于光学系统的位置。</p>
+<p>如果照明与光路同轴，则当光从视网膜反射时，眼睛将充当反射器，从而产生类似于红眼的明亮瞳孔效果。</p>
+<p>如果照明源偏离光路，则瞳孔会变暗，因为来自视网膜的回射被定向为远离相机。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-fc125c419a01a7baa7e9ab0c93ef4a86_720w.jpg" alt="img"></p>
+<h3 id="3-瞳孔-角膜反射追踪方法"><a href="#3-瞳孔-角膜反射追踪方法" class="headerlink" title="3.瞳孔-角膜反射追踪方法"></a>3.瞳孔-角膜反射追踪方法</h3><p>首先利用眼摄像机拍摄眼睛图像，接着通过图像处理得到瞳孔中心位置。然后把角膜反射点（黄色斑点）作为眼摄像机和眼球的相对位置的基点，根据图像处理得到的瞳孔中心即可以得到视线向量坐标，从而确定人眼注视点。</p>
+<p><img src="https://pic4.zhimg.com/v2-c047bc5b78bca574f785d4c2dc55aea7_r.jpg" alt="preview"></p>
+<blockquote>
+<p>怎么得到角膜反射点？</p>
+<p>使用rgb的数据集是怎么label的，做一次实验就知道了。</p>
+</blockquote>
+<p>在找到较好的瞳孔-角膜反射点后，通过一些校准程序，找出瞳孔与角膜反射点间组成的向量与屏幕注视点之间的映射函数，然后通过检测瞳孔-角膜向量的变化量，实时跟踪出人在屏幕中所凝视的兴趣点。</p>
+<p>由于人眼形状，大小，结构，存在个体差异，眼睛球面上的点在摄像机参照系中的投影点位置和眼睛转动角度之间存在非线性关系，并且视线估计方向与真实视线方向有模型误差，所以视线跟踪系统需要校准环节。</p>
+<p><img src="https://pic1.zhimg.com/v2-141ec7bc86c26ee912167377e25dc6fc_r.jpg" alt="preview"></p>
+<p>校准点可以是一点，也可以是3点、5点、9点以及13点，校准点数依据实验任务的不同而不同，该算法在每个目标的眼睛位置（减去CR）和注视位置之间创建数学转换，然后创建一个矩阵来覆盖整个校准区域，并在每个点之间进行插值。使用的校准点越多，在整个视场中的精度就越高，越均匀。</p>
+<p>在EyeLink系统中，除了校准过程外，还有一个过程是验证过程。因为在大多数时候校准是需要受试者一定的配合和能力的，因此在大多数情况下，需要进行验证校准过程产生的误差。比如：以下9点校准。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-d1e2edb5067000110a05c7ff670440de_720w.jpg" alt="img"></p>
+<p>当平均值小于1度，最大值小于1.5度时，会显示绿色，说明是GOOD；当平均值小于1.5度，最大值小于2度时，会显示灰色，说明是FAIR；当平均值大于1.5度，最大值大于2度时，会显示红色，说明是POOR，在大多数情况下，需要调整到GOOD情况下，才能被允许进行实验数据的收集，对于大多数实验来说，超过1度被认为是校准失败，需要再次校准。</p>
+<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>1、瞳孔遮挡</p>
+<p>在当前的眼动仪中，很明确的需要瞳孔无遮挡的视线，浓厚的眼睫毛有可能会被误认为瞳孔，从而使眼动追踪无法继续进行，当然，在绝大多数时候，即使瞳孔被部分遮挡，当前的眼动仪也可以根据算法确定中心，但是在某个点上，如果被遮挡足够多，眼动追踪也会无法继续进行。我们目前依然保持着较高的信心，这种情况发生的事件很小。</p>
+<p>2、眼部化妆</p>
+<p>简单来说，做眼动实验前，要求受试者不要化眼部妆，而且不要带美瞳，它会造成红外的照射不能完全捕捉瞳孔区域。</p>
+<p>3、眼睛度数</p>
+<p>一般建议是超过800度以上的或者是有严重的散光的被试，将会被排除在外。任何眼镜都会使拍摄的眼睛变形，有可能会减少一些反射的红外照明光源，在现代的眼动仪中，能追踪到低度数的眼动，这是可以的，但是也需要注意，在进行实验时，尽可能的不戴有黑色镜框的眼镜，它可能会遮挡或被误认为瞳孔区域进而眼动追踪无法继续。</p>
+<h1 id="Vision-based-Gaze-Estimation-A-Review"><a href="#Vision-based-Gaze-Estimation-A-Review" class="headerlink" title="Vision-based Gaze Estimation: A Review"></a>Vision-based Gaze Estimation: A Review</h1><p>从元学习、因果推理、解纠缠表征和无约束注视估计的社会注视行为等方面指出了注视估计未来的研究方向和挑战。</p>
+<h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><p>头部姿势可以粗略地决定注视的方向。然而，头部姿势不足以描述人的注视，因为眼睛可以旋转。为了更好地描述人眼注视，除了考虑头部姿态外，还需要从眼睛区域中提取与注视相关的特征。</p>
+<p>因此，鲁棒的凝视估计需要从头部姿态和凝视中提取具有代表性的信息，以多粒度描述人眼的注视。</p>
+<p>头部姿势变化的一个影响是眼睛位置的变化。为了提取高度相关的注视特征，需要从原始图像中裁剪出眼睛区域或人脸区域，以去除噪声背景。人脸地标通常作为参考点来裁剪所需区域。然后，可以提取凝视特征，但仍然会出现外观变化。头部运动的另一个影响是，当考虑头部运动时，眼睛的外观发生了显著变化。</p>
+<blockquote>
+<p>头的运动影响的是,眼睛的位置和外观。</p>
+</blockquote>
+<p><img src="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211105101710286.png" alt="image-20211105101710286"></p>
+<blockquote>
+<p>使用UnityEye生成的不同头部姿势(偏斜:30°，0°，-30°)下，眼睛外观随相同的注视角度变化。例如，从左到右，虹膜中心与眼角之间的相对位置变化明显</p>
+</blockquote>
+<p>凝视和头姿在现有数据集中的分布不均匀，这也导致了凝视和头姿之间的过拟合。假设没有提取姿态不敏感特征，当训练样本和测试样本不服从独立同分布假设时，训练模型将无法估计注视量。</p>
+<p><img src="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211104112538152.png" alt></p>
+<h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="5-Y-Sugano-Y-Matsushita-and-Y-Sato-“Learning-bysynthesis-for-appearance-based-3d-gaze-estimation-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-CVPR-2014-pp-1821–-1828"><a href="#5-Y-Sugano-Y-Matsushita-and-Y-Sato-“Learning-bysynthesis-for-appearance-based-3d-gaze-estimation-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-CVPR-2014-pp-1821–-1828" class="headerlink" title="[5] Y. Sugano, Y. Matsushita, and Y. Sato, “Learning-bysynthesis for appearance-based 3d gaze estimation,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014, pp. 1821– 1828."></a>[5] Y. Sugano, Y. Matsushita, and Y. Sato, “Learning-bysynthesis for appearance-based 3d gaze estimation,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014, pp. 1821– 1828.</h3><p>通过训练一个随机回归森林模型来<strong>学习眼睛区域和眼睛注视点之间的映射函数</strong>。具体来说，回归森林模型中的每棵回归树都针对每一个冗余聚类进行训练。来重建眼睛区域。</p>
+<h3 id="6-类似的聚类方案也用于处理头部姿态的方差。"><a href="#6-类似的聚类方案也用于处理头部姿态的方差。" class="headerlink" title="[6]类似的聚类方案也用于处理头部姿态的方差。"></a>[6]类似的聚类方案也用于处理头部姿态的方差。</h3><p>但是，为每个集群训练多个模型会增加计算复杂度。</p>
+<h3 id="7-R-Ranjan-S-D-Mello-and-J-Kautz-“Light-weight-head-pose-invariant-gaze-tracking-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-Los-Alamitos-CA-USA-IEEE-Computer-Society-jun-2018-pp-2237–-22-378"><a href="#7-R-Ranjan-S-D-Mello-and-J-Kautz-“Light-weight-head-pose-invariant-gaze-tracking-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-Los-Alamitos-CA-USA-IEEE-Computer-Society-jun-2018-pp-2237–-22-378" class="headerlink" title="[7] R. Ranjan, S. D. Mello, and J. Kautz, “Light-weight head pose invariant gaze tracking,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). Los Alamitos, CA, USA: IEEE Computer Society, jun 2018, pp. 2237– 22 378."></a>[7] R. Ranjan, S. D. Mello, and J. Kautz, “Light-weight head pose invariant gaze tracking,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). Los Alamitos, CA, USA: IEEE Computer Society, jun 2018, pp. 2237– 22 378.</h3><p>受聚类方法的启发，提出了一种新的卷积神经网络模型即由5个卷积层(conv1-conv5)和1个全连接层(fc1)组成的卷积神经网络模型。与训练多元回归模型不同的是，该CNN模型<strong>根据梯度更新conv1-conv5和fc1的权值来学习注视表示</strong>，然后在fc1之后<strong>利用学习到的注视表示</strong>和来自相应<strong>头部姿态聚类的头部姿态向量</strong>进一步更新多个CNN流。每个流在fc1之后有两个完全连接的层。该方案充分利用有限的数据学习基本的注视表示，然后根据不同的头部姿态调整注视表示。</p>
+<h2 id="人脸正面化"><a href="#人脸正面化" class="headerlink" title="人脸正面化"></a>人脸正面化</h2><blockquote>
+<p>基于人脸正面化的方法的主要思想是重建一个三维的人脸模型。人脸可以被转换为正面，这样就可以消除头部的方差。</p>
+<p>虽然人脸frontalization方法可以生成一个正面人脸，但如果没有捕获部分眼睛区域，眼睛外观仍然不完整，降低了凝视估计。</p>
+</blockquote>
+<h3 id="8-Q-Shi-S-Nobuhara-and-T-Matsuyama-“3d-face-reconstruction-and-gaze-estimation-from-multi-view-video-using-symmetry-prior-”-Ipsj-Transactions-on-Computer-Vision-and-Applications-vol-4-pp-149–160-2012"><a href="#8-Q-Shi-S-Nobuhara-and-T-Matsuyama-“3d-face-reconstruction-and-gaze-estimation-from-multi-view-video-using-symmetry-prior-”-Ipsj-Transactions-on-Computer-Vision-and-Applications-vol-4-pp-149–160-2012" class="headerlink" title="[8] Q. Shi, S. Nobuhara, and T. Matsuyama, “3d face reconstruction and gaze estimation from multi-view video using symmetry prior,” Ipsj Transactions on Computer Vision and Applications, vol. 4, pp. 149–160, 2012."></a>[8] Q. Shi, S. Nobuhara, and T. Matsuyama, “3d face reconstruction and gaze estimation from multi-view video using symmetry prior,” Ipsj Transactions on Computer Vision and Applications, vol. 4, pp. 149–160, 2012.</h3><p>Qun等人[8]提出了一种基于<strong>对称先验知识的三维重建方法用于注视估计</strong>。该方法首先从多个摄像机的三维网格数据和视频中<strong>检测出人脸区域。然后提取人脸的关键点，得到对称平面。</strong>其次，在对称平面的基础上，<strong>利用对称先验知识重建三维人脸模型</strong>，然后利用超解绘制方法绘制出虚拟正面人脸图像。最后，在虹膜直径等于眼球半径的假设下，<strong>将二维虹膜中心映射到三维眼球模型，得到三维虹膜位置和三维眼球中心</strong>。因此，凝视方向就是从三维眼球中心到三维虹膜中心的连线。</p>
+<h3 id="9-K-A-Funes-Mora-and-J-Odobez-“Gaze-estimation-from-multimodal-kinect-data-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-2012-pp-25–30-10-K-A-Funes-Mora-and-J-M-Odobez-“Gaze-estimation-in-the-3d-space-using-rgb-d-sensors-”-International-Journal-of-Computer-Vision-vol-118-no-2-pp-194–-216-2016"><a href="#9-K-A-Funes-Mora-and-J-Odobez-“Gaze-estimation-from-multimodal-kinect-data-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-2012-pp-25–30-10-K-A-Funes-Mora-and-J-M-Odobez-“Gaze-estimation-in-the-3d-space-using-rgb-d-sensors-”-International-Journal-of-Computer-Vision-vol-118-no-2-pp-194–-216-2016" class="headerlink" title="[9] K. A. Funes Mora and J. Odobez, “Gaze estimation from multimodal kinect data,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 2012, pp. 25–30. [10] K. A. Funes-Mora and J. M. Odobez, “Gaze estimation in the 3d space using rgb-d sensors,” International Journal of Computer Vision, vol. 118, no. 2, pp. 194– 216, 2016."></a>[9] K. A. Funes Mora and J. Odobez, “Gaze estimation from multimodal kinect data,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 2012, pp. 25–30. [10] K. A. Funes-Mora and J. M. Odobez, “Gaze estimation in the 3d space using rgb-d sensors,” International Journal of Computer Vision, vol. 118, no. 2, pp. 194– 216, 2016.</h3><p>提出首先在离线阶段基于三维变形模型学习一个针对特定人群的三维网格模型，然后在在线阶段根据深度数据估计头部姿态。通过头部姿态和三维网格数据，可以进一步生成正面。最后，凝视可以从裁剪的眼睛图像学习，然后映射回WCS坐标系。</p>
+<h3 id="11-R-S-Ghiass-and-O-Arandjelovic-“Highly-accurate-gaze-estimation-using-a-consumer-rgb-d-sensor-”-in-Proceedings-of-the-Twenty-Fifth-International-Joint-Conference-on-Artificial-Intelligence-ser-IJCAI16-AAAI-Press-2016-p-33683374"><a href="#11-R-S-Ghiass-and-O-Arandjelovic-“Highly-accurate-gaze-estimation-using-a-consumer-rgb-d-sensor-”-in-Proceedings-of-the-Twenty-Fifth-International-Joint-Conference-on-Artificial-Intelligence-ser-IJCAI16-AAAI-Press-2016-p-33683374" class="headerlink" title="[11] R. S. Ghiass and O. Arandjelovic, “Highly accurate gaze estimation using a consumer rgb-d sensor,” in Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence, ser. IJCAI16. AAAI Press, 2016, p. 33683374."></a>[11] R. S. Ghiass and O. Arandjelovic, “Highly accurate gaze estimation using a consumer rgb-d sensor,” in Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence, ser. IJCAI16. AAAI Press, 2016, p. 33683374.</h3><p>Reza Shoja和Ognjen[11]提出了一个准确的头部姿势估计。采用基于人的变形模型，采用迭代最近点算法在深度空间中估计头部姿态。然后，通过变换和重渲染得到合成的人脸。最后，从合成图像的外观特征中回归凝视方向。该方法在被试头部运动时的平均误差为8.9°</p>
+<h3 id="12-L-A-Jeni-and-J-F-Cohn-“Person-independent-3d-gaze-estimation-using-face-frontalization-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-Los-Alamitos-CA-USA-IEEE-Computer-Society-jul-2016-pp-792–800"><a href="#12-L-A-Jeni-and-J-F-Cohn-“Person-independent-3d-gaze-estimation-using-face-frontalization-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-Workshops-CVPRW-Los-Alamitos-CA-USA-IEEE-Computer-Society-jul-2016-pp-792–800" class="headerlink" title="[12] L. A. Jeni and J. F. Cohn, “Person-independent 3d gaze estimation using face frontalization,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). Los Alamitos, CA, USA: IEEE Computer Society, jul 2016, pp. 792–800."></a>[12] L. A. Jeni and J. F. Cohn, “Person-independent 3d gaze estimation using face frontalization,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). Los Alamitos, CA, USA: IEEE Computer Society, jul 2016, pp. 792–800.</h3><p>检测人脸上<strong>密集的标记，并使用级联回归进行二维到三维的桥接。</strong>然后，通过求解优化问题进行三维面重建。在人脸正面化后，从6个眼睛计数器标记和1个瞳孔标记中提取二值特征，训练线性支持向量回归器，将注视特征映射到注视方向。在UT-Multiview数据集上的平均误差为4.2867°。</p>
+<h2 id="特征融合"><a href="#特征融合" class="headerlink" title="特征融合"></a>特征融合</h2><p>特征融合通过考虑多模型特征来提高特征表示能力，从而提高分类或回归的性能。因此，<strong>头部姿态向量与注视特征的融合</strong>也是对抗头部姿态方差的有效方法。</p>
+<p>采用了简单的连续融合凝视特征和头部姿态的方案，简单明了。</p>
+<h3 id="13-R-Jafari-and-D-Ziou-“Gaze-estimation-using-kinect-ptz-camera-”-in-2012-IEEE-International-Symposium-on-Robotic-and-Sensors-Environments-Proceedings-2012-pp-13–18-14-R-Jafari-and-D-Ziou-“Eye-gaze-estimation-under-various-head-positions-and-iris-states-”-Expert-Systems-with-Applications-vol-42-no-1-pp-510–518-2015"><a href="#13-R-Jafari-and-D-Ziou-“Gaze-estimation-using-kinect-ptz-camera-”-in-2012-IEEE-International-Symposium-on-Robotic-and-Sensors-Environments-Proceedings-2012-pp-13–18-14-R-Jafari-and-D-Ziou-“Eye-gaze-estimation-under-various-head-positions-and-iris-states-”-Expert-Systems-with-Applications-vol-42-no-1-pp-510–518-2015" class="headerlink" title="[13] R. Jafari and D. Ziou, “Gaze estimation using kinect/ptz camera,” in 2012 IEEE International Symposium on Robotic and Sensors Environments Proceedings, 2012, pp. 13–18. [14] R. Jafari and D. Ziou, “Eye-gaze estimation under various head positions and iris states,” Expert Systems with Applications, vol. 42, no. 1, pp. 510–518, 2015"></a>[13] R. Jafari and D. Ziou, “Gaze estimation using kinect/ptz camera,” in 2012 IEEE International Symposium on Robotic and Sensors Environments Proceedings, 2012, pp. 13–18. [14] R. Jafari and D. Ziou, “Eye-gaze estimation under various head positions and iris states,” Expert Systems with Applications, vol. 42, no. 1, pp. 510–518, 2015</h3><p>Jafari和Ziou使用<strong>kinect估计头部姿势</strong>，并使用主动高清摄像机捕捉眼睛区域[13,14]。然后，从眼睛区域提取<strong>虹膜位移矢量和参考点</strong>。最后，<strong>结合虹膜位移向量、头部位置和头部姿态</strong>，采用变分贝叶斯多项式logistic回归估计凝视方向。</p>
+<h3 id="15-X-Zhang-Y-Sugano-M-Fritz-and-A-Bulling-“Appearance-based-gaze-estimation-in-the-wild-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-CVPR-2015-pp-4511–4520"><a href="#15-X-Zhang-Y-Sugano-M-Fritz-and-A-Bulling-“Appearance-based-gaze-estimation-in-the-wild-”-in-Proceedings-of-the-IEEE-Conference-on-Computer-Vision-and-Pattern-Recognition-CVPR-2015-pp-4511–4520" class="headerlink" title="[15] X. Zhang, Y. Sugano, M. Fritz, and A. Bulling, “Appearance-based gaze estimation in the wild,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015, pp. 4511–4520"></a>[15] X. Zhang, Y. Sugano, M. Fritz, and A. Bulling, “Appearance-based gaze estimation in the wild,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015, pp. 4511–4520</h3><p>Zhang等人[15]提出利用CNN从眼睛图像中提取凝视表征。具体来说，它首先通过旋转和平移相机到眼睛中心的眼睛区域。然后，将归一化后的眼睛图像和头部姿态矢量输入Lenet模型，利用眼睛姿态矢量和头部姿态矢量进行回归分析。该方法在MPIIGaze数据集上的平均误差为6.3°。</p>
+<h3 id="16-X-Zhang-Y-Sugano-M-Fritz-and-A-Bulling-“Mpiigaze-Real-world-dataset-and-deep-appearance-based-gaze-estimation-”-IEEE-Trans-Pattern-Anal-Mach-Intell-vol-PP-no-99-pp-1–1-2017"><a href="#16-X-Zhang-Y-Sugano-M-Fritz-and-A-Bulling-“Mpiigaze-Real-world-dataset-and-deep-appearance-based-gaze-estimation-”-IEEE-Trans-Pattern-Anal-Mach-Intell-vol-PP-no-99-pp-1–1-2017" class="headerlink" title="[16] X. Zhang, Y. Sugano, M. Fritz, and A. Bulling, “Mpiigaze: Real-world dataset and deep appearance-based gaze estimation,” IEEE Trans Pattern Anal Mach Intell, vol. PP, no. 99, pp. 1–1, 2017."></a>[16] X. Zhang, Y. Sugano, M. Fritz, and A. Bulling, “Mpiigaze: Real-world dataset and deep appearance-based gaze estimation,” IEEE Trans Pattern Anal Mach Intell, vol. PP, no. 99, pp. 1–1, 2017.</h3><p>采用VGG-16模型代替Lenet模型，[16]进一步提高了性能，平均误差为5.5°。在MPIIGaze数据集中，右眼水平翻转。</p>
+<h3 id="18-J-Lemley-A-Kar-A-Drimbarean-and-P-Corcoran-“Convolutional-neural-network-implementation-for-eyegaze-estimation-on-low-quality-consumer-imaging-systems-”-IEEE-Transactions-on-Consumer-Electronics-vol-65-no-2-pp-179–187-2019"><a href="#18-J-Lemley-A-Kar-A-Drimbarean-and-P-Corcoran-“Convolutional-neural-network-implementation-for-eyegaze-estimation-on-low-quality-consumer-imaging-systems-”-IEEE-Transactions-on-Consumer-Electronics-vol-65-no-2-pp-179–187-2019" class="headerlink" title="[18] J. Lemley, A. Kar, A. Drimbarean, and P. Corcoran, “Convolutional neural network implementation for eyegaze estimation on low-quality consumer imaging systems,” IEEE Transactions on Consumer Electronics, vol. 65, no. 2, pp. 179–187, 2019."></a>[18] J. Lemley, A. Kar, A. Drimbarean, and P. Corcoran, “Convolutional neural network implementation for eyegaze estimation on low-quality consumer imaging systems,” IEEE Transactions on Consumer Electronics, vol. 65, no. 2, pp. 179–187, 2019.</h3><p>然而，Lemley等人[18]证明，将两只眼睛都视为地面真理而不是将一只眼睛翻转到另一只眼睛，可以提高性能。此外，通过将5x5卷积替换为3x3卷积，并使用relu激活以及融合眼睛图像和头部姿态向量作为CNN的输入，进一步将MPIIGaze数据集上的注视估计平均误差提高到3.65°。</p>
+<h3 id="17-H-Sun-C-Yang-and-S-Lai-“A-deep-learning-approach-to-appearance-based-gaze-estimation-under-head-pose-variations-”-in-2017-4th-IAPR-Asian-Conference-on-Pattern-Recognition-ACPR-2017-pp-935–940"><a href="#17-H-Sun-C-Yang-and-S-Lai-“A-deep-learning-approach-to-appearance-based-gaze-estimation-under-head-pose-variations-”-in-2017-4th-IAPR-Asian-Conference-on-Pattern-Recognition-ACPR-2017-pp-935–940" class="headerlink" title="[17] H. Sun, C. Yang, and S. Lai, “A deep learning approach to appearance-based gaze estimation under head pose variations,” in 2017 4th IAPR Asian Conference on Pattern Recognition (ACPR), 2017, pp. 935–940."></a>[17] H. Sun, C. Yang, and S. Lai, “A deep learning approach to appearance-based gaze estimation under head pose variations,” in 2017 4th IAPR Asian Conference on Pattern Recognition (ACPR), 2017, pp. 935–940.</h3><p>Sun等人[17]提出了一种多流CNN模型，该模型由4个并行的VGG模型组成，分别从眼睛和面部区域提取凝视特征和头部姿态。最终的凝视输出是所有流的平均值。结果是UT-Multiview数据集上的平均误差为6°。</p>
+<h3 id="19-D-Lian-Z-Zhang-W-Luo-L-Hu-M-Wu-Z-Li-J-Yu-and-S-Gao-“Rgbd-based-gaze-estimation-via-multitask-cnn-”-in-Proceedings-of-the-AAAI-Conference-on-Artificial-Intelligence-vol-33-no-01-2019-pp-2488–-2495"><a href="#19-D-Lian-Z-Zhang-W-Luo-L-Hu-M-Wu-Z-Li-J-Yu-and-S-Gao-“Rgbd-based-gaze-estimation-via-multitask-cnn-”-in-Proceedings-of-the-AAAI-Conference-on-Artificial-Intelligence-vol-33-no-01-2019-pp-2488–-2495" class="headerlink" title="[19] D. Lian, Z. Zhang, W. Luo, L. Hu, M. Wu, Z. Li, J. Yu, and S. Gao, “Rgbd based gaze estimation via multitask cnn,” in Proceedings of the AAAI Conference on Artificial Intelligence, vol. 33, no. 01, 2019, pp. 2488– 2495."></a>[19] D. Lian, Z. Zhang, W. Luo, L. Hu, M. Wu, Z. Li, J. Yu, and S. Gao, “Rgbd based gaze estimation via multitask cnn,” in Proceedings of the AAAI Conference on Artificial Intelligence, vol. 33, no. 01, 2019, pp. 2488– 2495.</h3><p>Lian等人[19]提出了一种基于多流多任务的CNN模型。该模型从RGB图像和经过GAN精炼的深度图中，从裁剪过的眼睛图像和全人脸的头部姿态信息中学习凝视特征。然后，学习到的头部姿势信息与凝视特征连接在一起。在EYEDIAP和ShanghaiTechGaze数据集上的平均误差分别为4.8°和38.7 mm。</p>
+<h2 id="几何特性的方法"><a href="#几何特性的方法" class="headerlink" title="几何特性的方法"></a>几何特性的方法</h2><blockquote>
+<p>使用眼球模型的几何知识和不同坐标系之间的转换来补偿头部运动引起的偏差的研究。</p>
+</blockquote>
+<p><img src="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211104112608127.png" alt="image-20211104112608127"></p>
+<p><img src="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211104112700336.png" alt="image-20211104112700336"></p>
+<p><img src="/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211104112735277.png" alt="image-20211104112735277"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/11/03/gaze%E7%BB%BC%E8%BF%B0%E6%96%87%E7%AB%A0/" data-id="ckvnk2k0600028sup75tadjch" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-gaze大佬主页" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/10/31/gaze%E5%A4%A7%E4%BD%AC%E4%B8%BB%E9%A1%B5/" class="article-date">
@@ -806,6 +934,7 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 </blockquote>
 <p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>官方给了两种思路</p>
 <h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
 <p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
@@ -866,7 +995,8 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 </li>
 <li><p><strong>初始状态：</strong> dp[0] = 0，即首日利润为 0 ；</p>
 </li>
-<li><strong>返回值：</strong> dp[n - 1] ，其中 <em>n</em> 为 <em>dp</em> 列表长度。</li>
+<li><p><strong>返回值：</strong> dp[n - 1] ，其中 <em>n</em> 为 <em>dp</em> 列表长度。</p>
+</li>
 </ul>
 <h1 id="20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114 贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/tan-xin-fen-zhi-dong-tai-gui-hua-fa-by-luo-jing-yu/">贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>分治没怎么明白</p>
 <h1 id="20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114<a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/0akb5U/">十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://www.iamshuaidi.com/">帅地玩编程-校招|面试|学习路线，你都可以在这里找到 (iamshuaidi.com)</a>面试经验</p>
@@ -896,11 +1026,12 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <h1 id="20211127三种方法：-DFS-BFS-回溯（递归-迭代）-二叉树中和为某一值的路径-力扣（LeetCode）-leetcode-cn-com-二叉树路径寻找"><a href="#20211127三种方法：-DFS-BFS-回溯（递归-迭代）-二叉树中和为某一值的路径-力扣（LeetCode）-leetcode-cn-com-二叉树路径寻找" class="headerlink" title="20211127三种方法： DFS, BFS, 回溯（递归 + 迭代） - 二叉树中和为某一值的路径 - 力扣（LeetCode） (leetcode-cn.com)二叉树路径寻找"></a>20211127<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/solution/san-chong-fang-fa-dfs-bfs-hui-su-di-gui-die-dai-by/">三种方法： DFS, BFS, 回溯（递归 + 迭代） - 二叉树中和为某一值的路径 - 力扣（LeetCode） (leetcode-cn.com)</a>二叉树路径寻找</h1><h1 id="20211129-二叉树的最近公共祖先-二叉树的最近公共祖先-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-二叉树的最近公共祖先-二叉树的最近公共祖先-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129 二叉树的最近公共祖先 - 二叉树的最近公共祖先 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/er-cha-shu-de-zui-jin-gong-gong-zu-xian-6fdt7/">二叉树的最近公共祖先 - 二叉树的最近公共祖先 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/512814">https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/512814</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/1076018">https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/1076018</a></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 若树里面存在p，也存在q，则返回他们的公共祖先。</span><br><span class="line"><span class="bullet">2.</span> 若树里面只存在p，或只存在q，则返回存在的那一个。</span><br><span class="line"><span class="bullet">3.</span> 若树里面既不存在p，也不存在q，则返回null。</span><br></pre></td></tr></table></figure>
-<h1 id="20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129  11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129  <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/container-with-most-water-shuang-zhi-zhen-fa-yi-do/">11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2021130剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>2021130<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-di-gui-fa-qin/">剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211202面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/">面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com"><a href="#202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202112024种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/">4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign (">C++ vector::assign()用法及代码示例 - 纯净天空 (vimsky.com)</a>是C%2B%2B中的STL，它通过替换旧元素为向量元素分配新值。 如果需要，它也可以修改向量的大小。 size-必须从头开始分配的元素数。 first,- 输入迭代器到初始位置范围。 last - 输入迭代器到最终位置范围。)</p>
+
+<h1 id="20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129  11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129  <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/container-with-most-water-shuang-zhi-zhen-fa-yi-do/">11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2021130剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>2021130<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-di-gui-fa-qin/">剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211202面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/">面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com"><a href="#202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202112024种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/">4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>[C++ vector::assign()用法及代码示例 - 纯净天空 (vimsky.com)](<a target="_blank" rel="noopener" href="https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign">https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign</a> ()是C%2B%2B中的STL，它通过替换旧元素为向量元素分配新值。 如果需要，它也可以修改向量的大小。 size-必须从头开始分配的元素数。 first,- 输入迭代器到初始位置范围。 last - 输入迭代器到最终位置范围。)</p>
 <h1 id="20211209【图解】我们之前可能没有搞懂这个题-把数组排成最小的数-力扣（LeetCode）-leetcode-cn-com"><a href="#20211209【图解】我们之前可能没有搞懂这个题-把数组排成最小的数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211209【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211209<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/tu-jie-wo-men-zhi-qian-ke-neng-mei-you-g-gcr3/">【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/tu-jie-wo-men-zhi-qian-ke-neng-mei-you-g-gcr3/">【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p>正确性、然后反正。</p>
 <h1 id="20211210强连通分量"><a href="#20211210强连通分量" class="headerlink" title="20211210强连通分量"></a>20211210强连通分量</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/4z7ODk/">【MIX】强连通分量(1) Tarjan SCC 缩点 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/NQumVG/#前文链接-强连通分量1">【MIX】强连通分量(2) Kosaraju &amp; 扩展 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/NQumVG/#%E5%89%8D%E6%96%87%E9%93%BE%E6%8E%A5-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F1">【MIX】强连通分量(2) Kosaraju &amp; 扩展 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/caJVAv/">图的相关算法 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58585315">leetcode刷题（四）：搜索(深度优先搜索,广度优先搜索）拓扑排序，强连通分量 - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coloring-a-border/solution/ke-neng-shi-ke-du-xing-zui-qiang-de-ti-j-q6lu/">可能是可读性最强的题解。（TypeScript） - 边界着色 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
@@ -911,6 +1042,9 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <p>请问大佬判断重复字符条件这里 !vis[j - 1] &amp;&amp; s[j - 1] == s[j] 是啥意思？</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/994831">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/994831</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrack</span>(<span class="params">路径, 选择列表</span>):</span></span><br><span class="line">    <span class="keyword">if</span> 满足结束条件:</span><br><span class="line">        result.add(路径)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 选择列表:</span><br><span class="line">        做选择</span><br><span class="line">        backtrack(路径, 选择列表)</span><br><span class="line">        撤销选择</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="20211211下一个排列算法详解：思路-推导-步骤，看不懂算我输！-下一个排列-力扣（LeetCode）-leetcode-cn-com"><a href="#20211211下一个排列算法详解：思路-推导-步骤，看不懂算我输！-下一个排列-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211211下一个排列算法详解：思路+推导+步骤，看不懂算我输！ - 下一个排列 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211211<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-permutation/solution/xia-yi-ge-pai-lie-suan-fa-xiang-jie-si-lu-tui-dao-/">下一个排列算法详解：思路+推导+步骤，看不懂算我输！ - 下一个排列 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213一个模板刷遍所有字符串句子题目！（归纳总结-分类模板-题目分析）-翻转单词顺序-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213一个模板刷遍所有字符串句子题目！（归纳总结-分类模板-题目分析）-翻转单词顺序-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213一个模板刷遍所有字符串句子题目！（归纳总结+分类模板+题目分析） - 翻转单词顺序 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/yi-ge-mo-ban-shua-bian-suo-you-zi-fu-chu-x6vh/">一个模板刷遍所有字符串句子题目！（归纳总结+分类模板+题目分析） - 翻转单词顺序 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213剑指-Offer-31-栈的压入、弹出序列-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213剑指-Offer-31-栈的压入、弹出序列-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213剑指 Offer 31. 栈的压入、弹出序列 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/">剑指 Offer 31. 栈的压入、弹出序列 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="https-leetcode-cn-com-problems-zhan-de-ya-ru-dan-chu-xu-lie-lcof-solution-mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2-507148"><a href="#https-leetcode-cn-com-problems-zhan-de-ya-ru-dan-chu-xu-lie-lcof-solution-mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2-507148" class="headerlink" title="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148">https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148</a></h1><h1 id="20211215剑指-Offer-14-I-剪绳子-力扣（LeetCode）-leetcode-cn-com"><a href="#20211215剑指-Offer-14-I-剪绳子-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211215剑指 Offer 14- I. 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211215<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/">剑指 Offer 14- I. 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/">剑指 Offer 14- I. 剪绳子，还是动态规划好理解，但是贪心真的快 - 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/integer-break/">343. 整数拆分 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h1 id="20211215剑指-Offer-19-正则表达式匹配-力扣（LeetCode）-leetcode-cn-com"><a href="#20211215剑指-Offer-19-正则表达式匹配-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211215剑指 Offer 19. 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211215<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/">剑指 Offer 19. 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213面试题29-顺时针打印矩阵（模拟、设定边界，清晰图解）-顺时针打印矩阵-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213面试题29-顺时针打印矩阵（模拟、设定边界，清晰图解）-顺时针打印矩阵-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213面试题29. 顺时针打印矩阵（模拟、设定边界，清晰图解） - 顺时针打印矩阵 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/">面试题29. 顺时针打印矩阵（模拟、设定边界，清晰图解） - 顺时针打印矩阵 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202111216面试题16-数值的整数次方（快速幂，清晰图解）-数值的整数次方-力扣（LeetCode）-leetcode-cn-com"><a href="#202111216面试题16-数值的整数次方（快速幂，清晰图解）-数值的整数次方-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202111216面试题16. 数值的整数次方（快速幂，清晰图解） - 数值的整数次方 - 力扣（LeetCode） (leetcode-cn.com)"></a>202111216<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/">面试题16. 数值的整数次方（快速幂，清晰图解） - 数值的整数次方 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><img src="https://pic.leetcode-cn.com/379a042b9d8df3a96d1ac0f27346718033bf3bfce69731bab52bf6f372b4c8f4-Picture2.png" alt="Picture2.png"></p>
@@ -965,7 +1099,8 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <p>3：2</p>
 <p>4：0</p>
 <p>num=1,Q={1,2}.</p>
-<h1 id="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com"><a href="#20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211227<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-intervals/solution/chi-jing-ran-yi-yan-miao-dong-by-sweetiee/">吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳">https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳</a></p>
+<h1 id="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com"><a href="#20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211227<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-intervals/solution/chi-jing-ran-yi-yan-miao-dong-by-sweetiee/">吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2022011333-搜索旋转排序数组-力扣（LeetCode）-leetcode-cn-com"><a href="#2022011333-搜索旋转排序数组-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2022011333. 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)"></a>20220113<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">33. 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/yi-wen-jie-jue-4-dao-sou-suo-xuan-zhuan-pai-xu-s-2/">一文解决 4 道「搜索旋转排序数组」题！ - 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196%E7%BB%8F%E5%85%B8%E9%87%8D%E7%82%B9%E9%A2%98%E7%9B%AE%E5%BD%92%E7%BA%B3">https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
 <p>LeetCode 热题 HOT 100a</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
@@ -1092,80 +1227,6 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 
 
   
-    <article id="post-试验记录Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/" class="article-date">
-  <time datetime="2021-09-08T11:41:57.000Z" itemprop="datePublished">2021-09-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/">试验记录Aggregation via Separation: Boosting Facial Landmark Detector with</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="配准环境遇到的问题"><a href="#配准环境遇到的问题" class="headerlink" title="配准环境遇到的问题"></a>配准环境遇到的问题</h1><h2 id="关于tensorboardX的安装PackagesNotFoundError"><a href="#关于tensorboardX的安装PackagesNotFoundError" class="headerlink" title="关于tensorboardX的安装PackagesNotFoundError"></a>关于tensorboardX的安装PackagesNotFoundError</h2><p>用conda安装tensorboardX，由于配置的源找不到包，于是用pip安装，使用pip安装遇到了问题，如链接中所示</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/lanpa/tensorboardX/issues/19">ImportError: cannot import name ‘SummaryWriter’ · Issue #19 · lanpa/tensorboardX (github.com)</a></p>
-<blockquote>
-<p>File “”, line 1, in<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/<strong>init</strong>.py”, line 5, in<br>from .torchvis import TorchVis<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/torchvis.py”, line 11, in<br>from .writer import SummaryWriter<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/writer.py”, line 223<br>logdir: Optional[str] = None,<br>^<br>SyntaxError: invalid syntax</p>
-</blockquote>
-<p>解决的方案是用conda来装，不用pip装，于是先要处理这个问题</p>
-<blockquote>
-<p>PackagesNotFoundError: The following packages are not available from current channels</p>
-</blockquote>
-<p>解决方案可以参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/marleylee/article/details/103722080">(8条消息) PackagesNotFoundError: The following packages are not available from current channels 解决办法_marleylee的博客-CSDN博客</a>。具体参考方法二<strong>去base环境下执行搜索</strong>，在去<strong>实验配置的环境安装</strong>，否则会出现</p>
-<blockquote>
-<p>anaconda: command not found</p>
-</blockquote>
-<p>[(8条消息) anaconda使用说明：anaconda-navigator: command not found_豌豆生的笔记本-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=%E7%A1%AE%E5%AE%9A%E5%B7%B2%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85">https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=确定已成功安装</a> anaconda 启动 anaconda -navigator  如果提示没有此命令 or,root  再输入  an… 如何 使用anaconda 安装或更新自己想要的库.)</p>
-<h2 id="ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案"><a href="#ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案" class="headerlink" title="ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案"></a>ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案</h2><p>在torch新版本中删除了load_lua，解决方法是<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36556893/article/details/102683398">(8条消息) ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案_悲恋花丶无心之人的博客-CSDN博客</a></p>
-<h2 id="使用Tmux避免断网之后服务器端进程断掉"><a href="#使用Tmux避免断网之后服务器端进程断掉" class="headerlink" title="使用Tmux避免断网之后服务器端进程断掉"></a>使用Tmux避免断网之后服务器端进程断掉</h2><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/10/tmux.html">Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
-<blockquote>
-<p>tmux detach 将当前会话与窗口分离。命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p>
-</blockquote>
-<p>vscode可以在termnal窗口右上角的“+”点击“∨”下拉选择tmux新建会话，使用“tmux ls”命令可以看见tmux打开的窗口会显示(attached)， <strong>会话默认是分离的</strong>，在termnal窗口右端删除tmux窗口后，此会话还在。</p>
-<h1 id="数据集介绍WFLW"><a href="#数据集介绍WFLW" class="headerlink" title="数据集介绍WFLW"></a>数据集介绍WFLW</h1><p>原数据集可以从<a target="_blank" rel="noopener" href="https://wywu.github.io/projects/LAB/WFLW.html">Look at Boundary: A Boundary-Aware Face Alignment Algorithm (wywu.github.io)</a>下载，不过在一些实验中会</p>
-<p>7500训练 ，2500测试。人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。</p>
-<p><img src="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/Blog\source\pics\WFLW_landmarks.png"></p>
-<h2 id="标注格式介绍"><a href="#标注格式介绍" class="headerlink" title="标注格式介绍"></a>标注格式介绍</h2><blockquote>
-<p>下载原始数据集后，位于WFLW_annotations文件夹下，包含list_98pt_rect_attr_train_test和list_98pt_test两个子文件夹</p>
-</blockquote>
-<h3 id="list-98pt-rect-attr-train-test"><a href="#list-98pt-rect-attr-train-test" class="headerlink" title="list_98pt_rect_attr_train_test"></a>list_98pt_rect_attr_train_test</h3><p>文档中每一行有207个数据，98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207。</p>
-<h3 id="list-98pt-test"><a href="#list-98pt-test" class="headerlink" title="list_98pt_test"></a>list_98pt_test</h3><p>文档中每一行有197个数据，196 + 图片名称 =197。</p>
-<h2 id="关于人脸关键点的数据集WFLW数据预处理"><a href="#关于人脸关键点的数据集WFLW数据预处理" class="headerlink" title="关于人脸关键点的数据集WFLW数据预处理"></a>关于人脸关键点的数据集WFLW数据预处理</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_40840693/article/details/105542910">https://blog.csdn.net/baidu_40840693/article/details/105542910</a></p>
-<h2 id="瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization"><a href="#瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization" class="headerlink" title="瞳间距Inter-Pupil Normalization Inter-Ocular Normalization"></a>瞳间距Inter-Pupil Normalization Inter-Ocular Normalization</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/code_mart/article/details/100121890">https://blog.csdn.net/code_mart/article/details/100121890</a></p>
-<h2 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h2><p>用瞳间距或者两个外眼角之间的距离归一化计算标注点平均错误率。如果归一化平均错误率大于0.1，就算失败。</p>
-<h1 id="本实验中的数据处理"><a href="#本实验中的数据处理" class="headerlink" title="本实验中的数据处理"></a>本实验中的数据处理</h1><p>本实验开源代码中提供了<a target="_blank" rel="noopener" href="https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code">https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code</a>  cropped图片，图片中包含了人脸的部分，标注格式是文档中每一行有197个数据，196 + 图片名称 =197。</p>
-<p>在代码中stylealign-master/pytorch_code/new_dataloader.py中提供的编码信息中可以看出使用了88个对称的关键点，位于中线上的51、52、53、54、57、79、90、94、85、16每有使用。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr_list =[<span class="number">0</span>,<span class="number">32</span>,<span class="number">1</span>,<span class="number">31</span>,<span class="number">2</span>,<span class="number">30</span>,<span class="number">3</span>,<span class="number">29</span>,<span class="number">4</span>,<span class="number">28</span>,<span class="number">5</span>,<span class="number">27</span>,<span class="number">6</span>,<span class="number">26</span>,<span class="number">7</span>,<span class="number">25</span>,<span class="number">8</span>,<span class="number">24</span>,<span class="number">9</span>,<span class="number">23</span>,<span class="number">10</span>,<span class="number">22</span>,<span class="number">11</span>,<span class="number">21</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">18</span>,<span class="number">15</span>,<span class="number">17</span>,<span class="number">33</span>,<span class="number">46</span>,<span class="number">34</span>,<span class="number">45</span>,<span class="number">35</span>,<span class="number">44</span>,<span class="number">36</span>,<span class="number">43</span>,<span class="number">37</span>,<span class="number">42</span>,<span class="number">38</span>,<span class="number">50</span>,<span class="number">39</span>,<span class="number">49</span>,<span class="number">40</span>,<span class="number">48</span>,<span class="number">41</span>,<span class="number">47</span>,<span class="number">55</span>,<span class="number">59</span>,<span class="number">56</span>,<span class="number">58</span>,<span class="number">60</span>,<span class="number">72</span>,<span class="number">61</span>,<span class="number">71</span>,<span class="number">62</span>,<span class="number">70</span>,<span class="number">63</span>,<span class="number">69</span>,<span class="number">64</span>,<span class="number">68</span>,<span class="number">65</span>,<span class="number">75</span>,<span class="number">66</span>,<span class="number">74</span>,<span class="number">67</span>,<span class="number">73</span>,<span class="number">76</span>,<span class="number">82</span>,<span class="number">77</span>,<span class="number">81</span>,<span class="number">78</span>,<span class="number">80</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">89</span>,<span class="number">91</span>,<span class="number">95</span>,<span class="number">93</span>,<span class="number">87</span>,<span class="number">83</span>,<span class="number">86</span>,<span class="number">84</span>,<span class="number">96</span>,<span class="number">97</span>]</span><br></pre></td></tr></table></figure>
-
-<h1 id="小张的问题"><a href="#小张的问题" class="headerlink" title="小张的问题"></a>小张的问题</h1><p>用了对称数据？这是为什么？怎么用？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/" data-id="ckup2agtx000pf0up8epghkkj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1223,11 +1284,15 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
       <ul>
         
           <li>
+            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
           </li>
         
           <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测loss设计</a>
+            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
           </li>
         
           <li>
@@ -1236,10 +1301,6 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
         
           <li>
             <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
           </li>
         
       </ul>

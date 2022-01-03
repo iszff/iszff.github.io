@@ -7,20 +7,21 @@
   
   <title>人脸关键点检测简介 | iszff&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。如图是98点关键点的标注形式。  提取人脸关键点可以获得五官的定位，可以对人脸获得五官patch，可以辅助人脸识别、活体检测等任务。或者是可以对人脸进行对齐，所以人">
+  <meta name="description" content="简介人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。下图分别是68点和98点关键点的标注形式。   提取人脸关键点可以获得五官的定位，可以对人脸获得五官patch，可以辅助人脸识别、活体检测等任务。或者是可以对人脸进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="人脸关键点检测简介">
 <meta property="og:url" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="iszff&#39; Blog">
-<meta property="og:description" content="简介人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。如图是98点关键点的标注形式。  提取人脸关键点可以获得五官的定位，可以对人脸获得五官patch，可以辅助人脸识别、活体检测等任务。或者是可以对人脸进行对齐，所以人">
+<meta property="og:description" content="简介人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。下图分别是68点和98点关键点的标注形式。   提取人脸关键点可以获得五官的定位，可以对人脸获得五官patch，可以辅助人脸识别、活体检测等任务。或者是可以对人脸进">
 <meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190103210914208.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTM4NDExOTY=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://wywu.github.io/projects/LAB/support/WFLW_annotation.png">
 <meta property="article:published_time" content="2022-01-01T02:45:18.000Z">
-<meta property="article:modified_time" content="2022-01-01T03:34:53.566Z">
+<meta property="article:modified_time" content="2022-01-02T02:52:44.974Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wywu.github.io/projects/LAB/support/WFLW_annotation.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190103210914208.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTM4NDExOTY=,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
   
@@ -91,9 +92,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。如图是98点关键点的标注形式。</p>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>人脸关键点检测也被称为人脸关键点定位，旨在定位人脸上预定义的关键点，关键点位于五官和人脸边界上。关键点能够反映各个部位的脸部特征，随着技术的发展和对精度要求的增加，人脸关键点的数量经历了从最初的5个点到如今超过200个点的发展历程。下图分别是68点和98点关键点的标注形式。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190103210914208.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTM4NDExOTY=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://wywu.github.io/projects/LAB/support/WFLW_annotation.png" alt="img"></p>
 <p>提取人脸关键点可以获得五官的定位，可以对人脸获得五官patch，可以辅助人脸识别、活体检测等任务。或者是可以对人脸进行对齐，所以人脸关键点定位的相关论文也可以使用face alignment进行检索，计算检测到的人脸关键点到目标平均脸的形变参数，可以用于3维人脸重建。</p>
+<h1 id="人脸关键点检测的评价指标："><a href="#人脸关键点检测的评价指标：" class="headerlink" title="人脸关键点检测的评价指标："></a>人脸关键点检测的评价指标：</h1><h2 id="Inter-Ocular-Normalization"><a href="#Inter-Ocular-Normalization" class="headerlink" title="Inter-Ocular Normalization"></a>Inter-Ocular Normalization</h2><p>使用左右眼角的距离对于关键点误差进行归一化，其中$d$为左右眼角的距离，$x$和$x^*$分别为关键点和关键点真值。<br>$$<br>e_i = \frac{∣∣x_i−x_i^∗∣∣_2}{d}<br>$$</p>
+<h2 id="Inter-Pupil-Normalization"><a href="#Inter-Pupil-Normalization" class="headerlink" title="Inter-Pupil Normalization"></a>Inter-Pupil Normalization</h2><p>使用瞳间距对于关键点误差进行归一化的公式于使用左右眼角的距离对于关键点误差进行归一化的公式形式一样，不过$d$换成了瞳间距。如果在真值中瞳仁没有标注，就使用眼周关键点求平均值获得眼睛中心的坐标值，计算瞳间距。</p>
+<h2 id="Normalization-Mean-Error"><a href="#Normalization-Mean-Error" class="headerlink" title="Normalization Mean Error"></a>Normalization Mean Error</h2><p>归一化平均错误率计算关键点检测平均误差，$N$为整张图片上关键点的个数。<br>$$<br>e = \frac{∑ _{i=1}^N ∣∣x_i−x_i^∗∣∣ _2}{N∗d}<br>$$</p>
+<h2 id="Failure-Rate-FR"><a href="#Failure-Rate-FR" class="headerlink" title="Failure Rate (FR)"></a>Failure Rate (FR)</h2><p>是评估定位质量的另一个指标。对于一幅图像，如果NME大于阈值，则认为预测失败。通常使用0.1作为阈值。</p>
 
       
     </div>
@@ -109,10 +115,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          人脸关键点检测的轻量化网络
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">人脸关键点检测loss设计</div>
+      <div class="article-nav-title">人脸关键点检测对heatmap的loss设计</div>
     </a>
   
 </nav>
@@ -170,11 +185,15 @@
       <ul>
         
           <li>
+            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
           </li>
         
           <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测loss设计</a>
+            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
           </li>
         
           <li>
@@ -183,10 +202,6 @@
         
           <li>
             <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
           </li>
         
       </ul>

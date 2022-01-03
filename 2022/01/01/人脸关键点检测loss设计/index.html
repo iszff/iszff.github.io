@@ -5,14 +5,14 @@
   
 
   
-  <title>人脸关键点检测loss设计 | iszff&#39; Blog</title>
+  <title>人脸关键点检测对heatmap的loss设计 | iszff&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要介绍人脸关键点检测准确率衡量的标准，以及损失函数的设计，并且会介绍Adaptive Wing Loss这篇文章以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark heatmap landm">
+  <meta name="description" content="本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="人脸关键点检测loss设计">
+<meta property="og:title" content="人脸关键点检测对heatmap的loss设计">
 <meta property="og:url" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="iszff&#39; Blog">
-<meta property="og:description" content="本文主要介绍人脸关键点检测准确率衡量的标准，以及损失函数的设计，并且会介绍Adaptive Wing Loss这篇文章以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark heatmap landm">
+<meta property="og:description" content="本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark h">
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101171407947.png">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101175929474.png">
@@ -23,8 +23,14 @@
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210145674.png">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210329410.png">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210634320.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding/result_save10/47_Matador_Bullfighter_Matador_Bullfighter_47_772_2485.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding/result_save10/59_peopledrivingcar_peopledrivingcar_59_202_2488.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding/result_save10/61_Street_Battle_streetfight_61_708_2489.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding/result_save10/20_Family_Group_Family_Group_20_667_2486.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding/result_save10/32_Worker_Laborer_Worker_Laborer_32_600_2499.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220102110938051.png">
 <meta property="article:published_time" content="2022-01-01T02:29:59.000Z">
-<meta property="article:modified_time" content="2022-01-01T13:07:30.527Z">
+<meta property="article:modified_time" content="2022-01-02T13:47:30.960Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
@@ -91,7 +97,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      人脸关键点检测loss设计
+      人脸关键点检测对heatmap的loss设计
     </h1>
   
 
@@ -99,11 +105,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文主要介绍人脸关键点检测准确率衡量的标准，以及损失函数的设计，并且会介绍Adaptive Wing Loss这篇文章以及它的实验结果。</p>
+        <p>本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。</p>
 <h2 id="heatmap介绍"><a href="#heatmap介绍" class="headerlink" title="heatmap介绍"></a>heatmap介绍</h2><p><em>参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark heatmap</em></p>
-<p>landmark heatmap 是landmark位置的强度最高，强度随着距离最近的地标的距离增大而减小的图像。</p>
-<script type="math/tex; mode=display">
-H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i个landmark，为了提高性能，可以只在每个地标周围以16为半径的圆圈内计算热图值。</p>
+<p>landmark heatmap 是landmark位置的强度最高，强度随着距离最近的地标的距离增大而减小的图像。<br>$$<br>H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||<br>$$<br>$H$是热图，$s_i$是第i个landmark，为了提高性能，可以只在每个地标周围以16为半径的圆圈内计算热图值。</p>
 <p>上面的公式中使用了范数，也可在的每个关键点处绘制一个高斯分布来生成的热图。</p>
 <h2 id="2019ICCV-Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression"><a href="#2019ICCV-Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression" class="headerlink" title="[2019ICCV]Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression"></a>[2019ICCV]Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression</h2><blockquote>
 <p>Xinyao Wang1,2Liefeng Bo2Li Fuxin1</p>
@@ -114,7 +118,7 @@ H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i
 </li>
 <li><p>针对问题：基于深度网络的热图回归已成为人脸关键点定位的主流方法之一。然而，对于热图回归中损失函数的研究却很少。</p>
 </li>
-<li><p>本文的目的：分析了人脸关键点检测问题热图回归的理想损失函数性质，并根据此设计了Adaptive Wing loss。该模型在像素级对真值热图进行更加准确的回归，然后利用预测的热图来推断关键点的位置。</p>
+<li><p> 本文的目的：分析了人脸关键点检测问题热图回归的理想损失函数性质，并根据此设计了Adaptive Wing loss。该模型在像素级对真值热图进行更加准确的回归，然后利用预测的热图来推断关键点的位置。</p>
 </li>
 <li><p>热图分析：</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101171407947.png" alt="image-20220101171407947"></p>
@@ -131,8 +135,6 @@ H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i
 <li><p>网络结构</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101200537435.png" alt="image-20220101200537435"></p>
 </li>
-</ol>
-<ol>
 <li><p>损失函数的基本原理</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101201422715.png" alt="image-20220101201422715"></p>
 <p>•其中，N是训练样本的总数，H、W和C分别是热图的高度、宽度和通道。</p>
@@ -151,57 +153,37 @@ H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i
 <li><p>理想的loss设计 </p>
 <p>•误差较大</p>
 <p>•loss函数具有恒定的影响，这样它将对不准确的注释和遮挡具有鲁棒性。</p>
+<p>•误差小</p>
+<p>•对于前景像素，影响应该开始增加，以便训练能够集中于减少这些误差。当误差非常接近零时，这种影响应该会迅速减小，这样这些“足够好”的像素将不再被关注。减少正确估计的影响有助于网络保持收敛，而不是像L1和wing loss那样振荡。</p>
+<p>•对于背景像素，梯度应该表现得更类似于均方误差损失，即随着训练误差的减小，梯度将逐渐减小到零，因此当误差较小时，影响将相对较小。该属性减少了背景像素上的训练的关注，稳定了训练过程。</p>
 </li>
 </ol>
-<p>   •误差小</p>
-<p>   •对于前景像素，影响应该开始增加，以便训练能够集中于减少这些误差。当误差非常接近零时，这种影响应该会迅速减小，这样这些“足够好”的像素将不再被关注。减少正确估计的影响有助于网络保持收敛，而不是像L1和wing loss那样振荡。</p>
-<p>   •对于背景像素，梯度应该表现得更类似于均方误差损失，即随着训练误差的减小，梯度将逐渐减小到零，因此当误差较小时，影响将相对较小。该属性减少了背景像素上的训练的关注，稳定了训练过程。</p>
-<ol>
-<li><p>Adaptive Wing loss设计</p>
-<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210145674.png" alt="image-20220101210145674"></p>
-</li>
+<ol start="10">
+<li>Adaptive Wing loss设计</li>
 </ol>
+<p>   <img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210145674.png" alt="image-20220101210145674"></p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210329410.png" alt="image-20220101210329410"></p>
 <p>​    损耗函数在零点平滑。</p>
-<ol>
+<ol start="11">
 <li><p>区分前后景像素</p>
 <p>在具有64 × 64热图和7×7高斯大小的面部标志定位的典型设置中，前景像素仅构成所有像素的1.2%。为这种不平衡的数据分配相同的权重可能会使训练过程收敛缓慢，从而导致较差的性能。为了进一步建立网络聚焦前景像素和困难背景像素(接近前景像素的背景像素)的能力，引入加权损失图来平衡不同类型像素的损失。前景像素和困难背景像素1，其他像素0。</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210634320.png" alt="image-20220101210634320"></p>
 </li>
 </ol>
-<ol>
-<li><p>方法总结</p>
-<p>\1)  评价：贡献创新点。</p>
-</li>
-</ol>
-<p>\2)    针对问题：啥情况啥场景。</p>
-<p>\3)    本文的目的：可以做到啥。</p>
-<p>\4)    实现的方法：</p>
-<p>\5)    方法简介</p>
-<p>\6)    方法优化</p>
-<p>\7)    方法总结‘</p>
-<p>\8)    文章存在的问题</p>
-<p>\9)    个人的思考</p>
-<h2 id="复现-adapt-wing-loss"><a href="#复现-adapt-wing-loss" class="headerlink" title="复现 adapt_wing_loss"></a>复现 adapt_wing_loss</h2><p>长边为正方形的长度)从图像中裁剪人脸，300瓦私有测试数据集除外，因为没有提供官方边界框。对于WFLW数据集，提供的边界框不是很准确，为了确保所有地标都不会被裁剪，我们在两个维度上都将边界框放大了10%。对于300瓦的私有测试数据集</p>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>300w的数据集除了private外，没有官方边界。</p>
+<h2 id="adapt-wing-loss论文测试效果"><a href="#adapt-wing-loss论文测试效果" class="headerlink" title="adapt_wing_loss论文测试效果"></a>adapt_wing_loss论文测试效果</h2><p><em>此论文只给了测试代码以及预训练好的模型</em></p>
+<p>真值绿色，红色为预测值。</p>
+<p>下图为nme &gt; 0.1的失败案例。失败的原因是图片本身有遮挡，或者图片清晰度不高，或者是人脸为大角度姿势。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding\result_save10\47_Matador_Bullfighter_Matador_Bullfighter_47_772_2485.jpg"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding\result_save10\59_peopledrivingcar_peopledrivingcar_59_202_2488.jpg" alt="59_peopledrivingcar_peopledrivingcar_59_202_2488"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding\result_save10\61_Street_Battle_streetfight_61_708_2489.jpg" alt="61_Street_Battle_streetfight_61_708_2489"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding\result_save10\20_Family_Group_Family_Group_20_667_2486.jpg"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/coding\result_save10\32_Worker_Laborer_Worker_Laborer_32_600_2499.jpg" alt="32_Worker_Laborer_Worker_Laborer_32_600_2499"></p>
+<h2 id="数据集与处理方式"><a href="#数据集与处理方式" class="headerlink" title="数据集与处理方式"></a>数据集与处理方式</h2><p>300w的数据集除了private外，没有官方边界。</p>
 <p>WFLW提供的边界框不是很准确。</p>
 <p>因此在两个维度上都将边界框放大了10%，300W直接裁剪人脸。</p>
-<h2 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h2><p>网络输入为256 × 256。</p>
-<p>每个堆叠HG的输出为64 × 64。</p>
-<p>用了四叠HG, RMSProp,学习率为1 × 10^(−4), momentum为0，weight decay 为1×10^(−5)。</p>
-<p>训练240 epoches，学习率在80个epoches后变成1 × 10^−5,在160epoches变成1 × 10^−6。</p>
-<p>random rotation (±50◦), translation (±25px), flipping (50%), and rescaling (±15%)。随机高斯模糊、噪声和遮挡也被使用。所有模型都是从头开始训练的。</p>
-<h2 id="推理过程"><a href="#推理过程" class="headerlink" title="推理过程"></a>推理过程</h2><p>Newell et al. [41] 具有最高响应的像素上的位置被移动四分之一像素到第二高的附近像素。</p>
-<p>边界线是通过类似于[55]的距离变换从地标生成的，通过选择所有通道上每个像素的最大值，不同的边界线被合并到一个通道中。</p>
-<h2 id="数据集WFLW"><a href="#数据集WFLW" class="headerlink" title="数据集WFLW"></a>数据集WFLW</h2><p>7500训练 2500测试</p>
-<p>人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。list_98pt_rect_attr_train_test</p>
-<p>98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207</p>
-<h3 id="list-98pt-test"><a href="#list-98pt-test" class="headerlink" title="list_98pt_test"></a>list_98pt_test</h3><p>​                               </p>
-<p>196 + 名字 =197</p>
-<h2 id="68关键点index"><a href="#68关键点index" class="headerlink" title="68关键点index"></a>68关键点index</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013841196/article/details/85720897">(18条消息) 关键点检测——68点图例_小花生的博客-CSDN博客_人脸关键点检测68点</a></p>
-<h2 id="关于人脸关键点的数据集WFLW数据预处理"><a href="#关于人脸关键点的数据集WFLW数据预处理" class="headerlink" title="关于人脸关键点的数据集WFLW数据预处理"></a>关于人脸关键点的数据集WFLW数据预处理</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_40840693/article/details/105542910">https://blog.csdn.net/baidu_40840693/article/details/105542910</a></p>
-<h2 id="瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization"><a href="#瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization" class="headerlink" title="瞳间距Inter-Pupil Normalization Inter-Ocular Normalization"></a>瞳间距Inter-Pupil Normalization Inter-Ocular Normalization</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/code_mart/article/details/100121890">https://blog.csdn.net/code_mart/article/details/100121890</a></p>
-<h2 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h2><p>计算归一化的平均错误率。如果归一化平均错误率大于0.1，就算失败了。</p>
+<h2 id="数据集WFLW-7500训练-2500测试。"><a href="#数据集WFLW-7500训练-2500测试。" class="headerlink" title="数据集WFLW#7500训练 2500测试。"></a>数据集WFLW#7500训练 2500测试。</h2><p>人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220102110938051.png" alt="image-20220102110938051"></p>
+<p>list_98pt_rect_attr_train_test.txt是98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207 list_98pt_test.txt196 + 名字 =197。</p>
 
       
     </div>
@@ -287,11 +269,15 @@ H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i
       <ul>
         
           <li>
+            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
           </li>
         
           <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测loss设计</a>
+            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
           </li>
         
           <li>
@@ -300,10 +286,6 @@ H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i
         
           <li>
             <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
           </li>
         
       </ul>

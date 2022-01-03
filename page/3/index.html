@@ -66,6 +66,80 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-试验记录Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/" class="article-date">
+  <time datetime="2021-09-08T11:41:57.000Z" itemprop="datePublished">2021-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/">试验记录Aggregation via Separation: Boosting Facial Landmark Detector with</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="配准环境遇到的问题"><a href="#配准环境遇到的问题" class="headerlink" title="配准环境遇到的问题"></a>配准环境遇到的问题</h1><h2 id="关于tensorboardX的安装PackagesNotFoundError"><a href="#关于tensorboardX的安装PackagesNotFoundError" class="headerlink" title="关于tensorboardX的安装PackagesNotFoundError"></a>关于tensorboardX的安装PackagesNotFoundError</h2><p>用conda安装tensorboardX，由于配置的源找不到包，于是用pip安装，使用pip安装遇到了问题，如链接中所示</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lanpa/tensorboardX/issues/19">ImportError: cannot import name ‘SummaryWriter’ · Issue #19 · lanpa/tensorboardX (github.com)</a></p>
+<blockquote>
+<p>File “”, line 1, in<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/<strong>init</strong>.py”, line 5, in<br>from .torchvis import TorchVis<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/torchvis.py”, line 11, in<br>from .writer import SummaryWriter<br>File “/home/rahul/anaconda3/envs/semseg/lib/python2.7/site-packages/tensorboardX/writer.py”, line 223<br>logdir: Optional[str] = None,<br>^<br>SyntaxError: invalid syntax</p>
+</blockquote>
+<p>解决的方案是用conda来装，不用pip装，于是先要处理这个问题</p>
+<blockquote>
+<p>PackagesNotFoundError: The following packages are not available from current channels</p>
+</blockquote>
+<p>解决方案可以参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/marleylee/article/details/103722080">(8条消息) PackagesNotFoundError: The following packages are not available from current channels 解决办法_marleylee的博客-CSDN博客</a>。具体参考方法二<strong>去base环境下执行搜索</strong>，在去<strong>实验配置的环境安装</strong>，否则会出现</p>
+<blockquote>
+<p>anaconda: command not found</p>
+</blockquote>
+<p>[(8条消息) anaconda使用说明：anaconda-navigator: command not found_豌豆生的笔记本-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=%E7%A1%AE%E5%AE%9A%E5%B7%B2%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85">https://blog.csdn.net/weixin_39585934/article/details/90384355#:~:text=确定已成功安装</a> anaconda 启动 anaconda -navigator  如果提示没有此命令 or,root  再输入  an… 如何 使用anaconda 安装或更新自己想要的库.)</p>
+<h2 id="ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案"><a href="#ModuleNotFoundError-No-module-named-‘torch-utils-serialization’-的解决方案" class="headerlink" title="ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案"></a>ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案</h2><p>在torch新版本中删除了load_lua，解决方法是<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36556893/article/details/102683398">(8条消息) ModuleNotFoundError: No module named ‘torch.utils.serialization’ 的解决方案_悲恋花丶无心之人的博客-CSDN博客</a></p>
+<h2 id="使用Tmux避免断网之后服务器端进程断掉"><a href="#使用Tmux避免断网之后服务器端进程断掉" class="headerlink" title="使用Tmux避免断网之后服务器端进程断掉"></a>使用Tmux避免断网之后服务器端进程断掉</h2><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/10/tmux.html">Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
+<blockquote>
+<p>tmux detach 将当前会话与窗口分离。命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p>
+</blockquote>
+<p>vscode可以在termnal窗口右上角的“+”点击“∨”下拉选择tmux新建会话，使用“tmux ls”命令可以看见tmux打开的窗口会显示(attached)， <strong>会话默认是分离的</strong>，在termnal窗口右端删除tmux窗口后，此会话还在。</p>
+<h1 id="数据集介绍WFLW"><a href="#数据集介绍WFLW" class="headerlink" title="数据集介绍WFLW"></a>数据集介绍WFLW</h1><p>原数据集可以从<a target="_blank" rel="noopener" href="https://wywu.github.io/projects/LAB/WFLW.html">Look at Boundary: A Boundary-Aware Face Alignment Algorithm (wywu.github.io)</a>下载，不过在一些实验中会</p>
+<p>7500训练 ，2500测试。人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。</p>
+<p><img src="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/Blog\source\pics\WFLW_landmarks.png"></p>
+<h2 id="标注格式介绍"><a href="#标注格式介绍" class="headerlink" title="标注格式介绍"></a>标注格式介绍</h2><blockquote>
+<p>下载原始数据集后，位于WFLW_annotations文件夹下，包含list_98pt_rect_attr_train_test和list_98pt_test两个子文件夹</p>
+</blockquote>
+<h3 id="list-98pt-rect-attr-train-test"><a href="#list-98pt-rect-attr-train-test" class="headerlink" title="list_98pt_rect_attr_train_test"></a>list_98pt_rect_attr_train_test</h3><p>文档中每一行有207个数据，98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207。</p>
+<h3 id="list-98pt-test"><a href="#list-98pt-test" class="headerlink" title="list_98pt_test"></a>list_98pt_test</h3><p>文档中每一行有197个数据，196 + 图片名称 =197。</p>
+<h2 id="关于人脸关键点的数据集WFLW数据预处理"><a href="#关于人脸关键点的数据集WFLW数据预处理" class="headerlink" title="关于人脸关键点的数据集WFLW数据预处理"></a>关于人脸关键点的数据集WFLW数据预处理</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_40840693/article/details/105542910">https://blog.csdn.net/baidu_40840693/article/details/105542910</a></p>
+<h2 id="瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization"><a href="#瞳间距Inter-Pupil-Normalization-Inter-Ocular-Normalization" class="headerlink" title="瞳间距Inter-Pupil Normalization Inter-Ocular Normalization"></a>瞳间距Inter-Pupil Normalization Inter-Ocular Normalization</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/code_mart/article/details/100121890">https://blog.csdn.net/code_mart/article/details/100121890</a></p>
+<h2 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h2><p>用瞳间距或者两个外眼角之间的距离归一化计算标注点平均错误率。如果归一化平均错误率大于0.1，就算失败。</p>
+<h1 id="本实验中的数据处理"><a href="#本实验中的数据处理" class="headerlink" title="本实验中的数据处理"></a>本实验中的数据处理</h1><p>本实验开源代码中提供了<a target="_blank" rel="noopener" href="https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code">https://github.com/TheSouthFrog/stylealign/tree/master/pytorch_code</a>  cropped图片，图片中包含了人脸的部分，标注格式是文档中每一行有197个数据，196 + 图片名称 =197。</p>
+<p>在代码中stylealign-master/pytorch_code/new_dataloader.py中提供的编码信息中可以看出使用了88个对称的关键点，位于中线上的51、52、53、54、57、79、90、94、85、16每有使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr_list =[<span class="number">0</span>,<span class="number">32</span>,<span class="number">1</span>,<span class="number">31</span>,<span class="number">2</span>,<span class="number">30</span>,<span class="number">3</span>,<span class="number">29</span>,<span class="number">4</span>,<span class="number">28</span>,<span class="number">5</span>,<span class="number">27</span>,<span class="number">6</span>,<span class="number">26</span>,<span class="number">7</span>,<span class="number">25</span>,<span class="number">8</span>,<span class="number">24</span>,<span class="number">9</span>,<span class="number">23</span>,<span class="number">10</span>,<span class="number">22</span>,<span class="number">11</span>,<span class="number">21</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">13</span>,<span class="number">19</span>,<span class="number">14</span>,<span class="number">18</span>,<span class="number">15</span>,<span class="number">17</span>,<span class="number">33</span>,<span class="number">46</span>,<span class="number">34</span>,<span class="number">45</span>,<span class="number">35</span>,<span class="number">44</span>,<span class="number">36</span>,<span class="number">43</span>,<span class="number">37</span>,<span class="number">42</span>,<span class="number">38</span>,<span class="number">50</span>,<span class="number">39</span>,<span class="number">49</span>,<span class="number">40</span>,<span class="number">48</span>,<span class="number">41</span>,<span class="number">47</span>,<span class="number">55</span>,<span class="number">59</span>,<span class="number">56</span>,<span class="number">58</span>,<span class="number">60</span>,<span class="number">72</span>,<span class="number">61</span>,<span class="number">71</span>,<span class="number">62</span>,<span class="number">70</span>,<span class="number">63</span>,<span class="number">69</span>,<span class="number">64</span>,<span class="number">68</span>,<span class="number">65</span>,<span class="number">75</span>,<span class="number">66</span>,<span class="number">74</span>,<span class="number">67</span>,<span class="number">73</span>,<span class="number">76</span>,<span class="number">82</span>,<span class="number">77</span>,<span class="number">81</span>,<span class="number">78</span>,<span class="number">80</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">89</span>,<span class="number">91</span>,<span class="number">95</span>,<span class="number">93</span>,<span class="number">87</span>,<span class="number">83</span>,<span class="number">86</span>,<span class="number">84</span>,<span class="number">96</span>,<span class="number">97</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="小张的问题"><a href="#小张的问题" class="headerlink" title="小张的问题"></a>小张的问题</h1><p>用了对称数据？这是为什么？怎么用？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/" data-id="ckup2agtx000pf0up8epghkkj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-论文翻译[2018ECCV]A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/09/03/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%5B2018ECCV%5DA%20Deeply-initialized%20Coarse-to-fine%20Ensemble%20of%20Regression%20Trees%20for%20Face%20Alignment/" class="article-date">
@@ -570,11 +644,15 @@
       <ul>
         
           <li>
+            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
           </li>
         
           <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测loss设计</a>
+            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
           </li>
         
           <li>
@@ -583,10 +661,6 @@
         
           <li>
             <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/10/EyediapRGBDgaze/">EyediapRGBDgaze</a>
           </li>
         
       </ul>
