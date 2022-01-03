@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>RGBD based gaze试验记录 | iszff&#39; Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="遇到的问题1.ImportError: cannot import name ‘DtypeArg’ from ‘pandas._typing’ImportError:无法从’pandas导入名称“DtypeArg” - 我爱学习网 (5axxw.com) 使用pip list查看 卸载重装即可。 2.  File “&#x2F;home&#x2F;workspace&#x2F;feifeizhang&#x2F;anconda&#x2F;lib&#x2F;p">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实验记录," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="遇到的问题1.ImportError: cannot import name ‘DtypeArg’ from ‘pandas._typing’ImportError:无法从’pandas导入名称“DtypeArg” - 我爱学习网 (5axxw.com) 使用pip list查看 卸载重装即可。 2.  File “&#x2F;home&#x2F;workspace&#x2F;feifeizhang&#x2F;anconda&#x2F;lib&#x2F;p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RGBD based gaze试验记录">
 <meta property="og:url" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/index.html">
@@ -27,94 +101,303 @@
 <meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data/RGBDbasedGaze_shanghaitech/color/color/00000/color00008_face.jpg">
 <meta property="og:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data/RGBDbasedGaze_shanghaitech/color/color/00000/color00009_face.jpg">
 <meta property="article:published_time" content="2021-10-18T10:37:10.000Z">
-<meta property="article:modified_time" content="2021-12-10T07:06:09.816Z">
+<meta property="article:modified_time" content="2022-01-03T13:51:02.837Z">
 <meta property="article:author" content="iszff">
+<meta property="article:tag" content="实验记录">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211019145428957.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/10/18/RGBD-based-gaze试验记录/"/>
+
+
+
+
+
+  <title>RGBD based gaze试验记录 | iszff' Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">iszff&#39; Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-RGBD-based-gaze试验记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-10-18T10:37:10.000Z" itemprop="datePublished">2021-10-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <h1 class="article-title" itemprop="name">
-      RGBD based gaze试验记录
-    </h1>
+  
+    
   
 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RGBD based gaze试验记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-18T18:37:10+08:00">
+                2021-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">视线估计</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
+                    <span itemprop="name">试验记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="1-ImportError-cannot-import-name-‘DtypeArg’-from-‘pandas-typing’"><a href="#1-ImportError-cannot-import-name-‘DtypeArg’-from-‘pandas-typing’" class="headerlink" title="1.ImportError: cannot import name ‘DtypeArg’ from ‘pandas._typing’"></a>1.ImportError: cannot import name ‘DtypeArg’ from ‘pandas._typing’</h2><p><a target="_blank" rel="noopener" href="https://www.5axxw.com/questions/content/m7rq6b">ImportError:无法从’pandas导入名称“DtypeArg” - 我爱学习网 (5axxw.com)</a></p>
 <p>使用pip list查看</p>
 <p>卸载重装即可。</p>
 <h2 id="2-File-“-home-workspace-feifeizhang-anconda-lib-python3-7-site-packages-pandas-core-indexes-base-py”-line-3363-in-get-loc-raise-KeyError-key-from-err-KeyError-‘left-eye-coord’"><a href="#2-File-“-home-workspace-feifeizhang-anconda-lib-python3-7-site-packages-pandas-core-indexes-base-py”-line-3363-in-get-loc-raise-KeyError-key-from-err-KeyError-‘left-eye-coord’" class="headerlink" title="2.  File “/home/workspace/feifeizhang/anconda/lib/python3.7/site-packages/pandas/core/indexes/base.py”, line 3363, in get_loc raise KeyError(key) from err KeyError: ‘left_eye_coord’"></a>2.  File “/home/workspace/feifeizhang/anconda/lib/python3.7/site-packages/pandas/core/indexes/base.py”, line 3363, in get_loc raise KeyError(key) from err KeyError: ‘left_eye_coord’</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.le_coord_list = (root_dir + <span class="string">&quot;/&quot;</span> + self.anno[<span class="string">&quot;left_eye_coord&quot;</span>]).tolist()</span><br><span class="line">self.re_coord_list = (root_dir + <span class="string">&quot;/&quot;</span> + self.anno[<span class="string">&quot;right_eye_coord&quot;</span>]).tolist()</span><br></pre></td></tr></table></figure>
-
 <p>源代码中这两行被注释掉了，但是如果注释掉会出现</p>
 <pre><code>le_coor = np.load(self.le_coord_list[idx])
-</code></pre>
-<p>AttributeError: ‘GazePointAllDataset’ object has no attribute ‘le_coord_list’</p>
+</code></pre><p>AttributeError: ‘GazePointAllDataset’ object has no attribute ‘le_coord_list’</p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>已经发现了数据组织结构的问题。看代码gaze_dataset.py发现数据组织格式有问题，运行GAZE/RG-BD-Gaze-master/code/data/data_check.py有</p>
 <blockquote>
 <p>Traceback (most recent call last):<br>File “/home/workspace/feifeizhang/GAZE/RGBD-Gaze-master/code/data/data_check.py”, line 1, in <module><br>from data.gaze_dataset import GazePointAllDataset<br>ModuleNotFoundError: No module named ‘data’</module></p>
-</blockquote>
-<blockquote>
 <p>看一下cord的.npy文件，读出来。或者发邮件吧。</p>
 </blockquote>
 <h2 id="3-RuntimeError-expand-torch-cuda-FloatTensor-2-1-size-the-number-of-sizes-provided-0-must-be-greater-or-equal-to-the-number-of-dimensions-in-the-tensor-2"><a href="#3-RuntimeError-expand-torch-cuda-FloatTensor-2-1-size-the-number-of-sizes-provided-0-must-be-greater-or-equal-to-the-number-of-dimensions-in-the-tensor-2" class="headerlink" title="3.RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)"></a>3.RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</h2><p>Traceback (most recent call last):<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 666, in <module><br>    trainer.train_base(epochs= total_epochs, lr=learning_rate,use_refined_depth=True)<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 118, in train_base<br>    self._train_base_epoch()<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 411, in _train_base_epoch<br>    left_eye_info[j, 2] = th.median(cur_depth).item() * face_factor<br>RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</module></p>
@@ -122,9 +405,7 @@
 <p>非常奇怪的是，当我把batchsize设置为1时，此问题消失了orz</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self.temps.use_refined_depth:</span><br><span class="line">    <span class="keyword">with</span> th.no_grad():</span><br><span class="line">        left_eye_bbox[:, :<span class="number">2</span>] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        left_eye_bbox[:, <span class="number">2</span>:] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        right_eye_bbox[:, :<span class="number">2</span>] -= face_bbox[:, :<span class="number">2</span>]</span><br><span class="line">        right_eye_bbox[:, <span class="number">2</span>:] -= face_bbox[:, :<span class="number">2</span>]<span class="comment">#减去坐上坐标，相当于是得到在face中眼睛的位置</span></span><br><span class="line">        left_eye_bbox = th.clamp(face_factor * left_eye_bbox, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">223</span>)<span class="comment">#用斜坡函数</span></span><br><span class="line">        right_eye_bbox = th.clamp(face_factor * right_eye_bbox, <span class="built_in">min</span>=<span class="number">0</span>, <span class="built_in">max</span>=<span class="number">223</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j, lb <span class="keyword">in</span> <span class="built_in">enumerate</span>(left_eye_bbox):</span><br><span class="line">        <span class="comment">#left_eye_bbox torchsize[2,4]</span></span><br><span class="line">        <span class="comment">#refined_depth torchsize[2,1,224,224]</span></span><br><span class="line">        cur_depth = refined_depth[j, :, <span class="built_in">int</span>(lb[<span class="number">1</span>]):<span class="built_in">int</span>(lb[<span class="number">3</span>]), <span class="built_in">int</span>(lb[<span class="number">0</span>]):<span class="built_in">int</span>(lb[<span class="number">2</span>])]</span><br><span class="line">        <span class="comment">#cur_depth[1,86,86]</span></span><br><span class="line">        left_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">        <span class="comment">#left_eye_info  torchsize[2,3]</span></span><br><span class="line">    <span class="keyword">for</span> j, rb <span class="keyword">in</span> <span class="built_in">enumerate</span>(right_eye_bbox):</span><br><span class="line">        cur_depth = refined_depth[j, :, <span class="built_in">int</span>(rb[<span class="number">1</span>]):<span class="built_in">int</span>(rb[<span class="number">3</span>]), <span class="built_in">int</span>(rb[<span class="number">0</span>]):<span class="built_in">int</span>(rb[<span class="number">2</span>])]</span><br><span class="line">        right_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">#打印出维度，查看结果</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;the shape of depth:&quot;</span>,cur_depth.shape)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;the shape of left_eye_info :&quot;</span>,left_eye_info.shape)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;left_eye_info[j, 2]&quot;</span>,left_eye_info[j, <span class="number">2</span>])</span><br><span class="line">        a= th.median(cur_depth).item() * face_factor</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;median depth:&quot;</span>,a)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;median shape&quot;</span>,a.shape)</span><br><span class="line">&gt;&gt;the shape of depth: torch.Size([<span class="number">1</span>, <span class="number">89</span>, <span class="number">90</span>])</span><br><span class="line">&gt;&gt;the shape of left_eye_info : torch.Size([<span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">&gt;&gt;left_eye_info[j, <span class="number">2</span>] tensor(<span class="number">0.4084</span>, device=<span class="string">&#x27;cuda:0&#x27;</span>)</span><br><span class="line">&gt;&gt;median depth: tensor([[<span class="number">0.2566</span>],</span><br><span class="line">        [<span class="number">0.3694</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)</span><br><span class="line">&gt;&gt;median shape torch.Size([<span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>the shape of depth: torch.Size([1, 88, 88])<br>the shape of left_eye_info : torch.Size([16, 3])<br>left_eye_info[j, 2] tensor(0.9088, device=’cuda:0’)<br>median depth: tensor([[0.6016],<br>        [0.6016],<br>        [0.5006],<br>        [0.5006],<br>        [0.6016],<br>        [0.6016],<br>        [0.5006],<br>        [0.5025],<br>        [0.5006],<br>        [0.4179],<br>        [0.4179],<br>        [0.5025],<br>        [0.3485],<br>        [0.5006],<br>        [0.4179],<br>        [0.5025]], device=’cuda:0’)<br>median shape torch.Size([16, 1])<br>Traceback (most recent call last):<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 676, in <module><br>    trainer.train_base(epochs= total_epochs, lr=learning_rate,use_refined_depth=True)<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 119, in train_base<br>    self._train_base_epoch()<br>  File “/home/workspace/feifeizhang/RGBDgaze/RGBD-Gaze-master/code/trainer_aaai.py”, line 419, in _train_base_epoch<br>    left_eye_info[j, 2] = th.mean(a).item() * face_factor<br>RuntimeError: expand(torch.cuda.FloatTensor{[16, 1]}, size=[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</module></p>
 </blockquote>
@@ -136,27 +417,17 @@
 <p>gen landmark.py</p>
 </blockquote>
 <h2 id="trainer-aaai-py"><a href="#trainer-aaai-py" class="headerlink" title="trainer_aaai.py"></a>trainer_aaai.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GazeTrainer</span>(<span class="params">Trainer</span>):</span></span><br><span class="line"><span class="comment">#继承Trainer类</span></span><br><span class="line">	</span><br><span class="line">	self.weights_init(self.models.decoder)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train_base</span>(<span class="params">self, epochs, lr=<span class="number">1e-4</span>, use_refined_depth=<span class="literal">False</span>, fine_tune_headpose=<span class="literal">True</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train_headpose</span>(<span class="params">self, epochs, lr=<span class="number">2e-4</span>, lambda_loss_mse=<span class="number">1</span></span>):</span></span><br><span class="line">        self.temps.headpose_logger = self.logger.getChild(<span class="string">&#x27;train_headpose&#x27;</span>)</span><br><span class="line">        self.temps.headpose_logger.info(<span class="string">&#x27;preparing for headpose training loop.&#x27;</span>)</span><br><span class="line">        self.temps.headpose_logger = self.logger.getChild(<span class="string">&#x27;train_headpose&#x27;</span>)</span><br><span class="line">        self.temps.headpose_logger.info(<span class="string">&#x27;preparing for headpose training loop.&#x27;</span>)</span><br><span class="line">        <span class="comment">#没看明白此处log来自于哪里？</span></span><br><span class="line">        <span class="comment"># prepare logger</span></span><br><span class="line">        <span class="comment"># prepare dataloader 调用def _get_trainloader(self):</span></span><br><span class="line">        <span class="comment"># start training loop</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">resume</span>(<span class="params">self, filename</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_prepare_model</span>(<span class="params">self, model, train=<span class="literal">True</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_trainloader</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment">#data_transforms，</span></span><br><span class="line">        <span class="comment">#调用        transformed_train_dataset = GazePointAllDataset(root_dir=self.data_root,transform=data_transforms[&#x27;train&#x27;],phase=&#x27;train&#x27;,face_image=True, face_depth=True, eye_image=True,eye_depth=True,info=True, eye_bbox=True, face_bbox=True, eye_coord=True)</span></span><br><span class="line">        <span class="comment">#参数有faceimage、depth、bbox，eye_image、eye_depth、eye_bbox、eye_coord）</span></span><br><span class="line">        <span class="comment">#调用	gaze_dataset.py   </span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_get_valloader</span>(<span class="params">self</span>):</span></span><br><span class="line">        </span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_init_base_meters</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_init_headpose_meters</span>(<span class="params">self</span>):</span></span><br><span class="line">        </span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_plot_base</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_plot_headpose</span>(<span class="params">self</span>):</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_log_base</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_log_headpose</span>(<span class="params">self</span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_train_base_epoch</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_train_headpose_epoch</span>(<span class="params">selfs</span>):</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_test_base</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_test_headpose</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line">    trainer = GazeTrainer(</span><br><span class="line">        exp_name=<span class="string">&quot;gaze_aaai_refine_headpose&quot;</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
-
 <p>在调用GazeTrainer类后会继承父类Trainer，父类位于文件下GAZE/RGBD-Gaze-master/code/utils/trainer.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, checkpoint_dir=<span class="string">&#x27;./&#x27;</span>, is_cuda=<span class="literal">True</span></span>):</span><span class="comment">#初始化</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="GAZE-RGBD-Gaze-master-code-utils-edict-py"><a href="#GAZE-RGBD-Gaze-master-code-utils-edict-py" class="headerlink" title="GAZE/RGBD-Gaze-master/code/utils/edict.py"></a>GAZE/RGBD-Gaze-master/code/utils/edict.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对于字典的编辑</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="gaze-aaai-py"><a href="#gaze-aaai-py" class="headerlink" title="gaze_aaai.py"></a>gaze_aaai.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resnet34</span>(<span class="params">pretrained=<span class="literal">False</span>, **kwargs</span>):</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="comment">#左右眼decoder</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DepthBCE</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RefineDepth</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    self.depth_block4 </span><br><span class="line">	<span class="comment">#faceblock1、2、3、4，depthblock1、2、3、4</span></span><br><span class="line">    <span class="comment">#每一层输出的向量维度一样，卷积，bn，relu 。in3，每一个block out 64、128、256、512</span></span><br><span class="line">    self.down4 </span><br><span class="line">    <span class="comment">#4个down降低维度层数，in1024，out512，256，128，64，卷积、bn、rule，第一个down再relu之后加了resnet.</span></span><br><span class="line">    self.head_pose</span><br><span class="line">    <span class="comment">#in512，out1024，128</span></span><br><span class="line">    self.gen_block1 </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>down层输入为1024，感觉是两个512的feature级联起来的。</p>
 </blockquote>
 <h2 id="GAZE-RGBD-Gaze-master-code-data-gaze-dataset-py"><a href="#GAZE-RGBD-Gaze-master-code-data-gaze-dataset-py" class="headerlink" title="GAZE/RGBD-Gaze-master/code/data/gaze_dataset.py"></a>GAZE/RGBD-Gaze-master/code/data/gaze_dataset.py</h2><p><strong>27英寸，长60厘米，宽34厘米</strong>（精确值：59.77厘米，33.62厘米）</p>
 <p>在trainer_aaai.py调用时候</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">transformed_train_dataset = GazePointAllDataset(root_dir=self.data_root,transform=data_transforms[<span class="string">&#x27;train&#x27;</span>],phase=<span class="string">&#x27;train&#x27;</span>,face_image=<span class="literal">True</span>, face_depth=<span class="literal">True</span>, eye_image=<span class="literal">True</span>,eye_depth=<span class="literal">True</span>,info=<span class="literal">True</span>, eye_bbox=<span class="literal">True</span>, face_bbox=<span class="literal">True</span>, eye_coord=<span class="literal">True</span>)</span><br><span class="line">       <span class="comment">#参数有face_image、depth、bbox，eye_image、eye_depth、eye_bbox、face_bbox、info、eye_coord）</span></span><br></pre></td></tr></table></figure>
-
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GazePointAllDataset</span>(<span class="params">data.Dataset</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, root_dir, w_screen=<span class="number">59.77</span>, h_screen=<span class="number">33.62</span>, transform=<span class="literal">None</span>, phase=<span class="string">&quot;train&quot;</span>, **kwargs</span>):</span></span><br></pre></td></tr></table></figure>
-
 <p>程序错误：数据集train_csv没有left_eye_coord、lift_eye_coord,感觉是这个类调用有问题，或者是类的构造有问题。导致加载数据出错。</p>
 <h1 id="数据集结构"><a href="#数据集结构" class="headerlink" title="数据集结构"></a>数据集结构</h1><p>数据集由165231个RGB/depth图像对组成。使用159个参与者对应的图像(119,318个RGB/depth图像对)作为训练数据，使用其余59个参与者对应的数据(45,913个RGB/depth图像对)作为测试数据。</p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/shanghaitech_rgb_dataset.png" alt="image-20211025183820769"></p>
@@ -184,9 +455,7 @@
 <h1 id="读取数据集遇到的问题"><a href="#读取数据集遇到的问题" class="headerlink" title="读取数据集遇到的问题"></a>读取数据集遇到的问题</h1><h2 id="企图通过各个特征维度来获得-le-cord-和ri-cord是啥？-ㄒoㄒ"><a href="#企图通过各个特征维度来获得-le-cord-和ri-cord是啥？-ㄒoㄒ" class="headerlink" title="企图通过各个特征维度来获得 le cord 和ri cord是啥？/(ㄒoㄒ)/~~"></a>企图通过各个特征维度来获得 le cord 和ri cord是啥？/(ㄒoㄒ)/~~</h2><p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211118165313972.png" alt="image-20211118165313972"></p>
 <p>resnet 34返回特征 512维度。（经过pooling，每个维度只有一个点）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, face, depth</span>):</span></span><br><span class="line">    face_f1 = self.face_block1(face)<span class="comment">#3-&gt;64卷积、bn、relu</span></span><br><span class="line">    face_f2 = self.face_block2(face_f1)<span class="comment">#64-&gt;128</span></span><br><span class="line">    face_f3 = self.face_block3(face_f2)<span class="comment">#128-&gt;256</span></span><br><span class="line">    face_f4 = self.face_block4(face_f3)<span class="comment">#256-&gt;512  28X28</span></span><br><span class="line">    depth_f1 = self.depth_block1(depth)<span class="comment">#1-&gt;64</span></span><br><span class="line">    depth_f2 = self.depth_block2(depth_f1)<span class="comment">#64-&gt;128</span></span><br><span class="line">    depth_f3 = self.depth_block3(depth_f2)<span class="comment">#128-&gt;256</span></span><br><span class="line">    depth_f4 = self.depth_block4(depth_f3)<span class="comment">#256-&gt;512 28X28</span></span><br><span class="line">    mixed_f4 = self.down1(th.cat([face_f4, depth_f4], dim=<span class="number">1</span>))<span class="comment">#1024-&gt;512</span></span><br><span class="line">    mixed_f3 = self.down2(th.cat([face_f3, depth_f3], dim=<span class="number">1</span>))<span class="comment">#512-&gt;256</span></span><br><span class="line">    mixed_f2 = self.down3(th.cat([face_f2, depth_f2], dim=<span class="number">1</span>))<span class="comment">#256-&gt;128</span></span><br><span class="line">    mixed_f1 = self.down4(th.cat([face_f1, depth_f1], dim=<span class="number">1</span>))<span class="comment">#128-&gt;64 28X28</span></span><br><span class="line">    </span><br><span class="line">    gen_f3 = self.gen_block1(mixed_f4) + mixed_f3<span class="comment">#512-&gt;256反卷积 56X56</span></span><br><span class="line">    gen_f2 = self.gen_block2(gen_f3) + mixed_f2<span class="comment">#256-&gt;128 反卷积112X112</span></span><br><span class="line">    gen_f1 = self.gen_block3(gen_f2) + mixed_f1<span class="comment">#128-&gt;64  反卷积224X224</span></span><br><span class="line">    gen_depth = self.gen_block4(gen_f1)<span class="comment">#64-&gt;1 </span></span><br><span class="line">    <span class="comment">#和论文中的框图不一样，不过维度和 synthesize depth 对上了</span></span><br><span class="line">    </span><br><span class="line">    head_pose = self.head_pose(mixed_f4)<span class="comment">#512,28X28-&gt;512,14X14-&gt;1024,7X7-&gt;1024,1X1-&gt;128,1X1</span></span><br><span class="line">    <span class="keyword">return</span> head_pose.view(head_pose.size(<span class="number">0</span>), -<span class="number">1</span>), gen_depth<span class="comment">#6276. 1,224X224</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="似乎找到问题的答案啦！"><a href="#似乎找到问题的答案啦！" class="headerlink" title="似乎找到问题的答案啦！"></a>似乎找到问题的答案啦！</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#train_aaai.py</span></span><br><span class="line">                <span class="keyword">for</span> j, lb <span class="keyword">in</span> <span class="built_in">enumerate</span>(left_eye_bbox):</span><br><span class="line">                    cur_depth = refined_depth[j, :, <span class="built_in">int</span>(lb[<span class="number">1</span>]):<span class="built_in">int</span>(lb[<span class="number">3</span>]), <span class="built_in">int</span>(lb[<span class="number">0</span>]):<span class="built_in">int</span>(lb[<span class="number">2</span>])]</span><br><span class="line">                    left_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">                <span class="keyword">for</span> j, rb <span class="keyword">in</span> <span class="built_in">enumerate</span>(right_eye_bbox):</span><br><span class="line">                    cur_depth = refined_depth[j, :, <span class="built_in">int</span>(rb[<span class="number">1</span>]):<span class="built_in">int</span>(rb[<span class="number">3</span>]), <span class="built_in">int</span>(rb[<span class="number">0</span>]):<span class="built_in">int</span>(rb[<span class="number">2</span>])]</span><br><span class="line">                    right_eye_info[j, <span class="number">2</span>] = th.median(cur_depth).item() * face_factor</span><br><span class="line">                    </span><br><span class="line"> <span class="comment">#gaze_aaai.py</span></span><br><span class="line">l_coord = self.lcoord(th.cat([l_coord_feat, head_pose, linfo], <span class="number">1</span>))</span><br><span class="line">        r_coord = self.rcoord(th.cat([r_coord_feat, head_pose, rinfo], <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    rinfo最终concatenate的有三个信息。depth均值和眼睛中间点级联了xe，ye</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
 <p>使用眼边缘六个点做平均获得眼睛中心位置。</p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122151234305.png" alt="image-20211122151234305"></p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122151515079.png" alt="image-20211122151515079"></p>
@@ -202,171 +471,434 @@
 <p>为什么程序有一个减法？相当于平移。</p>
 </blockquote>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211122145542394.png" alt="image-20211122145542394"></p>
-<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00007_face.jpg"></p>
+<p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00007_face.jpg" alt></p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00008_face.jpg" alt="color00008_face"></p>
 <p><img src="/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/Data\RGBDbasedGaze_shanghaitech\color\color\00000\color00009_face.jpg" alt="color00009_face"></p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2021/10/18/RGBD-based-gaze%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/" data-id="ckv5zmfwg0000okupczlzfek9" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag"># 实验记录</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/04/%E2%80%9Clab%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BA%A2%E5%A4%96%E2%80%9D/" rel="next" title="lab多模态红外">
+                <i class="fa fa-chevron-left"></i> lab多模态红外
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="prev" title="深度学习小知识">
+                深度学习小知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2021/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%9F%A5%E8%AF%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-          深度学习小知识
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ImportError-cannot-import-name-%E2%80%98DtypeArg%E2%80%99-from-%E2%80%98pandas-typing%E2%80%99"><span class="nav-number">1.1.</span> <span class="nav-text">1.ImportError: cannot import name ‘DtypeArg’ from ‘pandas._typing’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-File-%E2%80%9C-home-workspace-feifeizhang-anconda-lib-python3-7-site-packages-pandas-core-indexes-base-py%E2%80%9D-line-3363-in-get-loc-raise-KeyError-key-from-err-KeyError-%E2%80%98left-eye-coord%E2%80%99"><span class="nav-number">1.2.</span> <span class="nav-text">2.  File “&#x2F;home&#x2F;workspace&#x2F;feifeizhang&#x2F;anconda&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;pandas&#x2F;core&#x2F;indexes&#x2F;base.py”, line 3363, in get_loc raise KeyError(key) from err KeyError: ‘left_eye_coord’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-RuntimeError-expand-torch-cuda-FloatTensor-2-1-size-the-number-of-sizes-provided-0-must-be-greater-or-equal-to-the-number-of-dimensions-in-the-tensor-2"><span class="nav-number">1.3.</span> <span class="nav-text">3.RuntimeError: expand(torch.cuda.FloatTensor{[2, 1]}, size&#x3D;[]): the number of sizes provided (0) must be greater or equal to the number of dimensions in the tensor (2)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trainer-aaai-py"><span class="nav-number">2.2.</span> <span class="nav-text">trainer_aaai.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GAZE-RGBD-Gaze-master-code-utils-edict-py"><span class="nav-number">2.3.</span> <span class="nav-text">GAZE&#x2F;RGBD-Gaze-master&#x2F;code&#x2F;utils&#x2F;edict.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gaze-aaai-py"><span class="nav-number">2.4.</span> <span class="nav-text">gaze_aaai.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GAZE-RGBD-Gaze-master-code-data-gaze-dataset-py"><span class="nav-number">2.5.</span> <span class="nav-text">GAZE&#x2F;RGBD-Gaze-master&#x2F;code&#x2F;data&#x2F;gaze_dataset.py</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">数据集结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">读取数据集遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%81%E5%9B%BE%E9%80%9A%E8%BF%87%E5%90%84%E4%B8%AA%E7%89%B9%E5%BE%81%E7%BB%B4%E5%BA%A6%E6%9D%A5%E8%8E%B7%E5%BE%97-le-cord-%E5%92%8Cri-cord%E6%98%AF%E5%95%A5%EF%BC%9F-%E3%84%92o%E3%84%92"><span class="nav-number">4.1.</span> <span class="nav-text">企图通过各个特征维度来获得 le cord 和ri cord是啥？&#x2F;(ㄒoㄒ)&#x2F;~~</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%BC%E4%B9%8E%E6%89%BE%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E7%AD%94%E6%A1%88%E5%95%A6%EF%BC%81"><span class="nav-number">4.2.</span> <span class="nav-text">似乎找到问题的答案啦！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%AF%B9%E4%BA%8Egt%E5%A4%84%E7%90%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E4%B8%80%E4%B8%AAscreen-2%E5%B9%B3%E7%A7%BB"><span class="nav-number">4.3.</span> <span class="nav-text">程序中对于gt处理，为什么有一个screen&#x2F;2平移</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2021/10/04/%E2%80%9Clab%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BA%A2%E5%A4%96%E2%80%9D/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">“lab多模态红外”</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
 
   
-</article>
+ </div>
 
-</section>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 iszff<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
 
 </body>
 </html>

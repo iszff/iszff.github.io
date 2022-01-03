@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>2018 ECCV A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment | iszff&#39; Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="https:&#x2F;&#x2F;paperswithcode.com&#x2F;paper&#x2F;a-deeply-initialized-coarse-to-fine-ensemble  https:&#x2F;&#x2F;paperswithcode.com&#x2F;sota&#x2F;face-alignment-on-300w DCFE在300W私有和公共数据集排第4，3.24。 https:&#x2F;&#x2F;github.com&#x2F;bobetocalo&#x2F;bobetocal">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="文献阅读," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="https:&#x2F;&#x2F;paperswithcode.com&#x2F;paper&#x2F;a-deeply-initialized-coarse-to-fine-ensemble  https:&#x2F;&#x2F;paperswithcode.com&#x2F;sota&#x2F;face-alignment-on-300w DCFE在300W私有和公共数据集排第4，3.24。 https:&#x2F;&#x2F;github.com&#x2F;bobetocalo&#x2F;bobetocal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018 ECCV A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment">
 <meta property="og:url" content="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/index.html">
@@ -20,111 +94,304 @@
 <meta property="og:image" content="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog/source/pics/DCFElocal_deformation_coarse2fine.png">
 <meta property="og:image" content="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog/source/pics/DCFE_Rseult.png">
 <meta property="article:published_time" content="2021-09-02T14:50:06.000Z">
-<meta property="article:modified_time" content="2021-10-13T05:25:21.740Z">
+<meta property="article:modified_time" content="2022-01-03T13:42:13.364Z">
 <meta property="article:author" content="iszff">
-<meta property="article:tag" content="论文阅读">
+<meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog/source/pics/DCFErank20210903.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/09/02/论文阅读Efficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/"/>
+
+
+
+
+
+  <title>2018 ECCV A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment | iszff' Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">iszff&#39; Blog</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-论文阅读Efficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/" class="article-date">
-  <time datetime="2021-09-02T14:50:06.000Z" itemprop="datePublished">2021-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a>
+        <p class="site-subtitle">people move on.</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      2018 ECCV A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment
-    </h1>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018 ECCV A Deeply-initialized Coarse-to-fine Ensemble of Regression Trees for Face Alignment</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-02T22:50:06+08:00">
+                2021-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">人脸关键点检测</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p><a target="_blank" rel="noopener" href="https://paperswithcode.com/paper/a-deeply-initialized-coarse-to-fine-ensemble">https://paperswithcode.com/paper/a-deeply-initialized-coarse-to-fine-ensemble</a></p>
 <p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFErank20210903.png" alt="DCFErank20210903"></p>
 <p><a target="_blank" rel="noopener" href="https://paperswithcode.com/sota/face-alignment-on-300w">https://paperswithcode.com/sota/face-alignment-on-300w</a></p>
 <p>DCFE在300W私有和公共数据集排第4，3.24。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/bobetocalo/bobetocalo_eccv18">https://github.com/bobetocalo/bobetocalo_eccv18</a></p>
-<ol>
-<li><h2 id="评价："><a href="#评价：" class="headerlink" title="评价："></a>评价：</h2><p>提出了DCFE Deeply-initialized Coarse-to-fine Ensemble of Regression Trees，一种基于<strong>粗到细的</strong> <strong>回归树集合(ERT)Ensemble of Regression Trees <strong>的</strong>实时面部地标回归方法</strong>。</p>
-</li>
-<li><h2 id="针对的问题："><a href="#针对的问题：" class="headerlink" title="针对的问题："></a>针对的问题：</h2><ol>
+<h2 id="评价："><a href="#评价：" class="headerlink" title="评价："></a>评价：</h2><p>提出了DCFE Deeply-initialized Coarse-to-fine Ensemble of Regression Trees，一种基于<strong>粗到细的</strong> <strong>回归树集合(ERT)Ensemble of Regression Trees </strong>的<strong>实时面部地标回归方法</strong>。</p>
+<h2 id="针对的问题："><a href="#针对的问题：" class="headerlink" title="针对的问题："></a>针对的问题：</h2><ol>
 <li>解决零件变形的组合爆炸问题 the combinatorial explosion of parts deformation。</li>
 <li>解决鲁棒性地回归器初始化、自遮挡问题以及同时进行正面和侧面人脸分析。</li>
 </ol>
-</li>
-<li><h2 id="本文的目的："><a href="#本文的目的：" class="headerlink" title="本文的目的："></a>本文的目的：</h2></li>
-<li><h2 id="实现的方法："><a href="#实现的方法：" class="headerlink" title="实现的方法："></a>实现的方法：</h2><p><strong>基于cnn的刚性脸位姿计算</strong>和<strong>基于ert的非刚性脸变形估计</strong></p>
+<h2 id="本文的目的："><a href="#本文的目的：" class="headerlink" title="本文的目的："></a>本文的目的：</h2><h2 id="实现的方法："><a href="#实现的方法：" class="headerlink" title="实现的方法："></a>实现的方法：</h2><p><strong>基于cnn的刚性脸位姿计算</strong>和<strong>基于ert的非刚性脸变形估计</strong></p>
 <p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFE_framework.png" alt="image-20210903121741171"></p>
-<p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFE_regression.png"></p>
+<p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFE_regression.png" alt></p>
 <ul>
 <li>$P(I)$ a set of probability maps经过CNN得到，之后经过高斯平滑滤波器GS，再经过Max函数，得到粗糙的标定，由于对于遮挡的敏感性不一定是一个有效的脸型。</li>
 <li>$x^0=g_0(P(I))$是过POSIT得到的,$x^0$是一个$L\times2$的向量，$x^0$是一个有效的脸型，它作为ERT的初始化。</li>
-<li>$S={s_i}^N_{i-1}$ the set of train face shapes，$s_i={I_i,x^g_i,v^g_i,w^g_i,x^g_i}$，对于每一个训练形状$s_i$有$I_i$训练图片，真值形状$x^g_i$,真值可见标定$v^g_i$,带标注的地表标签$w^g_i$(1代表标注了的，0代表丢失的)。</li>
+<li>$S=\{s_i\}^N_{i-1}$ the set of train face shapes，$s_i=\{I_i,x^g_i,v^g_i,w^g_i,x^g_i\}$，对于每一个训练形状$s_i$有$I_i$训练图片，真值形状$x^g_i$,真值可见标定$v^g_i$,带标注的地表标签$w^g_i$(1代表标注了的，0代表丢失的)。</li>
 <li>初始化形状为$x_i^0$,gt即目标形状为$x_i^g$,是一个$L\times2$向量。$L\times1$向量$v_i^g$是每个标定点可见性的二进制标签，如果对于第$k$个组件，$v_g(k)=1$，表示对于第$k$个地标是可见的。</li>
-<li> shape-indexed features  $\phi(P(I_i),x^t_i,w_i^g)$依赖于在图片$I_i$关键点的当前的形状和它们是否被标注了，即$x_i^t$和$w_i^t$。</li>
+<li>shape-indexed features  $\phi(P(I_i),x^t_i,w_i^g)$依赖于在图片$I_i$关键点的当前的形状和它们是否被标注了，即$x_i^t$和$w_i^t$。</li>
 <li>把回归过程分为$T$个阶段，对于第$t$阶段学习$K$个回归树集合，$C_t(f_i)=x^{t-1}+\sum^K_{k=1}g_k(f_i)$，$f_i=\phi(P(I),x^{t-1}_i,w_i^g)$,$x^j$是第$j$个阶段估计出的标定点的坐标，在第一个阶段中为$x^0$，为了训练整个ERT，使用$S$中的N个训练样本生成一个增广训练集，$S_A$的基数是$N_A$=$|S_A|$。</li>
 <li>对于每个训练形状$s_i$，通过改变初始形状生成了附加的训练样本，从平滑的概率图中随机抽取新的候选地标位置，以生成新的初始形状。</li>
-<li>每个初始化形状可以逐步被估计的形状和可见性增量$C^v_t(\phi(P(I_i),x^{t-1}<em>i,w^g_i)$，$x_i^{t-1}$代表了第$i$个样本的当前形状，$C^v_t$训练为了最小化关键的错误，但在每个叶节点上，要输出平均形状和训练形状的可见性，定义$U</em>{t-1}={(x_i^{t-1},v_i^{t-1})}^{N_A}_{i=1}$是所有训练数据的所有当前形状和相应可见性向量的集合。</li>
+<li>每个初始化形状可以逐步被估计的形状和可见性增量$C^v_t(\phi(P(I_i),x^{t-1}_i,w^g_i)$，$x_i^{t-1}$代表了第$i$个样本的当前形状，$C^v_t$训练为了最小化关键的错误，但在每个叶节点上，要输出平均形状和训练形状的可见性，定义$U_{t-1}=\{(x_i^{t-1},v_i^{t-1})\}^{N_A}_{i=1}$是所有训练数据的所有当前形状和相应可见性向量的集合。</li>
 </ul>
 <ol>
 <li><p>使用简单的卷积神经网络(CNN)来生成地标位置的概率图，深度神经网络的大感受野对人脸旋转、缩放和变形具有高度的鲁棒性。</p>
@@ -132,30 +399,13 @@
 <li><p>拟合一个三维人脸模型，通过拟合一个<strong>刚性3D头部模型</strong>到估计的2D地标位置来计算初始形状，增强全局人脸形状先验，并估计全局人脸方向以解决自遮挡。</p>
 </li>
 <li><p>通过ERT回归器进一步细化特征，从粗到细的方法可以处理局部形变，让ERT很容易地解决<strong>非刚性零件</strong>所有可能变形的组合爆炸。</p>
-<p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFElocal_deformation_coarse2fine.png"></p>
+<p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFElocal_deformation_coarse2fine.png" alt></p>
 </li>
 </ol>
 <h3 id="ERT方法的优点"><a href="#ERT方法的优点" class="headerlink" title="ERT方法的优点"></a>ERT方法的优点</h3><p>容易并行化,它们的估计中隐含地强加了形状一致性。在粗到细的框架内使用ERT来实现精度和效率。</p>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFE_Rseult.png"></p>
-</li>
-</ol>
-<ol start="5">
-<li><p>  方法简介</p>
-</li>
-<li><p>  方法优化</p>
-</li>
-<li><p>  方法总结</p>
-</li>
-<li><p>  文章存在的问题</p>
-</li>
-<li><p>  个人的思考</p>
-</li>
-</ol>
-<ol start="10">
-<li><h2 id="领域内目前存在的问题"><a href="#领域内目前存在的问题" class="headerlink" title="领域内目前存在的问题"></a>领域内目前存在的问题</h2><p>1.级联形状回归器(CSR)框架对回归过程的起点非常敏感。</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/Blog\source\pics\DCFE_Rseult.png" alt></p>
+<h2 id="领域内目前存在的问题"><a href="#领域内目前存在的问题" class="headerlink" title="领域内目前存在的问题"></a>领域内目前存在的问题</h2><p>1.级联形状回归器(CSR)框架对回归过程的起点非常敏感。</p>
 <p>2.深度模型的级联，逐步细化估计，从而增加计算需求。</p>
-</li>
-</ol>
 <h1 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h1><p>1.ECCV论文不是双列排版</p>
 <p>2.第4页结尾v和w说反了？</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>1.Deeply-initialized的含义是什么？</p>
@@ -170,171 +420,432 @@
 <p>10.$x^0$形式$L\times2$ with $L$ 2D landmarks coordinates是什么样子的？</p>
 <p>11.$x_i^g$,是一个$L\times2$向量with the $L$ landmarks coordinates，语法上的with，这样用是表示含义吗？</p>
 <p>12.如果对于第$k$个组件，$v_g(k)=1$，表示对于第$k$个地标是可见的。地标和部件代表的是一样的吗？</p>
-<p>13.${C^v_t}^T_{t=1}$算法中update的部分让人困惑，它到底是残差还是最最终值呀？</p>
+<p>13.$\{C^v_t\}^T_{t=1}$算法中update的部分让人困惑，它到底是残差还是最最终值呀？</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2021/09/02/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBEfficient-and-Accurate-Face-Alignment-by-Global-Regression-and-Cascaded/" data-id="ckup2agtw000nf0up8pnp0k0p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag"># 文献阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/18/%E5%8D%8E%E4%B8%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/" rel="next" title="华为面试经历">
+                <i class="fa fa-chevron-left"></i> 华为面试经历
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/08/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95Aggregation-via-Separation-Boosting-Facial-Landmark-Detector-with/" rel="prev" title="试验记录Aggregation via Separation: Boosting Facial Landmark Detector with">
+                试验记录Aggregation via Separation: Boosting Facial Landmark Detector with <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2021/09/03/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91%5B2018ECCV%5DA%20Deeply-initialized%20Coarse-to-fine%20Ensemble%20of%20Regression%20Trees%20for%20Face%20Alignment/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-          (no title)
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">评价：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">针对的问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E7%9A%84%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">本文的目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">实现的方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ERT%E6%96%B9%E6%B3%95%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">ERT方法的优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%86%E5%9F%9F%E5%86%85%E7%9B%AE%E5%89%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">领域内目前存在的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E7%8E%B0"><span class="nav-number"></span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number"></span> <span class="nav-text">问题</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2019/09/18/%E5%8D%8E%E4%B8%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">华为面试经历</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
 
   
-</article>
+ </div>
 
-</section>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 iszff<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
 
 </body>
 </html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="文献阅读," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人脸关键点检测对heatmap的loss设计">
+<meta property="og:url" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。 heatmap介绍参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark h">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101171407947.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101175929474.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101200537435.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101201422715.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101204052130.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101204617486.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210145674.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210329410.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101210634320.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding/result_save10/47_Matador_Bullfighter_Matador_Bullfighter_47_772_2485.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding/result_save10/59_peopledrivingcar_peopledrivingcar_59_202_2488.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding/result_save10/61_Street_Battle_streetfight_61_708_2489.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding/result_save10/20_Family_Group_Family_Group_20_667_2486.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding/result_save10/32_Worker_Laborer_Worker_Laborer_32_600_2499.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220102110938051.png">
+<meta property="article:published_time" content="2022-01-01T02:29:59.000Z">
+<meta property="article:modified_time" content="2022-01-03T13:41:16.184Z">
+<meta property="article:author" content="iszff">
+<meta property="article:tag" content="文献阅读">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20220101171407947.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/01/01/人脸关键点检测heatmap_loss设计/"/>
+
+
+
+
+
+  <title>人脸关键点检测对heatmap的loss设计 | iszff' Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">人脸关键点检测对heatmap的loss设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-01T10:29:59+08:00">
+                2022-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">人脸关键点检测</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E8%AF%95%E9%AA%8C%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
+                    <span itemprop="name">试验记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍人脸关键点检测中使用的heatmap。并且会介绍Adaptive Wing Loss这篇文章中针对于heatmap损失函数的设计，以及它的实验结果。</p>
+<h2 id="heatmap介绍"><a href="#heatmap介绍" class="headerlink" title="heatmap介绍"></a>heatmap介绍</h2><p><em>参考了[2016CVPRW]Deep Alignment Network: A convolutional neural network for robust face alignment 3.3. Landmark heatmap</em></p>
+<p>landmark heatmap 是landmark位置的强度最高，强度随着距离最近的地标的距离增大而减小的图像。</p>
+<script type="math/tex; mode=display">
+H(x,y)=\frac{1}{1+min_{s_i}}||(x,y)-s_i||</script><p>$H$是热图，$s_i$是第i个landmark，为了提高性能，可以只在每个地标周围以16为半径的圆圈内计算热图值。</p>
+<p>上面的公式中使用了范数，也可在的每个关键点处绘制一个高斯分布来生成的热图。</p>
+<h2 id="2019ICCV-Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression"><a href="#2019ICCV-Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression" class="headerlink" title="[2019ICCV]Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression"></a>[2019ICCV]Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression</h2><blockquote>
+<p>Xinyao Wang1,2Liefeng Bo2Li Fuxin1</p>
+<p>1Oregon State University 2JD Digits<br>{wangxiny, lif}@oregonstate.edu,{xinyao.wang3, liefeng.bo}@jd.com</p>
+</blockquote>
+<ol>
+<li><p>评价：提出了一种新的loss函数，称为Adaptive Wing loss，它具有适应性，这种适应性对前景像素损失的惩罚更大，而对背景像素损失惩罚较小。提出了加权损失图(Weighted Loss Map)，为前景像素和“困难的背景像素”分配较高的权重，以帮助训练过程更多地关注对地标定位至关重要的像素。为了进一步提高面对齐精度，引入了边界预测和基于边界坐标的CoordConv。</p>
+</li>
+<li><p>针对问题：基于深度网络的热图回归已成为人脸关键点定位的主流方法之一。然而，对于热图回归中损失函数的研究却很少。</p>
+</li>
+<li><p>本文的目的：分析了人脸关键点检测问题热图回归的理想损失函数性质，并根据此设计了Adaptive Wing loss。该模型在像素级对真值热图进行更加准确的回归，然后利用预测的热图来推断关键点的位置。</p>
+</li>
+<li><p>热图分析：</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101171407947.png" alt="image-20220101171407947"></p>
+<p>在热图中前景像素(具有正值的像素)，特别是每一个高斯分附近的像素，对于准确定位关键点至关重要。这些像素上即使很小的预测误差也会导致预测偏离正确的模式。这些像素的预测误差即使很小，也会导致预测偏离正确的模式。</p>
+<p>相反，准确预测背景像素(零值像素)的值就不那么重要了，因为这些像素上的小误差在大多数情况下不会影响地标的预测。</p>
+<p>然而，困难背景像素(图1背景像素接近前景像素区域的像素)的预测精度也很重要，因为它们经常被错误地回归为前景像素，可能导致预测不准确。</p>
+</li>
+<li><p>heatmap regression中的常用的MSE loss</p>
+<p>a. 均方误差对小误差不敏感，影响了对高斯分布模式的正确定位。</p>
+<p>b. 在训练过程中，MSE loss对于所有的所有的像素都具有相同的损失函数和相等的权值，但是在热图上，背景像素绝对优于前景像素。</p>
+<p>由于a)和b)，使用MSE损失训练的模型所得的结果与ground truth热图相比，前景像素强度会被降低，会获得一张模糊和膨胀的热图。这种低质量的热图可能会导致对面部关键点的错误估计。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101175929474.png" alt="image-20220101175929474"></p>
+</li>
+<li><p>网络结构</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101200537435.png" alt="image-20220101200537435"></p>
+</li>
+</ol>
+<ol>
+<li><p>损失函数的基本原理</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101201422715.png" alt="image-20220101201422715"></p>
+<p>•其中，N是训练样本的总数，H、W和C分别是热图的高度、宽度和通道。</p>
+<p>•从稳健统计中引入一个概念。影响力是一个启发式工具，在稳健统计中用来研究估计量的性质。</p>
+<p>•在收敛时，在收敛时，所有误差的影响必须相互平衡。因此，具有较大梯度幅值的像素的正误差(影响较大)需要用影响较小的许多像素上的负误差来平衡。与梯度较小的错误相比，梯度较大的错误也会在训练中更被关注。如何对小误差有一个相对较高的关注是设计的出发点之一。</p>
+</li>
+<li><p>不同loss对于大梯度和小梯度误差影响力分析以及连续性分析</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101204052130.png" alt="image-20220101204052130"></p>
+<p>a. 常用于热图回归的均方误差损失函数。均方误差损失的梯度是线性的，因此误差小的像素影响小。该属性可能导致训练收敛，而许多像素仍有小误差。因此，用均方误差损失训练的模型倾向于预测模糊和扩大的热图。</p>
+<p>b. L1loss具有恒定的梯度，因此误差小的像素与误差大的像素具有相同的影响。然而，L1损失的梯度在零点不是连续的，具有正误差的像素的数量必须恰好等于具有负误差的像素的数量。</p>
+<p>c.当误差较大时具有恒定梯度，当误差较小时具有大梯度的wing损失。因此，误差小的像素将被放大。</p>
+<p>仍然不能克服其梯度在零点时的不连续性。不适用于热图回归。</p>
+<p>因为在所有背景像素上计算wing损失，背景像素上的小误差具有不成比例的影响。训练一个在这些像素上输出零或小梯度的神经网络是非常困难的。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101204617486.png" alt="image-20220101204617486"></p>
+</li>
+<li><p>理想的loss设计 </p>
+<p>•误差较大</p>
+<p>•loss函数具有恒定的影响，这样它将对不准确的注释和遮挡具有鲁棒性。</p>
+</li>
+</ol>
+<p>   •误差小</p>
+<p>   •对于前景像素，影响应该开始增加，以便训练能够集中于减少这些误差。当误差非常接近零时，这种影响应该会迅速减小，这样这些“足够好”的像素将不再被关注。减少正确估计的影响有助于网络保持收敛，而不是像L1和wing loss那样振荡。</p>
+<p>   •对于背景像素，梯度应该表现得更类似于均方误差损失，即随着训练误差的减小，梯度将逐渐减小到零，因此当误差较小时，影响将相对较小。该属性减少了背景像素上的训练的关注，稳定了训练过程。</p>
+<ol>
+<li><p>Adaptive Wing loss设计</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210145674.png" alt="image-20220101210145674"></p>
+</li>
+</ol>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210329410.png" alt="image-20220101210329410"></p>
+<p>​    损耗函数在零点平滑。</p>
+<ol>
+<li><p>区分前后景像素</p>
+<p>在具有64 × 64热图和7×7高斯大小的面部标志定位的典型设置中，前景像素仅构成所有像素的1.2%。为这种不平衡的数据分配相同的权重可能会使训练过程收敛缓慢，从而导致较差的性能。为了进一步建立网络聚焦前景像素和困难背景像素(接近前景像素的背景像素)的能力，引入加权损失图来平衡不同类型像素的损失。前景像素和困难背景像素1，其他像素0。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220101210634320.png" alt="image-20220101210634320"></p>
+</li>
+</ol>
+<h2 id="adapt-wing-loss论文测试效果"><a href="#adapt-wing-loss论文测试效果" class="headerlink" title="adapt_wing_loss论文测试效果"></a>adapt_wing_loss论文测试效果</h2><p><em>此论文只给了测试代码以及预训练好的模型</em></p>
+<p>真值绿色，红色为预测值。</p>
+<p>下图为nme &gt; 0.1的失败案例。失败的原因是图片本身有遮挡，或者图片清晰度不高，或者是人脸为大角度姿势。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding\result_save10\47_Matador_Bullfighter_Matador_Bullfighter_47_772_2485.jpg" alt></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding\result_save10\59_peopledrivingcar_peopledrivingcar_59_202_2488.jpg" alt="59_peopledrivingcar_peopledrivingcar_59_202_2488"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding\result_save10\61_Street_Battle_streetfight_61_708_2489.jpg" alt="61_Street_Battle_streetfight_61_708_2489"></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding\result_save10\20_Family_Group_Family_Group_20_667_2486.jpg" alt></p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/coding\result_save10\32_Worker_Laborer_Worker_Laborer_32_600_2499.jpg" alt="32_Worker_Laborer_Worker_Laborer_32_600_2499"></p>
+<h2 id="数据集与处理方式"><a href="#数据集与处理方式" class="headerlink" title="数据集与处理方式"></a>数据集与处理方式</h2><p>300w的数据集除了private外，没有官方边界。</p>
+<p>WFLW提供的边界框不是很准确。</p>
+<p>因此在两个维度上都将边界框放大了10%，300W直接裁剪人脸。</p>
+<h2 id="数据集WFLW-7500训练-2500测试。"><a href="#数据集WFLW-7500训练-2500测试。" class="headerlink" title="数据集WFLW#7500训练 2500测试。"></a>数据集WFLW#7500训练 2500测试。</h2><p>人脸多种属性、关键点标注数据集，包含了10000张脸，其中7500用于训练，2500张用于测试，共98个关键点。除了关键点之外，还有姿态，表情，光照，妆容，遮挡，模糊。</p>
+<p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220102110938051.png" alt="image-20220102110938051"></p>
+<p>list_98pt_rect_attr_train_test.txt是98X2关键点+4左上右下+6属性+图片名称 = 196 +4+6+1 = 207 list_98pt_test.txt196 + 名字 =197。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag"># 文献阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/" rel="next" title="风格造成的人脸关键点检测误差">
+                <i class="fa fa-chevron-left"></i> 风格造成的人脸关键点检测误差
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/" rel="prev" title="人脸关键点检测简介">
+                人脸关键点检测简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#heatmap%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">heatmap介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019ICCV-Adaptive-Wing-Loss-for-Robust-Face-Alignment-via-Heatmap-Regression"><span class="nav-number">2.</span> <span class="nav-text">[2019ICCV]Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adapt-wing-loss%E8%AE%BA%E6%96%87%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">adapt_wing_loss论文测试效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">数据集与处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86WFLW-7500%E8%AE%AD%E7%BB%83-2500%E6%B5%8B%E8%AF%95%E3%80%82"><span class="nav-number">5.</span> <span class="nav-text">数据集WFLW#7500训练 2500测试。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
+
+  
+ </div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

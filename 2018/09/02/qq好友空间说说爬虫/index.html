@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>qq好友空间说说爬虫 | iszff&#39; Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据处理,python,爬虫," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。 这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。 该爬虫使用的python版本是python3。 该爬虫的使用第三方库有selenium、requests、re、openpyxl、time。 其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="qq好友空间说说爬虫">
 <meta property="og:url" content="http://yoursite.com/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/index.html">
@@ -21,79 +95,276 @@
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/02/qq好友空间说说爬虫/"/>
+
+
+
+
+
+  <title>qq好友空间说说爬虫 | iszff' Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">iszff&#39; Blog</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-qq好友空间说说爬虫" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/" class="article-date">
-  <time datetime="2018-09-02T03:14:50.000Z" itemprop="datePublished">2018-09-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+        <p class="site-subtitle">people move on.</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      qq好友空间说说爬虫
-    </h1>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">qq好友空间说说爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T11:14:50+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。</p>
 <p>这个爬虫主要实现了爬取qq好友们2018年的说说、提取关键信息并且存入excel文件的功能。</p>
@@ -102,8 +373,6 @@
 <p>其中，selenium库用于登陆访问页面，requests库用于向网页发送请求、re库用于匹配、提取返回包含说说信息的内容，openpyxl库用于储存信息，time库用于计算程序运行时间。</p>
 <p>程序源码放在了GitHub上<a target="_blank" rel="noopener" href="https://github.com/iszff">iszff</a>/<a target="_blank" rel="noopener" href="https://github.com/iszff/QQ-Crawler"><strong>QQ-Crawler</strong></a>。</p>
 <span id="more"></span>
-
-
 <h3 id="爬虫思路"><a href="#爬虫思路" class="headerlink" title="爬虫思路"></a>爬虫思路</h3><div id="flowchart-0" class="flow-chart"></div>
 
 
@@ -111,41 +380,37 @@
 <h3 id="使用selenium登陆空间"><a href="#使用selenium登陆空间" class="headerlink" title="使用selenium登陆空间"></a>使用selenium登陆空间</h3><p><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/">selenium</a>是一个自动化测试工具，它可以寻找、定位、选择网页中的元素，向网页提交一些信息，如输入用户名、密码，也可以获取页面中的信息，如返回当前页面的url、网页源码。</p>
 <p>感觉测试攻城狮<a target="_blank" rel="noopener" href="https://me.csdn.net/u011541946">Anthony_tester </a>的<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011541946/article/category/6788788">Python+Selenium自动化测试从零到框架设计系列 </a>教程写的很棒,适合入门。</p>
 <h4 id="进入好友空间说说页面、登陆并获取信息："><a href="#进入好友空间说说页面、登陆并获取信息：" class="headerlink" title="进入好友空间说说页面、登陆并获取信息："></a>进入好友空间说说页面、登陆并获取信息：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_in</span>(<span class="params">url, qq, password</span>):</span></span><br><span class="line">    driver = webdriver.Chrome()</span><br><span class="line">    driver.set_page_load_timeout(<span class="number">10</span>)</span><br><span class="line">    driver.get(url)</span><br><span class="line">    time.sleep(<span class="number">6</span>)</span><br><span class="line">    driver.switch_to.frame(<span class="string">&#x27;login_frame&#x27;</span>)<span class="comment">#通过观察网页源码，发现账号和密码的输入框在&lt;frame&gt;标签下，需要跳入框架中，否则定位不到</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;switcher_plogin&quot;]&#x27;</span>).click()<span class="comment">#点击选择</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;u&quot;]&#x27;</span>).clear()</span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;u&quot;]&#x27;</span>).send_keys(qq)<span class="comment">#输入账号</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;p&quot;]&#x27;</span>).clear()</span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;p&quot;]&#x27;</span>).send_keys(password)<span class="comment">#输入密码</span></span><br><span class="line">    driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;login_button&quot;]&#x27;</span>).click()</span><br><span class="line">    time.sleep(<span class="number">6</span>)</span><br><span class="line">    </span><br><span class="line">    html = driver.page_source<span class="comment">#返回页面内容，根据内容判断内否进入空间</span></span><br><span class="line">    fw = re.findall(<span class="string">r&#x27;主人设置了权限，您可通过以下方式访问&#x27;</span>,html)<span class="comment">#判断好友空间是否限制权限</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(fw)!=<span class="number">0</span>:</span><br><span class="line">        driver.delete_all_cookies()</span><br><span class="line">        driver.quit()</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        cookies = driver.get_cookies()<span class="comment">#获取cookie</span></span><br><span class="line">        cookie = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> elem <span class="keyword">in</span> cookies:</span><br><span class="line">       	    cookie[elem[<span class="string">&#x27;name&#x27;</span>]] = elem[<span class="string">&#x27;value&#x27;</span>]</span><br><span class="line">        driver.delete_all_cookies()    </span><br><span class="line"></span><br><span class="line">        hashes=<span class="number">5381</span></span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> cookie[<span class="string">&#x27;p_skey&#x27;</span>]:</span><br><span class="line">            hashes += (hashes &lt;&lt; <span class="number">5</span>) + <span class="built_in">ord</span>(letter)</span><br><span class="line">        gtk=<span class="built_in">str</span>(hashes &amp; <span class="number">0x7fffffff</span>)   </span><br><span class="line">	    </span><br><span class="line">        g_qzonetoken = re.findall(<span class="string">r&#x27;window\.g\_qzonetoken \= \(function\(\)\&#123; try\&#123;return \&quot;.*?\&quot;&#x27;</span>,html)</span><br><span class="line">        qzonetoken=g_qzonetoken[<span class="number">0</span>].split(<span class="string">&#x27;&quot;&#x27;</span>)[-<span class="number">2</span>]</span><br><span class="line">	    </span><br><span class="line">        driver.quit()</span><br><span class="line">	    </span><br><span class="line">        <span class="keyword">return</span> cookie, gtk, qzonetoken  </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>通过观察浏览器控制台中的请求头，发现请求连接中有g_tk和qzonetoken这两项</p>
 <p>而且两项都是动态变化的，每次刷新都会变化，不过经过多次…尝试，似乎qzonetoken的变化影响不大</p>
 <p>qzonetoken包含在页面的源代码中，可以通过正则匹配直接获得</p>
 <p>在js内容找出可以找出一个g_tk的加密算法（向大佬们低头）</p>
 </blockquote>
-<h3 id="使用requests向网页发送请求"><a href="#使用requests向网页发送请求" class="headerlink" title="使用requests向网页发送请求"></a>使用requests向网页发送请求</h3><p><a target="_blank" rel="noopener" href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html">requests</a>可以通过传递参数向网络发送<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HTTP%E8%AF%B7%E6%B1%82/10882159?fr=aladdin">http请求</a>,可以获得不同类型的<a target="_blank" rel="noopener" href="http://docs.python-requests.org/zh_CN/latest/api.html#requests.Response">Response</a>内容。</p>
+<h3 id="使用requests向网页发送请求"><a href="#使用requests向网页发送请求" class="headerlink" title="使用requests向网页发送请求"></a>使用requests向网页发送请求</h3><p><a target="_blank" rel="noopener" href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html">requests</a>可以通过传递参数向网络发送<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HTTP请求/10882159?fr=aladdin">http请求</a>,可以获得不同类型的<a target="_blank" rel="noopener" href="http://docs.python-requests.org/zh_CN/latest/api.html#requests.Response">Response</a>内容。</p>
 <p><a target="_blank" rel="noopener" href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html">官方文档</a>写的很不错。</p>
 <h4 id="构造链接"><a href="#构造链接" class="headerlink" title="构造链接"></a>构造链接</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">urlOrd = &#x27;https://user.qzone.qq.com/proxy/domain/taotao.qq.com/cgi—bin/emotion_cgi_msglist_v6?uin=&#x27;</span><br><span class="line">sec=&#x27;&amp;ftype=0&amp;sort=0&amp;pos=&#x27;</span><br><span class="line">third=&#x27;&amp;num=20&amp;replynum=100&amp;g_tk=&#x27;</span><br><span class="line">forth=&#x27;&amp;callback=_preloadCallback&amp;code_version=1&amp;format=jsonp&amp;need_private_comment=1&amp;qzonetoken=&#x27;</span><br><span class="line">fifth=&#x27;&amp;g_tk=&#x27;</span><br><span class="line"></span><br><span class="line">for ye in range(400):</span><br><span class="line">    pos = str(ye*20)</span><br><span class="line">    emotionurl=urlOrd+ friend_qq + sec + pos + third + gtk + forth + qzonetoken+ fifth + gtk</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>观察确定请求url格式，构造请求url</p>
 </blockquote>
 <h4 id="对网页请求"><a href="#对网页请求" class="headerlink" title="对网页请求"></a>对网页请求</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def get_emotion(url,cookie):</span><br><span class="line">    header= &#123;&#x27;accept-encoding&#x27;: &#x27;gzip, deflate, br&#x27;, &#x27;accept-language&#x27;: &#x27;zh-CN,zh;q=0.8&#x27;, &#x27;host&#x27;: &#x27;h5.qzone.qq.com&#x27;, &#x27;user-agent&#x27;: &#x27;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&#x27;, &#x27;accept&#x27;: &#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#x27;, &#x27;connection&#x27;: &#x27;keep-alive&#x27;&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie) </span><br><span class="line">    return r.text #返回文本信息</span><br></pre></td></tr></table></figure>
-
 <h4 id="获取好友信息"><a href="#获取好友信息" class="headerlink" title="获取好友信息"></a>获取好友信息</h4><p>获取好友信息的爬虫思路和获取说说页面响应的思路基本一致，只是url有所改变。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enter_qzone</span>(<span class="params">my_qq, my_password, save_path</span>):</span><span class="comment">#进入网页 获取cookies 构造链接</span></span><br><span class="line">    url = <span class="string">&#x27;https://user.qzone.qq.com/&#x27;</span>+my_qq+<span class="string">&#x27;/311&#x27;</span></span><br><span class="line">    (cookie, gtk, qzonetoken) = login_in(url, my_qq, my_password)</span><br><span class="line"></span><br><span class="line">    urlOrd = <span class="string">&#x27;https://user.qzone.qq.com/proxy/domain/r.qzone.qq.com/cgi-bin/tfriend/friend_hat_get.cgi?hat_seed=1&amp;uin=&#x27;</span></span><br><span class="line">    second =<span class="string">&#x27;&amp;fupdate=1&amp;g_tk=&#x27;</span></span><br><span class="line">    third = <span class="string">&#x27;&amp;qzonetoken=&#x27;</span></span><br><span class="line">    fourth = <span class="string">&#x27;&amp;g_tk=&#x27;</span></span><br><span class="line">    haturl= urlOrd + my_qq + second + gtk + third + qzonetoken + fourth + gtk</span><br><span class="line"></span><br><span class="line">    textpage = get_friendhat(haturl, cookie)</span><br><span class="line">    process_save(textpage,save_path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_friendhat</span>(<span class="params">url,cookie</span>):</span><span class="comment">#发送请求 获取响应</span></span><br><span class="line">    header= &#123;<span class="string">&#x27;accept-encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate, br&#x27;</span>, <span class="string">&#x27;accept-language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.8&#x27;</span>, <span class="string">&#x27;host&#x27;</span>: <span class="string">&#x27;h5.qzone.qq.com&#x27;</span>, <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36&#x27;</span>, <span class="string">&#x27;accept&#x27;</span>: <span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#x27;</span>, <span class="string">&#x27;connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>&#125;</span><br><span class="line">    r = requests.get(url, headers=header, cookies=cookie)</span><br><span class="line">    <span class="keyword">return</span> r.text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_save</span>(<span class="params">text,save_path</span>):</span><span class="comment">#提取信息并储存</span></span><br><span class="line">    friend=re.findall(<span class="string">&#x27;\&quot;.*?\&quot;\:\&#123;\n\&quot;realname\&quot;\:\&quot;.*?\&quot;\&#125;&#x27;</span>,text)</span><br><span class="line">    frNum = <span class="built_in">len</span>(friend)</span><br><span class="line"></span><br><span class="line">    Name = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> friend:</span><br><span class="line">        n =elem.split(<span class="string">&#x27;&quot;realname&quot;:&quot;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;&quot;&#125;&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        Name.append(n)</span><br><span class="line">    QQ = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> friend:</span><br><span class="line">        q = elem.split(<span class="string">&#x27;&quot;&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">        QQ.append(q)</span><br><span class="line"></span><br><span class="line">    wb = load_workbook(save_path)</span><br><span class="line">    ws = wb.get_sheet_by_name(<span class="string">&quot;friend_info&quot;</span>)</span><br><span class="line">    wc_name=ws[<span class="string">&#x27;A2&#x27;</span>:<span class="string">&#x27;A&#x27;</span>+<span class="built_in">str</span>(frNum+<span class="number">2</span>)]</span><br><span class="line">    wc_qq=ws[<span class="string">&#x27;B2&#x27;</span>:<span class="string">&#x27;B&#x27;</span>+<span class="built_in">str</span>(frNum+<span class="number">2</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(frNum):</span><br><span class="line">        wc_name[i][<span class="number">0</span>].value = Name[i]</span><br><span class="line">        wc_qq[i][<span class="number">0</span>].value = QQ[i]</span><br><span class="line"></span><br><span class="line">    wb.save(save_path)</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="使用正则表达式re库提取信息"><a href="#使用正则表达式re库提取信息" class="headerlink" title="使用正则表达式re库提取信息"></a>使用正则表达式re库提取信息</h3><p>观察响应信息的内容，不难发现它的表达方式是json格式。</p>
 <p>可以直接使用Requests库中内置的JSON解码器<code>r.json()</code></p>
 <blockquote>
 <p>当时写代码的时候…没想起来（￣。。￣），直接暴力的用正则对文本内容进行了正则匹配，不过也达到了提取信息的目的</p>
 </blockquote>
 <p>这里使用的方法是对返回的一个很长很长的字符串的文本信息进行正则匹配，这一块就没什么好说的了，只要对正则的使用比较熟练就很方便。</p>
-<h4 id="正则表达式的常用操作符"><a href="#正则表达式的常用操作符" class="headerlink" title="正则表达式的常用操作符"></a>正则表达式的常用操作符</h4><table>
+<h4 id="正则表达式的常用操作符"><a href="#正则表达式的常用操作符" class="headerlink" title="正则表达式的常用操作符"></a>正则表达式的常用操作符</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>操作符</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>.</td>
 <td>表示任何单个字符</td>
 </tr>
@@ -154,7 +419,7 @@
 <td>字符集，对单个字符给出取值范围</td>
 </tr>
 <tr>
-<td>[^ ]</td>
+<td><sup><a href="#fn_ " id="reffn_ "> </a></sup></td>
 <td>非字符集，对单个字符给出排除范围</td>
 </tr>
 <tr>
@@ -201,19 +466,23 @@
 <td>\w</td>
 <td>单词字符</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <blockquote>
 <p>要注意正则表达式默认的是<strong>贪婪匹配</strong>,即<strong>趋于最大匹配长度</strong>,使用<code>*?</code>可以实现最小匹配</p>
 <p>另一点需要注意的地方就是转义字符的问题</p>
 </blockquote>
-<h4 id="re库的函数"><a href="#re库的函数" class="headerlink" title="re库的函数"></a>re库的函数</h4><table>
+<h4 id="re库的函数"><a href="#re库的函数" class="headerlink" title="re库的函数"></a>re库的函数</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>re.search()</td>
 <td>在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象</td>
 </tr>
@@ -237,15 +506,14 @@
 <td>re.sub()</td>
 <td>在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <blockquote>
 <p>re库本生就有很多好用的函数，当时写代码的时候也没怎么想起来（￣。。￣）</p>
 </blockquote>
-<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。后来也算是偶然知道了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/unix%E6%97%B6%E9%97%B4%E6%88%B3/2078227">unix时间戳</a>是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，很多语言后来也是这样如java、python。</p>
+<p>当时在返回信息中并没有找到发说说时刻这个信息，created_time对用的是一串数字，通过我咳咳…细心的观察发现这一串数字是秒数，发说说的具体时间是按照秒数计算的。通过对几条说说的观察算出<code>1514649600</code>是2018年1月1日00:00对应的秒数。当时还有专门去算一下对应的<code>0</code>代表的是哪个时间点，算出来是1970年1月1日08:00，一开始还以为是马化腾生日(+_+)。后来也算是偶然知道了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/unix时间戳/2078227">unix时间戳</a>是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，很多语言后来也是这样如java、python。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = postTime.split(&#x27;,&quot;created_time&quot;:&#x27;)[1].split(&#x27;,&quot;editMask&quot;&#x27;)[0]</span><br><span class="line">    hour = ( int(h) - 1514649600 ) %86400 /3600#算出一天中发说说的时刻</span><br><span class="line">    ssInfo.append(hour) </span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="使用openpyxl将信息存入excel文件中、"><a href="#使用openpyxl将信息存入excel文件中、" class="headerlink" title="使用openpyxl将信息存入excel文件中、"></a>使用openpyxl将信息存入excel文件中、</h3><p><a target="_blank" rel="noopener" href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</a>提供了很多方便操作.xlsx文件的函数，通过Sheet、cell的操作可以访问、读写单元格。</p>
 <p>本来是想用数据库的，但是并不会数据库，配置文件弄了半天也没弄好，就选择操作excel文件。</p>
 <blockquote>
@@ -263,175 +531,441 @@
 <p>算是一个上学期的一个小总结，也算是这学期的开始吧。</p>
 <p>因为代码是上学期最后写的，这篇总结一直拖到了这学期开学才写，再不写就要上课了Orz。</p>
 <p>希望大三一切都顺利吧，至少能够顺心意。</p>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始
 op1=>operation: 登陆好友空间说说页面、获取cookie
 op2=>operation: 构造请求、获取返回内容
 op3=>operation: 处理返回内容、提取信息
 e=>end
-st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display: none">{"0":{"scale":"1,"},"1":{"line-width":"2,"},"2":{"line-length":"50,"},"3":{"text-margin":"10,"},"4":{"font-size":12},"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>
+st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display: none">{"0":{"scale":"1,"},"1":{"line-width":"2,"},"2":{"line-length":"50,"},"3":{"text-margin":"10,"},"4":{"font-size":12},"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
+
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/" data-id="ckup2agtn0007f0up5y8k7hyi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag"># 数据处理</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/27/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="新建博客">
+                <i class="fa fa-chevron-left"></i> 新建博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E7%AB%9E%E8%B5%9B%E5%92%8C%E5%A4%A7%E4%B8%89%E4%B8%8A%E7%9A%84%E6%80%BB%E7%BB%93/" rel="prev" title="数学建模竞赛和大三上的总结">
+                数学建模竞赛和大三上的总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2019/02/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E7%AB%9E%E8%B5%9B%E5%92%8C%E5%A4%A7%E4%B8%89%E4%B8%8A%E7%9A%84%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-          数学建模竞赛和大三上的总结
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E8%99%AB%E6%80%9D%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">爬虫思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8selenium%E7%99%BB%E9%99%86%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">使用selenium登陆空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E9%A1%B5%E9%9D%A2%E3%80%81%E7%99%BB%E9%99%86%E5%B9%B6%E8%8E%B7%E5%8F%96%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">进入好友空间说说页面、登陆并获取信息：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8requests%E5%90%91%E7%BD%91%E9%A1%B5%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="nav-number">3.</span> <span class="nav-text">使用requests向网页发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E9%93%BE%E6%8E%A5"><span class="nav-number">3.1.</span> <span class="nav-text">构造链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82"><span class="nav-number">3.2.</span> <span class="nav-text">对网页请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%A5%BD%E5%8F%8B%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.</span> <span class="nav-text">获取好友信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fre%E5%BA%93%E6%8F%90%E5%8F%96%E4%BF%A1%E6%81%AF"><span class="nav-number">4.</span> <span class="nav-text">使用正则表达式re库提取信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">4.1.</span> <span class="nav-text">正则表达式的常用操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re%E5%BA%93%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">re库的函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8openpyxl%E5%B0%86%E4%BF%A1%E6%81%AF%E5%AD%98%E5%85%A5excel%E6%96%87%E4%BB%B6%E4%B8%AD%E3%80%81"><span class="nav-number">5.</span> <span class="nav-text">使用openpyxl将信息存入excel文件中、</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">数据可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="nav-number">7.</span> <span class="nav-text">题外话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2018/05/27/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">新建博客</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
 
   
-</article>
+ </div>
 
-</section>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 iszff<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
 
 </body>
 </html>

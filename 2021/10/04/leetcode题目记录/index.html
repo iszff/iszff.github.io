@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>leetcode题目记录 | iszff&#39; Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iszff" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="20211004用两个栈实现队列剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com) 我的思路栈和队列是相反的，先后入两个不同的栈相当于入一个队列， 比如Q{1，2，3，4}，head &#x3D;1，tail&#x3D;4， S1&#x3D;[4，3，2，1]，top&#x3D;4，bottom&#x3D;1，让S1中的元素一个个弹出至S2中，可以得到S2&#x3D;[1，2，3，4]，top&#x3D;1，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题目记录">
 <meta property="og:url" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/index.html">
@@ -17,79 +91,258 @@
 <meta property="og:image" content="https://pic.leetcode-cn.com/379a042b9d8df3a96d1ac0f27346718033bf3bfce69731bab52bf6f372b4c8f4-Picture2.png">
 <meta property="og:image" content="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20211028152640610.png">
 <meta property="article:published_time" content="2021-10-04T03:02:10.000Z">
-<meta property="article:modified_time" content="2022-01-03T09:00:17.024Z">
+<meta property="article:modified_time" content="2022-01-03T13:51:32.812Z">
 <meta property="article:author" content="iszff">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic.leetcode-cn.com/379a042b9d8df3a96d1ac0f27346718033bf3bfce69731bab52bf6f372b4c8f4-Picture2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/10/04/leetcode题目记录/"/>
+
+
+
+
+
+  <title>leetcode题目记录 | iszff' Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="iszff&#39; Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">iszff&#39; Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-leetcode题目记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-10-04T03:02:10.000Z" itemprop="datePublished">2021-10-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <h1 class="article-title" itemprop="name">
-      leetcode题目记录
-    </h1>
+  
+    
   
 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode题目记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-04T11:02:10+08:00">
+                2021-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h1 id="20211004用两个栈实现队列"><a href="#20211004用两个栈实现队列" class="headerlink" title="20211004用两个栈实现队列"></a>20211004用两个栈实现队列</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>栈和队列是相反的，先后入两个不同的栈相当于入一个队列，</p>
@@ -164,7 +417,6 @@
 </blockquote>
 <p>能想到的是扫描老链表，用它的val来新建立链表。如果直接指针复制的话，那各种指针就是乱的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    Node(int _val) &#123;</span></span><br><span class="line"><span class="comment">        val = _val;</span></span><br><span class="line"><span class="comment">        next = NULL;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">buildList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        Node* new_list_cur = <span class="keyword">new</span> Node;</span><br><span class="line">        Node* newHead = new_list_cur;</span><br><span class="line">        Node* input_cur = head;</span><br><span class="line">        <span class="keyword">while</span>(input_cur!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            new_list_cur.val = input_cur.val;</span><br><span class="line">            new_list_cur.next =  <span class="keyword">new</span> Node;</span><br><span class="line">            input_cur = input_cur.next;</span><br><span class="line">            new_list_cur = new_list_cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>官方给了两种思路</p>
 <h2 id="官方思路一"><a href="#官方思路一" class="headerlink" title="官方思路一"></a>官方思路一</h2><p>1.复制链表节点，两者建立map映射，key为输入链表节点，value为输出链表节点，一轮循环。</p>
 <p>2.第二轮遍历，链接节点链接起来，对于新复制的节点，对于random和next使用输入链表的节点赋值。</p>
@@ -225,8 +477,7 @@
 </li>
 <li><p><strong>初始状态：</strong> dp[0] = 0，即首日利润为 0 ；</p>
 </li>
-<li><p><strong>返回值：</strong> dp[n - 1] ，其中 <em>n</em> 为 <em>dp</em> 列表长度。</p>
-</li>
+<li><strong>返回值：</strong> dp[n - 1] ，其中 <em>n</em> 为 <em>dp</em> 列表长度。</li>
 </ul>
 <h1 id="20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114-贪心-分治-动态规划法-面试题42-连续子数组的最大和-连续子数组的最大和-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114 贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/tan-xin-fen-zhi-dong-tai-gui-hua-fa-by-luo-jing-yu/">贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>分治没怎么明白</p>
 <h1 id="20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com"><a href="#20211114十大排序算法-背诵版-动图-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211114十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)"></a>20211114<a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/0akb5U/">十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://www.iamshuaidi.com/">帅地玩编程-校招|面试|学习路线，你都可以在这里找到 (iamshuaidi.com)</a>面试经验</p>
@@ -256,12 +507,11 @@
 <h1 id="20211127三种方法：-DFS-BFS-回溯（递归-迭代）-二叉树中和为某一值的路径-力扣（LeetCode）-leetcode-cn-com-二叉树路径寻找"><a href="#20211127三种方法：-DFS-BFS-回溯（递归-迭代）-二叉树中和为某一值的路径-力扣（LeetCode）-leetcode-cn-com-二叉树路径寻找" class="headerlink" title="20211127三种方法： DFS, BFS, 回溯（递归 + 迭代） - 二叉树中和为某一值的路径 - 力扣（LeetCode） (leetcode-cn.com)二叉树路径寻找"></a>20211127<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/solution/san-chong-fang-fa-dfs-bfs-hui-su-di-gui-die-dai-by/">三种方法： DFS, BFS, 回溯（递归 + 迭代） - 二叉树中和为某一值的路径 - 力扣（LeetCode） (leetcode-cn.com)</a>二叉树路径寻找</h1><h1 id="20211129-二叉树的最近公共祖先-二叉树的最近公共祖先-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-二叉树的最近公共祖先-二叉树的最近公共祖先-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129 二叉树的最近公共祖先 - 二叉树的最近公共祖先 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/er-cha-shu-de-zui-jin-gong-gong-zu-xian-6fdt7/">二叉树的最近公共祖先 - 二叉树的最近公共祖先 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/512814">https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/512814</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/1076018">https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/solution/mian-shi-ti-68-ii-er-cha-shu-de-zui-jin-gong-gon-7/1076018</a></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 若树里面存在p，也存在q，则返回他们的公共祖先。</span><br><span class="line"><span class="bullet">2.</span> 若树里面只存在p，或只存在q，则返回存在的那一个。</span><br><span class="line"><span class="bullet">3.</span> 若树里面既不存在p，也不存在q，则返回null。</span><br></pre></td></tr></table></figure>
-
-<h1 id="20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129  11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129  <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/container-with-most-water-shuang-zhi-zhen-fa-yi-do/">11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2021130剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>2021130<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-di-gui-fa-qin/">剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211202面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/">面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com"><a href="#202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202112024种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/">4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p>[C++ vector::assign()用法及代码示例 - 纯净天空 (vimsky.com)](<a target="_blank" rel="noopener" href="https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign">https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign</a> ()是C%2B%2B中的STL，它通过替换旧元素为向量元素分配新值。 如果需要，它也可以修改向量的大小。 size-必须从头开始分配的元素数。 first,- 输入迭代器到初始位置范围。 last - 输入迭代器到最终位置范围。)</p>
+<h1 id="20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com"><a href="#20211129-11-盛最多水的容器（双指针，清晰图解）-盛最多水的容器-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211129  11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211129  <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/solution/container-with-most-water-shuang-zhi-zhen-fa-yi-do/">11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#2021130剑指-Offer-07-重建二叉树（分治算法，清晰图解）-重建二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2021130剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>2021130<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-di-gui-fa-qin/">剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com"><a href="#20211202面试题55-II-平衡二叉树（从底至顶、从顶至底，清晰图解）-平衡二叉树-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211202面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/">面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com"><a href="#202112024种解法秒杀TopK（快排-堆-二叉搜索树-计数排序）❤️-最小的k个数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202112024种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211202<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/">4种解法秒杀TopK（快排/堆/二叉搜索树/计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://vimsky.com/examples/usage/vector-assign-in-c-stl.html#:~:text=vector%3A%3Aassign (">C++ vector::assign()用法及代码示例 - 纯净天空 (vimsky.com)</a>是C%2B%2B中的STL，它通过替换旧元素为向量元素分配新值。 如果需要，它也可以修改向量的大小。 size-必须从头开始分配的元素数。 first,- 输入迭代器到初始位置范围。 last - 输入迭代器到最终位置范围。)</p>
 <h1 id="20211209【图解】我们之前可能没有搞懂这个题-把数组排成最小的数-力扣（LeetCode）-leetcode-cn-com"><a href="#20211209【图解】我们之前可能没有搞懂这个题-把数组排成最小的数-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211209【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211209<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/tu-jie-wo-men-zhi-qian-ke-neng-mei-you-g-gcr3/">【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/tu-jie-wo-men-zhi-qian-ke-neng-mei-you-g-gcr3/">【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p>正确性、然后反正。</p>
 <h1 id="20211210强连通分量"><a href="#20211210强连通分量" class="headerlink" title="20211210强连通分量"></a>20211210强连通分量</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/4z7ODk/">【MIX】强连通分量(1) Tarjan SCC 缩点 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/NQumVG/#%E5%89%8D%E6%96%87%E9%93%BE%E6%8E%A5-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F1">【MIX】强连通分量(2) Kosaraju &amp; 扩展 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/NQumVG/#前文链接-强连通分量1">【MIX】强连通分量(2) Kosaraju &amp; 扩展 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/caJVAv/">图的相关算法 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58585315">leetcode刷题（四）：搜索(深度优先搜索,广度优先搜索）拓扑排序，强连通分量 - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coloring-a-border/solution/ke-neng-shi-ke-du-xing-zui-qiang-de-ti-j-q6lu/">可能是可读性最强的题解。（TypeScript） - 边界着色 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
@@ -272,9 +522,6 @@
 <p>请问大佬判断重复字符条件这里 !vis[j - 1] &amp;&amp; s[j - 1] == s[j] 是啥意思？</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/994831">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/994831</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrack</span>(<span class="params">路径, 选择列表</span>):</span></span><br><span class="line">    <span class="keyword">if</span> 满足结束条件:</span><br><span class="line">        result.add(路径)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 选择列表:</span><br><span class="line">        做选择</span><br><span class="line">        backtrack(路径, 选择列表)</span><br><span class="line">        撤销选择</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="20211211下一个排列算法详解：思路-推导-步骤，看不懂算我输！-下一个排列-力扣（LeetCode）-leetcode-cn-com"><a href="#20211211下一个排列算法详解：思路-推导-步骤，看不懂算我输！-下一个排列-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211211下一个排列算法详解：思路+推导+步骤，看不懂算我输！ - 下一个排列 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211211<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-permutation/solution/xia-yi-ge-pai-lie-suan-fa-xiang-jie-si-lu-tui-dao-/">下一个排列算法详解：思路+推导+步骤，看不懂算我输！ - 下一个排列 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213一个模板刷遍所有字符串句子题目！（归纳总结-分类模板-题目分析）-翻转单词顺序-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213一个模板刷遍所有字符串句子题目！（归纳总结-分类模板-题目分析）-翻转单词顺序-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213一个模板刷遍所有字符串句子题目！（归纳总结+分类模板+题目分析） - 翻转单词顺序 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/yi-ge-mo-ban-shua-bian-suo-you-zi-fu-chu-x6vh/">一个模板刷遍所有字符串句子题目！（归纳总结+分类模板+题目分析） - 翻转单词顺序 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213剑指-Offer-31-栈的压入、弹出序列-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213剑指-Offer-31-栈的压入、弹出序列-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213剑指 Offer 31. 栈的压入、弹出序列 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/">剑指 Offer 31. 栈的压入、弹出序列 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="https-leetcode-cn-com-problems-zhan-de-ya-ru-dan-chu-xu-lie-lcof-solution-mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2-507148"><a href="#https-leetcode-cn-com-problems-zhan-de-ya-ru-dan-chu-xu-lie-lcof-solution-mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2-507148" class="headerlink" title="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148">https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/solution/mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2/507148</a></h1><h1 id="20211215剑指-Offer-14-I-剪绳子-力扣（LeetCode）-leetcode-cn-com"><a href="#20211215剑指-Offer-14-I-剪绳子-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211215剑指 Offer 14- I. 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211215<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/">剑指 Offer 14- I. 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/jian-zhi-offer-14-i-jian-sheng-zi-huan-s-xopj/">剑指 Offer 14- I. 剪绳子，还是动态规划好理解，但是贪心真的快 - 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/integer-break/">343. 整数拆分 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h1 id="20211215剑指-Offer-19-正则表达式匹配-力扣（LeetCode）-leetcode-cn-com"><a href="#20211215剑指-Offer-19-正则表达式匹配-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211215剑指 Offer 19. 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211215<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/">剑指 Offer 19. 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="20211213面试题29-顺时针打印矩阵（模拟、设定边界，清晰图解）-顺时针打印矩阵-力扣（LeetCode）-leetcode-cn-com"><a href="#20211213面试题29-顺时针打印矩阵（模拟、设定边界，清晰图解）-顺时针打印矩阵-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211213面试题29. 顺时针打印矩阵（模拟、设定边界，清晰图解） - 顺时针打印矩阵 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211213<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/">面试题29. 顺时针打印矩阵（模拟、设定边界，清晰图解） - 顺时针打印矩阵 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="202111216面试题16-数值的整数次方（快速幂，清晰图解）-数值的整数次方-力扣（LeetCode）-leetcode-cn-com"><a href="#202111216面试题16-数值的整数次方（快速幂，清晰图解）-数值的整数次方-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="202111216面试题16. 数值的整数次方（快速幂，清晰图解） - 数值的整数次方 - 力扣（LeetCode） (leetcode-cn.com)"></a>202111216<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/">面试题16. 数值的整数次方（快速幂，清晰图解） - 数值的整数次方 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><img src="https://pic.leetcode-cn.com/379a042b9d8df3a96d1ac0f27346718033bf3bfce69731bab52bf6f372b4c8f4-Picture2.png" alt="Picture2.png"></p>
@@ -330,7 +577,7 @@
 <p>4：0</p>
 <p>num=1,Q={1,2}.</p>
 <h1 id="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com"><a href="#20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！-合并区间-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)"></a>20211227<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-intervals/solution/chi-jing-ran-yi-yan-miao-dong-by-sweetiee/">吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><h1 id="2022011333-搜索旋转排序数组-力扣（LeetCode）-leetcode-cn-com"><a href="#2022011333-搜索旋转排序数组-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="2022011333. 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)"></a>20220113<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">33. 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/yi-wen-jie-jue-4-dao-sou-suo-xuan-zhuan-pai-xu-s-2/">一文解决 4 道「搜索旋转排序数组」题！ - 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196%E7%BB%8F%E5%85%B8%E9%87%8D%E7%82%B9%E9%A2%98%E7%9B%AE%E5%BD%92%E7%BA%B3">https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳</a></p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳">https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
 <p>LeetCode 热题 HOT 100a</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problem-list/xb9nqhhg/">力扣 (leetcode-cn.com)</a></p>
@@ -348,165 +595,422 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2021/10/04/leetcode%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="ckup2agtj0003f0upgck8gvr3" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/29/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB/" rel="next" title="知识蒸馏文章阅读">
+                <i class="fa fa-chevron-left"></i> 知识蒸馏文章阅读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/" rel="prev" title="eye gaze调研">
+                eye gaze调研 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-          eye gaze调研
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20211004%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">20211004用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendTail"><span class="nav-number">1.2.</span> <span class="nav-text">appendTail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deleteHead"><span class="nav-number">1.3.</span> <span class="nav-text">deleteHead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211010%E5%89%91%E6%8C%87-Offer-30-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">20211010剑指 Offer 30. 包含min函数的栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-1"><span class="nav-number">2.1.</span> <span class="nav-text">忽略点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">好思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211026%E5%89%91%E6%8C%87-Offer-06-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">3.</span> <span class="nav-text">20211026剑指 Offer 06. 从尾到头打印链表 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#20211028"><span class="nav-number">3.1.</span> <span class="nav-text">20211028</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E7%82%B9-2"><span class="nav-number">3.2.</span> <span class="nav-text">忽略点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211029%E5%89%91%E6%8C%87-Offer-35-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">4.</span> <span class="nav-text">20211029剑指 Offer 35. 复杂链表的复制 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E9%A2%98%E8%A7%A3"><span class="nav-number">4.0.1.</span> <span class="nav-text">官方题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20211030"><span class="nav-number">4.1.</span> <span class="nav-text">20211030</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="nav-number">4.2.</span> <span class="nav-text">官方思路一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="nav-number">4.3.</span> <span class="nav-text">官方思路二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.</span> <span class="nav-text">20211102剑指 Offer 03. 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8-%E5%8E%9F%E5%9C%B0%E4%BA%A4%E6%8D%A2%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">5.1.</span> <span class="nav-text">剑指 Offer 03. 数组中重复的数字（哈希表 &#x2F; 原地交换，清晰图解） - 数组中重复的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211102%E5%89%91%E6%8C%87-Offer-53-I-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97-I-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">6.</span> <span class="nav-text">20211102剑指 Offer 53 - I. 在排序数组中查找数字 I - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-53-II-0%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97-%E9%A2%98%E8%A7%A3-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">7.</span> <span class="nav-text">20211103剑指 Offer 53 - II. 0～n-1中缺失的数字 题解 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">8.</span> <span class="nav-text">20211103剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211103%E5%89%91%E6%8C%87-Offer-11-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">9.</span> <span class="nav-text">20211103剑指 Offer 11. 旋转数组的最小数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211106-%E5%89%91%E6%8C%87-Offer-50-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">10.</span> <span class="nav-text">20211106 剑指 Offer 50. 第一个只出现一次的字符 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8Cauto%E9%81%8D%E5%8E%86"><span class="nav-number">10.1.</span> <span class="nav-text">哈希表，auto遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211108%E5%89%91%E6%8C%87-Offer-32-II-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-II-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">11.</span> <span class="nav-text">20211108剑指 Offer 32 - II. 从上到下打印二叉树 II - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211108%E5%89%91%E6%8C%87-Offer-32-III-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-III-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">12.</span> <span class="nav-text">20211108剑指 Offer 32 - III. 从上到下打印二叉树 III - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211109%E9%80%92%E5%BD%92%E6%96%B9%E5%BC%8F%E8%A7%A3%E5%86%B3-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">13.</span> <span class="nav-text">20211109递归方式解决 - 树的子结构 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93"><span class="nav-number">13.1.</span> <span class="nav-text">二叉树题解总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211109%E5%89%91%E6%8C%87-Offer-27-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%EF%BC%88%E9%80%92%E5%BD%92-%E8%BE%85%E5%8A%A9%E6%A0%88%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">14.</span> <span class="nav-text">20211109剑指 Offer 27. 二叉树的镜像（递归 &#x2F; 辅助栈，清晰图解） - 二叉树的镜像 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211109%E5%89%91%E6%8C%87-Offer-28-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">15.</span> <span class="nav-text">20211109剑指 Offer 28. 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%B8%8A%E9%A2%98%E7%B1%BB%E4%BC%BC%EF%BC%8C%E9%80%92%E5%BD%92%E4%B8%8D%E8%83%BD%E6%83%B3%E5%A4%AA%E5%A4%9A%E5%95%8A-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">15.1.</span> <span class="nav-text">递归思路与上题类似，递归不能想太多啊 - 对称的二叉树 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211109%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%A5%97%E8%B7%AF%E8%AF%A6%E8%A7%A3-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">16.</span> <span class="nav-text">20211109动态规划套路详解 - 斐波那契数 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%A5%97%E8%B7%AF%E8%AF%A6%E8%A7%A3"><span class="nav-number">16.1.</span> <span class="nav-text">动态规划套路详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">16.2.</span> <span class="nav-text">vector初始化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211112"><span class="nav-number">17.</span> <span class="nav-text">20211112</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211113%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E5%89%91%E6%8C%87-Offer-10-II-%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">18.</span> <span class="nav-text">20211113青蛙跳台阶剑指 Offer 10- II. 青蛙跳台阶问题 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211113%E5%89%91%E6%8C%87-Offer-63-%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%A9%E6%B6%A6-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">19.</span> <span class="nav-text">20211113剑指 Offer 63. 股票的最大利润 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E6%9C%80%E5%B0%8F%E5%80%BC%EF%BC%8C%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%90%8E%E7%9C%8B%E6%98%AF%E5%90%A6%E4%BC%9A%E6%B6%A8%E4%BB%B7%E3%80%82"><span class="nav-number">19.1.</span> <span class="nav-text">找到最小值，在最小值之后看是否会涨价。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">19.2.</span> <span class="nav-text">动态规划</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211114-%E8%B4%AA%E5%BF%83-%E5%88%86%E6%B2%BB-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95-%E9%9D%A2%E8%AF%95%E9%A2%9842-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">20.</span> <span class="nav-text">20211114 贪心+分治+动态规划法_面试题42. 连续子数组的最大和 - 连续子数组的最大和 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211114%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E8%83%8C%E8%AF%B5%E7%89%88-%E5%8A%A8%E5%9B%BE-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">21.</span> <span class="nav-text">20211114十大排序算法(背诵版+动图) - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211115%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">22.</span> <span class="nav-text">20211115对链表进行插入排序 - 对链表进行插入排序 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211116"><span class="nav-number">23.</span> <span class="nav-text">20211116</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211117%E5%89%91%E6%8C%87-Offer-46-%E6%8A%8A%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">24.</span> <span class="nav-text">20211117剑指 Offer 46. 把数字翻译成字符串 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#to-string-%E5%87%BD%E6%95%B0"><span class="nav-number">24.1.</span> <span class="nav-text">to_string 函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211119%E9%9D%A2%E8%AF%95%E9%A2%9825-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%EF%BC%88%E4%BC%AA%E5%A4%B4%E8%8A%82%E7%82%B9%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">25.</span> <span class="nav-text">20211119面试题25. 合并两个排序的链表（伪头节点，清晰图解） - 合并两个排序的链表 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211120%E3%80%90%E4%B8%80%E5%8F%A5%E8%AF%9D%EF%BC%8C%E4%B8%A4%E5%BC%A0%E5%9B%BE%E3%80%91%E4%BC%98%E9%9B%85%E7%90%86%E8%A7%A3%E5%8E%9F%E7%90%86-%E4%B8%BA%E4%BD%95%E8%BF%99%E6%A0%B7%E8%AE%BE%E8%AE%A1-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">26.</span> <span class="nav-text">20211120【一句话，两张图】优雅理解原理 为何这样设计 - 两个链表的第一个公共节点 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211120%E5%89%91%E6%8C%87-Offer-21-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">27.</span> <span class="nav-text">20211120剑指 Offer 21. 调整数组顺序使奇数位于偶数前面（双指针，清晰图解） - 调整数组顺序使奇数位于偶数前面 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211120-%E9%9D%A2%E8%AF%95%E9%A2%9857-%E5%92%8C%E4%B8%BA-s-%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88-%E8%AF%81%E6%98%8E%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">28.</span> <span class="nav-text">20211120 面试题57. 和为 s 的两个数字（双指针 + 证明，清晰图解） - 和为s的两个数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211125%E7%A4%BC%E7%89%A9%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BB%B7%E5%80%BC-%E7%A4%BC%E7%89%A9%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BB%B7%E5%80%BC-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">29.</span> <span class="nav-text">20211125礼物的最大价值 - 礼物的最大价值 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211127%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9A-DFS-BFS-%E5%9B%9E%E6%BA%AF%EF%BC%88%E9%80%92%E5%BD%92-%E8%BF%AD%E4%BB%A3%EF%BC%89-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com-%E4%BA%8C%E5%8F%89%E6%A0%91%E8%B7%AF%E5%BE%84%E5%AF%BB%E6%89%BE"><span class="nav-number">30.</span> <span class="nav-text">20211127三种方法： DFS, BFS, 回溯（递归 + 迭代） - 二叉树中和为某一值的路径 - 力扣（LeetCode） (leetcode-cn.com)二叉树路径寻找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211129-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">31.</span> <span class="nav-text">20211129 二叉树的最近公共祖先 - 二叉树的最近公共祖先 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211129-11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">32.</span> <span class="nav-text">20211129  11. 盛最多水的容器（双指针，清晰图解） - 盛最多水的容器 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2021130%E5%89%91%E6%8C%87-Offer-07-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">33.</span> <span class="nav-text">2021130剑指 Offer 07. 重建二叉树（分治算法，清晰图解） - 重建二叉树 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211202%E9%9D%A2%E8%AF%95%E9%A2%9855-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E4%BB%8E%E5%BA%95%E8%87%B3%E9%A1%B6%E3%80%81%E4%BB%8E%E9%A1%B6%E8%87%B3%E5%BA%95%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">34.</span> <span class="nav-text">20211202面试题55 - II. 平衡二叉树（从底至顶、从顶至底，清晰图解） - 平衡二叉树 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#202112024%E7%A7%8D%E8%A7%A3%E6%B3%95%E7%A7%92%E6%9D%80TopK%EF%BC%88%E5%BF%AB%E6%8E%92-%E5%A0%86-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%EF%BC%89%E2%9D%A4%EF%B8%8F-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">35.</span> <span class="nav-text">202112024种解法秒杀TopK（快排&#x2F;堆&#x2F;二叉搜索树&#x2F;计数排序）❤️ - 最小的k个数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211209%E3%80%90%E5%9B%BE%E8%A7%A3%E3%80%91%E6%88%91%E4%BB%AC%E4%B9%8B%E5%89%8D%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E6%90%9E%E6%87%82%E8%BF%99%E4%B8%AA%E9%A2%98-%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">36.</span> <span class="nav-text">20211209【图解】我们之前可能没有搞懂这个题 - 把数组排成最小的数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211210%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F"><span class="nav-number">37.</span> <span class="nav-text">20211210强连通分量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211211%E5%89%91%E6%8C%87-Offer-38-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">38.</span> <span class="nav-text">20211211剑指 Offer 38. 字符串的排列 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211211%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3%EF%BC%9A%E6%80%9D%E8%B7%AF-%E6%8E%A8%E5%AF%BC-%E6%AD%A5%E9%AA%A4%EF%BC%8C%E7%9C%8B%E4%B8%8D%E6%87%82%E7%AE%97%E6%88%91%E8%BE%93%EF%BC%81-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">39.</span> <span class="nav-text">20211211下一个排列算法详解：思路+推导+步骤，看不懂算我输！ - 下一个排列 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211213%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%9D%BF%E5%88%B7%E9%81%8D%E6%89%80%E6%9C%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%A5%E5%AD%90%E9%A2%98%E7%9B%AE%EF%BC%81%EF%BC%88%E5%BD%92%E7%BA%B3%E6%80%BB%E7%BB%93-%E5%88%86%E7%B1%BB%E6%A8%A1%E6%9D%BF-%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90%EF%BC%89-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">40.</span> <span class="nav-text">20211213一个模板刷遍所有字符串句子题目！（归纳总结+分类模板+题目分析） - 翻转单词顺序 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211213%E5%89%91%E6%8C%87-Offer-31-%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">41.</span> <span class="nav-text">20211213剑指 Offer 31. 栈的压入、弹出序列 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https-leetcode-cn-com-problems-zhan-de-ya-ru-dan-chu-xu-lie-lcof-solution-mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2-507148"><span class="nav-number">42.</span> <span class="nav-text">https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;zhan-de-ya-ru-dan-chu-xu-lie-lcof&#x2F;solution&#x2F;mian-shi-ti-31-zhan-de-ya-ru-dan-chu-xu-lie-mo-n-2&#x2F;507148</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211215%E5%89%91%E6%8C%87-Offer-14-I-%E5%89%AA%E7%BB%B3%E5%AD%90-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">43.</span> <span class="nav-text">20211215剑指 Offer 14- I. 剪绳子 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211215%E5%89%91%E6%8C%87-Offer-19-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">44.</span> <span class="nav-text">20211215剑指 Offer 19. 正则表达式匹配 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211213%E9%9D%A2%E8%AF%95%E9%A2%9829-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5%EF%BC%88%E6%A8%A1%E6%8B%9F%E3%80%81%E8%AE%BE%E5%AE%9A%E8%BE%B9%E7%95%8C%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">45.</span> <span class="nav-text">20211213面试题29. 顺时针打印矩阵（模拟、设定边界，清晰图解） - 顺时针打印矩阵 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#202111216%E9%9D%A2%E8%AF%95%E9%A2%9816-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">46.</span> <span class="nav-text">202111216面试题16. 数值的整数次方（快速幂，清晰图解） - 数值的整数次方 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211218%E5%89%91%E6%8C%87-Offer-65-%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">47.</span> <span class="nav-text">20211218剑指 Offer 65. 不用加减乘除做加法 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211218%E5%89%91%E6%8C%87-Offer-62-%E5%9C%86%E5%9C%88%E4%B8%AD%E6%9C%80%E5%90%8E%E5%89%A9%E4%B8%8B%E7%9A%84%E6%95%B0%E5%AD%97-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">48.</span> <span class="nav-text">20211218剑指 Offer 62. 圆圈中最后剩下的数字 - 力扣（LeetCode） (leetcode-cn.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B2%E7%9A%84%E6%9C%80%E5%A5%BD%E7%9A%84"><span class="nav-number">48.1.</span> <span class="nav-text">讲的最好的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211220%E5%89%91%E6%8C%87-Offer-56-I-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">49.</span> <span class="nav-text">20211220剑指 Offer 56 - I. 数组中数字出现的次数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211221%E5%89%91%E6%8C%87-Offer-56-II-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0-II-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">50.</span> <span class="nav-text">20211221剑指 Offer 56 - II. 数组中数字出现的次数 II - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211121%E5%89%91%E6%8C%87-Offer-66-%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">51.</span> <span class="nav-text">20211121剑指 Offer 66. 构建乘积数组 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211221-%E5%89%91%E6%8C%87-Offer-49-%E4%B8%91%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">52.</span> <span class="nav-text">20211221 剑指 Offer 49. 丑数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211221-%E5%89%91%E6%8C%87-Offer-60-n%E4%B8%AA%E9%AA%B0%E5%AD%90%E7%9A%84%E7%82%B9%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">53.</span> <span class="nav-text">20211221 剑指 Offer 60. n个骰子的点数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211218-%E9%9D%A2%E8%AF%95%E9%A2%9817-%E6%89%93%E5%8D%B0%E4%BB%8E-1-%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84-n-%E4%BD%8D%E6%95%B0%EF%BC%88%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95-%E5%85%A8%E6%8E%92%E5%88%97%EF%BC%8C%E6%B8%85%E6%99%B0%E5%9B%BE%E8%A7%A3%EF%BC%89-%E6%89%93%E5%8D%B0%E4%BB%8E1%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84n%E4%BD%8D%E6%95%B0-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">54.</span> <span class="nav-text">20211218 面试题17. 打印从 1 到最大的 n 位数（分治算法 &#x2F; 全排列，清晰图解） - 打印从1到最大的n位数 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211223Dijkstra-%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE-%E6%A6%82%E7%8E%87%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">55.</span> <span class="nav-text">20211223Dijkstra 相关题目 - 概率最大的路径 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211223207-%E8%AF%BE%E7%A8%8B%E8%A1%A8-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">56.</span> <span class="nav-text">20211223207. 课程表 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20211227%E5%90%83%F0%9F%90%B3%EF%BC%81%F0%9F%A4%B7%E2%80%8D%E2%99%80%EF%B8%8F%E7%AB%9F%E7%84%B6%E4%B8%80%E7%9C%BC%E7%A7%92%E6%87%82%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4%EF%BC%81-%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">57.</span> <span class="nav-text">20211227吃🐳！🤷‍♀️竟然一眼秒懂合并区间！ - 合并区间 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2022011333-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89-leetcode-cn-com"><span class="nav-number">58.</span> <span class="nav-text">2022011333. 搜索旋转排序数组 - 力扣（LeetCode） (leetcode-cn.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">59.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%B9%BF%E5%9C%BA"><span class="nav-number">60.</span> <span class="nav-text">学习计划广场</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">61.</span> <span class="nav-text">图论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2021/09/29/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">知识蒸馏文章阅读</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
 
   
-</article>
+ </div>
 
-</section>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">课程设计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/">面试经历</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Verilog/" rel="tag">Verilog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsp/" rel="tag">dsp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" rel="tag">实验记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="tag">数学建模</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag">文献阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" rel="tag">生活总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag">论文阅读</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Verilog/" style="font-size: 10px;">Verilog</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/dsp/" style="font-size: 10px;">dsp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">实验</a> <a href="/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">实验记录</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">数学建模</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">数据处理</a> <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" style="font-size: 20px;">文献阅读</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%80%BB%E7%BB%93/" style="font-size: 10px;">生活总结</a> <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" style="font-size: 10px;">论文阅读</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/01/02/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E8%BD%BB%E9%87%8F%E5%8C%96%E7%BD%91%E7%BB%9C/">人脸关键点检测的轻量化网络</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E7%AE%80%E4%BB%8B/">人脸关键点检测简介</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bloss%E8%AE%BE%E8%AE%A1/">人脸关键点检测对heatmap的loss设计</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/31/%E2%80%9D%E9%A3%8E%E6%A0%BC%E9%80%A0%E6%88%90%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AF%AF%E5%B7%AE%E2%80%9C/">风格造成的人脸关键点检测误差</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/28/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%A2%B3%E7%90%86/">人脸关键点检测论文梳理</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 iszff<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
 
 </body>
 </html>
