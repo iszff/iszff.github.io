@@ -88,21 +88,21 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="LR face landmark采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection Huang, Y., Yao, H., Zhao, S. et al. Towards more effic">
 <meta property="og:locale">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Blog/source/pics/image-20210910100026769SRL0.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210910145246469.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210910171732013.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210916170140209.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Blog/source/pics/gaze_sample.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210916165312163.png">
-<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210916202616025.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/landmark_blur.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/MenpoFacialLandmark.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/gazeShanghaitech.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2019aaaiStructure.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/gaze_sample.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2019aaai_dataset_compare.png">
+<meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2Dgaze.png">
 <meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210917153505618.png">
 <meta property="og:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users/iszha/AppData/Roaming/Typora/typora-user-images/image-20210917162310562.png">
 <meta property="article:published_time" content="2021-09-28T11:41:57.000Z">
-<meta property="article:modified_time" content="2022-01-03T13:58:00.800Z">
+<meta property="article:modified_time" content="2022-01-03T15:31:11.499Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Blog/source/pics/image-20210910100026769SRL0.png">
+<meta name="twitter:image" content="http://yoursite.com/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/landmark_blur.png">
 
 
 
@@ -254,9 +254,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -374,7 +412,7 @@
       
 
       
-        <h2 id="LR-face-landmark"><a href="#LR-face-landmark" class="headerlink" title="LR face landmark"></a>LR face landmark</h2><h3 id="采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection"><a href="#采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection" class="headerlink" title="采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection"></a>采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection</h3><blockquote>
+        <h1 id="LR-face-landmark"><a href="#LR-face-landmark" class="headerlink" title="LR face landmark"></a>LR face landmark</h1><h2 id="采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection"><a href="#采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection" class="headerlink" title="采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection"></a>采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection</h2><blockquote>
 <p>Huang, Y., Yao, H., Zhao, S. <em>et al.</em> Towards more efficient and flexible face image deblurring using robust salient face landmark detection. <em>Multimed Tools Appl</em> <strong>76,</strong> 123–142 (2017). <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s11042-015-3009-3">https://doi.org/10.1007/s11042-015-3009-3</a></p>
 <p>Yinghao Huang1·Hongxun Yao1·Sicheng Zhao1·Yanhao Zhang1</p>
 <p>School of Computer Science and Technology, Harbin Institute of Technology</p>
@@ -387,10 +425,10 @@
 <p>(1)鲁棒人脸地标检测器训练;</p>
 <p>(2)显著轮廓检测和。</p>
 <p>(3)盲图像去模糊。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Blog\source\pics\image-20210910100026769SRL0.png" alt="image-20210910100026769"></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/landmark_blur.png" alt="image-20210910100026769"></p>
 <p>方法的框架。这里，数字(1-3)和字母(a-e)分别表示操作和实体。如图所示，整个算法可以分为三个步骤:(1)鲁棒检测器训练，(2)显著轮廓检测，(3)盲图像去模糊。在检测器训练阶段(1)，根据大的训练数据集(a)构造回归森林集合，得到回归森林集合，这是几个广泛使用的<strong>人脸地标检测数据集的模糊版本</strong>。在测试阶段,给定一个模糊的图像(b),首先应用训练凸轮廓探测器得到凸边,如(2)所示。然后估计凸轮廓的帮助下,实现大幅面图像通过盲图像去模糊(3)。</p>
 <p>利用检测到的显著面部轮廓尽可能准确地估计模糊核，之后恢复潜在图像，采用共轭梯度法求解。</p>
-<h2 id="The-3D-Menpo-Facial-Landmark-Tracking-Challenge"><a href="#The-3D-Menpo-Facial-Landmark-Tracking-Challenge" class="headerlink" title="The 3D Menpo Facial Landmark Tracking Challenge"></a>The 3D Menpo Facial Landmark Tracking Challenge</h2><blockquote>
+<h1 id="The-3D-Menpo-Facial-Landmark-Tracking-Challenge"><a href="#The-3D-Menpo-Facial-Landmark-Tracking-Challenge" class="headerlink" title="The 3D Menpo Facial Landmark Tracking Challenge"></a>The 3D Menpo Facial Landmark Tracking Challenge</h1><blockquote>
 <p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/xpl/conhome/8234943/proceeding">2017 IEEE International Conference on Computer Vision Workshops (ICCVW)</a></p>
 <p>Stefanos Zafeiriou∗,1,2Grigorios G. Chrysos∗,1Anastasios Roussos∗,1,3 Evangelos V erveras1Jiankang Deng1 George Trigeorgis1<br>1Department of Computing, Imperial College London, UK<br>2Center for Machine Vision and Signal Analysis, University of Oulu, Finland<br>3Department of Computer Science, University of Exeter, UK</p>
 <p>引用量235</p>
@@ -401,7 +439,7 @@
 <p>我们给出了3DA - 2D和3D地标跟踪的第一个挑战的结果。</p>
 <p>针对问题：所提供的2D标注很少捕捉到面部的3D结构(这在面部边界上尤其明显)。也就是说，注释既不提供深度估计，也不对应于三维面部结构的2D投影。</p>
 <p>2D数据集许多<strong>地标几乎不对应于人脸的3D结构</strong>。也就是说，它们<strong>不能准确地对应于三维面部结构的任何地标在图像平面上的投影</strong>。此外，上述基准的<strong>2D注释不包含关于3D面深度的任何信息</strong>。在本文中，我们将图像<strong>平面上的三维地标的二维投影称为3DA -2D地标</strong>，以区别于三维场景中面部地标的三维坐标。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20210910145246469.png" alt="image-20210910145246469"></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/MenpoFacialLandmark.png" alt="image-20210910145246469"></p>
 <p>侧脸情况下隐藏的半边脸的标注是另一边脸的轮廓。</p>
 <p><a target="_blank" rel="noopener" href="https://ibug.doc.ic.ac.uk/resources/1st-3d-face-tracking-wild-competition/">https://ibug.doc.ic.ac.uk/resources/1st-3d-face-tracking-wild-competition/</a></p>
 <blockquote>
@@ -412,13 +450,13 @@
 <p>Zhang, Z., Lian, D. &amp; Gao, S. RGB-D-based gaze point estimation via multi-column CNNs and facial landmarks global optimization. <em>Vis Comput</em> <strong>37,</strong> 1731–1741 (2021). <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s00371-020-01934-1">https://doi.org/10.1007/s00371-020-01934-1</a></p>
 </blockquote>
 <p>评价：基于rgb - d的多列cnn和人脸地标全局优化的注视点估计。利用一个多列multi-column cnn框架，从一个人的RGB-D图像来估计坐在显示器前的人的注视点。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20210910171732013.png" alt="image-20210910171732013"></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/gazeShanghaitech.png" alt="image-20210910171732013"></p>
 <p>针对问题：捕获的<strong>深度图像通常包含噪声和黑洞</strong>，阻碍我们获得可靠的头部姿态和3D眼睛位置估计。</p>
 <p>实现的方法：视点由头部姿态、眼球姿态和眼睛三维位置决定。推断这三个分量，然后将它们整合来估计注视点。</p>
 <p>从RGB人脸图像中估计出<strong>68个人脸关键点的相对深度</strong>，然后利用这些相对深度和捕获的原始深度（[40]），通过全局优化求解所有<strong>人脸关键点的绝对深度</strong>。精确的深度提供可靠的头部姿态和3D眼睛位置的估计。</p>
 <p>眼球姿势，通过多列CNN得到；</p>
 <p>头部姿势和眼睛位置通过两步程序从RGB和深度图像中估计68个3D面部地标(见图4)来解决的。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20210916170140209.png" alt="image-20210916170140209"></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2019aaaiStructure.png" alt="image-20210916170140209"></p>
 <p>我们的注视点估计框架。使用三个独立的特征提取器(即Eyeball- c1、Eyeball- c2和Eyeball- c3，在我们的实现中这三个独立的ResNet-18)从<strong>两张单眼图像和人脸图像中提取眼球姿态特征</strong>。人脸标志物的相对深度是由相对深度估计器(另一种ResNet-18)从人脸图像中估计出来的。然后，利用<strong>估计的相对深度和原始深度</strong>，通过<strong>全局优化获得可靠的三维面部地标</strong>。三个CNN列提取的眼球构成特性和最优的三维面部地标被送入三套完全连接层(即FC-C1-1、FC-C2-1 FC-C3-1图,在我们的实现中，每个层都由两个级联的完全连接的层组成))为注视点回归。最后，由最后一个完全连接层收集来自CNN三个栏目的三个独立的凝视预测，进行最终预测。</p>
 <p>采用了与[40]相似的策略，其中使用RGB图像来预测面部地标对的相对深度，并通过使用估计的相对深度和原始深度进行全局优化获得绝对深度。</p>
 <blockquote>
@@ -426,10 +464,10 @@
 </blockquote>
 <h2 id="数据收集方法"><a href="#数据收集方法" class="headerlink" title="数据收集方法"></a>数据收集方法</h2><p>每个参与者都被要求坐下在<strong>27英寸的iMac前，电脑安装了英特尔RealSense SR300摄像头，距离从50厘米到100厘米不等</strong>，当参与者准备好了，他或她可以在我们的数据收集软件中输入他或她的名字，并开始一个收集会话。在每个实验中，随机出现50个半径为30像素的白点(在1920×1080像素分辨率下约为0.93 cm)，参与者被要求依次点击白点的中心。同时，数据采集软件记录每个白点的位置，每次点击的位置，以及参与者的RGB-D图像。在一个会话结束后，参与者可以在开始下一个会话之前短暂休息，直到全部16个会话结束。</p>
 <p>在数据收集过程中，我们假设参与者应该盯着中间的白点。然而，这并不总是正确的，特别是当参与者在点击点时分心。为了避免这种情况，我们还用蓝点向参与者展示了每次点击的位置。此外，我们通过测量白点中心和点击位置之间的距离来确定样品。如果距离比给定的阈值(10个像素0.31cm 1920×1080像素))更远，我们就简单地从数据集中排除该样本。训练集包含159个参与者的119,318个样本，验证集包含其余59个参与者的45,913个样本。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Blog\source\pics\gaze_sample.png" alt></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/gaze_sample.png" alt></p>
 <p><strong>没有固定参与者和显示器之间的距离，也没有固定左右的深度，每个参与者的眼睛变化幅度很大</strong>，<strong>超过一半的参与者在实验中佩戴了眼镜，这使得他们的深度图像中眼睛区域包含了大的黑洞</strong>。</p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20210916165312163.png" alt="ss"></p>
-<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20210916202616025.png" alt="image-20210916202616025"></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2019aaai_dataset_compare.png" alt></p>
+<p><img src="/2021/09/28/3D-RGBD-landmark-%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/2Dgaze.png" alt="image-20210916202616025"></p>
 <h1 id="Disentangling-3D-Pose-in-A-Dendritic-CNN-for-Unconstrained-2D-Face-Alignment"><a href="#Disentangling-3D-Pose-in-A-Dendritic-CNN-for-Unconstrained-2D-Face-Alignment" class="headerlink" title="Disentangling 3D Pose in A Dendritic CNN for Unconstrained 2D Face Alignment"></a>Disentangling 3D Pose in A Dendritic CNN for Unconstrained 2D Face Alignment</h1><blockquote>
 <p>CVPR2018 </p>
 <p>Amit Kumar Rama Chellappa<br>Department of Electrical and Computer Engineering, CFAR and UMIACS<br>University of Maryland-College Park,USA</p>
@@ -592,7 +630,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -642,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LR-face-landmark"><span class="nav-number">1.</span> <span class="nav-text">LR face landmark</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E9%B2%81%E6%A3%92%E6%98%BE%E8%91%97%E6%80%A7%E4%BA%BA%E8%84%B8%E5%9C%B0%E6%A0%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%81%B5%E6%B4%BB%E7%9A%84%E4%BA%BA%E8%84%B8%E5%9B%BE%E5%83%8F%E5%8E%BB%E6%A8%A1%E7%B3%8ATowards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection"><span class="nav-number">1.1.</span> <span class="nav-text">采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-3D-Menpo-Facial-Landmark-Tracking-Challenge"><span class="nav-number">2.</span> <span class="nav-text">The 3D Menpo Facial Landmark Tracking Challenge</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RGB-D-based-gaze-point-estimation-via-multi-column-CNNs-and-facial-landmarks-global-optimization"><span class="nav-number"></span> <span class="nav-text">RGB-D-based gaze point estimation via multi-column CNNs and facial landmarks global optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">数据收集方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disentangling-3D-Pose-in-A-Dendritic-CNN-for-Unconstrained-2D-Face-Alignment"><span class="nav-number"></span> <span class="nav-text">Disentangling 3D Pose in A Dendritic CNN for Unconstrained 2D Face Alignment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-far-are-we-from-solving-the-2D-amp-3D-Face-Alignment-problem-and-a-dataset-of-230-000-3D-facial-landmarks"><span class="nav-number"></span> <span class="nav-text">How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LR-face-landmark"><span class="nav-number">1.</span> <span class="nav-text">LR face landmark</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E9%B2%81%E6%A3%92%E6%98%BE%E8%91%97%E6%80%A7%E4%BA%BA%E8%84%B8%E5%9C%B0%E6%A0%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%81%B5%E6%B4%BB%E7%9A%84%E4%BA%BA%E8%84%B8%E5%9B%BE%E5%83%8F%E5%8E%BB%E6%A8%A1%E7%B3%8ATowards-more-efficient-and-flexible-face-image-deblurring-using-robust-salient-face-landmark-detection"><span class="nav-number">1.1.</span> <span class="nav-text">采用鲁棒显著性人脸地标检测实现高效灵活的人脸图像去模糊Towards more efficient and flexible face image deblurring using robust salient face landmark detection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-3D-Menpo-Facial-Landmark-Tracking-Challenge"><span class="nav-number">2.</span> <span class="nav-text">The 3D Menpo Facial Landmark Tracking Challenge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RGB-D-based-gaze-point-estimation-via-multi-column-CNNs-and-facial-landmarks-global-optimization"><span class="nav-number">3.</span> <span class="nav-text">RGB-D-based gaze point estimation via multi-column CNNs and facial landmarks global optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">数据收集方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Disentangling-3D-Pose-in-A-Dendritic-CNN-for-Unconstrained-2D-Face-Alignment"><span class="nav-number">4.</span> <span class="nav-text">Disentangling 3D Pose in A Dendritic CNN for Unconstrained 2D Face Alignment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-far-are-we-from-solving-the-2D-amp-3D-Face-Alignment-problem-and-a-dataset-of-230-000-3D-facial-landmarks"><span class="nav-number">5.</span> <span class="nav-text">How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</span></a></li></ol></div>
             
 
           </div>
@@ -831,7 +869,337 @@
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
 
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 
