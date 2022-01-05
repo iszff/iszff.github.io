@@ -1209,6 +1209,7 @@ e = \frac{∑ _{i=1}^N ∣∣x_i−x_i^∗∣∣ _2}{N∗d}</script><h2 id="Fail
 ]]></content>
       <categories>
         <category>视线估计</category>
+        <category>试验记录</category>
       </categories>
       <tags>
         <tag>文献阅读</tag>
@@ -1899,7 +1900,6 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 ]]></content>
       <categories>
         <category>视线估计</category>
-        <category>试验记录</category>
       </categories>
       <tags>
         <tag>文献阅读</tag>
