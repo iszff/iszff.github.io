@@ -1354,7 +1354,10 @@ e = \frac{∑ _{i=1}^N ∣∣x_i−x_i^∗∣∣ _2}{N∗d}</script><h2 id="Fail
   <entry>
     <title>eye gaze调研</title>
     <url>/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/</url>
-    <content><![CDATA[<h1 id="Gaze-Estimation"><a href="#Gaze-Estimation" class="headerlink" title="Gaze  Estimation"></a>Gaze  Estimation</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>广义的Gaze Estimation 泛指与<strong>眼球</strong>、<strong>眼动、视线</strong>等相关的研究。</p>
+    <content><![CDATA[<h1 id="Gaze-Estimation"><a href="#Gaze-Estimation" class="headerlink" title="Gaze  Estimation"></a>Gaze  Estimation</h1><blockquote>
+<p>本文的内容转载自知乎用户<a href="https://www.zhihu.com/people/yu-rain-17/posts"> T骨牛排 - 知乎 (zhihu.com)</a>的<a href="https://zhuanlan.zhihu.com/p/112097446">视线估计(Gaze Estimation)简介 - T骨牛排的文章 - 知乎</a>的系列文章。</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>广义的Gaze Estimation 泛指与<strong>眼球</strong>、<strong>眼动、视线</strong>等相关的研究。</p>
 <blockquote>
 <p>不少做saliency和egocentric的论文也以gaze为关键词。</p>
 <p>近些年随着数据和技术的发展，对gaze的需求渐渐浮出水面，这方面的研究也开始进入主流的视野。</p>
@@ -1606,6 +1609,9 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211008155246008.png" alt="image-20211008155246008"></p>
 <p><img src="/2021/10/04/eye-gaze%E8%B0%83%E7%A0%94/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20211008163556619.png" alt="image-20211008163556619"></p>
 ]]></content>
+      <categories>
+        <category>视线估计</category>
+      </categories>
       <tags>
         <tag>文献阅读</tag>
       </tags>
