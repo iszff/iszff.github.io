@@ -109,6 +109,22 @@
       </tags>
   </entry>
   <entry>
+    <title>DailtedNet</title>
+    <url>/2022/01/16/DailtedNet/</url>
+    <content><![CDATA[<h1 id="Dilated-convolution"><a href="#Dilated-convolution" class="headerlink" title="Dilated convolution"></a>Dilated convolution</h1><p><img src="/2022/01/16/DailtedNet/dilated_conv.png" alt="image-20220111115104315"></p>
+<p>在语义分割中使用分类网络作为backbone，之后会将图片进行一系列的下采样。再通过上采样还原回原来的大小。一般分类网络会下采样为原来的32倍。如果下采样倍率太大，对还原回原图有影响。比如vgg，通过最大池化进行下采样，会丢失一些细节信息和小目标，后续无法通过上采样进行还原，会导致语义分割效果不理想。</p>
+<p>如果去掉最大池化下采样，特征图对于原图的感受野变小了。</p>
+<p><img src="/2022/01/16/DailtedNet/grid_effect.png" alt="image-20220111190102930"></p>
+<p>在上图中使用膨胀卷积，会有一些像素用不上。</p>
+]]></content>
+      <categories>
+        <category>深度学习知识</category>
+      </categories>
+      <tags>
+        <tag>文献阅读</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EDA课程设计、dsp课程设计</title>
     <url>/2019/07/05/EDA%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E3%80%81dsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<p>这篇博文来说说六月的EDA课程设计、dsp课程设计还有一些零零碎碎的想法。</p>
@@ -188,6 +204,97 @@
 ]]></content>
       <categories>
         <category>视线估计</category>
+      </categories>
+      <tags>
+        <tag>文献阅读</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GAN</title>
+    <url>/2022/01/11/GAN/</url>
+    <content><![CDATA[<h1 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h1><p>分辨模型，分到属于哪一个类别。生成模型生成数据本身。</p>
+<p>主要思路：</p>
+<p>生成模型G，生成数据本身的分布。辨别模型D，估计数据是从真正的训练数据分布当中得来的还是从G生成得来的。</p>
+<p>生成模型G是尽量让判别模型D犯错。</p>
+<p>深度学习不仅仅是深度网络，而且也是学习整个深度数据分布的一个特征表示。深度学习对于辨别模型有比较好的效果，但对于生成模型的研究比较少，要去近似那个分布计算似然函数。</p>
+<p>G：造假者。提高造假币的能力。</p>
+<p>D：警察。提高判断假币的能力。</p>
+<p>希望最后造假者的能力很强，而警察分不清真币还是假币。这样就能生成跟真实一样的数据了。</p>
+<p>生成模型G的框架是MLP，它的输入是随机的噪声，MLP可以把噪声拟合到任意的分布。判别模型也是MLP，两个网络都可以反向传播学习参数。</p>
+<p>不是计算出一个模型的参数，而是学一个模型近似结果即可。坏处是不知道真正的分布长啥样，好处是计算简单。</p>
+<p>adversarial example生成一些假的样本。能够互动到分类器，从而测试整个算法的稳定性。\</p>
+<h2 id="对抗网络模型"><a href="#对抗网络模型" class="headerlink" title="对抗网络模型"></a>对抗网络模型</h2><p>生成器生成对于数据$x$上的分布$p_g$，一开始 初始化模型为$p_z(z)$,生成模型$G(z,θ_g)$把$z$映射成$x$,判别器$D(x,θ_d)$输出一个标量，用于判别是生成的数据还是真实数据。</p>
+<p>对抗损失</p>
+<script type="math/tex; mode=display">
+\mathop{min} \limits_{G} \mathop{max} \limits_{D} \mathbb{E}_{x \sim p_{data}(x)}[log(D(x))]+ \mathbb{E}_{z \sim p_{data}(z)}[log(1-D(G(z)))]</script><p>假如$D$是完美的，对于一张真图片$x$,$D(x)=1$。</p>
+<p>$G(z)$是生成的，假如$D$是完美的，$D(G(z))=0$。</p>
+<p>在这种情况下，两项都为0。</p>
+<p>$D$尽量使数据分开，$G$使得生成的数据使得$D$分不开。第一项使得$D$尽可能正确,第二项使$D$犯错。</p>
+<p>希望最后生成数据和真实数据在分布上一样，判别器无能为力，对于生成数据和真实数据都输出0.5。</p>
+<p>每次迭代先更新判别器，再更新生成器，糊弄判别器。$D$每次不能更新的太小，也不能更新的太完美。</p>
+<p>GAN网络不容易收敛。</p>
+<p>GAN是无监督学习，没有用到label。GAN使用有监督学习的损失来做无监督学习，label来自于数据，数据是采样的还是生成的。</p>
+<h1 id="最大似然估计的原理"><a href="#最大似然估计的原理" class="headerlink" title="最大似然估计的原理"></a>最大似然估计的原理</h1><p>存在即合理。</p>
+<p>抽出一组样本的概率会随着概率模型参数变化而变化的。</p>
+<p>一个小概率事件可以认为他不发生，但是现在发生了，这种概率达到了最大，就认为它是最大的。认为抽样样本出现时候的概率达到最大值时的模型参数就是分布的参数。于是就变成了求函数最大值。</p>
+<p>求导数，求导数值为0的参数值。</p>
+<h1 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h1><p>在知道p的情况下至少需要多少个比特把q给描述出来。</p>
+<h1 id="cycle-gan"><a href="#cycle-gan" class="headerlink" title="cycle gan"></a>cycle gan</h1><blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/45394148">CycleGAN论文的阅读与翻译，无监督风格迁移 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>图像到<strong>图像</strong>的<strong>翻译 (Image-to-Image translation)</strong> 是一种视觉上和图像上的问题，它的目标是使用成对的图像作为训练集，（让机器）学习从输入图像到输出图像的映射。然而，在很多任务中，成对的训练数据无法得到。</p>
+<p>我们提出一种在缺少成对数据的情况下，（让机器）学习从源数据域X到目标数据域Y 的方法。我们的目标是使用一个对抗损失函数，学习映射G：X → Y ，使得判别器难以区分图片 G(X) 与 图片Y。因为这样子的映射受到巨大的限制，所以我们为映射G 添加了一个相反的映射F：Y → X，使他们成对，同时加入一个循环一致性损失函数 (cycle consistency loss)，以确保 F(G(X)) ≈ X（反之亦然）。</p>
+<p>在缺少成对训练数据的情况下，我们比较了风格迁移、物体变形、季节转换、照片增强等任务下的定性结果。经过定性比较，我们的方法表现得比先前的方法更好。</p>
+<p><img src="https://pic2.zhimg.com/v2-6bd4d69c9c31a79b949af61755f1cebd_r.jpg" alt="preview"></p>
+<p>我们的目标是学习两个数据域 X 与 Y 之间的映射函数，定义数据集合与数据分布，与模型的两个映射，其中：<img src="https://www.zhihu.com/equation?tex=%5C%7B+x_%7Bi%7D+%5C%7D+%5EN+_%7Bi%3D1%7D++%5Cquad++x_i+%5Cin+X+++%2C%5Cquad+x%5Csim+p_%7Bdata%7D%28x%29%5C%5C+%5C%7B+y_%7Bi%7D+%5C%7D+%5EM+_%7Bi%3D1%7D++%5Cquad++y_i+%5Cin+Y+++%2C%5Cquad+y%5Csim+p_%7Bdata%7D%28y%29+%5C%5C+%5C+%5C%5C+G%3A+X+%5Crightarrow+Y+%5C%5C+F%3A+Y+%5Crightarrow+X" alt="[公式]"></p>
+<p>另外，我们引入了两个判别函数：</p>
+<ul>
+<li>用于区分{x} 与 {F(y)} 的 <img src="https://www.zhihu.com/equation?tex=D_X" alt="[公式]"></li>
+<li>用于区分{y} 与 {G(x)} 的 <img src="https://www.zhihu.com/equation?tex=D_Y" alt="[公式]"> 。</li>
+</ul>
+<p>我们的构建的模型包含两类组件(Our objective contains two types of terms)：</p>
+<ul>
+<li>对抗损失(adversarial losses)，使生成的图片在分布上更接近于目标图片；</li>
+<li>循环一致性损失(cycle consistency losses)，防止学习到的映射 G与F 相互矛盾。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>MobileNet</title>
+    <url>/2022/01/10/MobileNet/</url>
+    <content><![CDATA[<h1 id="MobileNet"><a href="#MobileNet" class="headerlink" title="MobileNet"></a>MobileNet</h1><p>传统卷积，内存需求大，运算量需求大。vgg16权重大小约490M，resnet152层权重参数约644M。</p>
+<p>mobileNet是google17年提出的，专注于移动端或嵌入式设备中的轻量级CNN网络。相比于传统神经网络，<strong>准确率小幅降低的前提下大大减少模型参数和运算量</strong>。（在imageNet上，相比于VGG准确率减少了0.9%，但模型参数只有vgg的1/32)。</p>
+<h2 id="depth-wise-separable-convolutions"><a href="#depth-wise-separable-convolutions" class="headerlink" title="depth-wise separable convolutions"></a>depth-wise separable convolutions</h2><p>DW卷积：每个卷积核只和特定的一个channel进行卷积。</p>
+<ul>
+<li>每个卷积核只有一个channel，负责输入特征矩阵的特定channel。</li>
+<li>输出channel个数=卷积核个数=输入特征矩阵channel数。</li>
+</ul>
+<p><img src="/2022/01/10/MobileNet/dw_network_bili.png" alt="image-20220110174042293"></p>
+<p>PW卷积是普通的卷积，卷积核的大小是1。</p>
+<p><img src="/2022/01/10/MobileNet/pw_conv.png" alt="image-20220110201847646"></p>
+<p>深度可分离卷积是吧DW和PW放在一起使用的。</p>
+<p>普通卷积输出特征图为4个channel，使用DW+PW得到输出特征也为4个channel。</p>
+<p><img src="/2022/01/10/MobileNet/compute_times.png" alt="image-20220110202132545"></p>
+<p>α为卷积核个数的倍率，控制卷积过程中卷积核的个数，当宽度乘子α时，输入通道数为αM，输出通道数为αN。β为分辨率参数，对于不同的网络输入图片大小，加法次数不同，网络计算速度不同。</p>
+<blockquote>
+<p>α因子是在训练之前就选定好的</p>
+</blockquote>
+<p><img src="/2022/01/10/MobileNet/result_ablation.png" alt="image-20220110203944575"></p>
+<p><img src="/2022/01/10/MobileNet/dw_conv_structure.png" alt="image-20220110211508226"></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们为移动和嵌入式视觉应用程序提出了一类名为mobilenet的高效模型。mobilenet基于一种流线型的架构，使用<strong>depth-wise separable convolutions深度可分离卷积来构建轻量级的深度神经网络</strong>。我们引入了两个简单的<strong>全局超参数，可以有效地在延迟和准确性之间进行权衡</strong>。这些超参数允许模型构建者根据问题的约束为他们的应用程序选择合适大小的模型。我们在资源和准确性的权衡上进行了大量的实验，并在ImageNet分类中显示了与其他流行模型相比的强大性能。然后，我们在广泛的应用和用例中展示了mobilenet的有效性，包括对象检测、细粒度分类、人脸属性和大规模地理定位。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>自从AlexNet[19]赢得ImageNet挑战(ILSVRC 2012[24])使深度卷积神经网络普及以来，卷积神经网络已经在计算机视觉中无处不在。为了达到更高的精度，总的趋势是制作更深、更复杂的网络[27,31,29,8]。然而，这些提高准确性的进步并不一定会使网络在规模和速度方面更高效。在许多现实世界的应用中，如机器人、自动驾驶汽车和增强现实，识别任务需要在计算有限的平台上及时执行。</p>
+<p>本文描述了一种高效的网络架构和一组两个超参数，以构建非常小的、低延迟的模型，可以很容易地满足移动和嵌入式视觉应用的设计需求。第二节回顾了之前建立小模型的工作。第3节描述了MobileNet架构和两个超参数宽度乘法器和分辨率乘法器width multiplier and resolution multiplier，以定义更小和更有效的MobileNet。第4节描述了ImageNet的实验以及各种不同的应用程序和用例。第5节以总结和结论结束。</p>
+<h1 id="MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks"><a href="#MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks" class="headerlink" title="MobileNetV2: Inverted Residuals and Linear Bottlenecks"></a>MobileNetV2: Inverted Residuals and Linear Bottlenecks</h1><p><img src="/2022/01/10/MobileNet/mobilenet_v2.png" alt="image-20220110214925153"></p>
+<p><img src="/2022/01/10/MobileNet/MobileNet_compare_resnet.png" alt="image-20220110214543637"></p>
+<p>对于倒残差结构的最后一个卷积层，使用了线性激活函数，而不是relu。因为通过对relu函数的分析可以看出，对于低维特征relu的损失大，对高维损失小。倒残差两边细，中间粗，mobileNet输出就是低维向量。所以使用线性激活函数替代relu。</p>
+<p><img src="/2022/01/10/MobileNet/relu_dim.png" alt="x"></p>
+<p>步距=1，且输入输出H,W,C都相等，才使用残差。</p>
+<p><img src="/2022/01/10/MobileNet/mobile_netv2_structrue.png" alt="image-20220110215807021"></p>
+<p><img src="/2022/01/10/MobileNet/invert_residual_io.png" alt="image-20220110220131093"></p>
+<p><img src="/2022/01/10/MobileNet/mobilev2_classification.png" alt="image-20220110220504613"></p>
+]]></content>
+      <categories>
+        <category>深度学习知识</category>
       </categories>
       <tags>
         <tag>文献阅读</tag>
@@ -405,6 +512,49 @@
 ]]></content>
   </entry>
   <entry>
+    <title>gpu并行训练</title>
+    <url>/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/</url>
+    <content><![CDATA[<h1 id="nn-DataParallel"><a href="#nn-DataParallel" class="headerlink" title="nn.DataParallel"></a>nn.DataParallel</h1><p>若只考虑单机多卡并行和数据平行训练时，最简单的方法是用 <strong>nn.DataParallel</strong>。</p>
+<p>先设置所使用的GPU卡，然后用 <strong>nn.DataParallel</strong> 包装模型。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>] =<span class="string">&quot;0, 2&quot;</span><span class="comment"># 使用0和2号卡</span></span><br><span class="line">model=Classifier()</span><br><span class="line">model =nn.DataParallel(model)</span><br></pre></td></tr></table></figure>
+<p><a href="https://zhuanlan.zhihu.com/p/102697821">Pytorch的nn.DataParallel - 知乎 (zhihu.com)</a></p>
+<p>前向过程：</p>
+<ol>
+<li>分发mini-batch到每个GPU上，</li>
+<li>将模型复制到每一个GPU上，</li>
+<li>模型对mini-batch进行forward计算结果，</li>
+<li>将每个GPU上的计算结果汇总到第一个GPU上。</li>
+</ol>
+<p>反向传播过程：</p>
+<ol>
+<li>在第一个GPU上根据计算的loss计算梯度，</li>
+<li>将第一个GPU上计算的梯度值分发到每个GPU上，</li>
+<li>每个GPU上进行梯度更新，</li>
+<li>将每个GPU上更新的梯度值汇总到第一个GPU上。<br>其中foward过程都会把第一个GPU上的模型重新分发到每个每个GPU上。各个卡只计算到loss，然后0号卡做loss平均，最后分发到各个卡上求梯度并进行参数更新。</li>
+</ol>
+<p>文章有错误：应该是<br>1：把每张卡的输出gather到GPU0，<br>2：只在GPU0在算loss，<br>3：把loss scatter到其他GPU上，<br>4：每个GPU算各自的梯度，再把梯度汇总到GPU0上</p>
+<blockquote>
+<p>关于这个流程不同的文章有不同的说法。</p>
+</blockquote>
+<h1 id="nn-parallel-DistributedDataParallel"><a href="#nn-parallel-DistributedDataParallel" class="headerlink" title="nn.parallel.DistributedDataParallel"></a><strong>nn.parallel.DistributedDataParallel</strong></h1><p><a href="https://zhuanlan.zhihu.com/p/361314953">PyTorch 源码解读之分布式训练了解一下？ - 知乎 (zhihu.com)</a></p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112162455330.png" alt="image-20220112162455330"></p>
+<p><a href="https://www.bilibili.com/video/BV1yt4y1e7sZ?from=search&amp;seid=5934700972016238189&amp;spm_id_from=333.337.0.0">pytorch多GPU并行训练教程_哔哩哔哩_bilibili</a></p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112162623305.png" alt="image-20220112162623305"></p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112163216347.png" alt="image-20220112163216347"></p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112163334093.png" alt="image-20220112163334093"></p>
+<p>同步bn</p>
+<h1 id="nn-DataParallel-1"><a href="#nn-DataParallel-1" class="headerlink" title="nn.DataParallel"></a>nn.DataParallel</h1><p>单机多卡。单进程多线程。工作与单机。</p>
+<h1 id="nn-parallel-DistributedDataParallel-1"><a href="#nn-parallel-DistributedDataParallel-1" class="headerlink" title="nn.parallel.DistributedDataParallel"></a>nn.parallel.DistributedDataParallel</h1><p>可以多级多卡，速度快于DataParallel。</p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112170831371.png" alt="image-20220112170831371"></p>
+<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112171028243.png" alt="image-20220112171028243"></p>
+<p>多gpu训练，每块gpu上初始模型需要一摸一样。</p>
+<p>loss_reduce,多块gpu loss做平均。</p>
+]]></content>
+      <categories>
+        <category>深度学习知识</category>
+      </categories>
+  </entry>
+  <entry>
     <title>qq好友空间说说爬虫</title>
     <url>/2018/09/02/qq%E5%A5%BD%E5%8F%8B%E7%A9%BA%E9%97%B4%E8%AF%B4%E8%AF%B4%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<p>这篇日志主要记录、总结自己写的一个小爬虫，算是自己学习python的小练习吧。</p>
@@ -595,6 +745,14 @@ st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display
 ]]></content>
   </entry>
   <entry>
+    <title>lab多模态红外</title>
+    <url>/2021/10/04/%E2%80%9Clab%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BA%A2%E5%A4%96%E2%80%9D/</url>
+    <content><![CDATA[<p>红外与可见光图像融合论文阅读（一） - 奥本海默的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/387858991">https://zhuanlan.zhihu.com/p/387858991</a></p>
+<p>红外热成像 - simple林的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/28895578">https://zhuanlan.zhihu.com/p/28895578</a></p>
+<p>红外图和温感图看起来有啥不同？</p>
+]]></content>
+  </entry>
+  <entry>
     <title>web3.0</title>
     <url>/2021/11/19/web3-0/</url>
     <content><![CDATA[<p>1.什么是web3.0？</p>
@@ -628,14 +786,6 @@ st->op1->op2->op3->e</textarea><textarea id="flowchart-0-options" style="display
 <p>了解每个人创新的脉络</p>
 </blockquote>
 <p><a href="https://digitalnative.substack.com/p/chain-reactions-how-creators-web3">https://digitalnative.substack.com/p/chain-reactions-how-creators-web3</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>lab多模态红外</title>
-    <url>/2021/10/04/%E2%80%9Clab%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BA%A2%E5%A4%96%E2%80%9D/</url>
-    <content><![CDATA[<p>红外与可见光图像融合论文阅读（一） - 奥本海默的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/387858991">https://zhuanlan.zhihu.com/p/387858991</a></p>
-<p>红外热成像 - simple林的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/28895578">https://zhuanlan.zhihu.com/p/28895578</a></p>
-<p>红外图和温感图看起来有啥不同？</p>
 ]]></content>
   </entry>
   <entry>
@@ -862,6 +1012,44 @@ e = \frac{∑ _{i=1}^N ∣∣x_i−x_i^∗∣∣ _2}{N∗d}</script><h2 id="Fail
 ]]></content>
       <categories>
         <category>人脸关键点检测</category>
+      </categories>
+      <tags>
+        <tag>文献阅读</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对于视线估计的脆弱性分析</title>
+    <url>/2021/10/29/%E5%AF%B9%E4%BA%8E%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%84%86%E5%BC%B1%E6%80%A7%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="Vulnerability-of-Appearance-based-Gaze-Estimation"><a href="#Vulnerability-of-Appearance-based-Gaze-Estimation" class="headerlink" title="Vulnerability of Appearance-based Gaze Estimation"></a>Vulnerability of Appearance-based Gaze Estimation</h1><blockquote>
+<p>2021预印本</p>
+<p>Mingjie Xu1 Haofei Wang2 Yunfei Liu1 Feng Lu1, 2, *<br>1State Key Laboratory of VR Technology and Systems, School of CSE, Beihang University<br>2Peng Cheng Laboratory, Shenzhen, China</p>
+</blockquote>
+<p>评价：基于外观的凝视估计的脆弱性</p>
+<p>针对问题：利用噪声对原始图像进行干扰会混淆凝视估计模型，基于机器学习的方法存在脆弱性。</p>
+<p>本文的目的：尽管扰动后的图像在视觉上与原始图像相似，但凝视估计模型输出的凝视方向是错误的。本文研究了基于外观的注视估计的脆弱性。</p>
+<p>从多个方面系统地描述了该漏洞的特性。</p>
+<ul>
+<li>基于像素的对抗攻击pixel-based adversarial attack、</li>
+<li>基于补丁的对抗攻击patch-based adversarial attack</li>
+<li>防御策略 defense strategy等。</li>
+</ul>
+<p>实现的方法：通过在原始输入中加入对抗性扰动，研究了是否有可能改变预测的注视方向，甚至输出一个特定的注视方向。</p>
+<p><img src="/2021/10/29/%E5%AF%B9%E4%BA%8E%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%84%86%E5%BC%B1%E6%80%A7%E5%88%86%E6%9E%90/eyeloc.png" alt="image-20211029144448019"></p>
+<p>refer</p>
+<blockquote>
+<p>眼神凝视是人类交流的重要渠道之一。它表示人眼分型[17,24]、认证[13,19]、显著性预测[31]、目标检测[7]等过程中感兴趣的区域 the region of interest during eye typing<br>[17,24], authentication [13,19], saliency prediction [31],<br>object detection 。</p>
+</blockquote>
+<p>观察到，当只攻击“鼻子”或“嘴”时，系统会产生很大的角度误差。图4(b)和图4(c)显示，发作后注意区域仅为“鼻子”或“嘴”。如果同时攻击“鼻子”和“嘴”，则角度误差会大大降低，攻击后注意区域也会同时转移到“鼻子”和“嘴”。</p>
+<p>但是这个角误差还是比通过攻击其他部分来完成那个大。注意，不是所有的注意力区域都在“眼睛”上，这导致了这样的结果。如果我们同时攻击“眼睛”和“鼻子”，或者同时攻击“眼睛”和“嘴巴”，平均角度误差就会比只攻击“鼻子”和“嘴巴”低得多。在这种情况下，注意力区域在“眼睛”和其他部分。</p>
+<p>Yiwei Bao, Yihua Cheng, Y unfei Liu, and Feng Lu. Adaptive<br>feature fusion network for gaze tracking in mobile tablets. In<br>25th International Conference on Pattern Recognition (ICPR),<br>2020.</p>
+<p>Yihua Cheng, Shiyao Huang, Fei Wang, Chen Qian, and Feng<br>Lu. A coarse-to-fine adaptive network for appearance-based<br>gaze estimation. InProceedings of the AAAI Conference on<br>Artificial Intelligence, volume 34, pages 10623–10630, 2020.</p>
+<p>Seonwook Park, Shalini De Mello, Pavlo Molchanov, Umar<br>Iqbal, Otmar Hilliges, and Jan Kautz. Few-shot adaptive gaze<br>estimation. InProceedings of the IEEE/CVF International<br>Conference on Computer Vision, pages 9368–9377, 2019.</p>
+<p>Tobias Fischer, Hyung Jin Chang, and Yiannis Demiris. RT-<br>GENE: Real-Time Eye Gaze Estimation in Natural Environ-<br>ments. InEuropean Conference on Computer Vision, pages<br>339–357, September 2018.</p>
+<p>Yihua Cheng, Xucong Zhang, Feng Lu, and Y oichi Sato.<br>Gaze estimation by exploring two-eye asymmetry.IEEE<br>Transactions on Image Processing, 29:5259–5272, 2020.</p>
+<hr>
+]]></content>
+      <categories>
+        <category>视线估计</category>
       </categories>
       <tags>
         <tag>文献阅读</tag>
@@ -1113,6 +1301,124 @@ e = \frac{∑ _{i=1}^N ∣∣x_i−x_i^∗∣∣ _2}{N∗d}</script><h2 id="Fail
       </categories>
       <tags>
         <tag>实验记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EyediapRGBDgaze</title>
+    <url>/2021/12/10/EyediapRGBDgaze/</url>
+    <content><![CDATA[<blockquote>
+<p>Funes Mora K A, Monay F, Odobez J M. Eyediap: A database for the development and evaluation of gaze estimation algorithms from rgb and rgb-d cameras[C]//Proceedings of the Symposium on Eye Tracking Research and Applications. 2014: 255-258.</p>
+</blockquote>
+<ol>
+<li><p>评价：用于开发和评估来自RGB和RGB- d相机的注视估计算法的数据库</p>
+</li>
+<li><p>针对的问题：缺乏一个共同的基准来评估从RGB和RGB- d数据的凝视估计任务。</p>
+</li>
+<li><p>本文的目的：引入一个新的数据库和一个共同的框架来克服缺乏一个共同的benchmark这一局限性，用于注视估计方法的训练和评价。可以评估算法鲁棒性 。</p>
+<p>i)头部姿势变化;</p>
+<p>ii)人变化;</p>
+<p>iii)环境和感知条件的变化和</p>
+<p>iv)目标类型:屏幕或3D对象</p>
+</li>
+</ol>
+<h1 id="数据集采集设置"><a href="#数据集采集设置" class="headerlink" title="数据集采集设置"></a>数据集采集设置</h1><h2 id="Set-up"><a href="#Set-up" class="headerlink" title="Set-up"></a>Set-up</h2><p><img src="/2021/12/10/EyediapRGBDgaze/eyediapCollect.png" alt="image-20211210155014440"></p>
+<p>Kinect:这种消费设备提供标准(RGB)和VGA分辨率(640×480)和30fps的深度视频流。</p>
+<p>高清摄像头:Kinect设计的视场更大，对用户移动性的限制更少，但这对于基于VGA分辨率的眼球追踪来说是个问题。因此，我们也使用了全高清相机(1920x1080)， 25fps记录场景。</p>
+<p>led:两个摄像头都可见的5个led用于同步RGB-D和HD流。</p>
+<p>平面屏幕:使用一个24英寸的屏幕来显示一个可视目标。</p>
+<p>小球:使用直径为4cm的小球作为视觉目标，有两个目的:在3D环境中作为视觉目标，在RGB和深度数据中都具有识别力，从而可以精确跟踪其3D位置(见第3节)。</p>
+<p>如图1所示，摄像头位于电脑屏幕正下方，这样可以从下方观察参与者的眼睛，尽量减少眼皮遮挡。参与者被要求在一定距离内坐在装置前面，这取决于视觉目标的类型(见下一段)，并凝视指定的视觉目标。没有在说话活动、面部表情等方面给出指示。</p>
+<h2 id="Recording-sessions"><a href="#Recording-sessions" class="headerlink" title="Recording sessions"></a>Recording sessions</h2><p>为了评估注视估计算法的不同方面，我们设计了一组记录会话，每个会话的特征是四个主要变量的组合，影响注视估计的准确性:视觉目标，头部姿势，参与者和记录条件。这些措施说明如下:</p>
+<h3 id="Discrete-screen-target"><a href="#Discrete-screen-target" class="headerlink" title="Discrete screen target"></a>Discrete screen target</h3><p>离散目标(DS)屏幕上,一个小圆匀画每1.1秒随机位置在计算机屏幕上,</p>
+<h3 id="Continuous-screen-target"><a href="#Continuous-screen-target" class="headerlink" title="Continuous screen target"></a>Continuous screen target</h3><p>屏幕连续目标(CS),圆圈沿着一个随机2 s轨道移动,以获得注视运动更平稳的例子。</p>
+<h3 id="3D-floating-target"><a href="#3D-floating-target" class="headerlink" title="3D floating target"></a>3D floating target</h3><p>3D浮动目标(FT):一个直径4厘米的球挂在一根细线上，这根细线附着在一根棍子上，在摄像机和参与者之间的3D区域内移动。与屏幕上的目标相比，参与者离相机的距离更大(1.2米而不是80-90厘米)，以便有足够的空间让目标移动。</p>
+<h2 id="头部姿势。"><a href="#头部姿势。" class="headerlink" title="头部姿势。"></a>头部姿势。</h2><p>为了评估方法对头部姿势的稳健性，要求参与者保持注视视觉目标，同时</p>
+<p>(i)面对屏幕保持近似静止的头部姿势(静态情况，S);</p>
+<p>(ii)进行头部运动(平移和旋转translation and rotation)，以引入头部姿势变化(Mobile case, M)。</p>
+<h2 id="记录的条件"><a href="#记录的条件" class="headerlink" title="记录的条件"></a>记录的条件</h2><p>对于参与者12、13和14，在两种不同的条件下(记为A或B)，一些进程被记录了两次:不同的日子、光照和与相机间的距离</p>
+<blockquote>
+<p>总结。记录了94个2 - 3分钟的会话，总共获得了超过4小时的数据。每个会话由字符串“P-C-T-H”表示，它指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。录音示例如图2所示。</p>
+</blockquote>
+<p><img src="/2021/12/10/EyediapRGBDgaze/float.png" alt="image-20211215204745435"></p>
+<p>记录数据样本使用:a-c) RGB-D相机;d-e)高清相机，原始图像的640×480pixels patch显示用于与VGA分辨率数据进行比较。在这些例子中，参与者注视的是:a,d)头部保持静止的屏幕目标;b)静态头姿的浮动目标;c,e)移动头部时浮动目标。</p>
+<h1 id="Data-processing"><a href="#Data-processing" class="headerlink" title="Data processing"></a>Data processing</h1><p>除了原始数据本身，还提供了额外的信息，这些信息对推导地面真相测量至关重要，或者只是对开发数据集和运行实验很有用。如何估计它们的更多细节可以在[Funes Mora et al. 2014]中找到。</p>
+<h2 id="RGB-D-sensor-calibration"><a href="#RGB-D-sensor-calibration" class="headerlink" title="RGB-D sensor calibration"></a>RGB-D sensor calibration</h2><p>RGB-D传感器校准。提供了RGB-D立体集成的校准参数，这些参数是使用开源校准工具箱获得的[Herrera C. et al. 2012]。这允许结合RGB-D数据到一个有纹理的3D表面。</p>
+<h2 id="RGB-D-to-screen-calibration"><a href="#RGB-D-to-screen-calibration" class="headerlink" title="RGB-D to screen calibration"></a>RGB-D to screen calibration</h2><p>RGB-D屏幕校准。提供摄像机坐标系统(3D)和2D屏幕坐标之间的校准。</p>
+<h2 id="RGB-D-and-HD-camera-synchrony-and-calibration"><a href="#RGB-D-and-HD-camera-synchrony-and-calibration" class="headerlink" title="RGB-D and HD camera synchrony and calibration"></a>RGB-D and HD camera synchrony and calibration</h2><p>RGB-D和高清相机同步和校准。由于使用了5个led，高清数据与RGB-D视频流同步[Funes Mora等人，2014]。实现了两摄像机间的标准立体标定。</p>
+<h2 id="Head-pose-and-eyes-tracking"><a href="#Head-pose-and-eyes-tracking" class="headerlink" title="Head pose and eyes tracking."></a>Head pose and eyes tracking.</h2><p>对于每个参与者，我们使用[Funes Mora和Odobez 2012]中描述的方法，将一个3D Morphable Model [Paysan et al. 2009]与深度数据拟合，从而创建一个与他/她特定面部形状相对应的3D网格。此外，给定这个模板，我们使用迭代最近点(ICP)算法跟踪3D头部姿势，然后从该算法得到眼球在相机3D空间中的近似位置。</p>
+<h2 id="Floating-target-tracking"><a href="#Floating-target-tracking" class="headerlink" title="Floating target tracking"></a>Floating target tracking</h2><p>漂浮目标跟踪。对于使用一个球作为可视目标的记录会话，我们提供了球在每个时间步t的3D中心，使用彩色滤波和ICP拟合计算。</p>
+<h2 id="Manual-annotations"><a href="#Manual-annotations" class="headerlink" title="Manual annotations"></a>Manual annotations</h2><p>手工注释。进一步的手工注释，当数据被认为是不可靠的注视估计(和评价)提供。这对应于眨眼的时刻，或者当这个人分心的时候(没有看目标)。手动注释是针对涉及屏幕目标的正面会话进行的。鉴于这些情况的发生率很低，我们目前没有在其他会话中对其进行标记(它将被视为噪音)。不过，如果需要，还可以做进一步的注释。</p>
+<h1 id="Considered-tasks"><a href="#Considered-tasks" class="headerlink" title="Considered tasks"></a>Considered tasks</h1><p>文章描述了用于评估注视估计算法的准确性及其对不同变量(如头姿、光照条件等)的鲁棒性的不同评估基准。首先总结评估协议框架的主要元素，包括性能度量，然后列出一组基准。</p>
+<h2 id="Evaluation-protocol-and-measures"><a href="#Evaluation-protocol-and-measures" class="headerlink" title="Evaluation protocol and measures"></a>Evaluation protocol and measures</h2><p>本节介绍实验描述中涉及的概念:什么被理解为注视估计算法;训练、测试和评估集的定义 train, test and evaluation sets;性能测量。</p>
+<h3 id="Gaze-estimation-algorithm注释估计算法"><a href="#Gaze-estimation-algorithm注释估计算法" class="headerlink" title="Gaze estimation algorithm注释估计算法"></a>Gaze estimation algorithm注释估计算法</h3><p>注视估计的输出取决于应用程序。这里考虑两个非常常见的情况:一个3D gaze ray单位向量;或屏幕坐标系Screen coordinates上的二维像素，这通常用于基于屏幕的HCI应用程序。提供额外信息(摄像机-屏幕校准)，可以从3D凝视射线推断屏幕坐标[Funes Mora等人，2014]。</p>
+<p>训练数据集的真值包含3d视线估计p和2d视线估计s，给出一定的参数，p可以从s中计算处理。考虑不同的方法来收集这些训练样本:时间，即数据对应于一个较大的视频的部分;或结构化:训练数据以结构化的方式收集，以满足注视估计算法的特定要求(例如，获取最接近屏幕上预定义数量的特定真值的样本)。</p>
+<p>测试集假设它是帧索引范围内较大视频的时间序列。</p>
+<p>验证集将用于计算算法性能。这是测试数据的一个子集，通过移除数据或地面真相被破坏的样本，由于眨眼和分心，极端的头部姿势，影响眼睛的可见性(例如，鼻子遮挡)。</p>
+<h2 id="Predefined-experimental-protocols"><a href="#Predefined-experimental-protocols" class="headerlink" title="Predefined experimental protocols"></a>Predefined experimental protocols</h2><p>为了在不同的实验条件下比较算法和它们的优点，定义了一组协议，它们的区别主要在于用于训练和测试算法的数据库。注意，该数据集有两种主要类型的视觉目标:3D浮动目标(FT)和屏幕目标(CS或DS)。因此，定义的评价方案可以根据首选的视觉目标而变化。总结如下。更多细节见[Funes Mora et al. 2014]。</p>
+<p>Protocol 1:注视估计的准确性。在本方案中，我们评估了一个算法$H$的准确性，在所有参数的最小变化下，更准确地说，对于一个session s，其中唯一的变化是注视本身，我们将训练集定义为s的前半部分。测试集定义为s的后半部分。这种实验的结果是平均角误差$\epsilon$◦。可以根据视觉目标的类型导出相关会话。</p>
+<p>Protocol 2:头姿变化的鲁棒性。这里的目的是测量由于头部姿势的变化，凝视的准确性下降了多少。首先进行静态头姿(S)实验，然后进行头姿变化(M)实验，然后报告两种情况下的平均误差以及算法对头姿变化的敏感性。</p>
+<p>Protocol 3:个人依赖。目的是评估一种方法推广到不可见用户的效果。这可以通过 leave-one-person-out留一法实验装置来实现。</p>
+<p>Protocol 4:环境变化。最后，本案例的目标是研究一种方法在不同条件下的泛化特性。为此，可以对参与者12、13和14进行实验，在不同的设置和光照条件下记录会话。</p>
+<h1 id="Evaluation-protocol-example"><a href="#Evaluation-protocol-example" class="headerlink" title="Evaluation protocol example"></a>Evaluation protocol example</h1><p>为了说明数据集的用法，这里我们详细描述了与其中一个基准相关的数据:3D浮动目标的注视估计精度协议(Protocol 1)，并使用RGBD流作为注视估计算法的输入数据。注意，这种配置是数据集中最具挑战性的情况之一，对于这种情况，典型的眼睛图像大小为≈14×10pixels。</p>
+<h2 id="头部姿势和3D目标跟踪"><a href="#头部姿势和3D目标跟踪" class="headerlink" title="头部姿势和3D目标跟踪"></a>头部姿势和3D目标跟踪</h2><p>在表1中，我们显示了每个会话对应的帧总数，以及我们能够成功估计头部姿势或视觉目标位置的帧数。注意，头部姿势的召回率很高(99.9%)，因为在本方案中，涉及近额 near frontal和静态头部姿势的人。由于目标在相机的视野之外，或者太靠近传感器导致缺失深度数据，可视目标位置的召回率较低(69%)。尽管如此，这些数字表明有大量的凝视标记数据可供实验使用(每次记录大约100秒)。</p>
+<blockquote>
+<p>此处的召回率指的应该是拍到所有数据后，可以使用的数据。可以看到表格1中，第三行Training和第四行Testing加起来的和大约等于第三行Ball  Target的数目。</p>
+</blockquote>
+<p><img src="/2021/12/10/EyediapRGBDgaze/paper_result.png" alt="image-20211217152023265"></p>
+<p>表1:第1 - 3行:记录的视频帧数(Total)，头部姿态或浮动目标位置估计成功（可用数据？）。第四到第六行:Protocol 1的训练、测试和评估集的大小。</p>
+<p>表2:协议1的注视角度误差比较。“头”的情况下，只使用估计的头部方向作为凝视预测。</p>
+<p>Protocol sets每个会话被平均分为两个时间区域:前半部分是训练集，后半部分是测试集。测试集test set被筛选以定义评估集evaluation set(下一节将描述标准)。表1显示了每组样本的数量(仅考虑已知头姿和目标位置的样本)</p>
+<p>目光估计方法。我们实现了一种基于RGB-D的方法[Funes Mora和Odobez 2012]，该方法依靠RGB-D数据将眼睛图像的视点矫正为典型的头部姿势。我们将这种方法称为位校正自适应线性回归pose-rectified adaptive linear regression(PRALR)。对每个参与者，从训练集中提取42个样本的注视外观模型。这些样本有规律地分布在注视偏航值之间的±40◦和注视仰角值之间的±30◦。由于PR-ALR是一种基于插值的方法，我们只考虑凝视外观模型中使用的数据的凸壳内的测试样本，即评价集evaluation set仅由地面真值测量遵循相同的偏航和仰角凝视标准的测试样本组成。</p>
+<p>估计精度。为了证明数据的可变性，我们计算了在假设参与者注视前方时获得的注视角度误差，即假设注视方向是由头部姿势方向给出的。实验结果如表2所示。注意，这两种方法都输出3D凝视光线，我们使用相同的评估集，因此这些结果可以直接进行比较。“头部”案例显示的角度误差提供了数据中凝视的大变化性的证据。采用PR-ALR注视估计算法后，注视估计的精度得到了显著提高。</p>
+<blockquote>
+<p>Head可能是使用头部的方向代替视线的方向？</p>
+</blockquote>
+<p>然而，与文献报道的结果相比，误差仍然很高，这主要是由于低分辨率(~ 14×10每只眼睛像素)和低对比度(例如参与者7-A是黑色皮肤)。此外，异常值(眨眼、分心等)还没有从评估集3中剔除。注意，这是我们的数据中最具挑战性的场景之一，这个实验足以演示如何使用数据、定义的协议以及如何描述一个实验。</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>我们描述了一个新的数据集，用于开发和评估来自RGB或RGB- d数据的注视估计算法，解决了社区对标准化基准的需求。</p>
+<p>数据库丰富多样，因为它代表了这项任务的主要挑战。大多数变量(头部姿势，人，条件和目标类型)已经被系统地隔离，目标是恰当地描述注视估计在准确性和稳健性方面的不利条件。</p>
+<p>描述了记录方法和所记录数据的摘要。我们还列出了提供给用户的额外信息，如设置校准，目标位置，头部和眼睛跟踪信息。我们更详细地描述了一个作为使用实例的实验。我们相信该数据库对研究人员具有很高的价值，因为它将有助于促进注视估计技术在较少约束条件下的发展。</p>
+<h1 id="数据集组织结构"><a href="#数据集组织结构" class="headerlink" title="数据集组织结构"></a>数据集组织结构</h1><p><img src="/2021/12/10/EyediapRGBDgaze/dataset_structrue.png" alt="image-20211217165829214"></p>
+<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>Data下文件夹命名格式为“P-C-T-H”，指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。</p>
+<p><img src="/2021/12/10/EyediapRGBDgaze/diferent_image_cataglory.png" alt="image-20211230120945151"></p>
+<p><img src="/2021/12/10/EyediapRGBDgaze/inside_every_collect.png" alt="image-20211217180544505"></p>
+<p>每个文件夹下包含三个视频，3个视频采集设备的参数文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rgb_vga_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">522.335571;0.000000;323.681061</span><br><span class="line">0.000000;522.346497;269.110931</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">1.000000;-0.000000;-0.000000</span><br><span class="line">-0.000000;-1.000000;-0.000000</span><br><span class="line">-0.000000;-0.000000;-1.000000</span><br><span class="line">[T]</span><br><span class="line">0.000000</span><br><span class="line">0.000000</span><br><span class="line">1.000000</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rgb_hd_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">1920;1080</span><br><span class="line">[intrinsics]</span><br><span class="line">1485.921875;0.000000;940.767761</span><br><span class="line">0.000000;1497.773804;530.065613</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.946361;-0.081335;-0.312705</span><br><span class="line">-0.077775;-0.996685;0.023863</span><br><span class="line">-0.313610;0.001738;-0.949550</span><br><span class="line">[T]</span><br><span class="line">0.218694</span><br><span class="line">-0.016453</span><br><span class="line">1.015923</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">depth_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">588.194946;0.000000;310.267731</span><br><span class="line">0.000000;585.303101;248.230743</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.999919;-0.003616;-0.012239</span><br><span class="line">-0.003528;-0.999968;0.007239</span><br><span class="line">-0.012265;-0.007195;-0.999899</span><br><span class="line">[T]</span><br><span class="line">-0.028705</span><br><span class="line">-0.001298</span><br><span class="line">1.002781</span><br><span class="line">[k_coefficients]</span><br><span class="line">3.1199302673;-0.0028519365</span><br><span class="line">[alpha]</span><br><span class="line">1.1090897322;0.0013763016</span><br><span class="line">[beta] #该项目后面的参数跟的很多很多</span><br><span class="line">0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">screen_coordinates.txt</span><br><span class="line"></span><br><span class="line">Screen target coordinates: 2D coordinates (x,y); 3D coordinates (x,y,z)</span><br><span class="line">0;413.0000;477.0000;0.1165;-0.1441;-0.0632</span><br><span class="line">1;416.0000;474.0000;0.1154;-0.1451;-0.0630</span><br><span class="line">2;419.0000;472.0000;0.1143;-0.1457;-0.0629</span><br><span class="line">3;422.0000;469.0000;0.1132;-0.1467;-0.0627</span><br><span class="line">4;425.0000;467.0000;0.1121;-0.1473;-0.0626</span><br><span class="line">5;429.0000;465.0000;0.1107;-0.1480;-0.0625</span><br><span class="line">6;433.0000;463.0000;0.1092;-0.1486;-0.0625</span><br><span class="line">...</span><br><span class="line">#用于记录目标的坐标</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">head_pose.txt</span><br><span class="line"></span><br><span class="line">Head pose: (Rotation matrix (9 values, row by row);Translation(3 values, x,y,z))</span><br><span class="line">0;0.9997;0.0236;-0.0082;-0.0231;0.9980;0.0588;0.0096;-0.0586;0.9982;-0.0046;0.1084;0.3938</span><br><span class="line">1;0.9997;0.0252;-0.0050;-0.0249;0.9980;0.0578;0.0064;-0.0577;0.9983;-0.0047;0.1090;0.3943</span><br><span class="line">2;0.9995;0.0316;-0.0085;-0.0312;0.9988;0.0387;0.0097;-0.0384;0.9992;-0.0049;0.1102;0.3943</span><br><span class="line">3;0.9996;0.0250;-0.0150;-0.0244;0.9987;0.0441;0.0161;-0.0438;0.9989;-0.0049;0.1091;0.3948</span><br><span class="line">4;0.9997;0.0249;-0.0019;-0.0248;0.9985;0.0485;0.0032;-0.0484;0.9988;-0.0049;0.1090;0.3939</span><br><span class="line">5;0.9998;0.0176;0.0042;-0.0178;0.9991;0.0388;-0.0035;-0.0388;0.9992;-0.0046;0.1103;0.3919</span><br><span class="line">6;0.9997;0.0251;0.0051;-0.0253;0.9990;0.0362;-0.0042;-0.0363;0.9993;-0.0046;0.1107;0.3887</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eye_tracking.txt</span><br><span class="line"></span><br><span class="line">Eyes tracking: Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r); Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r); HD camera eyeball center left and right (x_l,y_l,x_r,y_r); 3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line">0;index</span><br><span class="line">286.1482;120.0683;351.1937;121.9867;Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">306.9435;85.2708;379.7931;86.8933;Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">725.6400;164.9603;876.9300;143.2760;HD camera eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">-0.0376;0.1493;0.4766;0.0275;0.1472;0.4773  3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line"></span><br><span class="line">1;286.3311;119.3493;351.4520;121.4472;307.1886;84.4702;380.1107;86.2908;725.2724;163.1687;876.9486;141.8322;-0.0374;0.1499;0.4773;0.0278;0.1476;0.4778</span><br><span class="line">2;285.9384;119.3542;351.1345;121.8086;306.7900;84.4777;379.8091;86.6937;723.7910;163.4062;875.4026;142.9983;-0.0377;0.1497;0.4780;0.0274;0.1470;0.4786</span><br><span class="line">3;285.1989;120.1658;350.4309;122.0558;305.9690;85.3842;379.0494;86.9733;722.2474;165.7260;873.3084;143.9852;-0.0385;0.1488;0.4780;0.0267;0.1467;0.4791</span><br><span class="line">4;286.2832;120.0966;351.3980;122.2475;307.1400;85.2999;380.0429;87.1811;725.2728;165.0547;877.1600;143.8994;-0.0374;0.1491;0.4774;0.0277;0.1469;0.4776</span><br><span class="line">5;287.0309;120.2445;351.9596;122.0580;307.8890;85.4603;380.5585;86.9690;728.2791;164.9782;880.3108;142.9601;-0.0368;0.1494;0.4759;0.0284;0.1476;0.4757</span><br><span class="line">6;287.5150;120.6915;352.0477;122.9920;308.2452;85.9573;380.4743;88.0112;732.2335;165.5833;883.7582;144.9835;-0.0365;0.1498;0.4729;0.0286;0.1475;0.4726</span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1><p>1.depth数据的处理，depth相机参数的使用。</p>
+<p>2.depth相机参数中的k_coefficients、alpha、beta是啥？</p>
+<h1 id="数据预处理程序坐标转化部分"><a href="#数据预处理程序坐标转化部分" class="headerlink" title="数据预处理程序坐标转化部分"></a>数据预处理程序坐标转化部分</h1><blockquote>
+<p>99行起</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">head_rot = head[<span class="number">1</span>:<span class="number">10</span>]</span><br><span class="line"><span class="comment">#head_pose.txt Head pose: (Rotation matrix (9 values, row by row)</span></span><br><span class="line">head_rot = np.array(head_rot).reshape([<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line"><span class="comment"># reshape</span></span><br><span class="line">head1 = cv2.Rodrigues(head_rot)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#此处的T[0]不知道是啥</span></span><br><span class="line">head2d = dpc.HeadTo2d(head1)</span><br><span class="line"><span class="comment">#HeadTo2d 计算Rodrigues，返回航偏角和俯仰角</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(head2d, end=<span class="string">&quot;------&quot;</span>)</span><br><span class="line"><span class="comment">#输出航偏角和俯仰角</span></span><br><span class="line"></span><br><span class="line">head_rot = np.dot(cam_rot, head_rot) </span><br><span class="line"><span class="comment">#相机旋转X头部旋转,基于任意坐标系为参考的成像几何,相当于选择世界坐标系</span></span><br><span class="line">head1 = cv2.Rodrigues(head_rot)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#此处计算将前面的计算值覆盖掉了</span></span><br><span class="line">head2d = dpc.HeadTo2d(head1)</span><br><span class="line"><span class="comment">#HeadTo2d 计算Rodrigues，返回航偏角和俯仰角</span></span><br><span class="line"><span class="built_in">print</span>(head2d, end=<span class="string">&quot;------&quot;</span>)</span><br><span class="line"><span class="comment">#此处计算的head1和head2d把前面的给覆盖了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rotate the head into camera coordinate system</span></span><br><span class="line"></span><br><span class="line">head_trans = np.array(head[<span class="number">10</span>:<span class="number">13</span>])*<span class="number">1000</span></span><br><span class="line"><span class="comment"># Translation(3 values, x,y,z)</span></span><br><span class="line">head_trans = np.dot(cam_rot, head_trans)</span><br><span class="line">head_trans = head_trans + cam_trans</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the 3d coordinates of origin.</span></span><br><span class="line"><span class="comment">#eye_tracking.txt Eyes tracking: Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r); Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r); HD camera eyeball center left and right (x_l,y_l,x_r,y_r); 3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span></span><br><span class="line"></span><br><span class="line">anno = anno_info[index]</span><br><span class="line">anno = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">eval</span>, anno.strip().split(<span class="string">&quot;;&quot;</span>)))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(anno) != <span class="number">19</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[Error anno]&quot;</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">anno = np.array(anno)</span><br><span class="line"></span><br><span class="line">left3d = anno[<span class="number">13</span>:<span class="number">16</span>]*<span class="number">1000</span></span><br><span class="line">left3d = np.dot(cam_rot, left3d) + cam_trans</span><br><span class="line">right3d = anno[<span class="number">16</span>:<span class="number">19</span>]*<span class="number">1000</span></span><br><span class="line">right3d = np.dot(cam_rot, right3d) + cam_trans</span><br><span class="line"></span><br><span class="line">face3d = (left3d + right3d)/<span class="number">2</span></span><br><span class="line">face3d = (face3d + head_trans)/<span class="number">2</span></span><br><span class="line"><span class="comment">#脸部的中心计算方法：两眼的3d坐标求平均，在和头部的中心求平均，相当于一次是横向的，一次是纵向的。</span></span><br><span class="line"></span><br><span class="line">left2d = anno[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">right2d = anno[<span class="number">3</span>:<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the 3d coordinates of target</span></span><br><span class="line"><span class="comment"># screen_coordinates.txt Screen target coordinates: 2D coordinates (x,y); 3D coordinates (x,y,z),在屏幕坐标系上看到的吗？并未使用相机外参进行计算，待定🤔</span></span><br><span class="line">target = target_info[index]</span><br><span class="line">target = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">eval</span>,target.strip().split(<span class="string">&quot;;&quot;</span>)))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(target) != <span class="number">6</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[Error target]&quot;</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">target3d = np.array(target)[<span class="number">3</span>:<span class="number">6</span>]*<span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># target3d = target3d.T - cam_trans</span></span><br><span class="line"><span class="comment"># target3d = np.dot(np.linalg.inv(cam_rot), target3d)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize the left eye image</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">norm = dpc.norm(center = face3d,</span><br><span class="line">                gazetarget = target3d,</span><br><span class="line">                headrotvec = head_rot,</span><br><span class="line">                imsize = (<span class="number">224</span>, <span class="number">224</span>),</span><br><span class="line">                camparams = camera)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Acquire essential info</span></span><br><span class="line">im_face = norm.GetImage(frame)</span><br><span class="line">gaze = norm.GetGaze(scale=scale)</span><br><span class="line">head = norm.GetHeadRot(vector=<span class="literal">False</span>)</span><br><span class="line">head = cv2.Rodrigues(head)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">origin = norm.GetCoordinate(face3d)</span><br><span class="line">rvec, svec = norm.GetParams()</span><br><span class="line"></span><br><span class="line">gaze2d = dpc.GazeTo2d(gaze)</span><br><span class="line">head2d = dpc.HeadTo2d(head)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Crop Eye Image</span></span><br><span class="line">left2d = norm.GetNewPos(left2d)</span><br><span class="line">right2d = norm.GetNewPos(right2d)</span><br><span class="line"><span class="comment">#   im_face = ipt.circle(im_face, left2d, 2)</span></span><br><span class="line"><span class="comment">#im_face = ipt.circle(im_face, [left2d[0]+10, left2d[1]], 2)</span></span><br><span class="line"><span class="comment"># cv2.imwrite(&quot;eye.jpg&quot;, im_face)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">im_left = norm.CropEyeWithCenter(left2d)</span><br><span class="line">im_left = dpc.EqualizeHist(im_left)</span><br><span class="line">im_right = norm.CropEyeWithCenter(right2d)</span><br><span class="line">im_right = dpc.EqualizeHist(im_right)</span><br></pre></td></tr></table></figure>
+<p>head_rot = np.dot(cam_rot, head_rot) </p>
+<p>在世界坐标系中头部的旋转=相机外参X相机坐标系中头部旋转。</p>
+<p>head_trans = np.dot(cam_rot, head_trans)<br>head_trans = head_trans + cam_trans</p>
+<p>在世界坐标系中头部的平移 = 相机外参X相机坐标系中头部的平移 + 相机平移。</p>
+<blockquote>
+<p>其实主要是感觉targe的坐标不知道是用什么拍到的，没有做任何的坐标变换，那就说明是使用世界坐标系中的相机拍到的，第三者视角的相机，可是这个相机怎么拍到带有深度的三维空间坐标信息呢?</p>
+<p>解决方法：</p>
+<p>1.查看14年官方给的demo中如何完成坐标转换。</p>
+<p>2.相信代码作者，如法炮制depth。</p>
+</blockquote>
+<h1 id="相机内外参数"><a href="#相机内外参数" class="headerlink" title="相机内外参数"></a>相机内外参数</h1><p>一文带你搞懂相机内参外参(Intrinsics &amp; Extrinsics) - TheLastRefugee的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/389653208">https://zhuanlan.zhihu.com/p/389653208</a></p>
+<p>多视图几何基础——深入理解相机内外参数 - 可乐加枸杞的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/54139614">https://zhuanlan.zhihu.com/p/54139614</a></p>
+<h1 id="旋转向量"><a href="#旋转向量" class="headerlink" title="旋转向量"></a>旋转向量</h1><p><a href="https://blog.csdn.net/weixin_45915902/article/details/106266705">(21条消息) 罗德里格斯（Rodrigues）旋转向量与矩阵的变换_凌辰两点的博客-CSDN博客_rodrigues变换</a></p>
+<p>旋转矩阵还可以理解为原向量围绕空间中某一个向量，直接一次逆时针旋转某一个角度得到。</p>
+<p><a href="https://blog.csdn.net/weixin_43365751/article/details/101212892">(21条消息) 旋转矩阵、欧拉角之间转换_小磊在路上的博客-CSDN博客_旋转矩阵转欧拉角</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/144032401">欧拉角和旋转矩阵之间的转换 - 知乎 (zhihu.com)</a></p>
+<h2 id="Python-cv2-Rodrigues方法代码示例"><a href="#Python-cv2-Rodrigues方法代码示例" class="headerlink" title="Python cv2.Rodrigues方法代码示例"></a><a href="https://vimsky.com/examples/detail/python-method-cv2.Rodrigues.html">Python cv2.Rodrigues方法代码示例</a></h2><p><a href="https://vimsky.com/examples/detail/python-method-cv2.Rodrigues.html">Python cv2.Rodrigues方法代码示例 - 纯净天空 (vimsky.com)</a></p>
+]]></content>
+      <categories>
+        <category>视线估计</category>
+        <category>试验记录</category>
+      </categories>
+      <tags>
+        <tag>文献阅读</tag>
+        <tag>试验记录</tag>
       </tags>
   </entry>
   <entry>
@@ -1773,322 +2079,78 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 ]]></content>
   </entry>
   <entry>
-    <title>对于视线估计的脆弱性分析</title>
-    <url>/2021/10/29/%E5%AF%B9%E4%BA%8E%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%84%86%E5%BC%B1%E6%80%A7%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="Vulnerability-of-Appearance-based-Gaze-Estimation"><a href="#Vulnerability-of-Appearance-based-Gaze-Estimation" class="headerlink" title="Vulnerability of Appearance-based Gaze Estimation"></a>Vulnerability of Appearance-based Gaze Estimation</h1><blockquote>
-<p>2021预印本</p>
-<p>Mingjie Xu1 Haofei Wang2 Yunfei Liu1 Feng Lu1, 2, *<br>1State Key Laboratory of VR Technology and Systems, School of CSE, Beihang University<br>2Peng Cheng Laboratory, Shenzhen, China</p>
+    <title>Gaze Estimation from Multimodal KinectData</title>
+    <url>/2022/01/20/GazeEstimationfromMultimodalKinectData/</url>
+    <content><![CDATA[<h1 id="2012CVPRW-Gaze-Estimation-from-Multimodal-Kinect-Data"><a href="#2012CVPRW-Gaze-Estimation-from-Multimodal-Kinect-Data" class="headerlink" title="[2012CVPRW]Gaze Estimation from Multimodal Kinect Data"></a>[2012CVPRW]Gaze Estimation from Multimodal Kinect Data</h1><blockquote>
+<p>Kenneth Alberto Funes Mora and Jean-Marc Odobez<br>Idiap Research Institute, CH-1920, Martigny, Switzerland<br>École Polytechnique Fédéral de Lausanne, CH-1015, Lausanne, Switzerland<br>{kfunes,odobez}@idiap.ch</p>
 </blockquote>
-<p>评价：基于外观的凝视估计的脆弱性</p>
-<p>针对问题：利用噪声对原始图像进行干扰会混淆凝视估计模型，基于机器学习的方法存在脆弱性。</p>
-<p>本文的目的：尽管扰动后的图像在视觉上与原始图像相似，但凝视估计模型输出的凝视方向是错误的。本文研究了基于外观的注视估计的脆弱性。</p>
-<p>从多个方面系统地描述了该漏洞的特性。</p>
-<ul>
-<li>基于像素的对抗攻击pixel-based adversarial attack、</li>
-<li>基于补丁的对抗攻击patch-based adversarial attack</li>
-<li>防御策略 defense strategy等。</li>
-</ul>
-<p>实现的方法：通过在原始输入中加入对抗性扰动，研究了是否有可能改变预测的注视方向，甚至输出一个特定的注视方向。</p>
-<p><img src="/2021/10/29/%E5%AF%B9%E4%BA%8E%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1%E7%9A%84%E8%84%86%E5%BC%B1%E6%80%A7%E5%88%86%E6%9E%90/eyeloc.png" alt="image-20211029144448019"></p>
-<p>refer</p>
+<ol>
+<li><p>评价：研究了头部运动不受限条件下的自由注视估计问题 free gaze estimation under unrestricted head motion。</p>
+</li>
+<li><p>针对问题：不同于以往的基于小平面屏幕a small planar screen的凝视方向估计方法，提出了一种基于三维空间的凝视方向估计方法。</p>
+</li>
+<li><p>实现的方法：</p>
+<p>（i）在Kinect设备上，提出一个多模态的方法，即使在大的头部姿势也可以依靠深度感知获得健壮和精确的头部姿势跟踪，利用视觉上的数据，即从眼睛图像获得其余eye-in-head注视方向信息；</p>
+<p>（ii）利用3D网格跟踪 （3D mesh tracking）的图像的校正方案，允许头部姿态自由情况下的进行对眼凝视方向估计；</p>
+<p>（iii）给出了借助Kinect设备，收集真实数据的简单方法。</p>
+<p>在三个用户身上的结果显示了方法的巨大潜力。</p>
+</li>
+<li><p>方法介绍</p>
+</li>
+</ol>
+<p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/online_offline_pipeline.png" alt></p>
 <blockquote>
-<p>眼神凝视是人类交流的重要渠道之一。它表示人眼分型[17,24]、认证[13,19]、显著性预测[31]、目标检测[7]等过程中感兴趣的区域 the region of interest during eye typing<br>[17,24], authentication [13,19], saliency prediction [31],<br>object detection 。</p>
+<p>a）离线步：从多个3D人脸实例中，3DMM适合获得一个特定的人的3D模型。</p>
+<p>b）- d）在线步骤</p>
+<p>b）在每个时刻将人的模型叠合到多模态数据中，以检索头部姿态。在图中，模型是用水平间距呈现的（两个图片并排放置），以便于可视化。用于跟踪的区域呈现为紫色。</p>
+<p>c）头部稳定Head stabilization 计算从逆头部姿态参数和3D网格中，创建一个正面姿态的脸图像。进一步的步骤显示了在头部坐标系下的注视估计。根据估计的头部姿态，对最终的注视向量进行校正。</p>
+<p><em>可以看见图c相比于图b，图c中人脸做了正面化。</em></p>
+<p>d)获得的注视向量(红色为估计值，绿色为真值)。</p>
 </blockquote>
-<p>观察到，当只攻击“鼻子”或“嘴”时，系统会产生很大的角度误差。图4(b)和图4(c)显示，发作后注意区域仅为“鼻子”或“嘴”。如果同时攻击“鼻子”和“嘴”，则角度误差会大大降低，攻击后注意区域也会同时转移到“鼻子”和“嘴”。</p>
-<p>但是这个角误差还是比通过攻击其他部分来完成那个大。注意，不是所有的注意力区域都在“眼睛”上，这导致了这样的结果。如果我们同时攻击“眼睛”和“鼻子”，或者同时攻击“眼睛”和“嘴巴”，平均角度误差就会比只攻击“鼻子”和“嘴巴”低得多。在这种情况下，注意力区域在“眼睛”和其他部分。</p>
-<p>Yiwei Bao, Yihua Cheng, Y unfei Liu, and Feng Lu. Adaptive<br>feature fusion network for gaze tracking in mobile tablets. In<br>25th International Conference on Pattern Recognition (ICPR),<br>2020.</p>
-<p>Yihua Cheng, Shiyao Huang, Fei Wang, Chen Qian, and Feng<br>Lu. A coarse-to-fine adaptive network for appearance-based<br>gaze estimation. InProceedings of the AAAI Conference on<br>Artificial Intelligence, volume 34, pages 10623–10630, 2020.</p>
-<p>Seonwook Park, Shalini De Mello, Pavlo Molchanov, Umar<br>Iqbal, Otmar Hilliges, and Jan Kautz. Few-shot adaptive gaze<br>estimation. InProceedings of the IEEE/CVF International<br>Conference on Computer Vision, pages 9368–9377, 2019.</p>
-<p>Tobias Fischer, Hyung Jin Chang, and Yiannis Demiris. RT-<br>GENE: Real-Time Eye Gaze Estimation in Natural Environ-<br>ments. InEuropean Conference on Computer Vision, pages<br>339–357, September 2018.</p>
-<p>Yihua Cheng, Xucong Zhang, Feng Lu, and Y oichi Sato.<br>Gaze estimation by exploring two-eye asymmetry.IEEE<br>Transactions on Image Processing, 29:5259–5272, 2020.</p>
-<hr>
-]]></content>
-      <categories>
-        <category>视线估计</category>
-      </categories>
-      <tags>
-        <tag>文献阅读</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GAN</title>
-    <url>/2022/01/11/GAN/</url>
-    <content><![CDATA[<h1 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h1><p>分辨模型，分到属于哪一个类别。生成模型生成数据本身。</p>
-<p>主要思路：</p>
-<p>生成模型G，生成数据本身的分布。辨别模型D，估计数据是从真正的训练数据分布当中得来的还是从G生成得来的。</p>
-<p>生成模型G是尽量让判别模型D犯错。</p>
-<p>深度学习不仅仅是深度网络，而且也是学习整个深度数据分布的一个特征表示。深度学习对于辨别模型有比较好的效果，但对于生成模型的研究比较少，要去近似那个分布计算似然函数。</p>
-<p>G：造假者。提高造假币的能力。</p>
-<p>D：警察。提高判断假币的能力。</p>
-<p>希望最后造假者的能力很强，而警察分不清真币还是假币。这样就能生成跟真实一样的数据了。</p>
-<p>生成模型G的框架是MLP，它的输入是随机的噪声，MLP可以把噪声拟合到任意的分布。判别模型也是MLP，两个网络都可以反向传播学习参数。</p>
-<p>不是计算出一个模型的参数，而是学一个模型近似结果即可。坏处是不知道真正的分布长啥样，好处是计算简单。</p>
-<p>adversarial example生成一些假的样本。能够互动到分类器，从而测试整个算法的稳定性。\</p>
-<h2 id="对抗网络模型"><a href="#对抗网络模型" class="headerlink" title="对抗网络模型"></a>对抗网络模型</h2><p>生成器生成对于数据$x$上的分布$p_g$，一开始 初始化模型为$p_z(z)$,生成模型$G(z,θ_g)$把$z$映射成$x$,判别器$D(x,θ_d)$输出一个标量，用于判别是生成的数据还是真实数据。</p>
-<p>对抗损失</p>
+<p>给定一个经过学习的特定于人的3D网格模型(章节3.1)，该方法首先通过深度数据估计头部姿态，如章节3.2所述。对应a）离线步。</p>
+<p>然后，使用估计的头部姿势和3D网格，我们将头部图像映射为一个正面姿势，并将结果图像裁剪到每只眼睛周围。</p>
+<p>通过这种方法，我们可以从眼内图像(第3.4节)中估计注视向量，即在头部参考系统中估计眼睛注视。最后将注视方向转换回世界坐标系。</p>
+<h1 id="Proposed-method"><a href="#Proposed-method" class="headerlink" title="Proposed method"></a>Proposed method</h1><h2 id="Face-model-learning"><a href="#Face-model-learning" class="headerlink" title="Face model learning"></a>Face model learning</h2><p>我们决定依靠3D变形模型(3DMM)来生成特定于人的3D面部模板。这些模型(3DMM)使用一组小的系数跨越了大量的面部形状。</p>
+<p>在我们的任务中，我们使用了Basel Face Model (BFM) [12]，这是一个丰富的3DMM人脸模型，由一大群个体构建而成。</p>
+<p>这是一个丰富的 3DMM。由一大群人组成。它有很高的网格密度(53490个顶点)，包括脸、额颈和耳朵。3DMM形状可根据Eq. 1进行变形，其中$x$(模型实例)表示将三维顶点坐标${v_i}$叠加为列向量的集合，$\mu$为平均形状，$M$为形状基。模型参数为向量$α$。</p>
 <script type="math/tex; mode=display">
-\mathop{min} \limits_{G} \mathop{max} \limits_{D} \mathbb{E}_{x \sim p_{data}(x)}[log(D(x))]+ \mathbb{E}_{z \sim p_{data}(z)}[log(1-D(G(z)))]</script><p>假如$D$是完美的，对于一张真图片$x$,$D(x)=1$。</p>
-<p>$G(z)$是生成的，假如$D$是完美的，$D(G(z))=0$。</p>
-<p>在这种情况下，两项都为0。</p>
-<p>$D$尽量使数据分开，$G$使得生成的数据使得$D$分不开。第一项使得$D$尽可能正确,第二项使$D$犯错。</p>
-<p>希望最后生成数据和真实数据在分布上一样，判别器无能为力，对于生成数据和真实数据都输出0.5。</p>
-<p>每次迭代先更新判别器，再更新生成器，糊弄判别器。$D$每次不能更新的太小，也不能更新的太完美。</p>
-<p>GAN网络不容易收敛。</p>
-<p>GAN是无监督学习，没有用到label。GAN使用有监督学习的损失来做无监督学习，label来自于数据，数据是采样的还是生成的。</p>
-<h1 id="最大似然估计的原理"><a href="#最大似然估计的原理" class="headerlink" title="最大似然估计的原理"></a>最大似然估计的原理</h1><p>存在即合理。</p>
-<p>抽出一组样本的概率会随着概率模型参数变化而变化的。</p>
-<p>一个小概率事件可以认为他不发生，但是现在发生了，这种概率达到了最大，就认为它是最大的。认为抽样样本出现时候的概率达到最大值时的模型参数就是分布的参数。于是就变成了求函数最大值。</p>
-<p>求导数，求导数值为0的参数值。</p>
-<h1 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h1><p>在知道p的情况下至少需要多少个比特把q给描述出来。</p>
-<h1 id="cycle-gan"><a href="#cycle-gan" class="headerlink" title="cycle gan"></a>cycle gan</h1><blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/45394148">CycleGAN论文的阅读与翻译，无监督风格迁移 - 知乎 (zhihu.com)</a></p>
+x(α) = \mu + Mα</script><p>所有head实例的拓扑都是固定的。这是使用3DMM生成人脸模型的主要优势，因为语义信息在拓扑中是预定义的，并且在个体之间保持。</p>
+<p>为了生成针对特定人群的3D网格，我们将3DMM与深度数据进行了匹配。这是通过将形状变形受$α$约束的3DMM映射到Kinect的重构网格来实现的。为了解决这个问题，我们使用了[1]的方法，并最小化以下代价函数。</p>
+<h3 id="3DMM-model"><a href="#3DMM-model" class="headerlink" title="3DMM model"></a>3DMM model</h3><p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/3DMM.png" alt="image-20220117171852421"></p>
+<h3 id="Head-pose-tracking"><a href="#Head-pose-tracking" class="headerlink" title="Head pose tracking"></a>Head pose tracking</h3><p> T. Weise, S. Bouaziz, H. Li, and M. Pauly. Realtime performance-based facial animation.ACM Trans. on Graphics (Proc. SIGGRAPH 2011), 30(4):1, July 2011</p>
+<p>估计头部姿态的算法基于基于点对面约束和个性化模板的迭代最近点(ICP)算法。</p>
+<p>它在给定帧初始化ICP时，从前一帧的推断值重新估计位姿参数。跟踪是通过逐帧重复这个过程获得的。在每个时刻，得到头部姿态参数$p_t = {R_t,t_t}$，即头部旋转和平移参数。</p>
+<p>整个初始化过程是在视觉图像中使用一个标准的正面人脸检测器完成的。从深度数据中，检测包围框内的3D点集被用来初始化平移。假设头部朝向是正面的。ICP使用更小的个性化3D模型部分，以避免像[14]中那样由于非刚性变形而导致的不匹配。这一步骤如图1b所示。</p>
+<h3 id="Head-stabilization"><a href="#Head-stabilization" class="headerlink" title="Head stabilization"></a>Head stabilization</h3><p>假设将Kinect数据表示为一个有纹理的3D网格，可以使用头部姿态参数的刚性逆变换来渲染场景。(正交矩阵？)</p>
+<script type="math/tex; mode=display">
+p_t^{-1}=\{R^{T},-R_t^{T}t_t\}</script><p>眼睛的定位是在网格拓扑中预先定义的。使用这些信息在渲染的人脸图像中裁剪眼睛图像。这些眼睛图像将作为注视估计方法的输入。</p>
+<blockquote>
+<p>相当于人脸做了正面化。</p>
 </blockquote>
-<p>图像到<strong>图像</strong>的<strong>翻译 (Image-to-Image translation)</strong> 是一种视觉上和图像上的问题，它的目标是使用成对的图像作为训练集，（让机器）学习从输入图像到输出图像的映射。然而，在很多任务中，成对的训练数据无法得到。</p>
-<p>我们提出一种在缺少成对数据的情况下，（让机器）学习从源数据域X到目标数据域Y 的方法。我们的目标是使用一个对抗损失函数，学习映射G：X → Y ，使得判别器难以区分图片 G(X) 与 图片Y。因为这样子的映射受到巨大的限制，所以我们为映射G 添加了一个相反的映射F：Y → X，使他们成对，同时加入一个循环一致性损失函数 (cycle consistency loss)，以确保 F(G(X)) ≈ X（反之亦然）。</p>
-<p>在缺少成对训练数据的情况下，我们比较了风格迁移、物体变形、季节转换、照片增强等任务下的定性结果。经过定性比较，我们的方法表现得比先前的方法更好。</p>
-<p><img src="https://pic2.zhimg.com/v2-6bd4d69c9c31a79b949af61755f1cebd_r.jpg" alt="preview"></p>
-<p>我们的目标是学习两个数据域 X 与 Y 之间的映射函数，定义数据集合与数据分布，与模型的两个映射，其中：<img src="https://www.zhihu.com/equation?tex=%5C%7B+x_%7Bi%7D+%5C%7D+%5EN+_%7Bi%3D1%7D++%5Cquad++x_i+%5Cin+X+++%2C%5Cquad+x%5Csim+p_%7Bdata%7D%28x%29%5C%5C+%5C%7B+y_%7Bi%7D+%5C%7D+%5EM+_%7Bi%3D1%7D++%5Cquad++y_i+%5Cin+Y+++%2C%5Cquad+y%5Csim+p_%7Bdata%7D%28y%29+%5C%5C+%5C+%5C%5C+G%3A+X+%5Crightarrow+Y+%5C%5C+F%3A+Y+%5Crightarrow+X" alt="[公式]"></p>
-<p>另外，我们引入了两个判别函数：</p>
-<ul>
-<li>用于区分{x} 与 {F(y)} 的 <img src="https://www.zhihu.com/equation?tex=D_X" alt="[公式]"></li>
-<li>用于区分{y} 与 {G(x)} 的 <img src="https://www.zhihu.com/equation?tex=D_Y" alt="[公式]"> 。</li>
-</ul>
-<p>我们的构建的模型包含两类组件(Our objective contains two types of terms)：</p>
-<ul>
-<li>对抗损失(adversarial losses)，使生成的图片在分布上更接近于目标图片；</li>
-<li>循环一致性损失(cycle consistency losses)，防止学习到的映射 G与F 相互矛盾。</li>
-</ul>
+<h3 id="Eye-in-Head-Gaze-estimation"><a href="#Eye-in-Head-Gaze-estimation" class="headerlink" title="Eye-in-Head Gaze estimation"></a>Eye-in-Head Gaze estimation</h3><p>本文主要目标是估计在自由头部运动下的注视方向。然而，由于头部稳定的方法在此基础上，我们将该问题简化为一个正面头部姿态注视估计问题。因此，本文的任务是建立一个眼睛外观模型，从中可以估计注视</p>
+<p>假设有一组眼睛图像和注视向量$\{(I_i,g^h_i)\}$覆盖注视空间。(在第4节中，我们描述了一种收集这些样本的简单方法)。在头部参考系中，注视由角度$g^h_i =  (\varphi _i，\theta_i)$参数化。其中$theta$为注视仰角，$\varphi$为注视偏航。</p>
+<p>图像描述符$e_i$是通过将眼睛图像划分到一个网格$r×c$中计算出来的。在网格的每个bin $j= (r, c)$处，计算像素强度$S_j$的总和。然后，描述符是所有$S_j$的连接，并将其归一化，使$\sum_je_i^j =1$。因此，外观模型由集合组$\{(e_i,g^h_i)\}$成。使用$r= 3$，$c= 5$，遵循[3]的 方法。</p>
+<blockquote>
+<p>[3]L. Feng, Y . Sugano, O. Takahiro, and Y . Sato. Inferring Human Gaze from Appearance via Adaptive Linear Regression. </p>
+<p>InICCV: International Conference on Computer Vision, Barcelona, Spain</p>
+</blockquote>
+<p>给定一个测试图像$I$，描述符$\hat{e}$，我们想推断它的注视方向$\hat{g}^h$。遵循了[3]中的方法。该方法的目标是通过对外观模型中样本的凸组合，得到最优重构测试图像的权重$w_i$。然后，使用这些权重将注视参数组合为</p>
+<p>$\hat{g}^h= \sum_i w_i g^h_i$。</p>
+<p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/gaze_linear_combine.png" alt="image-20220120211130574"></p>
+<p>这种方法被称为自适应线性回归(ALR)，它对$w_i$的解施加了稀疏性。它的成功依赖于${e_i}$足够稀疏。</p>
+<hr>
+<p>本文通过利用多模态的微软Kinect传感器来解决其中的一些问题。更准确地说，我们利用深度传感器对3D网格模型 3D mesh model进行精确跟踪，并稳健地估计一个人的头部姿势。在第二步中，使用了图像模态，一个简单的眼部区域矫正步骤，以及通过Kinect很容易收集到的训练数据，我们计算出一个人对着眼睛的注视方向，这个方向可以简单地添加到头部姿势中，从而产生最终的注视估计。</p>
+<p>这样，尽管目前缺乏一定的处理步骤可以改善结果，如更好的眼睛稳定，我们得到了一个凝视跟踪算法，可以使用不受限制的头部运动，在更开放的条件下比以往的工作。这为凝视评估系统在更开放的空间中工作铺平了道路。在本文的其余部分中，第2节描述了相关工作，第3节介绍了我们的方法，第4节介绍了我们利用Kinect轻松获取训练数据的策略。第5节给出了结果，第6节总结了工作</p>
+<p>\1)   评价：贡献创新点。</p>
+<p>\2)   针对问题：啥情况啥场景。</p>
+<p>\3)   本文的目的：可以做到啥。</p>
+<p>\4)   实现的方法：</p>
+<p>\5)   方法简介</p>
+<p>\6)   方法优化</p>
+<p>\7)   方法总结‘</p>
+<p>\8)   文章存在的问题</p>
+<p>\9)   个人的思考</p>
+<p>简要的评价，任务，方法的简要描述。关注文章的动机。 </p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>gpu并行训练</title>
-    <url>/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/</url>
-    <content><![CDATA[<h1 id="nn-DataParallel"><a href="#nn-DataParallel" class="headerlink" title="nn.DataParallel"></a>nn.DataParallel</h1><p>若只考虑单机多卡并行和数据平行训练时，最简单的方法是用 <strong>nn.DataParallel</strong>。</p>
-<p>先设置所使用的GPU卡，然后用 <strong>nn.DataParallel</strong> 包装模型。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>] =<span class="string">&quot;0, 2&quot;</span><span class="comment"># 使用0和2号卡</span></span><br><span class="line">model=Classifier()</span><br><span class="line">model =nn.DataParallel(model)</span><br></pre></td></tr></table></figure>
-<p><a href="https://zhuanlan.zhihu.com/p/102697821">Pytorch的nn.DataParallel - 知乎 (zhihu.com)</a></p>
-<p>前向过程：</p>
-<ol>
-<li>分发mini-batch到每个GPU上，</li>
-<li>将模型复制到每一个GPU上，</li>
-<li>模型对mini-batch进行forward计算结果，</li>
-<li>将每个GPU上的计算结果汇总到第一个GPU上。</li>
-</ol>
-<p>反向传播过程：</p>
-<ol>
-<li>在第一个GPU上根据计算的loss计算梯度，</li>
-<li>将第一个GPU上计算的梯度值分发到每个GPU上，</li>
-<li>每个GPU上进行梯度更新，</li>
-<li>将每个GPU上更新的梯度值汇总到第一个GPU上。<br>其中foward过程都会把第一个GPU上的模型重新分发到每个每个GPU上。各个卡只计算到loss，然后0号卡做loss平均，最后分发到各个卡上求梯度并进行参数更新。</li>
-</ol>
-<p>文章有错误：应该是<br>1：把每张卡的输出gather到GPU0，<br>2：只在GPU0在算loss，<br>3：把loss scatter到其他GPU上，<br>4：每个GPU算各自的梯度，再把梯度汇总到GPU0上</p>
-<blockquote>
-<p>关于这个流程不同的文章有不同的说法。</p>
-</blockquote>
-<h1 id="nn-parallel-DistributedDataParallel"><a href="#nn-parallel-DistributedDataParallel" class="headerlink" title="nn.parallel.DistributedDataParallel"></a><strong>nn.parallel.DistributedDataParallel</strong></h1><p><a href="https://zhuanlan.zhihu.com/p/361314953">PyTorch 源码解读之分布式训练了解一下？ - 知乎 (zhihu.com)</a></p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112162455330.png" alt="image-20220112162455330"></p>
-<p><a href="https://www.bilibili.com/video/BV1yt4y1e7sZ?from=search&amp;seid=5934700972016238189&amp;spm_id_from=333.337.0.0">pytorch多GPU并行训练教程_哔哩哔哩_bilibili</a></p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112162623305.png" alt="image-20220112162623305"></p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112163216347.png" alt="image-20220112163216347"></p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112163334093.png" alt="image-20220112163334093"></p>
-<p>同步bn</p>
-<h1 id="nn-DataParallel-1"><a href="#nn-DataParallel-1" class="headerlink" title="nn.DataParallel"></a>nn.DataParallel</h1><p>单机多卡。单进程多线程。工作与单机。</p>
-<h1 id="nn-parallel-DistributedDataParallel-1"><a href="#nn-parallel-DistributedDataParallel-1" class="headerlink" title="nn.parallel.DistributedDataParallel"></a>nn.parallel.DistributedDataParallel</h1><p>可以多级多卡，速度快于DataParallel。</p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112170831371.png" alt="image-20220112170831371"></p>
-<p><img src="/2022/01/12/gpu%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83/Users\iszha\AppData\Roaming\Typora\typora-user-images\image-20220112171028243.png" alt="image-20220112171028243"></p>
-<p>多gpu训练，每块gpu上初始模型需要一摸一样。</p>
-<p>loss_reduce,多块gpu loss做平均。</p>
-]]></content>
-      <categories>
-        <category>深度学习知识</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DailtedNet</title>
-    <url>/2022/01/16/DailtedNet/</url>
-    <content><![CDATA[<h1 id="Dilated-convolution"><a href="#Dilated-convolution" class="headerlink" title="Dilated convolution"></a>Dilated convolution</h1><p><img src="/2022/01/16/DailtedNet/dilated_conv.png" alt="image-20220111115104315"></p>
-<p>在语义分割中使用分类网络作为backbone，之后会将图片进行一系列的下采样。再通过上采样还原回原来的大小。一般分类网络会下采样为原来的32倍。如果下采样倍率太大，对还原回原图有影响。比如vgg，通过最大池化进行下采样，会丢失一些细节信息和小目标，后续无法通过上采样进行还原，会导致语义分割效果不理想。</p>
-<p>如果去掉最大池化下采样，特征图对于原图的感受野变小了。</p>
-<p><img src="/2022/01/16/DailtedNet/grid_effect.png" alt="image-20220111190102930"></p>
-<p>在上图中使用膨胀卷积，会有一些像素用不上。</p>
-]]></content>
-      <categories>
-        <category>深度学习知识</category>
-      </categories>
-      <tags>
-        <tag>文献阅读</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MobileNet</title>
-    <url>/2022/01/10/MobileNet/</url>
-    <content><![CDATA[<h1 id="MobileNet"><a href="#MobileNet" class="headerlink" title="MobileNet"></a>MobileNet</h1><p>传统卷积，内存需求大，运算量需求大。vgg16权重大小约490M，resnet152层权重参数约644M。</p>
-<p>mobileNet是google17年提出的，专注于移动端或嵌入式设备中的轻量级CNN网络。相比于传统神经网络，<strong>准确率小幅降低的前提下大大减少模型参数和运算量</strong>。（在imageNet上，相比于VGG准确率减少了0.9%，但模型参数只有vgg的1/32)。</p>
-<h2 id="depth-wise-separable-convolutions"><a href="#depth-wise-separable-convolutions" class="headerlink" title="depth-wise separable convolutions"></a>depth-wise separable convolutions</h2><p>DW卷积：每个卷积核只和特定的一个channel进行卷积。</p>
-<ul>
-<li>每个卷积核只有一个channel，负责输入特征矩阵的特定channel。</li>
-<li>输出channel个数=卷积核个数=输入特征矩阵channel数。</li>
-</ul>
-<p><img src="/2022/01/10/MobileNet/dw_network_bili.png" alt="image-20220110174042293"></p>
-<p>PW卷积是普通的卷积，卷积核的大小是1。</p>
-<p><img src="/2022/01/10/MobileNet/pw_conv.png" alt="image-20220110201847646"></p>
-<p>深度可分离卷积是吧DW和PW放在一起使用的。</p>
-<p>普通卷积输出特征图为4个channel，使用DW+PW得到输出特征也为4个channel。</p>
-<p><img src="/2022/01/10/MobileNet/compute_times.png" alt="image-20220110202132545"></p>
-<p>α为卷积核个数的倍率，控制卷积过程中卷积核的个数，当宽度乘子α时，输入通道数为αM，输出通道数为αN。β为分辨率参数，对于不同的网络输入图片大小，加法次数不同，网络计算速度不同。</p>
-<blockquote>
-<p>α因子是在训练之前就选定好的</p>
-</blockquote>
-<p><img src="/2022/01/10/MobileNet/result_ablation.png" alt="image-20220110203944575"></p>
-<p><img src="/2022/01/10/MobileNet/dw_conv_structure.png" alt="image-20220110211508226"></p>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>我们为移动和嵌入式视觉应用程序提出了一类名为mobilenet的高效模型。mobilenet基于一种流线型的架构，使用<strong>depth-wise separable convolutions深度可分离卷积来构建轻量级的深度神经网络</strong>。我们引入了两个简单的<strong>全局超参数，可以有效地在延迟和准确性之间进行权衡</strong>。这些超参数允许模型构建者根据问题的约束为他们的应用程序选择合适大小的模型。我们在资源和准确性的权衡上进行了大量的实验，并在ImageNet分类中显示了与其他流行模型相比的强大性能。然后，我们在广泛的应用和用例中展示了mobilenet的有效性，包括对象检测、细粒度分类、人脸属性和大规模地理定位。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>自从AlexNet[19]赢得ImageNet挑战(ILSVRC 2012[24])使深度卷积神经网络普及以来，卷积神经网络已经在计算机视觉中无处不在。为了达到更高的精度，总的趋势是制作更深、更复杂的网络[27,31,29,8]。然而，这些提高准确性的进步并不一定会使网络在规模和速度方面更高效。在许多现实世界的应用中，如机器人、自动驾驶汽车和增强现实，识别任务需要在计算有限的平台上及时执行。</p>
-<p>本文描述了一种高效的网络架构和一组两个超参数，以构建非常小的、低延迟的模型，可以很容易地满足移动和嵌入式视觉应用的设计需求。第二节回顾了之前建立小模型的工作。第3节描述了MobileNet架构和两个超参数宽度乘法器和分辨率乘法器width multiplier and resolution multiplier，以定义更小和更有效的MobileNet。第4节描述了ImageNet的实验以及各种不同的应用程序和用例。第5节以总结和结论结束。</p>
-<h1 id="MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks"><a href="#MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks" class="headerlink" title="MobileNetV2: Inverted Residuals and Linear Bottlenecks"></a>MobileNetV2: Inverted Residuals and Linear Bottlenecks</h1><p><img src="/2022/01/10/MobileNet/mobilenet_v2.png" alt="image-20220110214925153"></p>
-<p><img src="/2022/01/10/MobileNet/MobileNet_compare_resnet.png" alt="image-20220110214543637"></p>
-<p>对于倒残差结构的最后一个卷积层，使用了线性激活函数，而不是relu。因为通过对relu函数的分析可以看出，对于低维特征relu的损失大，对高维损失小。倒残差两边细，中间粗，mobileNet输出就是低维向量。所以使用线性激活函数替代relu。</p>
-<p><img src="/2022/01/10/MobileNet/relu_dim.png" alt="x"></p>
-<p>步距=1，且输入输出H,W,C都相等，才使用残差。</p>
-<p><img src="/2022/01/10/MobileNet/mobile_netv2_structrue.png" alt="image-20220110215807021"></p>
-<p><img src="/2022/01/10/MobileNet/invert_residual_io.png" alt="image-20220110220131093"></p>
-<p><img src="/2022/01/10/MobileNet/mobilev2_classification.png" alt="image-20220110220504613"></p>
-]]></content>
-      <categories>
-        <category>深度学习知识</category>
-      </categories>
-      <tags>
-        <tag>文献阅读</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GazeEstimationfromMultimodalKinectData</title>
-    <url>/2022/01/16/GazeEstimationfromMultimodalKinectData/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>视线估计</category>
-        <category>试验记录</category>
-      </categories>
-      <tags>
-        <tag>文献阅读</tag>
-        <tag>试验记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EyediapRGBDgaze</title>
-    <url>/2021/12/10/EyediapRGBDgaze/</url>
-    <content><![CDATA[<blockquote>
-<p>Funes Mora K A, Monay F, Odobez J M. Eyediap: A database for the development and evaluation of gaze estimation algorithms from rgb and rgb-d cameras[C]//Proceedings of the Symposium on Eye Tracking Research and Applications. 2014: 255-258.</p>
-</blockquote>
-<ol>
-<li><p>评价：用于开发和评估来自RGB和RGB- d相机的注视估计算法的数据库</p>
-</li>
-<li><p>针对的问题：缺乏一个共同的基准来评估从RGB和RGB- d数据的凝视估计任务。</p>
-</li>
-<li><p>本文的目的：引入一个新的数据库和一个共同的框架来克服缺乏一个共同的benchmark这一局限性，用于注视估计方法的训练和评价。可以评估算法鲁棒性 。</p>
-<p>i)头部姿势变化;</p>
-<p>ii)人变化;</p>
-<p>iii)环境和感知条件的变化和</p>
-<p>iv)目标类型:屏幕或3D对象</p>
-</li>
-</ol>
-<h1 id="数据集采集设置"><a href="#数据集采集设置" class="headerlink" title="数据集采集设置"></a>数据集采集设置</h1><h2 id="Set-up"><a href="#Set-up" class="headerlink" title="Set-up"></a>Set-up</h2><p><img src="/2021/12/10/EyediapRGBDgaze/eyediapCollect.png" alt="image-20211210155014440"></p>
-<p>Kinect:这种消费设备提供标准(RGB)和VGA分辨率(640×480)和30fps的深度视频流。</p>
-<p>高清摄像头:Kinect设计的视场更大，对用户移动性的限制更少，但这对于基于VGA分辨率的眼球追踪来说是个问题。因此，我们也使用了全高清相机(1920x1080)， 25fps记录场景。</p>
-<p>led:两个摄像头都可见的5个led用于同步RGB-D和HD流。</p>
-<p>平面屏幕:使用一个24英寸的屏幕来显示一个可视目标。</p>
-<p>小球:使用直径为4cm的小球作为视觉目标，有两个目的:在3D环境中作为视觉目标，在RGB和深度数据中都具有识别力，从而可以精确跟踪其3D位置(见第3节)。</p>
-<p>如图1所示，摄像头位于电脑屏幕正下方，这样可以从下方观察参与者的眼睛，尽量减少眼皮遮挡。参与者被要求在一定距离内坐在装置前面，这取决于视觉目标的类型(见下一段)，并凝视指定的视觉目标。没有在说话活动、面部表情等方面给出指示。</p>
-<h2 id="Recording-sessions"><a href="#Recording-sessions" class="headerlink" title="Recording sessions"></a>Recording sessions</h2><p>为了评估注视估计算法的不同方面，我们设计了一组记录会话，每个会话的特征是四个主要变量的组合，影响注视估计的准确性:视觉目标，头部姿势，参与者和记录条件。这些措施说明如下:</p>
-<h3 id="Discrete-screen-target"><a href="#Discrete-screen-target" class="headerlink" title="Discrete screen target"></a>Discrete screen target</h3><p>离散目标(DS)屏幕上,一个小圆匀画每1.1秒随机位置在计算机屏幕上,</p>
-<h3 id="Continuous-screen-target"><a href="#Continuous-screen-target" class="headerlink" title="Continuous screen target"></a>Continuous screen target</h3><p>屏幕连续目标(CS),圆圈沿着一个随机2 s轨道移动,以获得注视运动更平稳的例子。</p>
-<h3 id="3D-floating-target"><a href="#3D-floating-target" class="headerlink" title="3D floating target"></a>3D floating target</h3><p>3D浮动目标(FT):一个直径4厘米的球挂在一根细线上，这根细线附着在一根棍子上，在摄像机和参与者之间的3D区域内移动。与屏幕上的目标相比，参与者离相机的距离更大(1.2米而不是80-90厘米)，以便有足够的空间让目标移动。</p>
-<h2 id="头部姿势。"><a href="#头部姿势。" class="headerlink" title="头部姿势。"></a>头部姿势。</h2><p>为了评估方法对头部姿势的稳健性，要求参与者保持注视视觉目标，同时</p>
-<p>(i)面对屏幕保持近似静止的头部姿势(静态情况，S);</p>
-<p>(ii)进行头部运动(平移和旋转translation and rotation)，以引入头部姿势变化(Mobile case, M)。</p>
-<h2 id="记录的条件"><a href="#记录的条件" class="headerlink" title="记录的条件"></a>记录的条件</h2><p>对于参与者12、13和14，在两种不同的条件下(记为A或B)，一些进程被记录了两次:不同的日子、光照和与相机间的距离</p>
-<blockquote>
-<p>总结。记录了94个2 - 3分钟的会话，总共获得了超过4小时的数据。每个会话由字符串“P-C-T-H”表示，它指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。录音示例如图2所示。</p>
-</blockquote>
-<p><img src="/2021/12/10/EyediapRGBDgaze/float.png" alt="image-20211215204745435"></p>
-<p>记录数据样本使用:a-c) RGB-D相机;d-e)高清相机，原始图像的640×480pixels patch显示用于与VGA分辨率数据进行比较。在这些例子中，参与者注视的是:a,d)头部保持静止的屏幕目标;b)静态头姿的浮动目标;c,e)移动头部时浮动目标。</p>
-<h1 id="Data-processing"><a href="#Data-processing" class="headerlink" title="Data processing"></a>Data processing</h1><p>除了原始数据本身，还提供了额外的信息，这些信息对推导地面真相测量至关重要，或者只是对开发数据集和运行实验很有用。如何估计它们的更多细节可以在[Funes Mora et al. 2014]中找到。</p>
-<h2 id="RGB-D-sensor-calibration"><a href="#RGB-D-sensor-calibration" class="headerlink" title="RGB-D sensor calibration"></a>RGB-D sensor calibration</h2><p>RGB-D传感器校准。提供了RGB-D立体集成的校准参数，这些参数是使用开源校准工具箱获得的[Herrera C. et al. 2012]。这允许结合RGB-D数据到一个有纹理的3D表面。</p>
-<h2 id="RGB-D-to-screen-calibration"><a href="#RGB-D-to-screen-calibration" class="headerlink" title="RGB-D to screen calibration"></a>RGB-D to screen calibration</h2><p>RGB-D屏幕校准。提供摄像机坐标系统(3D)和2D屏幕坐标之间的校准。</p>
-<h2 id="RGB-D-and-HD-camera-synchrony-and-calibration"><a href="#RGB-D-and-HD-camera-synchrony-and-calibration" class="headerlink" title="RGB-D and HD camera synchrony and calibration"></a>RGB-D and HD camera synchrony and calibration</h2><p>RGB-D和高清相机同步和校准。由于使用了5个led，高清数据与RGB-D视频流同步[Funes Mora等人，2014]。实现了两摄像机间的标准立体标定。</p>
-<h2 id="Head-pose-and-eyes-tracking"><a href="#Head-pose-and-eyes-tracking" class="headerlink" title="Head pose and eyes tracking."></a>Head pose and eyes tracking.</h2><p>对于每个参与者，我们使用[Funes Mora和Odobez 2012]中描述的方法，将一个3D Morphable Model [Paysan et al. 2009]与深度数据拟合，从而创建一个与他/她特定面部形状相对应的3D网格。此外，给定这个模板，我们使用迭代最近点(ICP)算法跟踪3D头部姿势，然后从该算法得到眼球在相机3D空间中的近似位置。</p>
-<h2 id="Floating-target-tracking"><a href="#Floating-target-tracking" class="headerlink" title="Floating target tracking"></a>Floating target tracking</h2><p>漂浮目标跟踪。对于使用一个球作为可视目标的记录会话，我们提供了球在每个时间步t的3D中心，使用彩色滤波和ICP拟合计算。</p>
-<h2 id="Manual-annotations"><a href="#Manual-annotations" class="headerlink" title="Manual annotations"></a>Manual annotations</h2><p>手工注释。进一步的手工注释，当数据被认为是不可靠的注视估计(和评价)提供。这对应于眨眼的时刻，或者当这个人分心的时候(没有看目标)。手动注释是针对涉及屏幕目标的正面会话进行的。鉴于这些情况的发生率很低，我们目前没有在其他会话中对其进行标记(它将被视为噪音)。不过，如果需要，还可以做进一步的注释。</p>
-<h1 id="Considered-tasks"><a href="#Considered-tasks" class="headerlink" title="Considered tasks"></a>Considered tasks</h1><p>文章描述了用于评估注视估计算法的准确性及其对不同变量(如头姿、光照条件等)的鲁棒性的不同评估基准。首先总结评估协议框架的主要元素，包括性能度量，然后列出一组基准。</p>
-<h2 id="Evaluation-protocol-and-measures"><a href="#Evaluation-protocol-and-measures" class="headerlink" title="Evaluation protocol and measures"></a>Evaluation protocol and measures</h2><p>本节介绍实验描述中涉及的概念:什么被理解为注视估计算法;训练、测试和评估集的定义 train, test and evaluation sets;性能测量。</p>
-<h3 id="Gaze-estimation-algorithm注释估计算法"><a href="#Gaze-estimation-algorithm注释估计算法" class="headerlink" title="Gaze estimation algorithm注释估计算法"></a>Gaze estimation algorithm注释估计算法</h3><p>注视估计的输出取决于应用程序。这里考虑两个非常常见的情况:一个3D gaze ray单位向量;或屏幕坐标系Screen coordinates上的二维像素，这通常用于基于屏幕的HCI应用程序。提供额外信息(摄像机-屏幕校准)，可以从3D凝视射线推断屏幕坐标[Funes Mora等人，2014]。</p>
-<p>训练数据集的真值包含3d视线估计p和2d视线估计s，给出一定的参数，p可以从s中计算处理。考虑不同的方法来收集这些训练样本:时间，即数据对应于一个较大的视频的部分;或结构化:训练数据以结构化的方式收集，以满足注视估计算法的特定要求(例如，获取最接近屏幕上预定义数量的特定真值的样本)。</p>
-<p>测试集假设它是帧索引范围内较大视频的时间序列。</p>
-<p>验证集将用于计算算法性能。这是测试数据的一个子集，通过移除数据或地面真相被破坏的样本，由于眨眼和分心，极端的头部姿势，影响眼睛的可见性(例如，鼻子遮挡)。</p>
-<h2 id="Predefined-experimental-protocols"><a href="#Predefined-experimental-protocols" class="headerlink" title="Predefined experimental protocols"></a>Predefined experimental protocols</h2><p>为了在不同的实验条件下比较算法和它们的优点，定义了一组协议，它们的区别主要在于用于训练和测试算法的数据库。注意，该数据集有两种主要类型的视觉目标:3D浮动目标(FT)和屏幕目标(CS或DS)。因此，定义的评价方案可以根据首选的视觉目标而变化。总结如下。更多细节见[Funes Mora et al. 2014]。</p>
-<p>Protocol 1:注视估计的准确性。在本方案中，我们评估了一个算法$H$的准确性，在所有参数的最小变化下，更准确地说，对于一个session s，其中唯一的变化是注视本身，我们将训练集定义为s的前半部分。测试集定义为s的后半部分。这种实验的结果是平均角误差$\epsilon$◦。可以根据视觉目标的类型导出相关会话。</p>
-<p>Protocol 2:头姿变化的鲁棒性。这里的目的是测量由于头部姿势的变化，凝视的准确性下降了多少。首先进行静态头姿(S)实验，然后进行头姿变化(M)实验，然后报告两种情况下的平均误差以及算法对头姿变化的敏感性。</p>
-<p>Protocol 3:个人依赖。目的是评估一种方法推广到不可见用户的效果。这可以通过 leave-one-person-out留一法实验装置来实现。</p>
-<p>Protocol 4:环境变化。最后，本案例的目标是研究一种方法在不同条件下的泛化特性。为此，可以对参与者12、13和14进行实验，在不同的设置和光照条件下记录会话。</p>
-<h1 id="Evaluation-protocol-example"><a href="#Evaluation-protocol-example" class="headerlink" title="Evaluation protocol example"></a>Evaluation protocol example</h1><p>为了说明数据集的用法，这里我们详细描述了与其中一个基准相关的数据:3D浮动目标的注视估计精度协议(Protocol 1)，并使用RGBD流作为注视估计算法的输入数据。注意，这种配置是数据集中最具挑战性的情况之一，对于这种情况，典型的眼睛图像大小为≈14×10pixels。</p>
-<h2 id="头部姿势和3D目标跟踪"><a href="#头部姿势和3D目标跟踪" class="headerlink" title="头部姿势和3D目标跟踪"></a>头部姿势和3D目标跟踪</h2><p>在表1中，我们显示了每个会话对应的帧总数，以及我们能够成功估计头部姿势或视觉目标位置的帧数。注意，头部姿势的召回率很高(99.9%)，因为在本方案中，涉及近额 near frontal和静态头部姿势的人。由于目标在相机的视野之外，或者太靠近传感器导致缺失深度数据，可视目标位置的召回率较低(69%)。尽管如此，这些数字表明有大量的凝视标记数据可供实验使用(每次记录大约100秒)。</p>
-<blockquote>
-<p>此处的召回率指的应该是拍到所有数据后，可以使用的数据。可以看到表格1中，第三行Training和第四行Testing加起来的和大约等于第三行Ball  Target的数目。</p>
-</blockquote>
-<p><img src="/2021/12/10/EyediapRGBDgaze/paper_result.png" alt="image-20211217152023265"></p>
-<p>表1:第1 - 3行:记录的视频帧数(Total)，头部姿态或浮动目标位置估计成功（可用数据？）。第四到第六行:Protocol 1的训练、测试和评估集的大小。</p>
-<p>表2:协议1的注视角度误差比较。“头”的情况下，只使用估计的头部方向作为凝视预测。</p>
-<p>Protocol sets每个会话被平均分为两个时间区域:前半部分是训练集，后半部分是测试集。测试集test set被筛选以定义评估集evaluation set(下一节将描述标准)。表1显示了每组样本的数量(仅考虑已知头姿和目标位置的样本)</p>
-<p>目光估计方法。我们实现了一种基于RGB-D的方法[Funes Mora和Odobez 2012]，该方法依靠RGB-D数据将眼睛图像的视点矫正为典型的头部姿势。我们将这种方法称为位校正自适应线性回归pose-rectified adaptive linear regression(PRALR)。对每个参与者，从训练集中提取42个样本的注视外观模型。这些样本有规律地分布在注视偏航值之间的±40◦和注视仰角值之间的±30◦。由于PR-ALR是一种基于插值的方法，我们只考虑凝视外观模型中使用的数据的凸壳内的测试样本，即评价集evaluation set仅由地面真值测量遵循相同的偏航和仰角凝视标准的测试样本组成。</p>
-<p>估计精度。为了证明数据的可变性，我们计算了在假设参与者注视前方时获得的注视角度误差，即假设注视方向是由头部姿势方向给出的。实验结果如表2所示。注意，这两种方法都输出3D凝视光线，我们使用相同的评估集，因此这些结果可以直接进行比较。“头部”案例显示的角度误差提供了数据中凝视的大变化性的证据。采用PR-ALR注视估计算法后，注视估计的精度得到了显著提高。</p>
-<blockquote>
-<p>Head可能是使用头部的方向代替视线的方向？</p>
-</blockquote>
-<p>然而，与文献报道的结果相比，误差仍然很高，这主要是由于低分辨率(~ 14×10每只眼睛像素)和低对比度(例如参与者7-A是黑色皮肤)。此外，异常值(眨眼、分心等)还没有从评估集3中剔除。注意，这是我们的数据中最具挑战性的场景之一，这个实验足以演示如何使用数据、定义的协议以及如何描述一个实验。</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>我们描述了一个新的数据集，用于开发和评估来自RGB或RGB- d数据的注视估计算法，解决了社区对标准化基准的需求。</p>
-<p>数据库丰富多样，因为它代表了这项任务的主要挑战。大多数变量(头部姿势，人，条件和目标类型)已经被系统地隔离，目标是恰当地描述注视估计在准确性和稳健性方面的不利条件。</p>
-<p>描述了记录方法和所记录数据的摘要。我们还列出了提供给用户的额外信息，如设置校准，目标位置，头部和眼睛跟踪信息。我们更详细地描述了一个作为使用实例的实验。我们相信该数据库对研究人员具有很高的价值，因为它将有助于促进注视估计技术在较少约束条件下的发展。</p>
-<h1 id="数据集组织结构"><a href="#数据集组织结构" class="headerlink" title="数据集组织结构"></a>数据集组织结构</h1><p><img src="/2021/12/10/EyediapRGBDgaze/dataset_structrue.png" alt="image-20211217165829214"></p>
-<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>Data下文件夹命名格式为“P-C-T-H”，指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。</p>
-<p><img src="/2021/12/10/EyediapRGBDgaze/diferent_image_cataglory.png" alt="image-20211230120945151"></p>
-<p><img src="/2021/12/10/EyediapRGBDgaze/inside_every_collect.png" alt="image-20211217180544505"></p>
-<p>每个文件夹下包含三个视频，3个视频采集设备的参数文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rgb_vga_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">522.335571;0.000000;323.681061</span><br><span class="line">0.000000;522.346497;269.110931</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">1.000000;-0.000000;-0.000000</span><br><span class="line">-0.000000;-1.000000;-0.000000</span><br><span class="line">-0.000000;-0.000000;-1.000000</span><br><span class="line">[T]</span><br><span class="line">0.000000</span><br><span class="line">0.000000</span><br><span class="line">1.000000</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rgb_hd_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">1920;1080</span><br><span class="line">[intrinsics]</span><br><span class="line">1485.921875;0.000000;940.767761</span><br><span class="line">0.000000;1497.773804;530.065613</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.946361;-0.081335;-0.312705</span><br><span class="line">-0.077775;-0.996685;0.023863</span><br><span class="line">-0.313610;0.001738;-0.949550</span><br><span class="line">[T]</span><br><span class="line">0.218694</span><br><span class="line">-0.016453</span><br><span class="line">1.015923</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">depth_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">588.194946;0.000000;310.267731</span><br><span class="line">0.000000;585.303101;248.230743</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.999919;-0.003616;-0.012239</span><br><span class="line">-0.003528;-0.999968;0.007239</span><br><span class="line">-0.012265;-0.007195;-0.999899</span><br><span class="line">[T]</span><br><span class="line">-0.028705</span><br><span class="line">-0.001298</span><br><span class="line">1.002781</span><br><span class="line">[k_coefficients]</span><br><span class="line">3.1199302673;-0.0028519365</span><br><span class="line">[alpha]</span><br><span class="line">1.1090897322;0.0013763016</span><br><span class="line">[beta] #该项目后面的参数跟的很多很多</span><br><span class="line">0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">screen_coordinates.txt</span><br><span class="line"></span><br><span class="line">Screen target coordinates: 2D coordinates (x,y); 3D coordinates (x,y,z)</span><br><span class="line">0;413.0000;477.0000;0.1165;-0.1441;-0.0632</span><br><span class="line">1;416.0000;474.0000;0.1154;-0.1451;-0.0630</span><br><span class="line">2;419.0000;472.0000;0.1143;-0.1457;-0.0629</span><br><span class="line">3;422.0000;469.0000;0.1132;-0.1467;-0.0627</span><br><span class="line">4;425.0000;467.0000;0.1121;-0.1473;-0.0626</span><br><span class="line">5;429.0000;465.0000;0.1107;-0.1480;-0.0625</span><br><span class="line">6;433.0000;463.0000;0.1092;-0.1486;-0.0625</span><br><span class="line">...</span><br><span class="line">#用于记录目标的坐标</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">head_pose.txt</span><br><span class="line"></span><br><span class="line">Head pose: (Rotation matrix (9 values, row by row);Translation(3 values, x,y,z))</span><br><span class="line">0;0.9997;0.0236;-0.0082;-0.0231;0.9980;0.0588;0.0096;-0.0586;0.9982;-0.0046;0.1084;0.3938</span><br><span class="line">1;0.9997;0.0252;-0.0050;-0.0249;0.9980;0.0578;0.0064;-0.0577;0.9983;-0.0047;0.1090;0.3943</span><br><span class="line">2;0.9995;0.0316;-0.0085;-0.0312;0.9988;0.0387;0.0097;-0.0384;0.9992;-0.0049;0.1102;0.3943</span><br><span class="line">3;0.9996;0.0250;-0.0150;-0.0244;0.9987;0.0441;0.0161;-0.0438;0.9989;-0.0049;0.1091;0.3948</span><br><span class="line">4;0.9997;0.0249;-0.0019;-0.0248;0.9985;0.0485;0.0032;-0.0484;0.9988;-0.0049;0.1090;0.3939</span><br><span class="line">5;0.9998;0.0176;0.0042;-0.0178;0.9991;0.0388;-0.0035;-0.0388;0.9992;-0.0046;0.1103;0.3919</span><br><span class="line">6;0.9997;0.0251;0.0051;-0.0253;0.9990;0.0362;-0.0042;-0.0363;0.9993;-0.0046;0.1107;0.3887</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eye_tracking.txt</span><br><span class="line"></span><br><span class="line">Eyes tracking: Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r); Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r); HD camera eyeball center left and right (x_l,y_l,x_r,y_r); 3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line">0;index</span><br><span class="line">286.1482;120.0683;351.1937;121.9867;Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">306.9435;85.2708;379.7931;86.8933;Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">725.6400;164.9603;876.9300;143.2760;HD camera eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">-0.0376;0.1493;0.4766;0.0275;0.1472;0.4773  3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line"></span><br><span class="line">1;286.3311;119.3493;351.4520;121.4472;307.1886;84.4702;380.1107;86.2908;725.2724;163.1687;876.9486;141.8322;-0.0374;0.1499;0.4773;0.0278;0.1476;0.4778</span><br><span class="line">2;285.9384;119.3542;351.1345;121.8086;306.7900;84.4777;379.8091;86.6937;723.7910;163.4062;875.4026;142.9983;-0.0377;0.1497;0.4780;0.0274;0.1470;0.4786</span><br><span class="line">3;285.1989;120.1658;350.4309;122.0558;305.9690;85.3842;379.0494;86.9733;722.2474;165.7260;873.3084;143.9852;-0.0385;0.1488;0.4780;0.0267;0.1467;0.4791</span><br><span class="line">4;286.2832;120.0966;351.3980;122.2475;307.1400;85.2999;380.0429;87.1811;725.2728;165.0547;877.1600;143.8994;-0.0374;0.1491;0.4774;0.0277;0.1469;0.4776</span><br><span class="line">5;287.0309;120.2445;351.9596;122.0580;307.8890;85.4603;380.5585;86.9690;728.2791;164.9782;880.3108;142.9601;-0.0368;0.1494;0.4759;0.0284;0.1476;0.4757</span><br><span class="line">6;287.5150;120.6915;352.0477;122.9920;308.2452;85.9573;380.4743;88.0112;732.2335;165.5833;883.7582;144.9835;-0.0365;0.1498;0.4729;0.0286;0.1475;0.4726</span><br></pre></td></tr></table></figure>
-<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h1><p>1.depth数据的处理，depth相机参数的使用。</p>
-<p>2.depth相机参数中的k_coefficients、alpha、beta是啥？</p>
-<h1 id="数据预处理程序坐标转化部分"><a href="#数据预处理程序坐标转化部分" class="headerlink" title="数据预处理程序坐标转化部分"></a>数据预处理程序坐标转化部分</h1><blockquote>
-<p>99行起</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">head_rot = head[<span class="number">1</span>:<span class="number">10</span>]</span><br><span class="line"><span class="comment">#head_pose.txt Head pose: (Rotation matrix (9 values, row by row)</span></span><br><span class="line">head_rot = np.array(head_rot).reshape([<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line"><span class="comment"># reshape</span></span><br><span class="line">head1 = cv2.Rodrigues(head_rot)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#此处的T[0]不知道是啥</span></span><br><span class="line">head2d = dpc.HeadTo2d(head1)</span><br><span class="line"><span class="comment">#HeadTo2d 计算Rodrigues，返回航偏角和俯仰角</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(head2d, end=<span class="string">&quot;------&quot;</span>)</span><br><span class="line"><span class="comment">#输出航偏角和俯仰角</span></span><br><span class="line"></span><br><span class="line">head_rot = np.dot(cam_rot, head_rot) </span><br><span class="line"><span class="comment">#相机旋转X头部旋转,基于任意坐标系为参考的成像几何,相当于选择世界坐标系</span></span><br><span class="line">head1 = cv2.Rodrigues(head_rot)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#此处计算将前面的计算值覆盖掉了</span></span><br><span class="line">head2d = dpc.HeadTo2d(head1)</span><br><span class="line"><span class="comment">#HeadTo2d 计算Rodrigues，返回航偏角和俯仰角</span></span><br><span class="line"><span class="built_in">print</span>(head2d, end=<span class="string">&quot;------&quot;</span>)</span><br><span class="line"><span class="comment">#此处计算的head1和head2d把前面的给覆盖了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rotate the head into camera coordinate system</span></span><br><span class="line"></span><br><span class="line">head_trans = np.array(head[<span class="number">10</span>:<span class="number">13</span>])*<span class="number">1000</span></span><br><span class="line"><span class="comment"># Translation(3 values, x,y,z)</span></span><br><span class="line">head_trans = np.dot(cam_rot, head_trans)</span><br><span class="line">head_trans = head_trans + cam_trans</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the 3d coordinates of origin.</span></span><br><span class="line"><span class="comment">#eye_tracking.txt Eyes tracking: Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r); Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r); HD camera eyeball center left and right (x_l,y_l,x_r,y_r); 3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span></span><br><span class="line"></span><br><span class="line">anno = anno_info[index]</span><br><span class="line">anno = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">eval</span>, anno.strip().split(<span class="string">&quot;;&quot;</span>)))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(anno) != <span class="number">19</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[Error anno]&quot;</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">anno = np.array(anno)</span><br><span class="line"></span><br><span class="line">left3d = anno[<span class="number">13</span>:<span class="number">16</span>]*<span class="number">1000</span></span><br><span class="line">left3d = np.dot(cam_rot, left3d) + cam_trans</span><br><span class="line">right3d = anno[<span class="number">16</span>:<span class="number">19</span>]*<span class="number">1000</span></span><br><span class="line">right3d = np.dot(cam_rot, right3d) + cam_trans</span><br><span class="line"></span><br><span class="line">face3d = (left3d + right3d)/<span class="number">2</span></span><br><span class="line">face3d = (face3d + head_trans)/<span class="number">2</span></span><br><span class="line"><span class="comment">#脸部的中心计算方法：两眼的3d坐标求平均，在和头部的中心求平均，相当于一次是横向的，一次是纵向的。</span></span><br><span class="line"></span><br><span class="line">left2d = anno[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">right2d = anno[<span class="number">3</span>:<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the 3d coordinates of target</span></span><br><span class="line"><span class="comment"># screen_coordinates.txt Screen target coordinates: 2D coordinates (x,y); 3D coordinates (x,y,z),在屏幕坐标系上看到的吗？并未使用相机外参进行计算，待定🤔</span></span><br><span class="line">target = target_info[index]</span><br><span class="line">target = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">eval</span>,target.strip().split(<span class="string">&quot;;&quot;</span>)))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(target) != <span class="number">6</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[Error target]&quot;</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">target3d = np.array(target)[<span class="number">3</span>:<span class="number">6</span>]*<span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># target3d = target3d.T - cam_trans</span></span><br><span class="line"><span class="comment"># target3d = np.dot(np.linalg.inv(cam_rot), target3d)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize the left eye image</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">norm = dpc.norm(center = face3d,</span><br><span class="line">                gazetarget = target3d,</span><br><span class="line">                headrotvec = head_rot,</span><br><span class="line">                imsize = (<span class="number">224</span>, <span class="number">224</span>),</span><br><span class="line">                camparams = camera)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Acquire essential info</span></span><br><span class="line">im_face = norm.GetImage(frame)</span><br><span class="line">gaze = norm.GetGaze(scale=scale)</span><br><span class="line">head = norm.GetHeadRot(vector=<span class="literal">False</span>)</span><br><span class="line">head = cv2.Rodrigues(head)[<span class="number">0</span>].T[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">origin = norm.GetCoordinate(face3d)</span><br><span class="line">rvec, svec = norm.GetParams()</span><br><span class="line"></span><br><span class="line">gaze2d = dpc.GazeTo2d(gaze)</span><br><span class="line">head2d = dpc.HeadTo2d(head)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Crop Eye Image</span></span><br><span class="line">left2d = norm.GetNewPos(left2d)</span><br><span class="line">right2d = norm.GetNewPos(right2d)</span><br><span class="line"><span class="comment">#   im_face = ipt.circle(im_face, left2d, 2)</span></span><br><span class="line"><span class="comment">#im_face = ipt.circle(im_face, [left2d[0]+10, left2d[1]], 2)</span></span><br><span class="line"><span class="comment"># cv2.imwrite(&quot;eye.jpg&quot;, im_face)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">im_left = norm.CropEyeWithCenter(left2d)</span><br><span class="line">im_left = dpc.EqualizeHist(im_left)</span><br><span class="line">im_right = norm.CropEyeWithCenter(right2d)</span><br><span class="line">im_right = dpc.EqualizeHist(im_right)</span><br></pre></td></tr></table></figure>
-<p>head_rot = np.dot(cam_rot, head_rot) </p>
-<p>在世界坐标系中头部的旋转=相机外参X相机坐标系中头部旋转。</p>
-<p>head_trans = np.dot(cam_rot, head_trans)<br>head_trans = head_trans + cam_trans</p>
-<p>在世界坐标系中头部的平移 = 相机外参X相机坐标系中头部的平移 + 相机平移。</p>
-<blockquote>
-<p>其实主要是感觉targe的坐标不知道是用什么拍到的，没有做任何的坐标变换，那就说明是使用世界坐标系中的相机拍到的，第三者视角的相机，可是这个相机怎么拍到带有深度的三维空间坐标信息呢?</p>
-<p>解决方法：</p>
-<p>1.查看14年官方给的demo中如何完成坐标转换。</p>
-<p>2.相信代码作者，如法炮制depth。</p>
-</blockquote>
-<h1 id="相机内外参数"><a href="#相机内外参数" class="headerlink" title="相机内外参数"></a>相机内外参数</h1><p>一文带你搞懂相机内参外参(Intrinsics &amp; Extrinsics) - TheLastRefugee的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/389653208">https://zhuanlan.zhihu.com/p/389653208</a></p>
-<p>多视图几何基础——深入理解相机内外参数 - 可乐加枸杞的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/54139614">https://zhuanlan.zhihu.com/p/54139614</a></p>
-<h1 id="旋转向量"><a href="#旋转向量" class="headerlink" title="旋转向量"></a>旋转向量</h1><p><a href="https://blog.csdn.net/weixin_45915902/article/details/106266705">(21条消息) 罗德里格斯（Rodrigues）旋转向量与矩阵的变换_凌辰两点的博客-CSDN博客_rodrigues变换</a></p>
-<p>旋转矩阵还可以理解为原向量围绕空间中某一个向量，直接一次逆时针旋转某一个角度得到。</p>
-<p><a href="https://blog.csdn.net/weixin_43365751/article/details/101212892">(21条消息) 旋转矩阵、欧拉角之间转换_小磊在路上的博客-CSDN博客_旋转矩阵转欧拉角</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/144032401">欧拉角和旋转矩阵之间的转换 - 知乎 (zhihu.com)</a></p>
-<h2 id="Python-cv2-Rodrigues方法代码示例"><a href="#Python-cv2-Rodrigues方法代码示例" class="headerlink" title="Python cv2.Rodrigues方法代码示例"></a><a href="https://vimsky.com/examples/detail/python-method-cv2.Rodrigues.html">Python cv2.Rodrigues方法代码示例</a></h2><p><a href="https://vimsky.com/examples/detail/python-method-cv2.Rodrigues.html">Python cv2.Rodrigues方法代码示例 - 纯净天空 (vimsky.com)</a></p>
-]]></content>
-      <categories>
-        <category>视线估计</category>
-        <category>试验记录</category>
-      </categories>
-      <tags>
-        <tag>文献阅读</tag>
-        <tag>试验记录</tag>
-      </tags>
   </entry>
 </search>
