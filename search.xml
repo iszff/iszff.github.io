@@ -292,6 +292,14 @@
 <p><img src="/2022/01/10/MobileNet/mobile_netv2_structrue.png" alt="image-20220110215807021"></p>
 <p><img src="/2022/01/10/MobileNet/invert_residual_io.png" alt="image-20220110220131093"></p>
 <p><img src="/2022/01/10/MobileNet/mobilev2_classification.png" alt="image-20220110220504613"></p>
+<p>解决的问题：发现了ReLU的在通道数较少的Feature Map上有非常严重信息损失问题，由此引入了Linear Bottlenecks和Inverted Residual。</p>
+<h1 id="MobileNet-V3"><a href="#MobileNet-V3" class="headerlink" title="MobileNet V3"></a>MobileNet V3</h1><p><img src="/2022/01/10/MobileNet/mobileNetv3.png" alt="image-20220123172052339"></p>
+<p><img src="/2022/01/10/MobileNet/v2_VS_v3.png" alt="image-20220123173328874"></p>
+<p>SE模块注意力机制：对于特征图的每一个channel进行池化处理，有多少个channel，得到的一维向量就有多少个元素。通过全连接层得到输出向量。对于特征输出每一个channel赋予权重中，觉得比较重要的channel就赋给更大的权重。</p>
+<p><img src="/2022/01/10/MobileNet/mobilev3SE.png" alt="image-20220123173937478"></p>
+<p><img src="/2022/01/10/MobileNet/mobileNetv3_last_stage.png" alt="image-20220123174215220"></p>
+<p><img src="/2022/01/10/MobileNet/loss_sigmoid_hard_sigmoid.png" alt="image-20220123195318597"></p>
+<p><img src="/2022/01/10/MobileNet/MobileNetv3_para.png" alt="image-20220123201156057"></p>
 ]]></content>
       <categories>
         <category>深度学习知识</category>
@@ -2060,6 +2068,8 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <h1 id="20220113"><a href="#20220113" class="headerlink" title="20220113"></a>20220113</h1><p><a href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/">240. 搜索二维矩阵 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p>二分，旋转数组那道题目。</p>
 <h1 id="20220119图解k个一组翻转链表-K-个一组翻转链表-力扣（LeetCode）-leetcode-cn-com"><a href="#20220119图解k个一组翻转链表-K-个一组翻转链表-力扣（LeetCode）-leetcode-cn-com" class="headerlink" title="20220119图解k个一组翻转链表 - K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)"></a>20220119<a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/tu-jie-kge-yi-zu-fan-zhuan-lian-biao-by-user7208t/">图解k个一组翻转链表 - K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></h1><p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/dong-hua-yan-shi-25-k-ge-yi-zu-fan-zhuan-lian-biao/">动画演示 25. K 个一组翻转链表 - K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h1 id="20220122-https-leetcode-cn-com-problems-search-insert-position-solution-te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python"><a href="#20220122-https-leetcode-cn-com-problems-search-insert-position-solution-te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python" class="headerlink" title="20220122 https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/"></a>20220122 <a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/">https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/</a></h1><p><a href="https://leetcode-cn.com/problems/search-insert-position/">35. 搜索插入位置 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a href="https://leetcode-cn.com/problems/palindrome-linked-list/solution/hui-wen-lian-biao-by-leetcode-solution/">回文链表 - 回文链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳">https://mp.weixin.qq.com/mp/homepage?__biz=MzI4Njc4MzMwMw==&amp;hid=1&amp;sn=58bf8e995138b26984c05fd51f198196经典重点题目归纳</a></p>
 <p><a href="https://leetcode-cn.com/problem-list/2cktkvj/">力扣 (leetcode-cn.com)</a></p>
 <p>LeetCode 热题 HOT 100a</p>
@@ -2110,6 +2120,9 @@ for real-time gaze estimation Google 2019ICCVW</p></center>
 <p>给定一个经过学习的特定于人的3D网格模型(章节3.1)，该方法首先通过深度数据估计头部姿态，如章节3.2所述。对应a）离线步。</p>
 <p>然后，使用估计的头部姿势和3D网格，我们将头部图像映射为一个正面姿势，并将结果图像裁剪到每只眼睛周围。</p>
 <p>通过这种方法，我们可以从眼内图像(第3.4节)中估计注视向量，即在头部参考系统中估计眼睛注视。最后将注视方向转换回世界坐标系。</p>
+<blockquote>
+<p>数据收集的缺点是继承了头部姿态跟踪器的误差，存在目标大小引入的不确定性，并且对眼中心进行了近似定义</p>
+</blockquote>
 <h1 id="Proposed-method"><a href="#Proposed-method" class="headerlink" title="Proposed method"></a>Proposed method</h1><h2 id="Face-model-learning"><a href="#Face-model-learning" class="headerlink" title="Face model learning"></a>Face model learning</h2><p>我们决定依靠3D变形模型(3DMM)来生成特定于人的3D面部模板。这些模型(3DMM)使用一组小的系数跨越了大量的面部形状。</p>
 <p>在我们的任务中，我们使用了Basel Face Model (BFM) [12]，这是一个丰富的3DMM人脸模型，由一大群个体构建而成。</p>
 <p>这是一个丰富的 3DMM。由一大群人组成。它有很高的网格密度(53490个顶点)，包括脸、额颈和耳朵。3DMM形状可根据Eq. 1进行变形，其中$x$(模型实例)表示将三维顶点坐标${v_i}$叠加为列向量的集合，$\mu$为平均形状，$M$为形状基。模型参数为向量$α$。</p>
@@ -2128,7 +2141,7 @@ p_t^{-1}=\{R^{T},-R_t^{T}t_t\}</script><p>眼睛的定位是在网格拓扑中�
 <p>相当于人脸做了正面化。</p>
 </blockquote>
 <h3 id="Eye-in-Head-Gaze-estimation"><a href="#Eye-in-Head-Gaze-estimation" class="headerlink" title="Eye-in-Head Gaze estimation"></a>Eye-in-Head Gaze estimation</h3><p>本文主要目标是估计在自由头部运动下的注视方向。然而，由于头部稳定的方法在此基础上，我们将该问题简化为一个正面头部姿态注视估计问题。因此，本文的任务是建立一个眼睛外观模型，从中可以估计注视</p>
-<p>假设有一组眼睛图像和注视向量$\{(I_i,g^h_i)\}$覆盖注视空间。(在第4节中，我们描述了一种收集这些样本的简单方法)。在头部参考系中，注视由角度$g^h_i =  (\varphi _i，\theta_i)$参数化。其中$theta$为注视仰角，$\varphi$为注视偏航。</p>
+<p>假设有一组眼睛图像和注视向量$\{(I_i,g^h_i)\}$覆盖注视空间。(在第4节中，我们描述了一种收集这些样本的简单方法)。在头部参考系中，注视由角度$g^h_i =  (\varphi_i，\theta_i)$参数化。其中$\theta$为注视仰角，$\varphi$为注视偏航角。</p>
 <p>图像描述符$e_i$是通过将眼睛图像划分到一个网格$r×c$中计算出来的。在网格的每个bin $j= (r, c)$处，计算像素强度$S_j$的总和。然后，描述符是所有$S_j$的连接，并将其归一化，使$\sum_je_i^j =1$。因此，外观模型由集合组$\{(e_i,g^h_i)\}$成。使用$r= 3$，$c= 5$，遵循[3]的 方法。</p>
 <blockquote>
 <p>[3]L. Feng, Y . Sugano, O. Takahiro, and Y . Sato. Inferring Human Gaze from Appearance via Adaptive Linear Regression. </p>
@@ -2138,6 +2151,28 @@ p_t^{-1}=\{R^{T},-R_t^{T}t_t\}</script><p>眼睛的定位是在网格拓扑中�
 <p>$\hat{g}^h= \sum_i w_i g^h_i$。</p>
 <p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/gaze_linear_combine.png" alt="image-20220120211130574"></p>
 <p>这种方法被称为自适应线性回归(ALR)，它对$w_i$的解施加了稀疏性。它的成功依赖于${e_i}$足够稀疏。</p>
+<blockquote>
+<p>相当于是把新给定的视线用已经训练的视线线性表示出来，使用特征描述子作为约束。使用L1损失可以有稀疏性。</p>
+</blockquote>
+<h3 id="3D-gaze-estimation"><a href="#3D-gaze-estimation" class="headerlink" title="3D gaze estimation"></a>3D gaze estimation</h3><p>在经过姿势校正的头部正面参考中，估计出的注视方向$\hat{g}^h$可在世界坐标系中转换为注视方向$\hat{v}^w \in  $$R^3$如下所示。</p>
+<p>值得注意的是<strong>注视角参数$\hat{g}^h$</strong>可由指向$(\varphi,\theta)$方向的单位向量$\hat{v}^h \in  $$R^3$表示。</p>
+<p>因此，可以使用估计的头部姿态参数$p_t = \{R_t,t_t\}$来计算$\hat{v}^w = R_t \hat{v}^h$</p>
+<blockquote>
+<p>在头部坐标系中，视线方向可以用三维单位向量表示，也可以用俯仰角和航偏角表示。计算世界坐标系中的视线方向，只需要做一次坐标转换即可。</p>
+</blockquote>
+<hr>
+<h2 id="Gaze-ground-truth-collection"><a href="#Gaze-ground-truth-collection" class="headerlink" title="Gaze ground-truth collection"></a>Gaze ground-truth collection</h2><h3 id="Proposed-setup-and-methodology"><a href="#Proposed-setup-and-methodology" class="headerlink" title="Proposed setup and methodology"></a>Proposed setup and methodology</h3><p>本文提出了一种从Kinect设备中收集地面真实数据的方法。在自由头部运动的情况下，将注视向量$v^w$定义为<strong>视轴</strong>，即从眼球中央凹指向视觉目标的向量(真实的视轴)。</p>
+<p>图2显示了提议的设置。该系统包括一个微软Kinect设备和一个可识别的小物体。在我们的实验中，我们使用了一个4厘米的橙色球。当目标移动时，参与者被要求用眼睛跟随目标。考虑到注视目标在颜色和深度上都是有区别的（RGB，depth模态），可以可靠地跟踪它在每个时刻的3D位置。</p>
+<p>利用头部姿态跟踪器，<strong>将视觉轴近似为从眼球中心到视觉目标估计位置的矢量</strong>。两只眼睛都这么做。<strong>该方法的缺点是继承了头部姿态跟踪器的误差，存在目标大小引入的不确定性，并且对眼中心进行了近似定义</strong>。然而，它<strong>显然是有优势的，因为它提供了一种简单的方法来收集大量的标记数据</strong>，并从中训练和测试我们的方法。</p>
+<p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/setup.png" alt="image-20220121143807596"></p>
+<h3 id="Recorded-data"><a href="#Recorded-data" class="headerlink" title="Recorded data"></a>Recorded data</h3><p>收集了3名参与者用眼睛跟踪目标的视频。对于每个人，使用3.1节中描述的方法学习个性化的头部3D头部模板。此外，为了将场景重构为一个有纹理的3D网格，首先使用校准Kinect传感器。</p>
+<p>每段记录分为两部分。在第一部分中，参与者被要求在跟踪目标时保持头部正面的姿势。参与者没有必要保持一个严格的头部正面姿势，因为假设对于接近头部正面姿势的头部姿势Head stabilization是精确的。其目的是收集无遮挡的眼睛正面图像，建立基于外观的注视模型。</p>
+<p>在记录的第二部分，参与者被要求在用眼睛跟踪视觉目标的同时进行头部自由旋转和平移。高度具有挑战性的头部姿势范围的偏航角度$\varphi$高达±60◦，俯仰值$\theta$高达±50◦。</p>
+<p>对于外观模型的创建，使用了参与者头部正面姿势部分的前半部分。不取所有样本来建立外观模型，而是通过将俯仰值俯仰$\theta$的[−40◦，40◦]和航偏$\varphi$的[−50◦，50◦]区间划分为6$\theta$和7$\varphi$值，在注视空间中定义了一个由42个点组成的网格。</p>
+<p>可以从记录中自动选择注视方向靠近网格点的样本。虽然固定头会话记录约为1.5分钟，但由于只需要少量样本，可以快速创建外观模型。图3a)显示了一个完整的记录过程(头部正面姿势)的计算的注视参数，而图3b)显示了从这个记录过程中获得的网格。</p>
+<p><img src="/2022/01/20/GazeEstimationfromMultimodalKinectData/parameter~grid.png" alt="image-20220121145159632"></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>我们进行了一系列的实验来验证我们的方法。头部姿态跟踪器使用BIWI头部姿态数据库[2]进行验证，我们发现与他们报告的真值(这是使用类似的头部姿态跟踪器获得的)约1◦的偏差。</p>
+<p>正如在第4节中提到的，凝视外观模型是由记录过程中前半部分的头部姿势创建的。使用后半部分record和所有的自由头部姿势的样本作为测试样本。</p>
 <hr>
 <p>本文通过利用多模态的微软Kinect传感器来解决其中的一些问题。更准确地说，我们利用深度传感器对3D网格模型 3D mesh model进行精确跟踪，并稳健地估计一个人的头部姿势。在第二步中，使用了图像模态，一个简单的眼部区域矫正步骤，以及通过Kinect很容易收集到的训练数据，我们计算出一个人对着眼睛的注视方向，这个方向可以简单地添加到头部姿势中，从而产生最终的注视估计。</p>
 <p>这样，尽管目前缺乏一定的处理步骤可以改善结果，如更好的眼睛稳定，我们得到了一个凝视跟踪算法，可以使用不受限制的头部运动，在更开放的条件下比以往的工作。这为凝视评估系统在更开放的空间中工作铺平了道路。在本文的其余部分中，第2节描述了相关工作，第3节介绍了我们的方法，第4节介绍了我们利用Kinect轻松获取训练数据的策略。第5节给出了结果，第6节总结了工作</p>
@@ -2152,5 +2187,13 @@ p_t^{-1}=\{R^{T},-R_t^{T}t_t\}</script><p>眼睛的定位是在网格拓扑中�
 <p>\9)   个人的思考</p>
 <p>简要的评价，任务，方法的简要描述。关注文章的动机。 </p>
 ]]></content>
+      <categories>
+        <category>视线估计</category>
+        <category>试验记录</category>
+      </categories>
+      <tags>
+        <tag>文献阅读</tag>
+        <tag>试验记录</tag>
+      </tags>
   </entry>
 </search>

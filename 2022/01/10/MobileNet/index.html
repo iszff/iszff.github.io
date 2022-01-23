@@ -99,8 +99,14 @@
 <meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/mobile_netv2_structrue.png">
 <meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/invert_residual_io.png">
 <meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/mobilev2_classification.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/mobileNetv3.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/v2_VS_v3.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/mobilev3SE.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/mobileNetv3_last_stage.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/loss_sigmoid_hard_sigmoid.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/MobileNet/MobileNetv3_para.png">
 <meta property="article:published_time" content="2022-01-10T01:45:23.000Z">
-<meta property="article:modified_time" content="2022-01-16T13:10:16.099Z">
+<meta property="article:modified_time" content="2022-01-23T12:21:41.173Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
@@ -440,6 +446,14 @@
 <p><img src="/2022/01/10/MobileNet/mobile_netv2_structrue.png" alt="image-20220110215807021"></p>
 <p><img src="/2022/01/10/MobileNet/invert_residual_io.png" alt="image-20220110220131093"></p>
 <p><img src="/2022/01/10/MobileNet/mobilev2_classification.png" alt="image-20220110220504613"></p>
+<p>解决的问题：发现了ReLU的在通道数较少的Feature Map上有非常严重信息损失问题，由此引入了Linear Bottlenecks和Inverted Residual。</p>
+<h1 id="MobileNet-V3"><a href="#MobileNet-V3" class="headerlink" title="MobileNet V3"></a>MobileNet V3</h1><p><img src="/2022/01/10/MobileNet/mobileNetv3.png" alt="image-20220123172052339"></p>
+<p><img src="/2022/01/10/MobileNet/v2_VS_v3.png" alt="image-20220123173328874"></p>
+<p>SE模块注意力机制：对于特征图的每一个channel进行池化处理，有多少个channel，得到的一维向量就有多少个元素。通过全连接层得到输出向量。对于特征输出每一个channel赋予权重中，觉得比较重要的channel就赋给更大的权重。</p>
+<p><img src="/2022/01/10/MobileNet/mobilev3SE.png" alt="image-20220123173937478"></p>
+<p><img src="/2022/01/10/MobileNet/mobileNetv3_last_stage.png" alt="image-20220123174215220"></p>
+<p><img src="/2022/01/10/MobileNet/loss_sigmoid_hard_sigmoid.png" alt="image-20220123195318597"></p>
+<p><img src="/2022/01/10/MobileNet/MobileNetv3_para.png" alt="image-20220123201156057"></p>
 
       
     </div>
@@ -636,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet"><span class="nav-number">1.</span> <span class="nav-text">MobileNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#depth-wise-separable-convolutions"><span class="nav-number">1.1.</span> <span class="nav-text">depth-wise separable convolutions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.3.</span> <span class="nav-text">Introduction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks"><span class="nav-number">2.</span> <span class="nav-text">MobileNetV2: Inverted Residuals and Linear Bottlenecks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet"><span class="nav-number">1.</span> <span class="nav-text">MobileNet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#depth-wise-separable-convolutions"><span class="nav-number">1.1.</span> <span class="nav-text">depth-wise separable convolutions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.3.</span> <span class="nav-text">Introduction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks"><span class="nav-number">2.</span> <span class="nav-text">MobileNetV2: Inverted Residuals and Linear Bottlenecks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet-V3"><span class="nav-number">3.</span> <span class="nav-text">MobileNet V3</span></a></li></ol></div>
             
 
           </div>
