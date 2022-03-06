@@ -89,6 +89,8 @@
 <meta property="og:description" content="2018 TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS Dongze Lian, Lina Hu, Weixin Luo, Y anyu Xu, Lixin Duan, Jingyi Y u,Member , IEEE, and Shenghua Gao.  (1) 评价：基于深度卷积神经网络的多视图多任务注视估计 (2)  针对问题：">
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/multiview_structrue.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/gaze_point_depend.png">
+<meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/relationship_between_direction_point.png">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/data_collect.png">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/mmcodeStruct.png">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/eye_location.png">
@@ -101,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/STpy_101th_row.png">
 <meta property="og:image" content="http://yoursite.com/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/reslut.png">
 <meta property="article:published_time" content="2021-11-07T01:52:13.000Z">
-<meta property="article:modified_time" content="2022-01-04T13:44:06.025Z">
+<meta property="article:modified_time" content="2022-03-06T13:52:00.646Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="实验记录">
 <meta name="twitter:card" content="summary">
@@ -438,6 +440,17 @@
 <p>四流输入、四流输出？怎么共享参数?</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz">https://datasets.d2.mpi-inf.mpg.de/MPIIGaze/MPIIGaze.tar.gz</a></p>
+<p>使用多视角相对于单视角的好处：</p>
+<p>对于基于外观的凝视跟踪，许多以前的工作[5]、[7]试图使用单视图相机收集数据。它们中的大多数要么固定头部姿势，要么忽略不同对象眼睛与屏幕目标之间的深度信息。如图1所示，眼睛在三维坐标系中的位置O和凝视方向$g_l=(x,y,z)$都决定了凝视点在二维平面中的位置$g_p=(x_p,y_p)$。</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/gaze_point_depend.png" alt="image-20220306205314947"></p>
+<blockquote>
+<p>注视点位置取决于注视方向和眼睛位置。O是眼睛在三维坐标系中的位置，$g_l^C$、$g_r^C$是左眼和右眼的注视方向，$g_p$是二维注视点，$v$是从左眼到右眼的向量</p>
+</blockquote>
+<p>在相同的注视方向下，即使眼睛的轻微深度变化也很容易导致较大的估计偏差。然而，单视图相机无法很好地估计眼睛的深度。因此，在大多数单视图凝视跟踪系统中，受试者必须调整头部姿势，以确保他们的眼睛能被相机捕捉并确定深度。然而，这样的限制会损害用户体验。</p>
+<p>幸运的是，<strong>眼睛和屏幕之间的深度可以从多视图图像</strong>中推断出来。</p>
+<p>1.因此，我们建议利用多视点相机捕捉的图像进行更好的视线跟踪，这样的多视点相机系统间接地引入了深度信息进行视线跟踪。</p>
+<p>2.之前的工作[8]，[9]已经表明，多视图学习将利用来自不同视图的数据来学习更健壮的表示，具有更好的泛化能力。在凝视跟踪应用中，与基于单视图的凝视跟踪相比，多视图相机放松了对参与者头部姿势的约束。</p>
+<p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/relationship_between_direction_point.png" alt="image-20220306214227580"></p>
 <h1 id="数据集ShanghaiTechGaze"><a href="#数据集ShanghaiTechGaze" class="headerlink" title="数据集ShanghaiTechGaze"></a>数据集ShanghaiTechGaze</h1><p><img src="/2021/11/07/Multiview-Multitask-Gaze-Estimation-With-Deep-Convolutional-Neural-Networks/data_collect.png" alt="image-20211112160847091"></p>
 <p>设备：使用27英寸的苹果iMac机器作为显示设备。屏幕的宽/高分别为59.77厘米和33.62厘米。然后，屏幕底部部署了三台GoPro Hero 4相机，以捕捉参与者的图像。两台相邻摄像机之间的距离为18.22厘米。</p>
 <p>环境：然后，在正常照明条件下，将系统固定在房间的书桌上。为了避免其他移动的物体/人或噪音造成的干扰，房间内保持安静和空无一人，只有一名待命助手除外。</p>
@@ -516,6 +529,9 @@
 </blockquote>
 <hr>
 <p><a target="_blank" rel="noopener" href="https://github.com/dongzelian/multi-view-gaze">dongzelian/multi-view-gaze: Multi-view gaze estimation (github.com)</a></p>
+<blockquote>
+<p>todo:多视角怎么bp</p>
+</blockquote>
 
       
     </div>
