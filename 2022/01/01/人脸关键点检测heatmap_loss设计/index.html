@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/32_Worker_Laborer_Worker_Laborer_32_600_2499.jpg">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/WFLWdataset.png">
 <meta property="article:published_time" content="2022-01-01T02:29:59.000Z">
-<meta property="article:modified_time" content="2022-01-24T11:02:38.594Z">
+<meta property="article:modified_time" content="2022-05-26T13:16:12.374Z">
 <meta property="article:author" content="iszff">
 <meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
@@ -467,9 +467,9 @@ H(x,y)=\frac{1}{1+min_{s_i}||(x,y)-s_i||}</script><p>$H$是热图，$s_i$是第i
 </li>
 <li><p>不同loss对于大梯度和小梯度误差影响力分析以及连续性分析</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/loss_grad.png" alt="image-20220101204052130"></p>
-<p>a. 常用于热图回归的均方误差损失函数。均方误差损失的梯度是线性的，因此误差小的像素影响小。该属性可能导致训练收敛，而许多像素仍有小误差。因此，用均方误差损失训练的模型倾向于预测模糊和扩大的热图。</p>
+<p>a. 常用于热图回归的均方误差损失函数。均方误差损失的梯度是线性的，<strong>因此误差小的像素影响小</strong>。该属性可能导致<strong>训练收敛</strong>，而许多像素仍有小误差。因此，用均方误差损失训练的模型倾向于<strong>预测模糊和扩大的热图</strong>。</p>
 <p>b. L1loss具有恒定的梯度，因此误差小的像素与误差大的像素具有相同的影响。然而，L1损失的梯度在零点不是连续的，具有正误差的像素的数量必须恰好等于具有负误差的像素的数量。</p>
-<p>c.当误差较大时具有恒定梯度，当误差较小时具有大梯度的wing损失。因此，误差小的像素将被放大。</p>
+<p>c.当误差较大时具有恒定梯度，当误差较小时具有大梯度的wing损失。因此，<strong>误差小的像素将被放大</strong>。</p>
 <p>仍然不能克服其梯度在零点时的不连续性。不适用于热图回归。</p>
 <p>因为在所有背景像素上计算wing损失，背景像素上的小误差具有不成比例的影响。训练一个在这些像素上输出零或小梯度的神经网络是非常困难的。</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/wingloss.png" alt="image-20220101204617486"></p>
@@ -487,11 +487,22 @@ H(x,y)=\frac{1}{1+min_{s_i}||(x,y)-s_i||}</script><p>$H$是热图，$s_i$是第i
 </ol>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/AdaptiveWingLoss.png" alt="image-20220104205005454"></p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/keep_continus_const.png" alt="image-20220101210329410"></p>
-<p>​    损耗函数在零点平滑。</p>
+<p>​    损失函数在零点平滑。</p>
 <ol>
 <li><p>区分前后景像素</p>
 <p>在具有64 × 64热图和7×7高斯大小的面部标志定位的典型设置中，前景像素仅构成所有像素的1.2%。为这种不平衡的数据分配相同的权重可能会使训练过程收敛缓慢，从而导致较差的性能。为了进一步建立网络聚焦前景像素和困难背景像素(接近前景像素的背景像素)的能力，引入加权损失图来平衡不同类型像素的损失。前景像素和困难背景像素1，其他像素0。</p>
 <p><img src="/2022/01/01/%E4%BA%BA%E8%84%B8%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8Bheatmap_loss%E8%AE%BE%E8%AE%A1/back_front_distinguish.png" alt="image-20220101210634320"></p>
+<blockquote>
+<p>网络直接回归出热图，从热图中得出关键点。</p>
+<p>使用热图的好处：</p>
+<p>1.相比于fc回归出位置，cnn输出heatmap，cnn由于参数共享的性质，相比于fc有更好的泛化性能。</p>
+<p>2.heatmap同样捕捉了前景（关节点）与背景的对比关系，同样可以用来指导网络进行学习。</p>
+<p>3.很多任务中，目标点其实很难准确的被某一个像素位置定义的，也就很难被准确的标注。目标点附近的点其实也很像目标点，我们直接将其标为负样本，可能给网络的训练带来干扰，将其用高斯函数做一个<strong>“软标注</strong>”，网络也就更好收敛。</p>
+<ol>
+<li>加上高斯图，也能够给网络的训练增加一个方向性的引导，距离目标点越近，激活值越大，这样网络能有方向的去快速到达目标点。</li>
+</ol>
+</blockquote>
+<p>在低分辨率的图片中此方法相比于与其他方法，使用热图可以跟好的捕捉前景和后景的关系，类似于更加关注图片中锐化的信息，可能是比较明显的角点信息。</p>
 </li>
 </ol>
 <h2 id="adapt-wing-loss论文测试效果"><a href="#adapt-wing-loss论文测试效果" class="headerlink" title="adapt_wing_loss论文测试效果"></a>adapt_wing_loss论文测试效果</h2><p><em>此论文只给了测试代码以及预训练好的模型</em></p>
@@ -630,7 +641,7 @@ H(x,y)=\frac{1}{1+min_{s_i}||(x,y)-s_i||}</script><p>$H$是热图，$s_i$是第i
 		    
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

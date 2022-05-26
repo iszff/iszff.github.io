@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iszff" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="[2015IEEEtransaction in  multimedia]Deep_Head_Pose_Gaze-Direction_Estimation_in_Multimodal_Video.pdf  我想找到哪个有b。。的gaze数据集  [2015IJCV]Gaze Estimation in the 3D Space Using RGB-D sensors.pdf针对问题：1.与以往大多数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rgbd_gaze_paper_read">
+<meta property="og:url" content="http://yoursite.com/2022/04/09/rgbd-gaze-paper-read/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="[2015IEEEtransaction in  multimedia]Deep_Head_Pose_Gaze-Direction_Estimation_in_Multimodal_Video.pdf  我想找到哪个有b。。的gaze数据集  [2015IJCV]Gaze Estimation in the 3D Space Using RGB-D sensors.pdf针对问题：1.与以往大多数">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-04-09T03:41:00.000Z">
+<meta property="article:modified_time" content="2022-04-10T06:40:28.885Z">
+<meta property="article:author" content="iszff">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/04/09/rgbd-gaze-paper-read/"/>
+
+
+
+
+
+  <title>rgbd_gaze_paper_read | iszff' Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/09/rgbd-gaze-paper-read/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rgbd_gaze_paper_read</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-09T11:41:00+08:00">
+                2022-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[2015IEEEtransaction in  multimedia]Deep_Head_Pose_Gaze-Direction_Estimation_in_Multimodal_Video.pdf</p>
+<blockquote>
+<p>我想找到哪个有b。。的gaze数据集</p>
+</blockquote>
+<h1 id="2015IJCV-Gaze-Estimation-in-the-3D-Space-Using-RGB-D-sensors-pdf"><a href="#2015IJCV-Gaze-Estimation-in-the-3D-Space-Using-RGB-D-sensors-pdf" class="headerlink" title="[2015IJCV]Gaze Estimation in the 3D Space Using RGB-D sensors.pdf"></a>[2015IJCV]Gaze Estimation in the 3D Space Using RGB-D sensors.pdf</h1><h2 id="针对问题："><a href="#针对问题：" class="headerlink" title="针对问题："></a>针对问题：</h2><p>1.与以往大多数仅限于屏幕凝视的应用的工作不同，解决了传感器在三维环境中的三维视线估计问题。</p>
+<p>2.解决由于使用传感器而导致的眼睛图像的低分辨率问题。</p>
+<blockquote>
+<p>可以看完这篇后看一下引出的matrix。</p>
+</blockquote>
+<h2 id="评价："><a href="#评价：" class="headerlink" title="评价："></a>评价：</h2><p>1.针对问题1，</p>
+<p>a）利用RGB-D相机的深度数据执行精确的头部姿势跟踪，</p>
+<p>b）通过3D校正过程获取头部姿势不变性，该过程将头部姿势相关的眼睛图像渲染成标准视点，并计算3D空间中的视线。</p>
+<p>2.针对问题2，依赖基于外观的<strong>凝视估计范式</strong>，该范式已证明对低分辨率这一因素具有鲁棒性。</p>
+<p>3.在文章中提出的框架内对于基于外观的策略进行了比较。研究了这些方法对于不属于数据集中的新个体的算法推理表现。在公共数据集上进行大量视线估计的实验，并且把算法应用于面试过程。</p>
+<p>解决了在不同头部姿势和用户使用remote RGB-D相机时基于外观的凝视估计问题。</p>
+<h2 id="深度传感器的好处"><a href="#深度传感器的好处" class="headerlink" title="深度传感器的好处"></a>深度传感器的好处</h2><p>基于appearance的视线估计。眼睛外观因用户、头部姿势、照明条件、图像分辨率和对比度、眼睑形状和运动、镜面反射、运动模糊、自遮挡等而不同。</p>
+<p>仅从视觉域（RGB）推断形状信息仍然困难且成本高昂。深度传感器提供了场景形状的明确和可靠的测量，而不是嵌入RGB数据中的隐式形状信息。</p>
+<h2 id="方法简介"><a href="#方法简介" class="headerlink" title="方法简介"></a>方法简介</h2><p>得益于消费者RGBD传感器，将眼睛外观校正为标准的头部姿势视点。依赖于深度信息来执行头部姿势的精确跟踪，并根据估计的头部姿势对眼睛纹理进行深度驱动的扭曲。传感器提供的原始深度信息，或由拟合的3D变形模型（3DMM）产生的眼球表面深度。</p>
+<p>校正框架的主要优点是将头部姿势不变性引入现有的基于外观的凝视估计方法中。</p>
+<p>为了解决眼睛区域裁剪和对齐问题，这是避免视线估计偏差的关键步骤，提出了一种使用同步对齐对眼部进行更精细剪裁的新方法。并表明该方法适用于几种最新的基于用户独立外观的方法。尽管输入眼睛图像的分辨率较低，注视方向范围较大，姿势变化较大，但仍获得了令人满意的结果。</p>
+<h2 id="一些别的方法介绍"><a href="#一些别的方法介绍" class="headerlink" title="一些别的方法介绍"></a>一些别的方法介绍</h2><p>Funes Mora和Odobez（2012）建议使用深度数据将眼睛外观校正为标准的头部视点，爱格等人（2014）后来使用了这种方法，该方法依赖于与2D图像相匹配的3D人脸模型，而不是深度数据。</p>
+<h1 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h1><h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>我们解决了传感器在三维环境中的三维视线估计问题，这对于人与人的交互和人机交互的应用都非常有价值。与以往大多数仅限于屏幕凝视的应用的工作不同，我们建议利用RGB-D相机的深度数据执行精确的头部姿势跟踪，通过3D校正过程获取头部姿势不变性，该过程将头部姿势相关的眼睛图像渲染成标准视点，并计算3D空间中的视线。</p>
+<p>为了解决由于使用传感器而导致的眼睛图像的低分辨率问题，我们依赖基于外观的凝视估计范式，该范式已证明对该因素具有鲁棒性。在此背景下，我们在我们的框架内对最近基于外观的策略进行了比较研究，研究了这些方法对不可见个体的推广，并提出了一种基于<strong>凝视同步眼睛图像直接配准的跨用户眼睛图像对齐技术</strong>。我们通过在一个公共数据集上进行的大量凝视估计实验以及应用于自然工作面试的凝视编码任务，证明了我们方法的有效性。</p>
+<h2 id="1-introduction"><a href="#1-introduction" class="headerlink" title="1.introduction"></a>1.introduction</h2><h3 id="1-1-Motivations"><a href="#1-1-Motivations" class="headerlink" title="1.1 Motivations"></a>1.1 Motivations</h3><ul>
+<li>视线估计的好处和应用。互动，广告啥的。</li>
+<li>rgb有各种模糊问题</li>
+<li>ir或者头戴式设备贵</li>
+<li>depth提供了形状信息，有帮助</li>
+<li>深度对于头部位姿估计有帮助，这是却似那个注视方向之前必要的步骤。凝视本身需要标准的视觉测量来根据眼睛图像确定眼睛方向，需要解决的最重要的挑战是，在考虑不限制用户移动的应用时，由于头部姿势、用户和低眼睛图像分辨率而导致的眼睛外观变化。</li>
+</ul>
+<p> 在过去，人们一直致力于设计自动注视估计解决方案，从而产生了根据传感器不同而不同的方法技术和原理：从高度侵入性的电子眼图到更灵活的视频眼图，即依靠视频输入的凝视跟踪（Hansen和Ji，2010）。尽管后者具有更高的实际应用潜力，但它需要应对重大挑战。尤其是，眼睛外观因用户、头部姿势、照明条件、图像分辨率和对比度、眼睑形状和运动、镜面反射、运动模糊、自遮挡等而不同。</p>
+<p>为了克服其中一些挑战，许多凝视估计系统，尤其是市场上现成的系统，依赖于专门的硬件，如头戴式摄像机和/或红外（IR）设置。前者的优点是捕捉标准化的眼睛图像，即使用单一比例和视点。然而，在许多应用中，<strong>头戴式传感器仍然被认为是侵入式的</strong>。红外设置得益于<strong>明亮/黑暗的瞳孔效应和校准红外光源在角膜中的反射</strong>。然而，它需要高分辨率成像和可能昂贵的红外硬件。因此，就硬件可用性、成本和应用而言，基于自然光的远程传感器方法仍然是最佳选择。然而，在使用消费相机时，上述许多挑战远未得到解决。</p>
+<p>然而，<strong>廉价深度传感器的出现可能有助于解决这些挑战</strong>。事实上，在最近的过去，这种传感器使研究人员能够处理已知的仅基于标准视觉的高度挑战性问题（Murphy Chutorian和Trivedi，2008），例如身体姿势估计（Shotton等人，2011）或面部表情识别（Weise等人，2011）。通过深度（D），<strong>这些传感器提供了场景形状的明确和可靠的测量，而不是嵌入RGB数据中的隐式形状</strong>信息。请注意，仅从视觉域（RGB）推断形状信息仍然困难且成本高昂（Barron and Malik，2013）。</p>
+<p>因此，深度传感能够在进一步的处理阶段使用形状信息。特别是，深度数据对于准确的头部姿势估计是有价值的（Fanelli等人，2011；Weise等人，2011），这是确定注视方向之前的必要步骤。另一方面，凝视本身需要标准的视觉测量来根据眼睛图像确定眼睛方向，需要解决的最重要的挑战是，在考虑不限制用户移动的应用时，由于头部姿势、用户和低眼睛图像分辨率而导致的眼睛外观变化。在这方面，图2示出了与其他作品中考虑的更高分辨率图像相比，使用Kinect获得的眼睛图像。</p>
+<h3 id="1-2-Approach-and-contributions"><a href="#1-2-Approach-and-contributions" class="headerlink" title="1.2 Approach and contributions"></a>1.2 Approach and contributions</h3><p>我们解决了在不同头部姿势和用户使用remote RGB-D相机时基于外观的凝视估计问题。一个主要贡献是提出了一种方法，该方法得益于消费者RGBD传感器，将眼睛外观校正为标准的头部姿势视点。这依赖于深度信息来执行头部姿势的精确跟踪，并根据估计的头部姿势对眼睛纹理进行深度驱动的扭曲；传感器提供的原始深度信息，或由拟合的3D变形模型（3DMM）产生的眼球表面深度。</p>
+<p>校正框架的主要优点是将头部姿势不变性引入现有的基于外观的凝视估计方法中。在此背景下，我们评估了针对特定用户和独立用户的最新模型的性能。特别是，为了解决眼睛区域裁剪和对齐问题，这是避免视线估计偏差的关键步骤，我们提出了一种使用同步对齐方法的新方法。</p>
+<p>在一个公共数据库上进行的广泛评估显示，16名用户在固定或移动头部姿势下执行两种类型的任务（看屏幕，更具挑战性的是看3D空间中的目标），所提出的方法取得了令人满意的结果。我们的方法的有效性在一个应用于工作面试交互数据的凝视编码任务中得到了进一步证明。</p>
+<p>本文的结构如下。第2节讨论了相关工作。</p>
+<p>第3节描述了基于头部姿势不变外观的凝视估计框架。</p>
+<p>第4节简要介绍了适合这种情况的凝视-外观方法。</p>
+<p>第5节描述了获取用户不变性的扩展。凝视估计数据和实验方案见第6节，结果见第7节。</p>
+<p>第8节介绍了自动凝视编码任务的实验。</p>
+<p>第9节讨论了限制和未来的工作。</p>
+<p>最后，第10节总结了这项工作。</p>
+<h2 id="2-Related-work"><a href="#2-Related-work" class="headerlink" title="2.Related work"></a>2.Related work</h2><h3 id="Geometric-based-methods"><a href="#Geometric-based-methods" class="headerlink" title="Geometric based methods."></a>Geometric based methods.</h3><p>30多年来，人们对凝视的自动估计进行了充分的研究，Hansen和Ji（2010）对此进行了详细的描述。确定了两种主要策略：基于几何和基于外观的方法。</p>
+<p>基于几何的方法。它们依赖于映射到凝视参数的局部特征的检测。大多数方法都需要一次校准来收集带注释的样本。这些参数用于确定描述眼球几何结构的用户特定参数，或直接映射到关注点。这类技术中最精确的技术依赖于红外照明和传感。这会导致明暗瞳孔效应，并在角膜表面产生镜面反射，称为闪光。然后可以从瞳孔中心和角膜反射位置推断凝视方向（Guestrin和Eizenman，2006）。这些方法使用多个红外光源实现头部姿势不变性。然而，需要专门且昂贵的红外硬件。</p>
+<p>在自然光照条件下，许多建议还利用眼睛的局部特征来建立眼睛的几何模型。可以使用虹膜中心（Timm和Barth，2011；Valenti和Gevers，2012）、瞳孔/虹膜上的椭圆（Li等人，2005），甚至包括眼睑的复杂形状（Yuille等人，1992）或全眼区域（Moriyama和Cohn，2004）。例如，为消费者RGB-D传感器面部运动捕捉而设计的商用系统faceshift1利用这一原理进行眼睛跟踪。</p>
+<p>在之前的工作中，Ishikawa等人（2004年）依靠虹膜椭圆拟合，通过仔细的校准协议从中找到眼球几何参数。然后使用该模型在测试时通过椭圆拟合计算凝视。Yamazoe等人（2008年）提出了类似的策略，减少了校准时间。椭圆拟合也被使用，但从基于阈值的眼睛区域的先验分割中获得。</p>
+<ul>
+<li>最近的方法对RGB-D数据应用了类似的策略。Jianfeng和Shigang（2014）基于虹膜中心定位和微软Kinect SDK的头部姿势跟踪器推断凝视。眼球中心在校准过程中被细化，而眼球的其他参数是固定的。Xiong等人（2014）使用了相同的传感器，但依靠椭圆拟合和面部地标进行三维头部姿势跟踪，并建立了特定于人的面部地标位置模型。他们的校准方法可以推断出额外的眼球参数。然而，在这两种情况下，Kinect都配置为1280×960的最高RGB分辨率，以允许本地功能追踪。此外，评估的注视方向范围较小，头部姿势变化最小。</li>
+<li>然而，以前的方法的一个重要限制是需要检测局部特征，这需要高分辨率和高对比度的图像。</li>
+</ul>
+<h3 id="Appearance-based-methods"><a href="#Appearance-based-methods" class="headerlink" title="Appearance based methods."></a>Appearance based methods.</h3><p>通过建模从整个眼睛图像到凝视参数的直接映射（Baluja和Pomerleau，1994年；Tan等人，2002年；Funes Mora和Odobez，2012年；Lu等人，2011年；Martinez等人，2012年；Sugano等人，2008年；Noris等人，2011年），这些方法避免了繁琐的局部特征跟踪，为低分辨率凝视感知提供了可能。</p>
+<p>作为一项开创性的工作，Baluja和Pomerleau（1994）依靠神经网络，但需要数千个训练样本来减少注视估计误差。Tan等人（2002）使用局部注视外观流形的线性插值，这也需要大量的训练集。Williams等人（2006）提出了一种半监督稀疏高斯过程回归（S3GPR）方法，通过利用弱标记样本来减少所需的训练样本。</p>
+<p>类似地，Sugano等人（2008年）建议利用用户-计算机交互痕迹作为局部线性插值方法中的训练数据，该方法依赖于基于头部姿势的样本的先验聚类。为了避免线性插值之前的局部流形选择，Lu等人（2011）建议在对所有样本进行插值时使用稀疏性。他们报告说，即使对于低分辨率的图像，也有很高的精确度，但这些图像是在同一个过程中人工创建的，这种方法需要使用下巴托固定头部姿势。这些作者后来在他们的框架内集成了眨眼检测和改进的亚像素对齐方法（Lu等人，2014b）。他们的整体方法允许在低分辨率和轻微头部运动的情况下估计凝视(≈静态），因此不需要下巴休息。</p>
+<p>Noris et al（2011）提出使用叠加的眼睛图像像素作为外观特征向量来训练支持向量回归（SVR）模型，首先对其进行预处理以处理光照变化。或者，Martinez等人（2012年）建议使用多层次的定向梯度直方图（mHoG）（Dalal和Triggs，2005年）作为外观特征来训练SVR或相关向量回归（RVR）模型。其优点是，与基于强度的特征相比，HoG可以更好地应对光照变化。然而，在这两种情况下，这些方法都是针对头戴式摄像机提出的，即单视点。</p>
+<p>尽管基于外观的方法对图像分辨率具有鲁棒性，但它们存在泛化问题。以前的工作很少涉及<strong>头部姿势不变性</strong>，所有这些方法都是在同一个人身上训练和测试的。</p>
+<blockquote>
+<p>什么是头部姿势不变性。</p>
+</blockquote>
+<p>为了解决头部姿势的变化，Lu等人（2014a）提出了一种基于GPR的头部姿势引起的凝视参数偏差校正方法。或者，他们建议使用单姿势凝视外观模型和来自不同头部姿势的几个样本，以扭曲从测试视点（头部姿势）看到的已知集合（Lu等人，2012年）。然而，总的来说，这些方法仍然需要额外的训练数据和复杂的模型来捕捉头部姿势相关的外观变化。</p>
+<p>在另一个方向上，Funes Mora和Odobez（2012）建议使用深度数据将眼睛外观校正为标准的头部视点，爱格等人（2014）后来使用了这种方法，该方法依赖于与2D图像相匹配的3D人脸模型，而不是深度数据。</p>
+<p>良好的眼部图像定位（或对齐）是实现高性能的重要步骤，因为它直接影响到在回归方法中进一步使用的眼部特征向量的提取。然而，这个问题并没有受到太多关注。主要原因是，在使用用户和单会话相关模型（或姿态变化较小）时，假设使用单裁剪，这通常对所有数据点保持一致。在许多情况下，这一步骤假定是手动完成的（Martinez等人，2012年；Lu等人，2011年；Sugano等人，2014年）。或者，可以使用欧姆龙软件Omron software实现自动眼角检测方法（Schneider等人，2014），但通常需要高分辨率图像。</p>
+<h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions."></a>Contributions.</h3><p>我们的目标是解决3D空间中的remote凝视估计问题，在不需要进一步训练的情况下，在处理大范围注视方向的同时，适应用户比较大3D运动和头部姿势。除了传统的屏幕注视案例外，这种公式允许将凝视技术自然地应用于更多样化的HHI（人类-人类交互）或HRI场景。据我们所知，上述基于表象范式的作品，无论是在方法上还是在经验上，都没有获得这些特征。实际上，很少有方法能同时处理头部姿势和用户不变性。请注意，虽然以前一些专门用于2D屏幕观察的方法可以修改以处理3D情况，但它们通常会修改为至少需要头部姿势估计和一个框架来处理头部姿势的变化。这就是我们在本文中提供的内容。</p>
+<p>为此，我们进一步开发了头部姿势不变性框架，该框架是为使用RGB-D相机（Funes Mora和Odobez，2012）的基于外观的方法设计的，该框架依赖于将眼睛区域的外观三维校正为标准视点，以解决姿势不变性问题。我们研究了两种校正方法，进一步提出了一种对眼睛图像进行更精细裁剪的对齐方法，并表明该方法适用于几种最新的基于用户独立外观的方法。尽管输入眼睛图像的分辨率较低，注视方向范围较大，姿势变化较大，但仍获得了令人满意的结果。</p>
+<h2 id="3-Head-pose-invariant-gaze-estimation"><a href="#3-Head-pose-invariant-gaze-estimation" class="headerlink" title="3 . Head pose invariant gaze estimation"></a>3 . Head pose invariant gaze estimation</h2><p>在本节中，我们将介绍<strong>基于头部姿势不变外观的凝视估计的3D校正方法</strong>。我们首先介绍整体方法，然后详细介绍整改过程中涉及的不同步骤。</p>
+<h3 id="3-1-Approach-overview"><a href="#3-1-Approach-overview" class="headerlink" title="3.1 Approach overview"></a>3.1 Approach overview</h3><p>我们方法的主要原理是利用校准的RGB-D输入数据，<strong>将眼睛图像校正为标准（正面）头部视点和比例，而不考虑实际头部姿势，然后在该标准视图中估计凝视。</strong></p>
+<p>该过程中涉及的不同步骤如图3所示。首先，为了获得准确的头部姿势，</p>
+<p>我们假设用户特定的3D模型可用。目前，该模型是在离线步骤中学习的。然后，在在线阶段，建议的方法包括以下步骤：</p>
+<ol>
+<li>在每个时间步长t，估计3D头部位置$P_t $。</li>
+<li>根据输入的RGB-D数据和估计的头部姿势，将面部区域校正为正面视图，从而生成<strong>每只眼睛的渲染图像$I^R$。然后应用眼睛对齐步骤以裁剪眼睛区域$I^C$</strong>。</li>
+<li>头部坐标系中的凝视方向$v^h$由$I^C$估计。它使用姿势$p_t$映射回世界坐标系（WCS），并与眼球中心一起使用，以定义视线（LoS） gaze line of sight (LoS)。</li>
+</ol>
+<blockquote>
+<p>看一下怎么对齐</p>
+</blockquote>
+<h3 id="3-2-3D面部模板创建"><a href="#3-2-3D面部模板创建" class="headerlink" title="3.2 3D面部模板创建"></a>3.2 3D面部模板创建</h3><p>我们建议通过将3D变形模型（3DMM）与输入数据相匹配来创建用户特定的3D人脸模板。这种3DMM的优点是能够使用相对较小的系数集生成多种可能的面部形状（即特定于人的面部形状）。这些系数可以从几个面部实例中找到给定对象的系数。</p>
+<h3 id="3-3-Head-pose-and-eyes-tracking"><a href="#3-3-Head-pose-and-eyes-tracking" class="headerlink" title="3.3 Head pose and eyes tracking"></a>3.3 Head pose and eyes tracking</h3><p>在在线阶段，我们现在可以通过将特定于人的模板网格注册到深度数据来跟踪头部姿势。为此，我们使用带有点到平面约束的ICP算法，并找到Frame的姿势参数。</p>
+<p>用最近邻算法找到当前头部姿态和正面人头template之间的旋转矩阵和平移矩阵。</p>
+<p>在该步骤结束时，对于每个时间t，3D眼球位置在世界坐标系中的可以用旋转和平移参数计算。眼球中心位置可以自动根据3DMM语义生成。</p>
+<h3 id="3-4-Eye-appearance-pose-rectification-and-alignment眼睛外观姿势矫正和对齐"><a href="#3-4-Eye-appearance-pose-rectification-and-alignment眼睛外观姿势矫正和对齐" class="headerlink" title="3.4 Eye appearance pose-rectification and alignment眼睛外观姿势矫正和对齐"></a>3.4 Eye appearance pose-rectification and alignment眼睛外观姿势矫正和对齐</h3><h4 id="Rectification"><a href="#Rectification" class="headerlink" title="Rectification"></a>Rectification</h4><p>头部姿势不变性的关键步骤是将面部纹理矫正为标准头部姿势，具体操作如下。给定时间t人脸图像的纹理3D网格（即，每个3D点都与RGB颜色关联的网格），我们在应用刚性变换后对其进行渲染。与估计的头部姿势相反，生成正面人脸图像。作为纹理网格，我们考虑了两种可能性。</p>
+<ol>
+<li>data-driven mesh：数据驱动网格（DDM），通过将RGB纹理映射到从传感器的D通道构建的原始深度网格来获得。</li>
+<li>以及模板驱动网格template-driven mesh（TDM），由纹理映射产生适合的人是特定的3DMM, </li>
+</ol>
+<p>请注意，校正不需要事先了解用户的外观，仅假设校准足够精确，可以将RGB数据绑定到网格曲面。</p>
+<p>两种方法各有优缺点（校正样本见图6）。我们可以期望从TDM获得更好的精度，但这会受到来自深度通道的所有类型的传感器噪声的影响，如测量噪声或由于传感问题而缺少数据（例如，当距离传感器太近时，请参见实验部分）。模板方法（取决于3DMM拟合质量）为实际用户眼睛3D曲面提供了更宽松的拟合，但为矫正和正面渲染提供了更平滑的曲面。</p>
+<h4 id="Eye-Alignment"><a href="#Eye-Alignment" class="headerlink" title="Eye Alignment"></a>Eye Alignment</h4><p>该步骤如图3e-f）所示。由于校正，我们可以提取眼睛区域周围的图像，从中可以在预定义窗口内提取更精确的眼睛图像，位置由眼球中心定义。</p>
+<p>原则上，由于3DMM拟合，如果不考虑头部姿势跟踪误差，<strong>该窗口应捕捉不同用户的同一部分眼睛</strong>。然而，由于影响3DMM拟合精度的不确定性，或眼球定位中的自然人类变化，其与面部特征（例如，眼角）的位置不完全相关，这可能不是这种情况，如图14所示。</p>
+<blockquote>
+<p>人脸正面化后，剪裁出同一个区域，应该是获得统一区域的眼睛。</p>
+</blockquote>
+<p>为了解决这个问题，使用一组小样本为每个用户学习对齐变换的参数θ，如第5.2节中更精确地解释的。</p>
+<p>它们用于将Window $W$转换为对齐的Window$W^A$，从而定义图像$I^R$,实际裁剪的图像$I^C$会进一步被处理。</p>
+<h4 id="3-5-Gaze-estimation"><a href="#3-5-Gaze-estimation" class="headerlink" title="3.5 Gaze estimation"></a>3.5 Gaze estimation</h4><p>姿势矫正和对齐的裁剪眼睛成像用于使用回归估计器估计注视方向。由于这些图像是标准化的，所以可以使用任何标准方法，我们将重点介绍最新的基于外观的方法（ABM），这些方法将在第4节中详细介绍。</p>
+<p>凝视估计器的输入是图像，输出是凝视方向，由凝视偏航角和俯仰角参数化，或等效地由3D矢量$V^h∈R^3$在头部坐标系中定义。该矢量可以转换为WCS系统，并与眼睛中心$O^{WCS}$一起使用，以将视线line of sight（WCS中的3D光线）定义为：</p>
+<h2 id="4-Appearance-based-gaze-estimation-methods"><a href="#4-Appearance-based-gaze-estimation-methods" class="headerlink" title="4 Appearance based gaze estimation methods"></a>4 Appearance based gaze estimation methods</h2><h2 id="5-Person-invariant-gaze-estimation"><a href="#5-Person-invariant-gaze-estimation" class="headerlink" title="5 Person invariant gaze estimation"></a>5 Person invariant gaze estimation</h2><p>在本节中，我们将讨论人物不变性问题，我们将其表示为测试对象没有可用的训练数据，以便学习从外表到凝视的回归模型。在第5节。1我们描述了如何学习第4节中不同凝视模型的人物不变分类器。然后，在第5节。2.我们解决了跨用户眼睛图像对齐问题。</p>
+<h3 id="5-1-Person-invariant-classifier"><a href="#5-1-Person-invariant-classifier" class="headerlink" title="5.1 Person invariant classifier"></a>5.1 Person invariant classifier</h3><h3 id="5-2-Alignment"><a href="#5-2-Alignment" class="headerlink" title="5.2 Alignment"></a>5.2 Alignment</h3><p>当组合来自不同用户的数据时，一个问题是，图像裁剪是从提议的3D图像中定义的矫正可能无法提取完全相同的眼部区域。例如，为两个用户收集的数据可能表现出系统性的平移偏差：粗略地说，对于相同的凝视，在裁剪的图像中，第一个用户的虹膜位置被系统性地替换为第二个用户的虹膜位置的几个像素。在实践中，当使用来自第二用户的训练数据推断第一用户的注视时，该空间对准误差可能导致系统注视角度误差偏差。</p>
+<blockquote>
+<p>选取框选出来的是一个固定位置。</p>
+</blockquote>
+<p>在接下来的小节中，我们首先介绍解决对齐问题的标准方法，然后介绍我们提出的对齐方法。请注意，当测试数据对应于训练集中的同一主题时，不需要对齐，因为我们可能希望测试数据和训练数据之间的裁剪保持一致。</p>
+<h4 id="5-2-1-Eye-corner-alignment"><a href="#5-2-1-Eye-corner-alignment" class="headerlink" title="5.2.1 Eye corner alignment"></a>5.2.1 Eye corner alignment</h4><p>为了对齐眼睛图像，常用的策略包括在几帧中定位眼角，并使用这些信息来估计变换参数，从而使它们回到标准位置。眼角定位通常是手动完成的（例如Martinez等人（2012）），然后对所有帧使用相同的参数。自动方法已经被使用，但到目前为止，在高分辨率图像上（如图2d中的眼睛）。</p>
+<p>对于分辨率低得多的情况，例如我们的数据（图2e中的眼睛），尽管最近取得了重要进展（例如，见Kazemi和Sullivan（2014）），但这在定位精度方面可能存在问题。除了定位问题，我们认为这种对齐策略对于凝视估计任务不是最优的，如下所述。因此，我们将在下一节中介绍另一种选择</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/03/25/CMake%E5%AD%A6%E4%B9%A0/" rel="next" title="CMake学习">
+                <i class="fa fa-chevron-left"></i> CMake学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/04/15/FinanceStudy/" rel="prev" title="finance Study">
+                finance Study <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2015IJCV-Gaze-Estimation-in-the-3D-Space-Using-RGB-D-sensors-pdf"><span class="nav-number">1.</span> <span class="nav-text">[2015IJCV]Gaze Estimation in the 3D Space Using RGB-D sensors.pdf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">针对问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">评价：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">1.3.</span> <span class="nav-text">深度传感器的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.4.</span> <span class="nav-text">方法简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%88%AB%E7%9A%84%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.5.</span> <span class="nav-text">一些别的方法介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">翻译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">2.1.</span> <span class="nav-text">abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-introduction"><span class="nav-number">2.2.</span> <span class="nav-text">1.introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Motivations"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.1 Motivations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Approach-and-contributions"><span class="nav-number">2.2.2.</span> <span class="nav-text">1.2 Approach and contributions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Related-work"><span class="nav-number">2.3.</span> <span class="nav-text">2.Related work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Geometric-based-methods"><span class="nav-number">2.3.1.</span> <span class="nav-text">Geometric based methods.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Appearance-based-methods"><span class="nav-number">2.3.2.</span> <span class="nav-text">Appearance based methods.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contributions"><span class="nav-number">2.3.3.</span> <span class="nav-text">Contributions.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Head-pose-invariant-gaze-estimation"><span class="nav-number">2.4.</span> <span class="nav-text">3 . Head pose invariant gaze estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Approach-overview"><span class="nav-number">2.4.1.</span> <span class="nav-text">3.1 Approach overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3D%E9%9D%A2%E9%83%A8%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA"><span class="nav-number">2.4.2.</span> <span class="nav-text">3.2 3D面部模板创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Head-pose-and-eyes-tracking"><span class="nav-number">2.4.3.</span> <span class="nav-text">3.3 Head pose and eyes tracking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Eye-appearance-pose-rectification-and-alignment%E7%9C%BC%E7%9D%9B%E5%A4%96%E8%A7%82%E5%A7%BF%E5%8A%BF%E7%9F%AB%E6%AD%A3%E5%92%8C%E5%AF%B9%E9%BD%90"><span class="nav-number">2.4.4.</span> <span class="nav-text">3.4 Eye appearance pose-rectification and alignment眼睛外观姿势矫正和对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rectification"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">Rectification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eye-Alignment"><span class="nav-number">2.4.4.2.</span> <span class="nav-text">Eye Alignment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-Gaze-estimation"><span class="nav-number">2.4.4.3.</span> <span class="nav-text">3.5 Gaze estimation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Appearance-based-gaze-estimation-methods"><span class="nav-number">2.5.</span> <span class="nav-text">4 Appearance based gaze estimation methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Person-invariant-gaze-estimation"><span class="nav-number">2.6.</span> <span class="nav-text">5 Person invariant gaze estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Person-invariant-classifier"><span class="nav-number">2.6.1.</span> <span class="nav-text">5.1 Person invariant classifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Alignment"><span class="nav-number">2.6.2.</span> <span class="nav-text">5.2 Alignment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1-Eye-corner-alignment"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">5.2.1 Eye corner alignment</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
+
+  
+ </div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

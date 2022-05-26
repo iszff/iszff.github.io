@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iszff" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iszff' Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Funes Mora K A, Monay F, Odobez J M. Eyediap: A database for the development and evaluation of gaze estimation algorithms from rgb and rgb-d cameras[C]&#x2F;&#x2F;Proceedings of the Symposium on Eye Tracking R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iszff&#39; Blog">
+<meta property="og:url" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="iszff&#39; Blog">
+<meta property="og:description" content="Funes Mora K A, Monay F, Odobez J M. Eyediap: A database for the development and evaluation of gaze estimation algorithms from rgb and rgb-d cameras[C]&#x2F;&#x2F;Proceedings of the Symposium on Eye Tracking R">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/eyediapCollect.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/float.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/paper_result.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/dataset_structrue.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/diferent_image_cataglory.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/1A_CS_M.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/1_A_FT_S.png">
+<meta property="article:published_time" content="2022-04-22T05:43:20.447Z">
+<meta property="article:modified_time" content="2022-04-22T05:43:53.926Z">
+<meta property="article:author" content="iszff">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog/source/_posts/EyediapRGBDgaze/eyediapCollect.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/04/22/eyediap说明/"/>
+
+
+
+
+
+  <title> | iszff' Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b9fc7fd579b171d84d00067691ad8ab";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iszff' Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">people move on.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iszff' Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-22T13:43:20+08:00">
+                2022-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Funes Mora K A, Monay F, Odobez J M. Eyediap: A database for the development and evaluation of gaze estimation algorithms from rgb and rgb-d cameras[C]//Proceedings of the Symposium on Eye Tracking Research and Applications. 2014: 255-258.</p>
+</blockquote>
+<ol>
+<li><p>评价：用于开发和评估来自RGB和RGB- d相机的注视估计算法的数据库</p>
+</li>
+<li><p>针对的问题：缺乏一个共同的基准来评估从RGB和RGB- d数据的凝视估计任务。</p>
+</li>
+<li><p>本文的目的：引入一个新的数据库和一个共同的框架来克服缺乏一个共同的benchmark这一局限性，用于注视估计方法的训练和评价。可以评估算法鲁棒性 。</p>
+<p>i)头部姿势变化;</p>
+<p>ii)人变化;</p>
+<p>iii)环境和感知条件的变化和</p>
+<p>iv)目标类型:屏幕或3D对象</p>
+</li>
+</ol>
+<h1 id="数据集采集设置"><a href="#数据集采集设置" class="headerlink" title="数据集采集设置"></a>数据集采集设置</h1><h2 id="Set-up"><a href="#Set-up" class="headerlink" title="Set-up"></a>Set-up</h2><p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\eyediapCollect.png" alt="image-20211210155014440"></p>
+<p>Kinect:这种消费设备提供标准(RGB)和VGA分辨率(640×480)和30fps的深度视频流。</p>
+<p>高清摄像头:Kinect设计的视场更大，对用户移动性的限制更少，但30fps的深度视频流。这对于基于VGA分辨率的眼球追踪来说是个问题。因此，我们也使用了全高清相机(1920x1080)， 25fps记录场景。</p>
+<p>led:两个摄像头都可见的5个led用于同步RGB-D和HD流。</p>
+<p>平面屏幕:使用一个24英寸的屏幕来显示一个可视目标。</p>
+<p>小球:使用直径为4cm的小球作为视觉目标，有两个目的:在3D环境中作为视觉目标，在RGB和深度数据中都具有识别力，从而可以精确跟踪其3D位置(见第3节)。</p>
+<p>如图1所示，摄像头位于电脑屏幕正下方，这样可以从下方观察参与者的眼睛，尽量减少眼皮遮挡。参与者被要求在一定距离内坐在装置前面，这取决于视觉目标的类型(见下一段)，并凝视指定的视觉目标。没有在说话活动、面部表情等方面给出指示。</p>
+<h2 id="Recording-sessions"><a href="#Recording-sessions" class="headerlink" title="Recording sessions"></a>Recording sessions</h2><p>为了评估注视估计算法的不同方面，我们设计了一组记录会话，每个会话的特征是四个主要变量的组合，影响注视估计的准确性:视觉目标，头部姿势，参与者和记录条件。这些措施说明如下:</p>
+<h3 id="Discrete-screen-target"><a href="#Discrete-screen-target" class="headerlink" title="Discrete screen target"></a>Discrete screen target</h3><p>离散目标(DS)屏幕上,一个小圆匀画每1.1秒随机位置在计算机屏幕上,</p>
+<h3 id="Continuous-screen-target"><a href="#Continuous-screen-target" class="headerlink" title="Continuous screen target"></a>Continuous screen target</h3><p>屏幕连续目标(CS),圆圈沿着一个随机2 s轨道移动,以获得注视运动更平稳的例子。</p>
+<h3 id="3D-floating-target"><a href="#3D-floating-target" class="headerlink" title="3D floating target"></a>3D floating target</h3><p>3D浮动目标(FT):一个直径4厘米的球挂在一根细线上，这根细线附着在一根棍子上，在摄像机和参与者之间的3D区域内移动。与屏幕上的目标相比，参与者离相机的距离更大(1.2米而不是80-90厘米)，以便有足够的空间让目标移动。</p>
+<h2 id="头部姿势。"><a href="#头部姿势。" class="headerlink" title="头部姿势。"></a>头部姿势。</h2><p>为了评估方法对头部姿势的稳健性，要求参与者保持注视视觉目标，同时</p>
+<p>(i)面对屏幕保持近似静止的头部姿势(静态情况，S);</p>
+<p>(ii)进行头部运动(平移和旋转translation and rotation)，以引入头部姿势变化(Mobile case, M)。</p>
+<h2 id="记录的条件"><a href="#记录的条件" class="headerlink" title="记录的条件"></a>记录的条件</h2><p>对于参与者12、13和14，在两种不同的条件下(记为A或B)，一些进程被记录了两次:不同的日子、光照和与相机间的距离</p>
+<blockquote>
+<p>总结。记录了94个2 - 3分钟的会话，总共获得了超过4小时的数据。每个会话由字符串“P-C-T-H”表示，它指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。录音示例如图2所示。</p>
+</blockquote>
+<p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\float.png" alt="image-20211215204745435"></p>
+<p>记录数据样本使用:a-c) RGB-D相机;d-e)高清相机，原始图像的640×480pixels patch显示用于与VGA分辨率数据进行比较。在这些例子中，参与者注视的是:a,d)头部保持静止的屏幕目标;b)静态头姿的浮动目标;c,e)移动头部时浮动目标。</p>
+<h1 id="Data-processing"><a href="#Data-processing" class="headerlink" title="Data processing"></a>Data processing</h1><p>除了原始数据本身，还提供了额外的信息，这些信息对推导地面真相测量至关重要，或者只是对开发数据集和运行实验很有用。如何估计它们的更多细节可以在[Funes Mora et al. 2014]中找到。</p>
+<h2 id="RGB-D-sensor-calibration"><a href="#RGB-D-sensor-calibration" class="headerlink" title="RGB-D sensor calibration"></a>RGB-D sensor calibration</h2><p>RGB-D传感器校准。提供了RGB-D立体集成的校准参数，这些参数是使用开源校准工具箱获得的[Herrera C. et al. 2012]。这允许结合RGB-D数据到一个有纹理的3D表面。</p>
+<h2 id="RGB-D-to-screen-calibration"><a href="#RGB-D-to-screen-calibration" class="headerlink" title="RGB-D to screen calibration"></a>RGB-D to screen calibration</h2><p>RGB-D屏幕校准。提供摄像机坐标系统(3D)和2D屏幕坐标之间的校准。</p>
+<h2 id="RGB-D-and-HD-camera-synchrony-and-calibration"><a href="#RGB-D-and-HD-camera-synchrony-and-calibration" class="headerlink" title="RGB-D and HD camera synchrony and calibration"></a>RGB-D and HD camera synchrony and calibration</h2><p>RGB-D和高清相机同步和校准。由于使用了5个led，高清数据与RGB-D视频流同步[Funes Mora等人，2014]。实现了两摄像机间的标准立体标定。</p>
+<h2 id="Head-pose-and-eyes-tracking"><a href="#Head-pose-and-eyes-tracking" class="headerlink" title="Head pose and eyes tracking."></a>Head pose and eyes tracking.</h2><p>对于每个参与者，我们使用[Funes Mora和Odobez 2012]中描述的方法，将一个3D Morphable Model [Paysan et al. 2009]与深度数据拟合，从而创建一个与他/她特定面部形状相对应的3D网格。此外，给定这个模板，我们使用迭代最近点(ICP)算法跟踪3D头部姿势，然后从该算法得到眼球在相机3D空间中的近似位置。</p>
+<h2 id="Floating-target-tracking"><a href="#Floating-target-tracking" class="headerlink" title="Floating target tracking"></a>Floating target tracking</h2><p>漂浮目标跟踪。对于使用一个球作为可视目标的记录会话，我们提供了球在每个时间步t的3D中心，使用彩色滤波和ICP拟合计算。</p>
+<h2 id="Manual-annotations"><a href="#Manual-annotations" class="headerlink" title="Manual annotations"></a>Manual annotations</h2><p>手工注释。进一步的手工注释，当数据被认为是不可靠的注视估计(和评价)提供。这对应于眨眼的时刻，或者当这个人分心的时候(没有看目标)。手动注释是针对涉及屏幕目标的正面会话进行的。鉴于这些情况的发生率很低，我们目前没有在其他会话中对其进行标记(它将被视为噪音)。不过，如果需要，还可以做进一步的注释。</p>
+<h1 id="Considered-tasks"><a href="#Considered-tasks" class="headerlink" title="Considered tasks"></a>Considered tasks</h1><p>文章描述了用于评估注视估计算法的准确性及其对不同变量(如头姿、光照条件等)的鲁棒性的不同评估基准。首先总结评估协议框架的主要元素，包括性能度量，然后列出一组基准。</p>
+<h2 id="Evaluation-protocol-and-measures"><a href="#Evaluation-protocol-and-measures" class="headerlink" title="Evaluation protocol and measures"></a>Evaluation protocol and measures</h2><p>本节介绍实验描述中涉及的概念:什么被理解为注视估计算法;训练、测试和评估集的定义 train, test and evaluation sets;性能测量。</p>
+<h3 id="Gaze-estimation-algorithm注释估计算法"><a href="#Gaze-estimation-algorithm注释估计算法" class="headerlink" title="Gaze estimation algorithm注释估计算法"></a>Gaze estimation algorithm注释估计算法</h3><p>注视估计的输出取决于应用程序。这里考虑两个非常常见的情况:一个3D gaze ray单位向量;或屏幕坐标系Screen coordinates上的二维像素，这通常用于基于屏幕的HCI应用程序。提供额外信息(摄像机-屏幕校准)，可以从3D凝视射线推断屏幕坐标[Funes Mora等人，2014]。</p>
+<p>训练数据集的真值包含3d视线估计p和2d视线估计s，给出一定的参数，p可以从s中计算处理。考虑不同的方法来收集这些训练样本:时间，即数据对应于一个较大的视频的部分;或结构化:训练数据以结构化的方式收集，以满足注视估计算法的特定要求(例如，获取最接近屏幕上预定义数量的特定真值的样本)。</p>
+<p>测试集假设它是帧索引范围内较大视频的时间序列。</p>
+<p>验证集将用于计算算法性能。这是测试数据的一个子集，通过移除数据或地面真相被破坏的样本，由于眨眼和分心，极端的头部姿势，影响眼睛的可见性(例如，鼻子遮挡)。</p>
+<h2 id="Predefined-experimental-protocols"><a href="#Predefined-experimental-protocols" class="headerlink" title="Predefined experimental protocols"></a>Predefined experimental protocols</h2><p>为了在不同的实验条件下比较算法和它们的优点，定义了一组协议，它们的区别主要在于用于训练和测试算法的数据库。注意，该数据集有两种主要类型的视觉目标:3D浮动目标(FT)和屏幕目标(CS或DS)。因此，定义的评价方案可以根据首选的视觉目标而变化。总结如下。更多细节见[Funes Mora et al. 2014]。</p>
+<p>Protocol 1:注视估计的准确性。在本方案中，我们评估了一个算法$H$的准确性，在所有参数的最小变化下，更准确地说，对于一个session s，其中唯一的变化是注视本身，我们将训练集定义为s的前半部分。测试集定义为s的后半部分。这种实验的结果是平均角误差$\epsilon$◦。可以根据视觉目标的类型导出相关会话。</p>
+<p>Protocol 2:头姿变化的鲁棒性。这里的目的是测量由于头部姿势的变化，凝视的准确性下降了多少。首先进行静态头姿(S)实验，然后进行头姿变化(M)实验，然后报告两种情况下的平均误差以及算法对头姿变化的敏感性。</p>
+<p>Protocol 3:个人依赖。目的是评估一种方法推广到不可见用户的效果。这可以通过 leave-one-person-out留一法实验装置来实现。</p>
+<p>Protocol 4:环境变化。最后，本案例的目标是研究一种方法在不同条件下的泛化特性。为此，可以对参与者12、13和14进行实验，在不同的设置和光照条件下记录会话。</p>
+<h1 id="Evaluation-protocol-example"><a href="#Evaluation-protocol-example" class="headerlink" title="Evaluation protocol example"></a>Evaluation protocol example</h1><p>为了说明数据集的用法，这里我们详细描述了与其中一个基准相关的数据:3D浮动目标的注视估计精度协议(Protocol 1)，并使用RGBD流作为注视估计算法的输入数据。注意，这种配置是数据集中最具挑战性的情况之一，对于这种情况，典型的眼睛图像大小为≈14×10pixels。</p>
+<h2 id="头部姿势和3D目标跟踪"><a href="#头部姿势和3D目标跟踪" class="headerlink" title="头部姿势和3D目标跟踪"></a>头部姿势和3D目标跟踪</h2><p>在表1中，我们显示了每个会话对应的帧总数，以及我们能够成功估计头部姿势或视觉目标位置的帧数。注意，头部姿势的召回率很高(99.9%)，因为在本方案中，涉及近额 near frontal和静态头部姿势的人。由于目标在相机的视野之外，或者太靠近传感器导致缺失深度数据，可视目标位置的召回率较低(69%)。尽管如此，这些数字表明有大量的凝视标记数据可供实验使用(每次记录大约100秒)。</p>
+<blockquote>
+<p>此处的召回率指的应该是拍到所有数据后，可以使用的数据。可以看到表格1中，第三行Training和第四行Testing加起来的和大约等于第三行Ball  Target的数目。</p>
+</blockquote>
+<p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\paper_result.png" alt="image-20211217152023265"></p>
+<p>表1:第1 - 3行:记录的视频帧数(Total)，头部姿态或浮动目标位置估计成功（可用数据？）。第四到第六行:Protocol 1的训练、测试和评估集的大小。</p>
+<p>表2:协议1的注视角度误差比较。“头”的情况下，只使用估计的头部方向作为凝视预测。</p>
+<p>Protocol sets每个会话被平均分为两个时间区域:前半部分是训练集，后半部分是测试集。测试集test set被筛选以定义评估集evaluation set(下一节将描述标准)。表1显示了每组样本的数量(仅考虑已知头姿和目标位置的样本)</p>
+<p>目光估计方法。我们实现了一种基于RGB-D的方法[Funes Mora和Odobez 2012]，该方法依靠RGB-D数据将眼睛图像的视点矫正为典型的头部姿势。我们将这种方法称为位校正自适应线性回归pose-rectified adaptive linear regression(PRALR)。对每个参与者，从训练集中提取42个样本的注视外观模型。这些样本有规律地分布在注视偏航值之间的±40◦和注视仰角值之间的±30◦。由于PR-ALR是一种基于插值的方法，我们只考虑凝视外观模型中使用的数据的凸壳内的测试样本，即评价集evaluation set仅由地面真值测量遵循相同的偏航和仰角凝视标准的测试样本组成。</p>
+<p>估计精度。为了证明数据的可变性，我们计算了在假设参与者注视前方时获得的注视角度误差，即假设注视方向是由头部姿势方向给出的。实验结果如表2所示。注意，这两种方法都输出3D凝视光线，我们使用相同的评估集，因此这些结果可以直接进行比较。“头部”案例显示的角度误差提供了数据中凝视的大变化性的证据。采用PR-ALR注视估计算法后，注视估计的精度得到了显著提高。</p>
+<blockquote>
+<p>Head可能是使用头部的方向代替视线的方向？</p>
+</blockquote>
+<p>然而，与文献报道的结果相比，误差仍然很高，这主要是由于低分辨率(~ 14×10每只眼睛像素)和低对比度(例如参与者7-A是黑色皮肤)。此外，异常值(眨眼、分心等)还没有从评估集3中剔除。注意，这是我们的数据中最具挑战性的场景之一，这个实验足以演示如何使用数据、定义的协议以及如何描述一个实验。</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>我们描述了一个新的数据集，用于开发和评估来自RGB或RGB- d数据的注视估计算法，解决了社区对标准化基准的需求。</p>
+<p>数据库丰富多样，因为它代表了这项任务的主要挑战。大多数变量(头部姿势，人，条件和目标类型)已经被系统地隔离，目标是恰当地描述注视估计在准确性和稳健性方面的不利条件。</p>
+<p>描述了记录方法和所记录数据的摘要。我们还列出了提供给用户的额外信息，如设置校准，目标位置，头部和眼睛跟踪信息。我们更详细地描述了一个作为使用实例的实验。我们相信该数据库对研究人员具有很高的价值，因为它将有助于促进注视估计技术在较少约束条件下的发展。</p>
+<h1 id="数据集组织结构"><a href="#数据集组织结构" class="headerlink" title="数据集组织结构"></a>数据集组织结构</h1><p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\dataset_structrue.png" alt="image-20211217165829214"></p>
+<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>Data下文件夹命名格式为“P-C-T-H”，指的是参与者 participan id P=(1-16)，记录条件conditions C=(A或B)，使用的目标target T=(DS, CS或FT)和头部姿势 head pose H=(S或M)。</p>
+<p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\diferent_image_cataglory.png" alt="image-20211230120945151"></p>
+<p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\1A_CS_M.png" alt="image-20220127154157650"></p>
+<p><img src="/2022/04/22/eyediap%E8%AF%B4%E6%98%8E/Blog\source\_posts\EyediapRGBDgaze\1_A_FT_S.png" alt="image-20220127152843564"></p>
+<p>每个文件夹下包含三个视频，3个视频采集设备的参数文件。</p>
+<blockquote>
+<p>利用相机内外参数先把depth和rgb对齐。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">rgb_vga_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">522.335571;0.000000;323.681061</span><br><span class="line">0.000000;522.346497;269.110931</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">1.000000;-0.000000;-0.000000</span><br><span class="line">-0.000000;-1.000000;-0.000000</span><br><span class="line">-0.000000;-0.000000;-1.000000</span><br><span class="line">[T]</span><br><span class="line">0.000000</span><br><span class="line">0.000000</span><br><span class="line">1.000000</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">depth_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">640;480</span><br><span class="line">[intrinsics]</span><br><span class="line">588.194946;0.000000;310.267731</span><br><span class="line">0.000000;585.303101;248.230743</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.999919;-0.003616;-0.012239</span><br><span class="line">-0.003528;-0.999968;0.007239</span><br><span class="line">-0.012265;-0.007195;-0.999899</span><br><span class="line">[T]</span><br><span class="line">-0.028705</span><br><span class="line">-0.001298</span><br><span class="line">1.002781</span><br><span class="line">[k_coefficients]</span><br><span class="line">3.1199302673;-0.0028519365</span><br><span class="line">[alpha]</span><br><span class="line">1.1090897322;0.0013763016</span><br><span class="line">[beta] #该项目后面的参数跟的很多很多</span><br><span class="line">0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;0.0000000000;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">rgb_hd_calibration.txt</span><br><span class="line"></span><br><span class="line">[resolution]</span><br><span class="line">1920;1080</span><br><span class="line">[intrinsics]</span><br><span class="line">1485.921875;0.000000;940.767761</span><br><span class="line">0.000000;1497.773804;530.065613</span><br><span class="line">0.000000;0.000000;1.000000</span><br><span class="line">[R]</span><br><span class="line">0.946361;-0.081335;-0.312705</span><br><span class="line">-0.077775;-0.996685;0.023863</span><br><span class="line">-0.313610;0.001738;-0.949550</span><br><span class="line">[T]</span><br><span class="line">0.218694</span><br><span class="line">-0.016453</span><br><span class="line">1.015923</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">screen_coordinates.txt</span><br><span class="line"></span><br><span class="line">Screen target coordinates: 2D coordinates (x,y); 3D coordinates (x,y,z)</span><br><span class="line">0;413.0000;477.0000;0.1165;-0.1441;-0.0632</span><br><span class="line">1;416.0000;474.0000;0.1154;-0.1451;-0.0630</span><br><span class="line">2;419.0000;472.0000;0.1143;-0.1457;-0.0629</span><br><span class="line">3;422.0000;469.0000;0.1132;-0.1467;-0.0627</span><br><span class="line">4;425.0000;467.0000;0.1121;-0.1473;-0.0626</span><br><span class="line">5;429.0000;465.0000;0.1107;-0.1480;-0.0625</span><br><span class="line">6;433.0000;463.0000;0.1092;-0.1486;-0.0625</span><br><span class="line">...</span><br><span class="line">#用于记录目标的坐标，目标是屏幕上的</span><br></pre></td></tr></table></figure>
+<p>当目标是屏幕上的小圆圈的时候，是怎么获得3D坐标的呀？</p>
+<p>对于悬浮目标，坐标储存在ball_tracking.txt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ball_tracking.txt</span><br><span class="line"></span><br><span class="line">Floating target coordinates : Kinect RGB target center (x,y); Kinect depth target center (x,y); HD target center (x,y); target center in 3D (x,y,z)</span><br><span class="line">0;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000</span><br><span class="line">1;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000</span><br><span class="line">2;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000;0.0000</span><br><span class="line">...</span><br><span class="line">435;201.0763;272.2635; 213.0858;254.8465; 560.0524;562.9190; -0.1205;-0.0031;0.4866</span><br><span class="line">436;194.5228;268.9833;205.5306;251.2355;549.0901;556.2169;-0.1279;0.0001;0.4829</span><br><span class="line">437;186.7341;265.6060;196.6099;247.5222;535.5085;549.5441;-0.1365;0.0035;0.4792</span><br><span class="line">438;178.8741;263.3830;187.6890;245.0903;521.1028;545.6860;-0.1451;0.0057;0.4767</span><br><span class="line">439;171.9798;262.2696;179.8662;243.8876;508.7180;544.3152;-0.1526;0.0069;0.4745</span><br><span class="line">440;164.0097;260.3646;170.8695;241.8093;493.8121;541.2767;-0.1612;0.0088;0.4726</span><br><span class="line">441;156.2978;259.7102;162.2261;241.1171;478.9697;541.1714;-0.1693;0.0095;0.4716</span><br><span class="line">442;149.4274;259.7971;154.5329;241.2446;465.9071;542.6571;-0.1765;0.0094;0.4708</span><br><span class="line">443;142.0665;259.4403;146.3241;240.8800;451.5322;543.1831;-0.1841;0.0098;0.4705</span><br><span class="line">444;135.2116;260.7846;138.7036;242.4013;438.2764;547.5947;-0.1910;0.0084;0.4705</span><br><span class="line">445;127.5654;260.6409;130.2049;242.2734;423.3104;548.6489;-0.1988;0.0086;0.4706</span><br><span class="line">446;121.2817;260.3453;123.2348;241.9707;410.9214;549.0970;-0.2051;0.0089;0.4708</span><br><span class="line">447;114.6820;259.6078;115.9194;241.1788;397.8803;548.5749;-0.2116;0.0096;0.4711</span><br><span class="line">448;107.2674;257.6865;107.7738;239.0738;382.3049;545.4728;-0.2185;0.0115;0.4726</span><br><span class="line">449;103.1451;256.7644;103.2068;238.0678;374.1977;544.0936;-0.2226;0.0125;0.4728</span><br><span class="line">450;98.3098;254.8061;97.8834;235.9139;364.1994;540.4706;-0.2272;0.0144;0.4735</span><br><span class="line">451;93.6959;251.8255;92.8167;232.6257;354.3896;534.4847;-0.2314;0.0174;0.4744</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">head_pose.txt</span><br><span class="line"></span><br><span class="line">Head pose: (Rotation matrix (9 values, row by row);Translation(3 values, x,y,z))</span><br><span class="line">0;0.9997;0.0236;-0.0082;-0.0231;0.9980;0.0588;0.0096;-0.0586;0.9982;-0.0046;0.1084;0.3938</span><br><span class="line">1;0.9997;0.0252;-0.0050;-0.0249;0.9980;0.0578;0.0064;-0.0577;0.9983;-0.0047;0.1090;0.3943</span><br><span class="line">2;0.9995;0.0316;-0.0085;-0.0312;0.9988;0.0387;0.0097;-0.0384;0.9992;-0.0049;0.1102;0.3943</span><br><span class="line">3;0.9996;0.0250;-0.0150;-0.0244;0.9987;0.0441;0.0161;-0.0438;0.9989;-0.0049;0.1091;0.3948</span><br><span class="line">4;0.9997;0.0249;-0.0019;-0.0248;0.9985;0.0485;0.0032;-0.0484;0.9988;-0.0049;0.1090;0.3939</span><br><span class="line">5;0.9998;0.0176;0.0042;-0.0178;0.9991;0.0388;-0.0035;-0.0388;0.9992;-0.0046;0.1103;0.3919</span><br><span class="line">6;0.9997;0.0251;0.0051;-0.0253;0.9990;0.0362;-0.0042;-0.0363;0.9993;-0.0046;0.1107;0.3887</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">eye_tracking.txt</span><br><span class="line"></span><br><span class="line">Eyes tracking: Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r); Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r); HD camera eyeball center left and right (x_l,y_l,x_r,y_r); 3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line">0;index</span><br><span class="line">286.1482;120.0683;351.1937;121.9867;Kinect RGB eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">306.9435;85.2708;379.7931;86.8933;Kinect depth eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">725.6400;164.9603;876.9300;143.2760;HD camera eyeball center left and right (x_l,y_l,x_r,y_r)</span><br><span class="line">-0.0376;0.1493;0.4766;0.0275;0.1472;0.4773  3D position of the eyeballs, left and right (x_l, y_l, z_l, x_r, y_r, z_r)</span><br><span class="line"></span><br><span class="line">1;286.3311;119.3493;351.4520;121.4472;307.1886;84.4702;380.1107;86.2908;725.2724;163.1687;876.9486;141.8322;-0.0374;0.1499;0.4773;0.0278;0.1476;0.4778</span><br><span class="line">2;285.9384;119.3542;351.1345;121.8086;306.7900;84.4777;379.8091;86.6937;723.7910;163.4062;875.4026;142.9983;-0.0377;0.1497;0.4780;0.0274;0.1470;0.4786</span><br><span class="line">3;285.1989;120.1658;350.4309;122.0558;305.9690;85.3842;379.0494;86.9733;722.2474;165.7260;873.3084;143.9852;-0.0385;0.1488;0.4780;0.0267;0.1467;0.4791</span><br><span class="line">4;286.2832;120.0966;351.3980;122.2475;307.1400;85.2999;380.0429;87.1811;725.2728;165.0547;877.1600;143.8994;-0.0374;0.1491;0.4774;0.0277;0.1469;0.4776</span><br><span class="line">5;287.0309;120.2445;351.9596;122.0580;307.8890;85.4603;380.5585;86.9690;728.2791;164.9782;880.3108;142.9601;-0.0368;0.1494;0.4759;0.0284;0.1476;0.4757</span><br><span class="line">6;287.5150;120.6915;352.0477;122.9920;308.2452;85.9573;380.4743;88.0112;732.2335;165.5833;883.7582;144.9835;-0.0365;0.1498;0.4729;0.0286;0.1475;0.4726</span><br></pre></td></tr></table></figure>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/04/15/FinanceStudy/" rel="next" title="finance Study">
+                <i class="fa fa-chevron-left"></i> finance Study
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/04/23/xgaze-competition/" rel="prev" title="xgaze_competition">
+                xgaze_competition <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+		  
+		    
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+		    
+
+
+       
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/iszff" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">数据集采集设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up"><span class="nav-number">1.1.</span> <span class="nav-text">Set-up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recording-sessions"><span class="nav-number">1.2.</span> <span class="nav-text">Recording sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Discrete-screen-target"><span class="nav-number">1.2.1.</span> <span class="nav-text">Discrete screen target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-screen-target"><span class="nav-number">1.2.2.</span> <span class="nav-text">Continuous screen target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D-floating-target"><span class="nav-number">1.2.3.</span> <span class="nav-text">3D floating target</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B4%E9%83%A8%E5%A7%BF%E5%8A%BF%E3%80%82"><span class="nav-number">1.3.</span> <span class="nav-text">头部姿势。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">记录的条件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-processing"><span class="nav-number">2.</span> <span class="nav-text">Data processing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RGB-D-sensor-calibration"><span class="nav-number">2.1.</span> <span class="nav-text">RGB-D sensor calibration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RGB-D-to-screen-calibration"><span class="nav-number">2.2.</span> <span class="nav-text">RGB-D to screen calibration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RGB-D-and-HD-camera-synchrony-and-calibration"><span class="nav-number">2.3.</span> <span class="nav-text">RGB-D and HD camera synchrony and calibration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Head-pose-and-eyes-tracking"><span class="nav-number">2.4.</span> <span class="nav-text">Head pose and eyes tracking.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-target-tracking"><span class="nav-number">2.5.</span> <span class="nav-text">Floating target tracking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manual-annotations"><span class="nav-number">2.6.</span> <span class="nav-text">Manual annotations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Considered-tasks"><span class="nav-number">3.</span> <span class="nav-text">Considered tasks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluation-protocol-and-measures"><span class="nav-number">3.1.</span> <span class="nav-text">Evaluation protocol and measures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaze-estimation-algorithm%E6%B3%A8%E9%87%8A%E4%BC%B0%E8%AE%A1%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.1.</span> <span class="nav-text">Gaze estimation algorithm注释估计算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predefined-experimental-protocols"><span class="nav-number">3.2.</span> <span class="nav-text">Predefined experimental protocols</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluation-protocol-example"><span class="nav-number">4.</span> <span class="nav-text">Evaluation protocol example</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B4%E9%83%A8%E5%A7%BF%E5%8A%BF%E5%92%8C3D%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA"><span class="nav-number">4.1.</span> <span class="nav-text">头部姿势和3D目标跟踪</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="nav-number">6.</span> <span class="nav-text">数据集组织结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data"><span class="nav-number">6.1.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">6.2.</span> <span class="nav-text"> </span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iszff</span>
+
+  
+ </div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
