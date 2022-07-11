@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iszff" />
+  <meta name="keywords" content="文献阅读," />
 
 
 
@@ -88,10 +88,15 @@
 <meta property="og:site_name" content="iszff&#39; Blog">
 <meta property="og:description" content="[2020AAAI] A Coarse-to-Fine Adaptive Network for Appearance-Based Gaze Estimation1.针对的问题：在之前的视线估计论文当中，人脸和眼睛图像仅作为独立或平行的特征源，它们之间的内在相关性被忽略。 2.贡献： 1）提出了一种从粗到精coarse-to-fine的策略，该策略从人脸图像中估计基本的注视方向 basic gaz">
 <meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/CANet/formulation.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/CANet/bi-gram_formulation.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/CANet/loss.png">
 <meta property="article:published_time" content="2022-05-06T14:04:28.000Z">
-<meta property="article:modified_time" content="2022-05-13T08:49:48.397Z">
+<meta property="article:modified_time" content="2022-07-11T04:04:02.819Z">
 <meta property="article:author" content="iszff">
+<meta property="article:tag" content="文献阅读">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2022/05/06/CANet/formulation.png">
 
 
 
@@ -348,6 +353,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%86%E7%BA%BF%E4%BC%B0%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">视线估计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -387,11 +414,71 @@
 <p>在本文中，我们做出了以下贡献：</p>
 <p>1）我们提出了一种从粗到精的策略，该策略从人脸图像中估计基本的注视方向，并使用从眼睛图像中预测的相应残差对其进行细化。</p>
 <p>2） 在该策略的指导下，我们设计了一个框架，该框架引入了一个双元模型来连接注视剩余和基本注视方向，并引入了一个注意组件来自适应地获取合适的细粒度特征。</p>
-<p>3） 结合上述创新，我们构建了一个由粗到精的自适应网络CA-Net，并在MPiGaze和Eyedipp上实现了最先进的性能。</p>
+<p>3） 结合上述创新，我们构建了一个由粗到精的自适应网络CA-Net，并在MPiiGaze和Eyedipp上实现了最先进的性能。 </p>
+<h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><p>如图1所示，我们首先设计一个CNN，从人脸图像中提取粗粒度特征，预测基本的注视方向。接下来，另一个CNN被设置为获取人眼图像的细粒度特征并生成注视残差。最后，通过添加基本注视方向和注视残差向量得到最终注视方向。</p>
+<p>但是，仍然有两个关键问题需要考虑。</p>
+<p>第一个问题是如何保证估计的注视残差是有效的，以细化其对应的基本注视方向。</p>
+<p>第二个问题是如何使人眼图像中提取的细粒度特征适合于人眼残差的估计。</p>
+<p>受NLP算法的启发，我们将粗到精的过程推广为一个双元模型来解决第一个问题。双元模型连接了注视残差和基本注视方向，并产生了与基本注视方向的注视残差耦合。</p>
+<p>针对第二个问题，提出了一种注意力分量来自适应获取合适的细粒度特征。 </p>
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>从粗到精策略的核心思想是从人脸图像中估计一个基本的注视方向，并用眼睛图像预测的相应残差对其进行细化。我们提出了基于从粗到精策略的CA网络。</p>
 <p>CA网络包含两个子网： Face-Net and Eye-Net.。</p>
 <p> Face-Net人脸网络从人脸图像中提取粗粒度特征，并估计基本注视方向。Eye Net估计两幅眼睛图像中的凝视残差，以优化基本的凝视方向。</p>
-<p>接下来，我们首先提出了一个注意力分量attention component来自适应地分配两个眼睛特征的权重。通过将加权的两个眼睛特征相加，可以获得合适的眼睛特征。此外，由于凝视残差与基本注视估计相关联，我们将从粗到精的过程推广为一个bi-gram model双图模型来连接人脸网络和眼睛网络，并产生与基本注视方向的注视剩余耦合。最后，通过将基本注视方向和注视残差相加，CA net输出注视方向。</p>
+<p>接下来，我们首先提出了一个注意力分量attention component来自适应地分配两个眼睛特征的权重。通过将加权的两个眼睛特征相加，可以获得合适的眼睛特征。此外，由于凝视残差与基本注视估计相关联，我们将从粗到精的过程推广为一个bi-gram model双图模型来连接人脸网络和眼睛网络，并产生与基本注视方向的注视残差耦合。最后，通过将基本注视方向和注视残差相加，CA net输出注视方向。</p>
+<h3 id="Feature-generation"><a href="#Feature-generation" class="headerlink" title="Feature generation"></a>Feature generation</h3><p>粗到精策略的一个关键问题是获取合适的特征，尤其是对注视残差的估计。</p>
+<p>人脸特征用于估计基本的注视方向因此，我们使用普通的CNN从人脸图像中提取粗粒度的人脸特征。对于眼睛的特征，我们也分别使用一个CNN对两幅眼睛图像进行特征提取。然而，在获得左右眼特征后，如何从双眼特征中获得合适的眼特征以准确估计注视残差是一个关键问题。</p>
+<p>至少有两个因素我们需要考虑。</p>
+<p>第一，对于不同的基本注视方向，适合的眼睛特征可以不同。</p>
+<p>第二，由于自由头部等野外环境，两种眼睛外观对凝视估计的可靠性不同(Cheng, Lu, and Zhang 2018)这两个因素都影响眼睛特征的获得。</p>
+<p>为了解决上述因素，我们提出了一个注意力分量，它可以自适应地为两只眼睛分配权重。将加权的左眼和右眼特征相加得到合适的眼睛特征。</p>
+<p>1.评分$m_l$与人脸特征有关，用于预测基本的注视方向。这意味着基本的凝视方向可以决定$m_l$的大小。这与我们上面描述的第一个因素相对应。</p>
+<p>2.评分$m_l$与左眼特征有关。换言之，$m_l$与左眼外观有关。它与我们上面描述的第二个因素相对应。</p>
+<p>3.分数$m_l$与右眼特征无关，左眼得分与右眼得分无关是合理的。</p>
+<p>4.$w_l$是通过比较$m_l$和$m_r$得到的。虽然左眼得分与右眼得分无关，但最终权重需要同时考虑两只眼睛的得分。</p>
+<p><img src="/2022/05/06/CANet/formulation.png" alt="image-20220609173140940"></p>
+<h3 id="Coarse-to-fine-gaze-estimation"><a href="#Coarse-to-fine-gaze-estimation" class="headerlink" title="Coarse-to-fine gaze estimation"></a>Coarse-to-fine gaze estimation</h3><p>在获得特征后，如何进行从粗到细的注视估计仍然是一个未知数。一个简单的解决方法是先学习一个映射函数来估计粗粒度人脸特征的基本注视方向，然后学习另一个映射函数来估计细粒度眼睛特征的注视残差。</p>
+<p>然而，这个解决方案有两个问题。</p>
+<p>首先，它没有考虑基本注视方向与注视残差之间的关系。</p>
+<p>其次，对于注视残差的估计，虽然眼睛图像比人脸图像更精细，但直接丢弃人脸特征是不好的。</p>
+<p>因此，我们将粗到细的过程推广为一个双元模型。双图模型的体系结构如图3所示，我们省略了特征生成的过程，这可能是多种多样的。</p>
+<p>具体来说，如图3所示，通过gate函数对人脸特征进行处理，产生状态h1。然后，一方面利用h1状态估计基本注视方向;另一方面，状态h1被交付到下一个门，产生具有眼睛特征的状态h2。状态h2用于估计注视残差。门的功能可以多种多样。设计gate的主要任务是过滤之前的状态，减少之前任务对当前任务的影响。我们在这项工作中使用了GRU (Cho et al. 2014)。</p>
+<p>粗到精的过程可以理解为由人脸特征产生的状态h1直接估计基本注视方向。凝视残差是由状态h1和眼睛特征产生的状态h2估计出来的。这意味着估计注视残差的过程与基本注视方向有关。同时，随着h1的传递，人脸特征也被隐式地用于估计注视残差，而不是丢弃。此外，由于人脸特征包含了大量的粗粒度信息，利用学习门自适应过滤状态h1学习门的过程如下图所示:</p>
+<p><img src="/2022/05/06/CANet/bi-gram_formulation.png" alt="image-20220609194449288"></p>
+<h3 id="CA-Net"><a href="#CA-Net" class="headerlink" title="CA-Net"></a>CA-Net</h3><p>综合上述算法，我们提出了CA-Net算法，该算法可以自适应获取合适的眼睛特征，并可以粗到细地估计三维注视方向。提出的ca网络的架构如图4所示。它包含两个子网，即Face-Net和Eye-Net。基本的注视方向$g_b$和状态$h_1$由头部分量产生。</p>
+<p>eye - net使用两个眼睛图像作为输入。设计了两个cnn来提取左眼特征fl和右眼特征fr然后，使用注意分量融合fl和fr(细节见图2)。我们将状态h1而不是人脸特征输入到注意分量中，引导眼睛特征的生成。在获得眼睛特征后，我们将带有h1的眼睛特征送入头部分量，估计注视残差gr。给定地面真值g *， CA-Net的损失函数定义为：</p>
+<p><img src="/2022/05/06/CANet/loss.png" alt="image-20220609195909919"></p>
+<h3 id="Implementation-detail"><a href="#Implementation-detail" class="headerlink" title="Implementation detail"></a>Implementation detail</h3><p>CA-Net的输入为224X224X3人脸图像，36X60灰度左右眼图像。Face-Net中的CNN由13个卷积块组成。每个块包含一个卷积层，一个ReLU和一个批归一化(Ioffe和Szegedy 2015)。所有卷积核的大小和步长设置为3*3和1。</p>
+<p>卷积核数为(64,64,128,128,256,256,256,256,256,256,256,256,512,512,1024)。我们还在第二个、第四个、第七和第10个卷积块之后插入一个max pool层。最大池层的大小为2<em>2，步长为2</em>2。</p>
+<p>我们还在第二个、第四个、第七和第10个卷积块之后插入一个max pool层。最大池层的大小为2X2，步长为2X2。</p>
+<p>在第13块之后使用全局平均池化层(GAP)。</p>
+<p>并输出1024特征。最后，将1024D特征发送到全连接层(FC)输出256D人脸特征。</p>
+<p>eye - net中左眼的CNN由十个卷积块组成。卷积核的个数为(64,64,128,128,128,256,256,256,512,1024)。第二个、第五个、第八个卷积核的步长设置为1所有卷积核的大小设为3*3。与Face-Net一样，最后使用GAP和FC输出256D左眼特征。同时，对于右眼，设计同样的CNN，输出256D右眼特征。</p>
+<p>我们使用Pytorch实现了CA-Net。我们训练整个网络在200个时代，32批大小。学习速率设置为0.001。我们使用MSRA初始化来初始化所有层的权值(He et al. 2015)。</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>实验在两个流行的注视估计数据集上进行:MPIIGaze (Zhang et al. 2017b)和EyeDiap 。</p>
+<p>MPIIGaze是最大的基于外观的注视估计数据集，提供了三维注视方向。它通常用于基于外观的方法的评估(Zhang et al. 2017a;Ranjan, De Mello和Kautz 2018;Liu等，2018;程、陆、张2018;熊和金2019)。MPIIGaze数据集包含来自15名受试者的213,659幅图像。注意，MPIIGaze提供了一个标准的评估协议，为每个受试者选择3000张图像组成评估集。我们在评价集中进行实验，而不是在整个评价集中。We conduct experiments in the evaluation set rather than the full set.</p>
+<p>EyeDiap数据集包含一组16个参与者的视频片段。视频采集分为屏幕目标和三维浮球两部分。我们使用屏幕目标会话下收集的视频，每15帧采样一张图像来构建评估集注意，由于两个受试者在屏幕目标会话中缺乏视频，我们最终获得了14个受试者的图像。</p>
+<h3 id="Data-preprocessing"><a href="#Data-preprocessing" class="headerlink" title="Data preprocessing"></a>Data preprocessing</h3><p>我们遵循(Zhang et al. 2017b)中提出的过程来规范化两个数据集。具体来说，基于外观的注视估计的目标是根据眼睛的外观来估计注视方向。然而，由于头部姿势有六种自由，眼睛的外观在现实世界中是多种多样的这使注视估计任务复杂化。因此，我们通过旋转虚拟相机来消除头部姿态的平移，通过包裹图像来消除头部姿态的滚动此外，我们从数据集提供的地标化人脸图像中裁剪眼睛图像。请注意，该地标也可以通过各种人脸检测算法(Brandon, Ludwiczuk和Mahadev 2016)自动检测。对人眼图像进行直方图均衡化处理，并将其转换为灰度图像，以消除光照的影响。注意，MPIIGaze提供的图像已经被标准化，我们只对EyeDiap应用了标准化。</p>
+<h3 id="Comparison-with-appearance-based-methods"><a href="#Comparison-with-appearance-based-methods" class="headerlink" title="Comparison with appearance based methods"></a>Comparison with appearance based methods</h3><p>我们首先进行了一个实验来比较所提出的方法与其他基于外观的方法的性能。实验在MPIIGaze和EyeDiap上进行。请注意，对于这两个数据集，我们都应用了留一法的策略来获得健壮的结果我们选择了四种方法作为比较方法，分别是iTracker (Krafka et al. 2016)、Spatial weights CNN (Zhang et al. 2017a)、Dilated-Net (Chen和Shi 2018)和RTGene (Fischer, Chang和Demiris 2018)。由于四种模型集成可以提高RT-Gene的准确性，我们也将模型集成的结果显示出来，称之为RT-Gene(4集成)，以区别于RT-Gene。请注意，目前在MPIIGaze中报告的最佳性能是由RT-Gene实现的(4集成)。</p>
+<p>图5显示了MPIIGaze数据集的结果。空间权重CNN, Dilated-Net和RT-Gene的性能都在4.8◦左右。该rt -gene(4集成)可以提高性能的大范围使用集成方案，这是4.3◦。我们的ca网实现了最先进的性能为4.1◦在MPIIGaze数据集。与RT-Gene相比，CA-Net有0.7◦改进，0.2◦与RT-Gene相比改善(4组)请注意，我们的ca网络在没有集成方案的情况下也能达到最先进的性能。</p>
+<p>在两个数据集上的良好性能表明了该ca网络的优越性。此外，由于最近一些基于外观的方法不提供源代码，而且这些方法也很难重新实现，我们仔细地在表1中显示了报告的准确性，以供参考。为了得到一个公平的比较，我们只在MPIIGaze中显示准确性，因为MPIIGaze数据集提供了一个标准的评估集。</p>
+<h2 id="Ablation-study"><a href="#Ablation-study" class="headerlink" title="Ablation study"></a>Ablation study</h2><p>为了证明CA-Net中每个组成部分的有效性，在MPIIGaze中进行了消融研究。</p>
+<h3 id="Ablation-study-about-components"><a href="#Ablation-study-about-components" class="headerlink" title="Ablation study about components."></a>Ablation study about components.</h3><p>我们首先进行消融研究，以证明注意分量和门分量的作用。特别地，我们评估两种额外的方法：Gate ablation and Attention ablation.</p>
+<h3 id="组件一Gate-ablation"><a href="#组件一Gate-ablation" class="headerlink" title="组件一Gate ablation"></a>组件一Gate ablation</h3><p>它直接将人脸特征和眼睛特征串联起来，估计注视残差。注意，我们不修改注意分量，其中人脸特征也被输入到注意分量中，以引导眼睛特征的生成。</p>
+<h3 id="组件二Attention-ablation"><a href="#组件二Attention-ablation" class="headerlink" title="组件二Attention ablation"></a>组件二Attention ablation</h3><p>它对左眼和右眼都指定固定权重为0.5，以生成细粒度眼特征。</p>
+<p>结果如表2的第二行所示。与CA-Net相比，Gate消融性能降低0.32◦。同时，注意消融术的◦比CA-Net降低0.46。</p>
+<h3 id="Ablation-study-about-network"><a href="#Ablation-study-about-network" class="headerlink" title="Ablation study about network"></a>Ablation study about network</h3><p>所提出的CA-Net在两个数据集上都表现出了最好的性能。然而，从粗到细的策略是否能提高性能仍不确定。为了证明由粗到细的优点，我们对该网络进行了ablation 研究。</p>
+<p>我们分别对ca网中的每个子网进行了评估。对三种方法进行了评价。Face-Net。我们直接使用脸网来估计注视。Eye-Net。我们直接使用EyeNet从两个眼睛图像来估计凝视。注意，这个方法中没有使用注意组件。</p>
+<p>我们将左眼特征和右眼特征直接串联起来生成眼睛特征。Joint-Net。我们使用与CA-Net相同的架构来提取人脸特征、左眼特征和右眼特征。通过将三个特征拼接形成的联合特征来估计注视方向。</p>
+<p>我们还在CA- net中提供了基本注视方向的表现，并将其称为脸网(Face-Net, CA)。</p>
+<p>此外，虽然骨干网是相同的CA-Net, CA-Net实现0.86◦改善比JointNet。它受益于提议的从粗到细的策略。</p>
+<h2 id="Additional-analysis"><a href="#Additional-analysis" class="headerlink" title="Additional analysis"></a>Additional analysis</h2><p>为了展示CA-Net中提出的算法的优势，我们在MPIIGaze中进行了一些额外的分析，并将结果总结到表3中。每种方法的性能显示在“Refine”一栏中此外，我们还在表3中展示了基本注视方向的表现，并将结果列在“基本”一栏中。我们称之为其余部分的基本表现We call it as basic performance in the rest parts。</p>
+<h4 id="Coarse-to-fine-v-s-Fine-to-coarse"><a href="#Coarse-to-fine-v-s-Fine-to-coarse" class="headerlink" title="Coarse-to-fine v.s. Fine-to-coarse."></a>Coarse-to-fine v.s. Fine-to-coarse.</h4><p>我们论文的核心是粗到细的策略。为了进一步验证粗到粗策略的正确性，我们评估了细到粗策略的性能。<strong>Fine-to-coarse是指从眼睛图像中估计一个基本的注视方向，然后用人脸图像中预测的残差进行细化</strong>。</p>
+<p>如表3所示，我们的CANet，即粗到细策略，明显比细到粗策略获得更好的性能。仅通过改变策略，细至粗的◦与CA-Net相比减少0.49。它展示了我们从粗到细的策略的优势此外，一个有趣的观察结果是，细到粗的性能与Eye-Net的性能相似(见表2)，而我们的CA-Net与Face-Net相比可以大大提高性能(见表2)。这证明了提出的粗到细策略的正确性。</p>
+<h4 id="bi-gram-v-s-One-gram"><a href="#bi-gram-v-s-One-gram" class="headerlink" title="bi-gram v.s. One gram"></a>bi-gram v.s. One gram</h4><p>为了从粗到细的角度估计注视方向，一个关键的思想是注视残差与基本注视方向有关。在此基础上，我们将粗到细的方法推广为双元模型。然而，双元模型是否有用还不确定。在这一部分中，<strong>我们将双元模型与一克模型进行比较，以说明双元模型的优越性。特别是，我们简单地使用一个零矩阵来替代交付的面部特征，其中凝视残差仅从眼睛特征估计</strong>。请注意，我们没有修改注意组件。在人脸特征的引导下，生成了眼的细粒度特征。</p>
+<p>如表3所示，1克显示了比CA-Net更好的基本性能。但是，由于缺乏基本注视方向信息，细粒度眼特征无法进一步细化基本注视方向。最后，一克有0.29◦比CA-Net减少。结果证明了双元模型的有效性。</p>
+<h4 id="Attention-component-v-s-other-weight-generations"><a href="#Attention-component-v-s-other-weight-generations" class="headerlink" title="Attention component v.s. other weight generations"></a>Attention component v.s. other weight generations</h4><p>选择了两个权重代进行比较人脸注意从人脸特征中产生两只眼睛的权重。眼睛注意由相应的眼睛特征产生两只眼睛的权重。结果如表3所示一个合适的基线是注意消融(见表2)，达到4.5◦性能。如表3所示，与Abalte注意力相比，Face attention和Eye attention表现更好。</p>
+<p>结果表明，人脸特征和相应的眼睛特征都是有用的。用于从粗到细的凝视估计。与此同时，两者的表现都不如CA-Net。这说明了所提议的注意部分的优点。</p>
+<p>我们还在图7中展示了一些可视化结果很明显，我们的方法可以在不同的情况下都有很好的表现。此外，如图7中的第6和第7个子图所示，当注视方向偏离脸部方向时，我们的CA-Net也能产生准确的注视方向。这表明我们的方法不仅关注人脸图像，而且对眼睛区域敏感。</p>
 
       
     </div>
@@ -406,6 +493,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag"># 文献阅读</a>
+          
+        </div>
       
 
       
@@ -507,7 +600,7 @@
 		    
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +614,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -582,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020AAAI-A-Coarse-to-Fine-Adaptive-Network-for-Appearance-Based-Gaze-Estimation"><span class="nav-number">1.</span> <span class="nav-text">[2020AAAI] A Coarse-to-Fine Adaptive Network for Appearance-Based Gaze Estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.2.</span> <span class="nav-text">Method</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020AAAI-A-Coarse-to-Fine-Adaptive-Network-for-Appearance-Based-Gaze-Estimation"><span class="nav-number">1.</span> <span class="nav-text">[2020AAAI] A Coarse-to-Fine Adaptive Network for Appearance-Based Gaze Estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.3.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-generation"><span class="nav-number">1.3.1.</span> <span class="nav-text">Feature generation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Coarse-to-fine-gaze-estimation"><span class="nav-number">1.3.2.</span> <span class="nav-text">Coarse-to-fine gaze estimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-Net"><span class="nav-number">1.3.3.</span> <span class="nav-text">CA-Net</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-detail"><span class="nav-number">1.3.4.</span> <span class="nav-text">Implementation detail</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">1.4.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-preprocessing"><span class="nav-number">1.4.1.</span> <span class="nav-text">Data preprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison-with-appearance-based-methods"><span class="nav-number">1.4.2.</span> <span class="nav-text">Comparison with appearance based methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ablation-study"><span class="nav-number">1.5.</span> <span class="nav-text">Ablation study</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ablation-study-about-components"><span class="nav-number">1.5.1.</span> <span class="nav-text">Ablation study about components.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%80Gate-ablation"><span class="nav-number">1.5.2.</span> <span class="nav-text">组件一Gate ablation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E4%BA%8CAttention-ablation"><span class="nav-number">1.5.3.</span> <span class="nav-text">组件二Attention ablation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ablation-study-about-network"><span class="nav-number">1.5.4.</span> <span class="nav-text">Ablation study about network</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Additional-analysis"><span class="nav-number">1.6.</span> <span class="nav-text">Additional analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Coarse-to-fine-v-s-Fine-to-coarse"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Coarse-to-fine v.s. Fine-to-coarse.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bi-gram-v-s-One-gram"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">bi-gram v.s. One gram</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention-component-v-s-other-weight-generations"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">Attention component v.s. other weight generations</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
